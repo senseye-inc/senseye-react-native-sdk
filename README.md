@@ -1,29 +1,27 @@
-# README #
+# senseye-sdk
 
-This README would normally document whatever steps are necessary to get your application up and running.
+n/a
 
-### What is this repository for? ###
+## Installation
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+```sh
+npm install senseye-sdk
+```
 
-### How do I get set up? ###
+## Usage
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+```js
+import SenseyeSdk from "senseye-sdk";
 
-### Contribution guidelines ###
+// ...
 
-* Writing tests
-* Code review
-* Other guidelines
+const result = await SenseyeSdk.multiply(3, 7);
+```
 
-### Who do I talk to? ###
+## Contributing
 
-* Repo owner or admin
-* Other community or team contact
+See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+
+## License
+
+BSD 3-Clause
