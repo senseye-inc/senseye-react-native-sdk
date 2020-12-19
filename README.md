@@ -1,17 +1,17 @@
-# senseye-sdk
+# react-native-senseye-sdk
 
 n/a
 
 ## Installation
 
 ```sh
-npm install senseye-sdk
+npm install react-native-senseye-sdk
 ```
 
 ## Usage
 
 ```js
-import SenseyeSdk from "senseye-sdk";
+import SenseyeSdk from "react-native-senseye-sdk";
 
 // ...
 

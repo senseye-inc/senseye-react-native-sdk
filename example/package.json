@@ -1,6 +1,6 @@
 {
-  "name": "senseye-sdk-example",
-  "description": "Example app for senseye-sdk",
+  "name": "react-native-senseye-sdk-example",
+  "description": "Example app for react-native-senseye-sdk",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "react": "16.11.0",
-    "react-native": "0.62.2"
+    "react-native": "0.62.2",
+    "react-native-camera": "3.40.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",

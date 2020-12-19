@@ -53,7 +53,7 @@ target 'SenseyeSdkExample' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'senseye-sdk', :path => '../..'
+  pod 'react-native-senseye-sdk', :path => '../..'
 
   use_native_modules!
 
