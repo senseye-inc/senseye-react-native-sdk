@@ -1,5 +1,5 @@
 import type { ComponentType } from 'react';
-import type { TestExperimentProps } from './experiments';
+import type { TestExperimentProps } from './experiments/Experiment.types';
 
 type ExperimentProps = TestExperimentProps;
 

@@ -13,8 +13,8 @@ export default SenseyeSdk as SenseyeSdkType;
 
 export { VideoRecorder } from './Recorder';
 export { ExperimentRunner } from './Runner';
-export { Experiments } from './experiments';
 
 export type { VideoRecorderProps } from './Recorder.types';
 export type { ExperimentRunnerProps } from './Runner.types';
-export type { TestExperimentProps } from './experiments';
+
+export * from './experiments';

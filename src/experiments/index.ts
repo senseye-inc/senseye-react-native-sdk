@@ -1,7 +1,11 @@
-import { TestExperiment } from './TestExperiment';
+import Calibration from './Calibration';
+import Nystagmus from './Nystagmus';
+import Plr from './Plr';
 
 export const Experiments = {
-  Test: TestExperiment,
+  Calibration: Calibration,
+  Nystagmus: Nystagmus,
+  Plr: Plr,
 };
 
-export type { TestExperimentProps } from './Experiment.types';
+export * from './types';
