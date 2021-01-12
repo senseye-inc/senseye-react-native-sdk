@@ -1,11 +1,17 @@
-# react-native-senseye-sdk
+# React Native Senseye SDK
 
 n/a
 
 ## Installation
 
+yarn:
 ```sh
-npm install react-native-senseye-sdk
+yarn add react-native-senseye-sdk
+```
+
+or npm:
+```sh
+npm install --save react-native-senseye-sdk
 ```
 
 ## Usage

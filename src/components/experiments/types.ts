@@ -23,11 +23,15 @@ export type CalibrationProps = BaseExperimentProps & {
   /** Determines the x,y coordinates of the sequence of dots on the screen */
   dot_points: [number, number][];
   /**
-  Function called when calibration circle is updated.
-  Returns the circle's center point relative to the canvas.
-      (0, 0) represents the top left of the canvas.
-      (1, 1) represents the bottom right of the canvas.
-  */
+   * Function to be called when a dot position is updated. Event will contain
+   * coordinate fields representing the center point of the updated dot,
+   * relative to the canvas.
+   * (0, 0) being the top left of the canvas.
+   * (1, 1) being the bottom right of the canvas.
+   *
+   * @param x  X coordinate of the updated position.
+   * @param y  Y coordinate of the updated position.
+   */
   onUpdate?(x: number, y: number): void;
 };
 

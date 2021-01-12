@@ -2,10 +2,6 @@ import Calibration from './Calibration';
 import Nystagmus from './Nystagmus';
 import Plr from './Plr';
 
-export const Experiments = {
-  Calibration: Calibration,
-  Nystagmus: Nystagmus,
-  Plr: Plr,
-};
+export { Calibration, Nystagmus, Plr };
 
 export * from './types';
