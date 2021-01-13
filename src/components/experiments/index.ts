@@ -3,5 +3,3 @@ import Nystagmus from './Nystagmus';
 import Plr from './Plr';
 
 export { Calibration, Nystagmus, Plr };
-
-export * from './types';

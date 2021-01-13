@@ -1,10 +1,8 @@
 import axios from 'axios';
 import type { AxiosInstance, AxiosRequestConfig } from 'axios';
 
-import type { ComputeResultResponse, ComputeTaskResponse } from './types';
-
-export const HOST = 'api.senseye.co';
-export const BASE_PATH = '/v1';
+import { Constants } from '@utils';
+import type { ComputeResultResponse, ComputeTaskResponse } from '@types';
 
 /**
  * Client that interfaces with Senseye's REST API. Provides wrapper functions for
@@ -19,8 +17,8 @@ export default class SenseyeApiClient {
    * @param token  Authentication token or API key.
    */
   constructor(
-    host: string = HOST,
-    basePath: string = BASE_PATH,
+    host: string = Constants.API_HOST,
+    basePath: string = Constants.API_BASE_PATH,
     token?: string
   ) {
     let baseUrl = 'https://' + host + basePath;
@@ -60,7 +58,7 @@ export default class SenseyeApiClient {
   }
 
   /**
-   * Initiates a compute task to predict fatigue level of the participant in a given video.
+   * Initiates a compute task to predict fatigue probability of the participant in a given video.
    *
    * @param  uri URI to a video containing a participant.
    * @returns    A `Promise` that will produce a `ComputeTaskResponse`.
@@ -72,7 +70,7 @@ export default class SenseyeApiClient {
   }
 
   /**
-   * Initiates a compute task to predict blood alcohol concentration of the participant in a given video.
+   * Initiates a compute task to predict intoxication probability of the participant in a given video.
    *
    * @param  uri URI to a video containing a participant.
    * @returns    A `Promise` that will produce a `ComputeTaskResponse`.
@@ -84,7 +82,7 @@ export default class SenseyeApiClient {
   }
 
   /**
-   * Initiates a compute task to predict cognitiven load of the participant in a given video.
+   * Initiates a compute task to predict cognitive load probability of the participant in a given video.
    *
    * @param  uri URI to a video containing a participant.
    * @returns    A `Promise` that will produce a `ComputeTaskResponse`.

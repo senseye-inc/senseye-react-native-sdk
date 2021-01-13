@@ -1,72 +1,72 @@
 import { Platform } from 'react-native';
 import type { AxiosRequestConfig } from 'axios';
 
-import { getCurrentTimestamp } from '../../utils';
-import type SenseyeApiClient from '../ApiClient';
-import type { Data } from './types';
-import type { DataResponse } from '../types';
+import { getCurrentTimestamp } from '@utils';
+import type { SenseyeApiClient } from '@api';
+import type { DataResponse } from '@types';
 
 /**
- * Class that models a video, facilitating the logging of pertinent metadata
- * and provides the ability to upload recorded video.
+ * Class that models a session video, facilitating the logging of pertinent
+ * metadata and provides the ability to upload recorded video.
  */
 export default class Video {
-  private apiClient: SenseyeApiClient;
-  private id: string | null;
-  private name: string | null;
-  private metadata: { [key: string]: Data };
+  private apiClient: SenseyeApiClient | undefined;
+  private id: string | undefined;
+  private metadata: { [key: string]: any };
+  private uri: string;
   private uploadProgress: number;
 
   /**
-   * @param  apiClient
+   * @param  name   Name of the video. Must be unique within the context of `sessionId`.
+   * @param  config Camera and/or recording configurations.
+   * @param  info   Any extra information or metadata.
+   * @param  uri    Video file URI. (Android) Ensure it is prefixed with `file://`.
    */
-  constructor(apiClient: SenseyeApiClient) {
-    this.apiClient = apiClient;
-    this.id = null;
-    this.name = null;
-    this.metadata = {};
+  constructor(
+    name: string,
+    config: { [key: string]: any } = {},
+    info: { [key: string]: any } = {},
+    uri: string = ''
+  ) {
+    this.apiClient = undefined;
+    this.id = undefined;
+    this.metadata = {
+      name: name,
+      config: config,
+      info: info,
+    };
+    this.uri = uri;
     this.uploadProgress = -1;
   }
 
   /**
-   * Creates a video model with the specified parameters. Note this should only be
+   * Initializes a video model through Senseye's API. Note this should only be
    * done once per instance. Ensure initialization is successful before executing
    * certain functions within this class, otherwise errors may be encountered.
    *
+   * @param  apiClient  Client configured to communicate with Senseye's API.
    * @param  sessionId  ID of a {@link Session} to associate with.
-   * @param  name       Name of the video. Must be unique within the context of `sessionId`.
-   * @param  config     Camera and/or recording configurations.
-   * @param  info       Any extra information or metadata.
    * @returns           A `Promise` that will produce the created video's metadata.
    */
-  public async init(
-    sessionId: string,
-    name: string,
-    config: { [key: string]: Data } = {},
-    info: { [key: string]: Data } = {}
-  ) {
-    if (this.id != null) {
+  public async init(apiClient: SenseyeApiClient, sessionId: string) {
+    if (this.id !== undefined) {
       Error('Video is already initialized.');
     }
+    this.apiClient = apiClient;
 
     const video = (
       await this.apiClient.post<DataResponse>('/data/videos', {
         user_session_id: sessionId,
-        name: name,
-        config: config,
-        info: info,
+        ...this.metadata,
       })
     ).data.data;
 
     if (!video) {
       // this condition shouldn't be reached unless the API Client was configured incorrectly,
       // i.e. the expected response from Senseye was not received.
-      throw Error('Failed to create Video. Missing expected response data.');
+      throw Error('Failed to create Video. Unexpected response data.');
     }
-
     this.id = video._id;
-    this.name = video.name;
-    this.metadata = { info: video.info };
 
     return video;
   }
@@ -100,19 +100,17 @@ export default class Video {
    *
    * @param  info  Metadata to be merged on top of any previous `info` metadata.
    */
-  public updateInfo(info: { [key: string]: Data }) {
-    const prevInfo =
-      this.metadata.info instanceof Object ? this.metadata.info : {};
-    this.metadata.info = { ...prevInfo, ...info };
+  public updateInfo(info: { [key: string]: any }) {
+    this.metadata.info = { ...this.metadata.info, ...info };
   }
 
   /**
-   * Performs a PUT request to update the video's metadata.
+   * Pushes the video's most recent metadata values to Senseye's API.
    *
    * @returns A `Promise` that will produce an `AxiosResponse`.
    */
   public pushUpdates() {
-    if (this.id == null) {
+    if (!this.apiClient || !this.id) {
       throw Error('Video must be initialized first.');
     }
 
@@ -123,19 +121,29 @@ export default class Video {
   }
 
   /**
+   * Sets the URI to a local file.
+   *
+   * @param  uri Video file URI. (Android) Ensure it is prefixed with `file://`.
+   */
+  public setUri(uri: string) {
+    this.uri = uri;
+  }
+
+  /**
    * Uploads a file and associates it with the video model.
    *
    * @param  uri        Video file URI. (Android) Ensure it is prefixed with `file://`.
+   *                      Defaults to `Video.uri` ({@link Video.setUri}).
    * @param  codec      Specifies the codec of the video file.
    * @param  overwrite  Specifies whether to overwrite a previously uploaded file.
    * @returns           A `Promise` that will produce the video's updated metadata.
    */
   public async uploadFile(
-    uri: string,
+    uri: string = this.uri,
     codec: string = 'mp4',
     overwrite: boolean = false
   ) {
-    if (this.id == null) {
+    if (!this.apiClient || !this.id) {
       throw Error('Video must be initialized first.');
     }
 
@@ -175,7 +183,7 @@ export default class Video {
   }
 
   /**
-   * @returns `Video.id`, or `null` if the instance hasn't been successfully
+   * @returns The video's ID, or `undefined` if the instance hasn't been successfully
    *            initialized yet ({@link Video.init}).
    */
   public getId() {
@@ -183,10 +191,9 @@ export default class Video {
   }
 
   /**
-   * @returns `Video.name`, or `null` if the instance hasn't been successfully
-   *            initialized yet ({@link Video.init}).
+   * @returns The video's name.
    */
   public getName() {
-    return this.name;
+    return this.metadata.name;
   }
 }

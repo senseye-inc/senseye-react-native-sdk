@@ -1,7 +1,17 @@
-import ExperimentRunner, { Experiments } from './ExperimentRunner';
+import ExperimentRunner from './ExperimentRunner';
 import VideoRecorder from './VideoRecorder';
+import SenseyeButton from './SenseyeButton';
+import SenseyePicker from './SenseyePicker';
+import SenseyeTextInput from './SenseyeTextInput';
+import * as Experiments from './experiments';
+import * as Surveys from './surveys';
 
-export { Experiments, ExperimentRunner, VideoRecorder };
-
-export * from './experiments/types';
-export * from './types';
+export {
+  ExperimentRunner,
+  VideoRecorder,
+  SenseyeButton,
+  SenseyePicker,
+  SenseyeTextInput,
+  Experiments,
+  Surveys,
+};
