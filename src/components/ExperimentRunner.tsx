@@ -9,7 +9,7 @@ import { Experiments, VideoRecorder } from '@components';
  * Synchronizes experiment events with video recording.
  */
 type ExperimentRunnerProps = {
-  experiments: any[], // TODO: add type
+  experiments: any[]; // TODO: add type
   userId: string;
   demographicSurvey: Models.Survey;
   apiClient?: SenseyeApiClient;
