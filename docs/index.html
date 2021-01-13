@@ -1,0 +1,239 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>react-native-senseye-sdk</title>
+	<meta name="description" content="Documentation for react-native-senseye-sdk">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">react-native-senseye-sdk</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>react-native-senseye-sdk</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#senseye-sdk" id="senseye-sdk" style="color: inherit; text-decoration: none;">
+					<h1>Senseye SDK</h1>
+				</a>
+				<p>The Senseye SDK provides direct integration into the Senseye API on both iOS and Android for React Native apps. The JavaScript API is simple and cross-platform. Ready to get started? Follow the instructions below.</p>
+				<a href="#whats-in-this-repo" id="whats-in-this-repo" style="color: inherit; text-decoration: none;">
+					<h2>What’s in this repo</h2>
+				</a>
+				<pre><code><span style="color: #000000">.  </span>
+<span style="color: #000000">+-- </span><span style="color: #001080">android</span><span style="color: #000000">/ # </span><span style="color: #001080">Project</span><span style="color: #000000"> </span><span style="color: #001080">scaffolding</span><span style="color: #000000"> </span><span style="color: #001080">for</span><span style="color: #000000"> </span><span style="color: #001080">Android</span><span style="color: #000000"> </span><span style="color: #001080">development</span>
+<span style="color: #000000">+-- </span><span style="color: #001080">ios</span><span style="color: #000000">/ # </span><span style="color: #001080">Project</span><span style="color: #000000"> </span><span style="color: #001080">scaffolding</span><span style="color: #000000"> </span><span style="color: #001080">for</span><span style="color: #000000"> </span><span style="color: #001080">iOS</span><span style="color: #000000"> </span><span style="color: #001080">development</span>
+<span style="color: #000000">+-- </span><span style="color: #001080">docs</span><span style="color: #000000">/ # </span><span style="color: #001080">See</span><span style="color: #000000"> </span><span style="color: #001080">Documentation</span><span style="color: #000000"> </span><span style="color: #001080">section</span><span style="color: #000000"> </span><span style="color: #0000FF">of</span><span style="color: #000000"> </span><span style="color: #0000FF">this</span><span style="color: #000000"> </span><span style="color: #0070C1">README</span><span style="color: #000000">  </span>
+<span style="color: #000000">+-- </span><span style="color: #001080">examples</span><span style="color: #000000">/ # </span><span style="color: #001080">Contains</span><span style="color: #000000"> </span><span style="color: #001080">usage</span><span style="color: #000000"> </span><span style="color: #001080">examples</span><span style="color: #000000"> </span><span style="color: #001080">for</span><span style="color: #000000"> </span><span style="color: #001080">React</span><span style="color: #000000"> </span><span style="color: #001080">components</span>
+<span style="color: #000000">+-- </span><span style="color: #001080">src</span><span style="color: #000000">/</span>
+<span style="color: #000000">|   +-- </span><span style="color: #001080">components</span><span style="color: #000000">/ # </span><span style="color: #001080">source</span><span style="color: #000000"> </span><span style="color: #001080">code</span><span style="color: #000000"> </span><span style="color: #001080">for</span><span style="color: #000000"> </span><span style="color: #001080">serving</span><span style="color: #000000"> </span><span style="color: #001080">Senseye</span><span style="color: #000000"> </span><span style="color: #001080">components</span><span style="color: #000000">  </span>
+<span style="color: #000000">+-- </span><span style="color: #001080">package</span><span style="color: #000000">.</span><span style="color: #001080">json</span><span style="color: #000000"> #  </span><span style="color: #001080">Includes</span><span style="color: #000000"> </span><span style="color: #001080">application</span><span style="color: #000000"> </span><span style="color: #001080">dependencies</span><span style="color: #000000">, </span><span style="color: #001080">build</span><span style="color: #000000"> </span><span style="color: #001080">utilities</span><span style="color: #000000">, </span><span style="color: #001080">and</span><span style="color: #000000"> </span><span style="color: #001080">pre</span><span style="color: #000000">-</span><span style="color: #001080">commit</span><span style="color: #000000"> </span><span style="color: #001080">hook</span><span style="color: #000000"> </span><span style="color: #001080">directives</span><span style="color: #000000">. </span><span style="color: #001080">See</span><span style="color: #000000"> [</span><span style="color: #001080">contributing</span><span style="color: #000000"> </span><span style="color: #001080">guide</span><span style="color: #000000">](</span><span style="color: #0070C1">CONTRIBUTING</span><span style="color: #000000">.</span><span style="color: #001080">md</span><span style="color: #000000">) </span><span style="color: #001080">for</span><span style="color: #000000"> </span><span style="color: #001080">more</span><span style="color: #000000"> </span><span style="color: #001080">information</span><span style="color: #000000"> </span><span style="color: #001080">on</span><span style="color: #000000"> </span><span style="color: #001080">these</span><span style="color: #000000"> </span><span style="color: #001080">directives</span><span style="color: #000000">.</span>
+<span style="color: #000000">+-- .</span><span style="color: #001080">circleci</span><span style="color: #000000">/ # (</span><span style="color: #001080">Ignore</span><span style="color: #000000">. </span><span style="color: #001080">Reserved</span><span style="color: #000000"> </span><span style="color: #001080">for</span><span style="color: #000000"> </span><span style="color: #001080">future</span><span style="color: #000000"> </span><span style="color: #001080">development</span><span style="color: #000000">)</span>
+</code></pre>
+				<a href="#included-tasks" id="included-tasks" style="color: inherit; text-decoration: none;">
+					<h2>Included Tasks</h2>
+				</a>
+				<ol>
+					<li>Calibration</li>
+					<li>Nystagmus</li>
+					<li>PLR - Pupillary Light Response</li>
+				</ol>
+				<a href="#requirements" id="requirements" style="color: inherit; text-decoration: none;">
+					<h2>Requirements</h2>
+				</a>
+				<p>Apps using React Native Navigation may target iOS 12+ and Android 10+. You may use Windows, macOS or Linux as your development operating system.</p>
+				<p>For development, you&#39;ll need an IDE plugin that can detect <code>babel-plugin-module-resolver</code>.</p>
+				<a href="#atom" id="atom" style="color: inherit; text-decoration: none;">
+					<h4>Atom</h4>
+				</a>
+				<p>You can install <code>autocomplete-modules</code> and enable &quot;Babel Plugin Module Resolver&quot; in its settings.</p>
+				<a href="#vs-code" id="vs-code" style="color: inherit; text-decoration: none;">
+					<h4>VS Code</h4>
+				</a>
+				<p>You can <code>yarn add --dev babel-plugin-module-resolver</code>, then quit VS Code entirely and relaunch.</p>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
+				<p>npm:</p>
+				<pre><code class="language-sh"><span style="color: #000000">npm install senseye-react-native-sdk</span><span style="color: #A31515">`</span>
+</code></pre>
+				<p>yarn:</p>
+				<pre><code class="language-sh"><span style="color: #000000">yarn add senseye-react-native-sdk</span>
+</code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
+				<p>You can then import task components into your React application. For example:</p>
+				<pre><code class="language-javascript"><span style="color: #AF00DB">import</span><span style="color: #000000"> {</span><span style="color: #001080">Calibration</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #001080">senseye</span><span style="color: #000000">-</span><span style="color: #001080">react</span><span style="color: #000000">-</span><span style="color: #001080">native</span><span style="color: #000000">-</span><span style="color: #001080">sdk</span>
+</code></pre>
+				<p>If you prefer to build the SDK locally, clone this repo and run <code>yarn install</code> to get started.</p>
+				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+					<h2>Documentation</h2>
+				</a>
+				<p>Run <code>yarn docs</code> or open docs/index.html in a browser to view the documentation.</p>
+				<a href="#changelog" id="changelog" style="color: inherit; text-decoration: none;">
+					<h2>Changelog</h2>
+				</a>
+				<p>View changes and release history (<a href="https://github.com/senseye-inc/senseye-react-native-sdk/releases/">https://github.com/senseye-inc/senseye-react-native-sdk/releases/</a>)</p>
+				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
+					<h2>Contributing</h2>
+				</a>
+				<p>See the <a href="CONTRIBUTING.md">contributing guide</a> to learn how to contribute to the repository and the development workflow.</p>
+				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+					<h2>License</h2>
+				</a>
+				<p>BSD 3-Clause</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/__tests___index_test.html">__tests__/index.test</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api.html">api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_apiclient.html">api/<wbr>Api<wbr>Client</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models.html">api/models</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_session.html">api/models/<wbr>Session</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_survey.html">api/models/<wbr>Survey</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/api_models_video.html">api/models/<wbr>Video</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/components.html">components</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/components_experimentrunner.html">components/<wbr>Experiment<wbr>Runner</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/components_senseyebutton.html">components/<wbr>Senseye<wbr>Button</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/components_senseyepicker.html">components/<wbr>Senseye<wbr>Picker</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/components_senseyetextinput.html">components/<wbr>Senseye<wbr>Text<wbr>Input</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/components_videorecorder.html">components/<wbr>Video<wbr>Recorder</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/components_experiments.html">components/experiments</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/components_experiments_calibration.html">components/experiments/<wbr>Calibration</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/components_experiments_nystagmus.html">components/experiments/<wbr>Nystagmus</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/components_experiments_plr.html">components/experiments/<wbr>Plr</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/components_surveys.html">components/surveys</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/components_surveys_demographic.html">components/surveys/<wbr>Demographic</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/components_surveys_validation.html">components/surveys/<wbr>Validation</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/index.html">index</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/types.html">types</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/utils.html">utils</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
