@@ -10,7 +10,8 @@ The Senseye SDK provides direct integration into the Senseye API on both iOS and
 +-- docs/ # See Documentation section of this README  
 +-- examples/ # Contains usage examples for React components
 +-- src/
-|   +-- components/ # source code for serving Senseye components  
+|   +-- api/ # source code for communicating with the Senseye API
+|   +-- components/ # source code for serving Senseye components
 +-- package.json #  Includes application dependencies, build utilities, and pre-commit hook directives. See [contributing guide](CONTRIBUTING.md) for more information on these directives.
 +-- .circleci/ # (Ignore. Reserved for future development)
 ```
@@ -35,24 +36,27 @@ You can `yarn add --dev babel-plugin-module-resolver`, then quit VS Code entirel
 
 npm:
 ```sh
-npm install senseye-react-native-sdk`
+npm install @senseyeinc/react-native-senseye-sdk`
 ```
 
 yarn:
 ```sh
-yarn add senseye-react-native-sdk
+yarn add @senseyeinc/react-native-senseye-sdk
 ```
 
 ## Usage
 
 You can then import task components into your React application. For example:
 ```javascript
-import {Calibration} from senseye-react-native-sdk
+import { Experiments } from '@senseyeinc/react-native-senseye-sdk'
+
+<Experiments.Calibration/>
 ```
 
 If you prefer to build the SDK locally, clone this repo and run `yarn install` to get started.
 
 ## Documentation
+
 Run `yarn docs` or open docs/index.html in a browser to view the documentation.
 
 ## Changelog
