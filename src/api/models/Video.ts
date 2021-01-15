@@ -1,9 +1,11 @@
 import { Platform } from 'react-native';
 import type { AxiosRequestConfig } from 'axios';
 
-import { getCurrentTimestamp } from '@utils';
-import type { SenseyeApiClient } from '@api';
-import type { DataResponse } from '@types';
+import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
+import type {
+  SenseyeApiClient,
+  DataResponse,
+} from '@senseyeinc/react-native-senseye-sdk';
 
 /**
  * Class that models a session video, facilitating the logging of pertinent

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Animated, Dimensions, Easing, View, StyleSheet } from 'react-native';
 
-import { getCurrentTimestamp } from '@utils';
-import type { ExperimentProps } from '@types';
+import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
+import type { ExperimentProps } from '@senseyeinc/react-native-senseye-sdk';
 
 // device screen height and width
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -26,16 +26,6 @@ type CalibrationProps = ExperimentProps & {
  * gaze information used to assess behavior in the other tasks.
  */
 export default function Calibration(props: CalibrationProps) {
-  function _onStart() {
-    if (props.onStart) {
-      props.onStart();
-    }
-  }
-  function _onEnd() {
-    if (props.onEnd) {
-      props.onEnd();
-    }
-  }
   const [dotMoveCount, setDotMoveCount] = React.useState(0);
   // instantiates animation object
   const moveAnimationValue = React.useRef(new Animated.ValueXY()).current;
@@ -78,8 +68,19 @@ export default function Calibration(props: CalibrationProps) {
     }
   });
 
+  const _onStart = () => {
+    if (props.onStart) {
+      props.onStart();
+    }
+  };
+  const _onEnd = React.useCallback(() => {
+    if (props.onEnd) {
+      props.onEnd();
+    }
+  }, [props]);
+
   // updates dot position
-  const moveDot = () => {
+  const moveDot = React.useCallback(() => {
     Animated.timing(moveAnimationValue, {
       toValue: { x: dotMoveCount, y: dotMoveCount },
       duration: props.duration,
@@ -87,21 +88,22 @@ export default function Calibration(props: CalibrationProps) {
       delay: props.delay,
       useNativeDriver: true,
     }).start(() => {
-      if (dotMoveCount < dotIndexes.length) {
+      if (dotMoveCount < props.dot_points.length - 1) {
         setDotMoveCount(dotMoveCount + 1);
       } else {
         _onEnd();
       }
     });
-  };
+  }, [dotMoveCount, moveAnimationValue, props, _onEnd]);
+
+  React.useEffect(() => {
+    moveDot();
+  }, [moveDot]);
 
   return (
     <View style={styles(props).container}>
       <Animated.View
-        onLayout={() => {
-          _onStart();
-          moveDot();
-        }}
+        onLayout={_onStart}
         style={{ ...styles(props).dot, ...animatedStyles }}
       />
     </View>
@@ -126,8 +128,8 @@ const styles = (props: CalibrationProps) =>
 
 Calibration.defaultProps = {
   background: '#000000',
-  duration: 1000,
-  delay: 1000,
+  duration: 2000,
+  delay: 0,
   radius: 15,
   dot_color: '#FFFFFF',
   dot_points: [

@@ -1,11 +1,9 @@
-import type { SenseyeApiClient } from '@api';
-import type { DataResponse, Datum, SurveyType } from '@types';
-
-/** Valid survey types. */
-export const Types: Record<string, SurveyType> = {
-  DEMOGRAPHIC: 'demographic',
-  VALIDATION: 'validation',
-};
+import type {
+  SenseyeApiClient,
+  DataResponse,
+  Datum,
+  SurveyType,
+} from '@senseyeinc/react-native-senseye-sdk';
 
 /**
  * Class that models a survey, facilitating the collection of a participant's responses
@@ -19,13 +17,13 @@ export default class Survey {
   /**
    * @param  apiClient
    * @param  type       Survey type, e.g. `demographic`, `validation`.
-   * @param  entryMap   Map of keys to a tuple containing the corresponding question and response.
+   * @param  entryMap   Map of keys to a tuple containing a corresponding question and response.
    *                      e.g. { 'eye_color': ['What color are you eyes?', 'Brown'] }
    * @param  info       Any extra information or metadata.
    */
   constructor(
     type: SurveyType,
-    entryMap: { [key: string]: [Datum, Datum] },
+    entryMap: { [key: string]: [Datum, Datum] } = {},
     info: { [key: string]: any } = {}
   ) {
     // extract questions and responses into format expected by Senseye's API

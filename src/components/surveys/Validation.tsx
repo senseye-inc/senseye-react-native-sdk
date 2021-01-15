@@ -9,10 +9,12 @@ import {
   SafeAreaView,
 } from 'react-native';
 
-import { Models } from '@api';
-import { SenseyeButton } from '@components';
-import { Constants } from '@utils';
-import type { ComputeResult } from '@types';
+import {
+  SenseyeButton,
+  Models,
+  Constants,
+} from '@senseyeinc/react-native-senseye-sdk';
+import type { ComputeResult } from '@senseyeinc/react-native-senseye-sdk';
 
 // gets device screen height and width
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -29,7 +31,6 @@ export default function ValidationSurvey(props: ValidationSurveyProps) {
     'Senseye models indicate the user is not fit for duty.'
   );
   const validationQuestion = 'Do you agree with this result?';
-  const result = props.results[0];
 
   function _onComplete(agreed: boolean) {
     if (props.onComplete) {
@@ -43,33 +44,40 @@ export default function ValidationSurvey(props: ValidationSurveyProps) {
     }
   }
 
-  if (!result) {
-    throw Error("At least one entry is required in 'results'.");
-  } else if (
-    result.prediction.predicted_state === Constants.PredictedState.READY
-  ) {
-    setResultIcon(Checkmark);
-    setResultMsg('Senseye models indicate the user is fit for duty.');
-  } else if (
-    result.prediction.predicted_state ===
-    Constants.PredictedState.NOT_READY_FATIGUE
-  ) {
-    setResultIcon(Xmark);
-    setResultMsg('Senseye models indicate the user is too fatigued for duty.');
-  } else if (
-    result.prediction.predicted_state === Constants.PredictedState.NOT_READY_BAC
-  ) {
-    setResultIcon(Xmark);
-    setResultMsg(
-      'Senseye models indicate the user is too intoxicated for duty.'
-    );
-  }
+  const result = props.results[0];
+
+  React.useEffect(() => {
+    if (!result) {
+      throw Error("At least one entry is required in 'results'.");
+    } else if (
+      result.prediction.predicted_state === Constants.PredictedState.READY
+    ) {
+      setResultIcon(Checkmark);
+      setResultMsg('Senseye models indicate the user is fit for duty.');
+    } else if (
+      result.prediction.predicted_state ===
+      Constants.PredictedState.NOT_READY_FATIGUE
+    ) {
+      setResultIcon(Xmark);
+      setResultMsg(
+        'Senseye models indicate the user is too fatigued for duty.'
+      );
+    } else if (
+      result.prediction.predicted_state ===
+      Constants.PredictedState.NOT_READY_BAC
+    ) {
+      setResultIcon(Xmark);
+      setResultMsg(
+        'Senseye models indicate the user is too intoxicated for duty.'
+      );
+    }
+  }, [result]);
 
   return (
     <SafeAreaView style={styles.container}>
       <Image
         style={styles.logo}
-        source={require('../assets/senseye-white-logo.png')}
+        source={require('../../assets/senseye-white-logo.png')}
       />
       <ScrollView
         style={styles.innerContainer}
@@ -81,7 +89,7 @@ export default function ValidationSurvey(props: ValidationSurveyProps) {
           Please note, you are currently in BETA mode and results should not be
           incorporated into workflow.
         </Text>
-        <Text style={styles.text}>validationQuestion</Text>
+        <Text style={styles.text}>{validationQuestion}</Text>
         <View style={styles.buttonLayout}>
           <SenseyeButton
             title="Yes"
@@ -102,7 +110,7 @@ export default function ValidationSurvey(props: ValidationSurveyProps) {
 const Checkmark = () => {
   return (
     <Image
-      source={require('../assets/checkmark-green.png')}
+      source={require('../../assets/checkmark-green.png')}
       style={styles.clearanceIcon}
     />
   );
@@ -110,7 +118,7 @@ const Checkmark = () => {
 const Xmark = () => {
   return (
     <Image
-      source={require('../assets/xmark-red.png')}
+      source={require('../../assets/xmark-red.png')}
       style={styles.clearanceIcon}
     />
   );

@@ -1,6 +1,6 @@
 {
 	"id": 0,
-	"name": "react-native-senseye-sdk",
+	"name": "@senseyeinc/react-native-senseye-sdk",
 	"kind": 0,
 	"flags": {},
 	"originalName": "",
@@ -20,15 +20,15 @@
 			"flags": {},
 			"children": [
 				{
-					"id": 375,
+					"id": 373,
 					"name": "Models",
 					"kind": 16777216,
 					"kindString": "Reference",
 					"flags": {},
-					"target": 205
+					"target": 203
 				},
 				{
-					"id": 374,
+					"id": 372,
 					"name": "SenseyeApiClient",
 					"kind": 16777216,
 					"kindString": "Reference",
@@ -41,8 +41,8 @@
 					"title": "References",
 					"kind": 16777216,
 					"children": [
-						375,
-						374
+						373,
+						372
 					]
 				}
 			],
@@ -152,7 +152,7 @@
 							"sources": [
 								{
 									"fileName": "api/ApiClient.ts",
-									"line": 12,
+									"line": 15,
 									"character": 14
 								}
 							],
@@ -172,7 +172,7 @@
 							"sources": [
 								{
 									"fileName": "api/ApiClient.ts",
-									"line": 114,
+									"line": 117,
 									"character": 26
 								}
 							],
@@ -211,7 +211,7 @@
 												"typeArguments": [
 													{
 														"type": "reference",
-														"id": 277,
+														"id": 275,
 														"name": "ComputeTaskResponse"
 													}
 												],
@@ -234,7 +234,7 @@
 							"sources": [
 								{
 									"fileName": "api/ApiClient.ts",
-									"line": 50,
+									"line": 53,
 									"character": 15
 								}
 							],
@@ -314,7 +314,7 @@
 							"sources": [
 								{
 									"fileName": "api/ApiClient.ts",
-									"line": 47,
+									"line": 50,
 									"character": 12
 								}
 							],
@@ -394,7 +394,7 @@
 							"sources": [
 								{
 									"fileName": "api/ApiClient.ts",
-									"line": 125,
+									"line": 128,
 									"character": 25
 								}
 							],
@@ -433,7 +433,7 @@
 												"typeArguments": [
 													{
 														"type": "reference",
-														"id": 270,
+														"id": 268,
 														"name": "ComputeResultResponse"
 													}
 												],
@@ -456,7 +456,7 @@
 							"sources": [
 								{
 									"fileName": "api/ApiClient.ts",
-									"line": 104,
+									"line": 107,
 									"character": 23
 								}
 							],
@@ -495,7 +495,7 @@
 												"typeArguments": [
 													{
 														"type": "reference",
-														"id": 277,
+														"id": 275,
 														"name": "ComputeTaskResponse"
 													}
 												],
@@ -518,7 +518,7 @@
 							"sources": [
 								{
 									"fileName": "api/ApiClient.ts",
-									"line": 53,
+									"line": 56,
 									"character": 13
 								}
 							],
@@ -611,7 +611,7 @@
 							"sources": [
 								{
 									"fileName": "api/ApiClient.ts",
-									"line": 78,
+									"line": 81,
 									"character": 19
 								}
 							],
@@ -650,7 +650,7 @@
 												"typeArguments": [
 													{
 														"type": "reference",
-														"id": 277,
+														"id": 275,
 														"name": "ComputeTaskResponse"
 													}
 												],
@@ -673,7 +673,7 @@
 							"sources": [
 								{
 									"fileName": "api/ApiClient.ts",
-									"line": 90,
+									"line": 93,
 									"character": 29
 								}
 							],
@@ -712,7 +712,7 @@
 												"typeArguments": [
 													{
 														"type": "reference",
-														"id": 277,
+														"id": 275,
 														"name": "ComputeTaskResponse"
 													}
 												],
@@ -735,7 +735,7 @@
 							"sources": [
 								{
 									"fileName": "api/ApiClient.ts",
-									"line": 66,
+									"line": 69,
 									"character": 23
 								}
 							],
@@ -774,7 +774,7 @@
 												"typeArguments": [
 													{
 														"type": "reference",
-														"id": 277,
+														"id": 275,
 														"name": "ComputeTaskResponse"
 													}
 												],
@@ -797,7 +797,7 @@
 							"sources": [
 								{
 									"fileName": "api/ApiClient.ts",
-									"line": 56,
+									"line": 59,
 									"character": 12
 								}
 							],
@@ -890,7 +890,7 @@
 							"sources": [
 								{
 									"fileName": "api/ApiClient.ts",
-									"line": 35,
+									"line": 38,
 									"character": 22
 								}
 							],
@@ -983,7 +983,7 @@
 					"sources": [
 						{
 							"fileName": "api/ApiClient.ts",
-							"line": 11,
+							"line": 14,
 							"character": 37
 						},
 						{
@@ -1017,35 +1017,35 @@
 			]
 		},
 		{
-			"id": 205,
+			"id": 203,
 			"name": "api/models",
 			"kind": 1,
 			"kindString": "Module",
 			"flags": {},
 			"children": [
 				{
-					"id": 376,
+					"id": 374,
 					"name": "Session",
 					"kind": 16777216,
 					"kindString": "Reference",
 					"flags": {},
-					"target": 57
+					"target": 56
 				},
 				{
-					"id": 377,
+					"id": 375,
 					"name": "Survey",
 					"kind": 16777216,
 					"kindString": "Reference",
 					"flags": {},
-					"target": 105
+					"target": 103
 				},
 				{
-					"id": 378,
+					"id": 376,
 					"name": "Video",
 					"kind": 16777216,
 					"kindString": "Reference",
 					"flags": {},
-					"target": 149
+					"target": 147
 				}
 			],
 			"groups": [
@@ -1053,9 +1053,9 @@
 					"title": "References",
 					"kind": 16777216,
 					"children": [
-						376,
-						377,
-						378
+						374,
+						375,
+						376
 					]
 				}
 			],
@@ -1085,7 +1085,7 @@
 			"flags": {},
 			"children": [
 				{
-					"id": 57,
+					"id": 56,
 					"name": "default",
 					"kind": 128,
 					"kindString": "Class",
@@ -1095,14 +1095,14 @@
 					},
 					"children": [
 						{
-							"id": 58,
+							"id": 57,
 							"name": "constructor",
 							"kind": 512,
 							"kindString": "Constructor",
 							"flags": {},
 							"signatures": [
 								{
-									"id": 59,
+									"id": 58,
 									"name": "new default",
 									"kind": 16384,
 									"kindString": "Constructor signature",
@@ -1110,7 +1110,7 @@
 									"comment": {},
 									"parameters": [
 										{
-											"id": 60,
+											"id": 59,
 											"name": "bufferLimit",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1127,14 +1127,14 @@
 									],
 									"type": {
 										"type": "reference",
-										"id": 57,
+										"id": 56,
 										"name": "default"
 									}
 								}
 							]
 						},
 						{
-							"id": 61,
+							"id": 60,
 							"name": "apiClient",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1144,7 +1144,7 @@
 							"sources": [
 								{
 									"fileName": "api/models/Session.ts",
-									"line": 36,
+									"line": 30,
 									"character": 19
 								}
 							],
@@ -1164,7 +1164,7 @@
 							}
 						},
 						{
-							"id": 72,
+							"id": 71,
 							"name": "bufferLimit",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1174,7 +1174,7 @@
 							"sources": [
 								{
 									"fileName": "api/models/Session.ts",
-									"line": 41,
+									"line": 35,
 									"character": 21
 								}
 							],
@@ -1184,7 +1184,7 @@
 							}
 						},
 						{
-							"id": 71,
+							"id": 70,
 							"name": "data",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1194,18 +1194,18 @@
 							"sources": [
 								{
 									"fileName": "api/models/Session.ts",
-									"line": 40,
+									"line": 34,
 									"character": 14
 								}
 							],
 							"type": {
 								"type": "reference",
-								"id": 303,
+								"id": 301,
 								"name": "SessionData"
 							}
 						},
 						{
-							"id": 62,
+							"id": 61,
 							"name": "id",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1215,7 +1215,7 @@
 							"sources": [
 								{
 									"fileName": "api/models/Session.ts",
-									"line": 37,
+									"line": 31,
 									"character": 12
 								}
 							],
@@ -1234,7 +1234,7 @@
 							}
 						},
 						{
-							"id": 63,
+							"id": 62,
 							"name": "metadata",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1244,27 +1244,27 @@
 							"sources": [
 								{
 									"fileName": "api/models/Session.ts",
-									"line": 38,
+									"line": 32,
 									"character": 18
 								}
 							],
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 64,
+									"id": 63,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"indexSignature": {
-										"id": 65,
+										"id": 64,
 										"name": "__index",
 										"kind": 8192,
 										"kindString": "Index signature",
 										"flags": {},
 										"parameters": [
 											{
-												"id": 66,
+												"id": 65,
 												"name": "key",
 												"kind": 32768,
 												"flags": {},
@@ -1283,7 +1283,7 @@
 							}
 						},
 						{
-							"id": 67,
+							"id": 66,
 							"name": "user",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1293,27 +1293,27 @@
 							"sources": [
 								{
 									"fileName": "api/models/Session.ts",
-									"line": 39,
+									"line": 33,
 									"character": 14
 								}
 							],
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 68,
+									"id": 67,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"indexSignature": {
-										"id": 69,
+										"id": 68,
 										"name": "__index",
 										"kind": 8192,
 										"kindString": "Index signature",
 										"flags": {},
 										"parameters": [
 											{
-												"id": 70,
+												"id": 69,
 												"name": "key",
 												"kind": 32768,
 												"flags": {},
@@ -1332,7 +1332,7 @@
 							}
 						},
 						{
-							"id": 73,
+							"id": 72,
 							"name": "videos",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1342,7 +1342,7 @@
 							"sources": [
 								{
 									"fileName": "api/models/Session.ts",
-									"line": 42,
+									"line": 36,
 									"character": 16
 								}
 							],
@@ -1350,13 +1350,13 @@
 								"type": "array",
 								"elementType": {
 									"type": "reference",
-									"id": 149,
+									"id": 147,
 									"name": "default"
 								}
 							}
 						},
 						{
-							"id": 87,
+							"id": 86,
 							"name": "addExperimentData",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1366,13 +1366,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Session.ts",
-									"line": 212,
+									"line": 208,
 									"character": 26
 								}
 							],
 							"signatures": [
 								{
-									"id": 88,
+									"id": 87,
 									"name": "addExperimentData",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -1382,7 +1382,7 @@
 									},
 									"parameters": [
 										{
-											"id": 89,
+											"id": 88,
 											"name": "key",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1396,7 +1396,7 @@
 											}
 										},
 										{
-											"id": 90,
+											"id": 89,
 											"name": "data",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1406,7 +1406,7 @@
 											},
 											"type": {
 												"type": "reference",
-												"id": 296,
+												"id": 294,
 												"name": "ExperimentData"
 											}
 										}
@@ -1419,7 +1419,7 @@
 							]
 						},
 						{
-							"id": 91,
+							"id": 90,
 							"name": "flushData",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1429,13 +1429,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Session.ts",
-									"line": 224,
+									"line": 220,
 									"character": 24
 								}
 							],
 							"signatures": [
 								{
-									"id": 92,
+									"id": 91,
 									"name": "flushData",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -1458,7 +1458,7 @@
 							]
 						},
 						{
-							"id": 101,
+							"id": 100,
 							"name": "getId",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1468,13 +1468,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Session.ts",
-									"line": 303,
+									"line": 299,
 									"character": 14
 								}
 							],
 							"signatures": [
 								{
-									"id": 102,
+									"id": 101,
 									"name": "getId",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -1499,7 +1499,7 @@
 							]
 						},
 						{
-							"id": 99,
+							"id": 98,
 							"name": "getVideos",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1509,13 +1509,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Session.ts",
-									"line": 295,
+									"line": 291,
 									"character": 18
 								}
 							],
 							"signatures": [
 								{
-									"id": 100,
+									"id": 99,
 									"name": "getVideos",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -1527,7 +1527,7 @@
 										"type": "array",
 										"elementType": {
 											"type": "reference",
-											"id": 149,
+											"id": 147,
 											"name": "default"
 										}
 									}
@@ -1535,7 +1535,7 @@
 							]
 						},
 						{
-							"id": 74,
+							"id": 73,
 							"name": "init",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1545,13 +1545,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Session.ts",
-									"line": 71,
+									"line": 65,
 									"character": 19
 								}
 							],
 							"signatures": [
 								{
-									"id": 75,
+									"id": 74,
 									"name": "init",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -1562,7 +1562,7 @@
 									},
 									"parameters": [
 										{
-											"id": 76,
+											"id": 75,
 											"name": "apiClient",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1577,7 +1577,7 @@
 											}
 										},
 										{
-											"id": 77,
+											"id": 76,
 											"name": "userId",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1591,7 +1591,7 @@
 											}
 										},
 										{
-											"id": 78,
+											"id": 77,
 											"name": "surveyId",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1613,20 +1613,20 @@
 											{
 												"type": "reflection",
 												"declaration": {
-													"id": 79,
+													"id": 78,
 													"name": "__type",
 													"kind": 65536,
 													"kindString": "Type literal",
 													"flags": {},
 													"indexSignature": {
-														"id": 80,
+														"id": 79,
 														"name": "__index",
 														"kind": 8192,
 														"kindString": "Index signature",
 														"flags": {},
 														"parameters": [
 															{
-																"id": 81,
+																"id": 80,
 																"name": "key",
 																"kind": 32768,
 																"flags": {},
@@ -1650,7 +1650,7 @@
 							]
 						},
 						{
-							"id": 93,
+							"id": 92,
 							"name": "pushSurvey",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1660,13 +1660,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Session.ts",
-									"line": 256,
+									"line": 252,
 									"character": 25
 								}
 							],
 							"signatures": [
 								{
-									"id": 94,
+									"id": 93,
 									"name": "pushSurvey",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -1676,7 +1676,7 @@
 									},
 									"parameters": [
 										{
-											"id": 95,
+											"id": 94,
 											"name": "survey",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1686,7 +1686,7 @@
 											},
 											"type": {
 												"type": "reference",
-												"id": 105,
+												"id": 103,
 												"name": "default"
 											}
 										}
@@ -1705,7 +1705,7 @@
 							]
 						},
 						{
-							"id": 96,
+							"id": 95,
 							"name": "pushVideo",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1715,13 +1715,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Session.ts",
-									"line": 283,
+									"line": 279,
 									"character": 24
 								}
 							],
 							"signatures": [
 								{
-									"id": 97,
+									"id": 96,
 									"name": "pushVideo",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -1731,7 +1731,7 @@
 									},
 									"parameters": [
 										{
-											"id": 98,
+											"id": 97,
 											"name": "video",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1741,7 +1741,7 @@
 											},
 											"type": {
 												"type": "reference",
-												"id": 149,
+												"id": 147,
 												"name": "default"
 											}
 										}
@@ -1760,7 +1760,7 @@
 							]
 						},
 						{
-							"id": 82,
+							"id": 81,
 							"name": "start",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1770,13 +1770,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Session.ts",
-									"line": 166,
+									"line": 160,
 									"character": 20
 								}
 							],
 							"signatures": [
 								{
-									"id": 83,
+									"id": 82,
 									"name": "start",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -1798,7 +1798,7 @@
 							]
 						},
 						{
-							"id": 84,
+							"id": 83,
 							"name": "stop",
 							"kind": 2048,
 							"kindString": "Method",
@@ -1808,13 +1808,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Session.ts",
-									"line": 184,
+									"line": 178,
 									"character": 19
 								}
 							],
 							"signatures": [
 								{
-									"id": 85,
+									"id": 84,
 									"name": "stop",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -1824,7 +1824,7 @@
 									},
 									"parameters": [
 										{
-											"id": 86,
+											"id": 85,
 											"name": "condition",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -1834,7 +1834,7 @@
 											},
 											"type": {
 												"type": "reference",
-												"id": 307,
+												"id": 305,
 												"name": "SessionConditionType"
 											},
 											"defaultValue": "..."
@@ -1859,42 +1859,42 @@
 							"title": "Constructors",
 							"kind": 512,
 							"children": [
-								58
+								57
 							]
 						},
 						{
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								61,
-								72,
+								60,
 								71,
+								70,
+								61,
 								62,
-								63,
-								67,
-								73
+								66,
+								72
 							]
 						},
 						{
 							"title": "Methods",
 							"kind": 2048,
 							"children": [
-								87,
-								91,
-								101,
-								99,
-								74,
-								93,
-								96,
-								82,
-								84
+								86,
+								90,
+								100,
+								98,
+								73,
+								92,
+								95,
+								81,
+								83
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "api/models/Session.ts",
-							"line": 35,
+							"line": 29,
 							"character": 28
 						},
 						{
@@ -1903,54 +1903,12 @@
 							"character": 16
 						}
 					]
-				},
-				{
-					"id": 56,
-					"name": "Conditions",
-					"kind": 32,
-					"kindString": "Variable",
-					"flags": {
-						"isConst": true
-					},
-					"comment": {
-						"shortText": "Valid session conditions."
-					},
-					"sources": [
-						{
-							"fileName": "api/models/Session.ts",
-							"line": 22,
-							"character": 23
-						}
-					],
-					"type": {
-						"type": "reference",
-						"typeArguments": [
-							{
-								"type": "intrinsic",
-								"name": "string"
-							},
-							{
-								"type": "reference",
-								"id": 307,
-								"name": "SessionConditionType"
-							}
-						],
-						"name": "Record"
-					},
-					"defaultValue": "..."
 				}
 			],
 			"groups": [
 				{
 					"title": "Classes",
 					"kind": 128,
-					"children": [
-						57
-					]
-				},
-				{
-					"title": "Variables",
-					"kind": 32,
 					"children": [
 						56
 					]
@@ -1965,14 +1923,14 @@
 			]
 		},
 		{
-			"id": 103,
+			"id": 102,
 			"name": "api/models/Survey",
 			"kind": 1,
 			"kindString": "Module",
 			"flags": {},
 			"children": [
 				{
-					"id": 105,
+					"id": 103,
 					"name": "default",
 					"kind": 128,
 					"kindString": "Class",
@@ -1982,14 +1940,14 @@
 					},
 					"children": [
 						{
-							"id": 106,
+							"id": 104,
 							"name": "constructor",
 							"kind": 512,
 							"kindString": "Constructor",
 							"flags": {},
 							"signatures": [
 								{
-									"id": 107,
+									"id": 105,
 									"name": "new default",
 									"kind": 16384,
 									"kindString": "Constructor signature",
@@ -1997,7 +1955,7 @@
 									"comment": {},
 									"parameters": [
 										{
-											"id": 108,
+											"id": 106,
 											"name": "type",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2007,36 +1965,36 @@
 											},
 											"type": {
 												"type": "reference",
-												"id": 308,
+												"id": 306,
 												"name": "SurveyType"
 											}
 										},
 										{
-											"id": 109,
+											"id": 107,
 											"name": "entryMap",
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
 											"comment": {
-												"text": "Map of keys to a tuple containing the corresponding question and response.\n                     e.g. { 'eye_color': ['What color are you eyes?', 'Brown'] }"
+												"text": "Map of keys to a tuple containing a corresponding question and response.\n                     e.g. { 'eye_color': ['What color are you eyes?', 'Brown'] }"
 											},
 											"type": {
 												"type": "reflection",
 												"declaration": {
-													"id": 110,
+													"id": 108,
 													"name": "__type",
 													"kind": 65536,
 													"kindString": "Type literal",
 													"flags": {},
 													"indexSignature": {
-														"id": 111,
+														"id": 109,
 														"name": "__index",
 														"kind": 8192,
 														"kindString": "Index signature",
 														"flags": {},
 														"parameters": [
 															{
-																"id": 112,
+																"id": 110,
 																"name": "key",
 																"kind": 32768,
 																"flags": {},
@@ -2051,22 +2009,23 @@
 															"elements": [
 																{
 																	"type": "reference",
-																	"id": 295,
+																	"id": 293,
 																	"name": "Datum"
 																},
 																{
 																	"type": "reference",
-																	"id": 295,
+																	"id": 293,
 																	"name": "Datum"
 																}
 															]
 														}
 													}
 												}
-											}
+											},
+											"defaultValue": "..."
 										},
 										{
-											"id": 113,
+											"id": 111,
 											"name": "info",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2077,20 +2036,20 @@
 											"type": {
 												"type": "reflection",
 												"declaration": {
-													"id": 114,
+													"id": 112,
 													"name": "__type",
 													"kind": 65536,
 													"kindString": "Type literal",
 													"flags": {},
 													"indexSignature": {
-														"id": 115,
+														"id": 113,
 														"name": "__index",
 														"kind": 8192,
 														"kindString": "Index signature",
 														"flags": {},
 														"parameters": [
 															{
-																"id": 116,
+																"id": 114,
 																"name": "key",
 																"kind": 32768,
 																"flags": {},
@@ -2112,14 +2071,14 @@
 									],
 									"type": {
 										"type": "reference",
-										"id": 105,
+										"id": 103,
 										"name": "default"
 									}
 								}
 							]
 						},
 						{
-							"id": 117,
+							"id": 115,
 							"name": "apiClient",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2129,7 +2088,7 @@
 							"sources": [
 								{
 									"fileName": "api/models/Survey.ts",
-									"line": 15,
+									"line": 13,
 									"character": 19
 								}
 							],
@@ -2149,7 +2108,7 @@
 							}
 						},
 						{
-							"id": 118,
+							"id": 116,
 							"name": "id",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2159,7 +2118,7 @@
 							"sources": [
 								{
 									"fileName": "api/models/Survey.ts",
-									"line": 16,
+									"line": 14,
 									"character": 12
 								}
 							],
@@ -2178,7 +2137,7 @@
 							}
 						},
 						{
-							"id": 119,
+							"id": 117,
 							"name": "metadata",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2188,27 +2147,27 @@
 							"sources": [
 								{
 									"fileName": "api/models/Survey.ts",
-									"line": 17,
+									"line": 15,
 									"character": 18
 								}
 							],
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 120,
+									"id": 118,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"indexSignature": {
-										"id": 121,
+										"id": 119,
 										"name": "__index",
 										"kind": 8192,
 										"kindString": "Index signature",
 										"flags": {},
 										"parameters": [
 											{
-												"id": 122,
+												"id": 120,
 												"name": "key",
 												"kind": 32768,
 												"flags": {},
@@ -2227,7 +2186,7 @@
 							}
 						},
 						{
-							"id": 129,
+							"id": 127,
 							"name": "addEntry",
 							"kind": 2048,
 							"kindString": "Method",
@@ -2237,13 +2196,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Survey.ts",
-									"line": 85,
+									"line": 83,
 									"character": 17
 								}
 							],
 							"signatures": [
 								{
-									"id": 130,
+									"id": 128,
 									"name": "addEntry",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -2253,7 +2212,7 @@
 									},
 									"parameters": [
 										{
-											"id": 131,
+											"id": 129,
 											"name": "key",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2267,7 +2226,7 @@
 											}
 										},
 										{
-											"id": 132,
+											"id": 130,
 											"name": "question",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2277,12 +2236,12 @@
 											},
 											"type": {
 												"type": "reference",
-												"id": 295,
+												"id": 293,
 												"name": "Datum"
 											}
 										},
 										{
-											"id": 133,
+											"id": 131,
 											"name": "response",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2292,7 +2251,7 @@
 											},
 											"type": {
 												"type": "reference",
-												"id": 295,
+												"id": 293,
 												"name": "Datum"
 											}
 										}
@@ -2305,7 +2264,7 @@
 							]
 						},
 						{
-							"id": 146,
+							"id": 144,
 							"name": "getEntries",
 							"kind": 2048,
 							"kindString": "Method",
@@ -2315,13 +2274,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Survey.ts",
-									"line": 133,
+									"line": 131,
 									"character": 19
 								}
 							],
 							"signatures": [
 								{
-									"id": 147,
+									"id": 145,
 									"name": "getEntries",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -2340,7 +2299,7 @@
 							]
 						},
 						{
-							"id": 142,
+							"id": 140,
 							"name": "getId",
 							"kind": 2048,
 							"kindString": "Method",
@@ -2350,13 +2309,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Survey.ts",
-									"line": 119,
+									"line": 117,
 									"character": 14
 								}
 							],
 							"signatures": [
 								{
-									"id": 143,
+									"id": 141,
 									"name": "getId",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -2381,7 +2340,7 @@
 							]
 						},
 						{
-							"id": 144,
+							"id": 142,
 							"name": "getType",
 							"kind": 2048,
 							"kindString": "Method",
@@ -2391,13 +2350,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Survey.ts",
-									"line": 126,
+									"line": 124,
 									"character": 16
 								}
 							],
 							"signatures": [
 								{
-									"id": 145,
+									"id": 143,
 									"name": "getType",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -2413,7 +2372,7 @@
 							]
 						},
 						{
-							"id": 123,
+							"id": 121,
 							"name": "init",
 							"kind": 2048,
 							"kindString": "Method",
@@ -2423,13 +2382,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Survey.ts",
-									"line": 57,
+									"line": 55,
 									"character": 19
 								}
 							],
 							"signatures": [
 								{
-									"id": 124,
+									"id": 122,
 									"name": "init",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -2440,7 +2399,7 @@
 									},
 									"parameters": [
 										{
-											"id": 125,
+											"id": 123,
 											"name": "apiClient",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2461,20 +2420,20 @@
 											{
 												"type": "reflection",
 												"declaration": {
-													"id": 126,
+													"id": 124,
 													"name": "__type",
 													"kind": 65536,
 													"kindString": "Type literal",
 													"flags": {},
 													"indexSignature": {
-														"id": 127,
+														"id": 125,
 														"name": "__index",
 														"kind": 8192,
 														"kindString": "Index signature",
 														"flags": {},
 														"parameters": [
 															{
-																"id": 128,
+																"id": 126,
 																"name": "key",
 																"kind": 32768,
 																"flags": {},
@@ -2498,7 +2457,7 @@
 							]
 						},
 						{
-							"id": 140,
+							"id": 138,
 							"name": "pushUpdates",
 							"kind": 2048,
 							"kindString": "Method",
@@ -2508,13 +2467,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Survey.ts",
-									"line": 104,
+									"line": 102,
 									"character": 20
 								}
 							],
 							"signatures": [
 								{
-									"id": 141,
+									"id": 139,
 									"name": "pushUpdates",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -2531,7 +2490,7 @@
 												"typeArguments": [
 													{
 														"type": "reference",
-														"id": 255,
+														"id": 253,
 														"name": "DataResponse"
 													}
 												],
@@ -2544,7 +2503,7 @@
 							]
 						},
 						{
-							"id": 134,
+							"id": 132,
 							"name": "updateInfo",
 							"kind": 2048,
 							"kindString": "Method",
@@ -2554,13 +2513,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Survey.ts",
-									"line": 95,
+									"line": 93,
 									"character": 19
 								}
 							],
 							"signatures": [
 								{
-									"id": 135,
+									"id": 133,
 									"name": "updateInfo",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -2570,7 +2529,7 @@
 									},
 									"parameters": [
 										{
-											"id": 136,
+											"id": 134,
 											"name": "info",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2581,20 +2540,20 @@
 											"type": {
 												"type": "reflection",
 												"declaration": {
-													"id": 137,
+													"id": 135,
 													"name": "__type",
 													"kind": 65536,
 													"kindString": "Type literal",
 													"flags": {},
 													"indexSignature": {
-														"id": 138,
+														"id": 136,
 														"name": "__index",
 														"kind": 8192,
 														"kindString": "Index signature",
 														"flags": {},
 														"parameters": [
 															{
-																"id": 139,
+																"id": 137,
 																"name": "key",
 																"kind": 32768,
 																"flags": {},
@@ -2626,36 +2585,36 @@
 							"title": "Constructors",
 							"kind": 512,
 							"children": [
-								106
+								104
 							]
 						},
 						{
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								117,
-								118,
-								119
+								115,
+								116,
+								117
 							]
 						},
 						{
 							"title": "Methods",
 							"kind": 2048,
 							"children": [
-								129,
-								146,
-								142,
+								127,
 								144,
-								123,
 								140,
-								134
+								142,
+								121,
+								138,
+								132
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "api/models/Survey.ts",
-							"line": 14,
+							"line": 12,
 							"character": 27
 						},
 						{
@@ -2664,41 +2623,6 @@
 							"character": 24
 						}
 					]
-				},
-				{
-					"id": 104,
-					"name": "Types",
-					"kind": 32,
-					"kindString": "Variable",
-					"flags": {
-						"isConst": true
-					},
-					"comment": {
-						"shortText": "Valid survey types."
-					},
-					"sources": [
-						{
-							"fileName": "api/models/Survey.ts",
-							"line": 5,
-							"character": 18
-						}
-					],
-					"type": {
-						"type": "reference",
-						"typeArguments": [
-							{
-								"type": "intrinsic",
-								"name": "string"
-							},
-							{
-								"type": "reference",
-								"id": 308,
-								"name": "SurveyType"
-							}
-						],
-						"name": "Record"
-					},
-					"defaultValue": "..."
 				}
 			],
 			"groups": [
@@ -2706,14 +2630,7 @@
 					"title": "Classes",
 					"kind": 128,
 					"children": [
-						105
-					]
-				},
-				{
-					"title": "Variables",
-					"kind": 32,
-					"children": [
-						104
+						103
 					]
 				}
 			],
@@ -2726,14 +2643,14 @@
 			]
 		},
 		{
-			"id": 148,
+			"id": 146,
 			"name": "api/models/Video",
 			"kind": 1,
 			"kindString": "Module",
 			"flags": {},
 			"children": [
 				{
-					"id": 149,
+					"id": 147,
 					"name": "default",
 					"kind": 128,
 					"kindString": "Class",
@@ -2743,14 +2660,14 @@
 					},
 					"children": [
 						{
-							"id": 150,
+							"id": 148,
 							"name": "constructor",
 							"kind": 512,
 							"kindString": "Constructor",
 							"flags": {},
 							"signatures": [
 								{
-									"id": 151,
+									"id": 149,
 									"name": "new default",
 									"kind": 16384,
 									"kindString": "Constructor signature",
@@ -2758,7 +2675,7 @@
 									"comment": {},
 									"parameters": [
 										{
-											"id": 152,
+											"id": 150,
 											"name": "name",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2772,7 +2689,7 @@
 											}
 										},
 										{
-											"id": 153,
+											"id": 151,
 											"name": "config",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2783,20 +2700,20 @@
 											"type": {
 												"type": "reflection",
 												"declaration": {
-													"id": 154,
+													"id": 152,
 													"name": "__type",
 													"kind": 65536,
 													"kindString": "Type literal",
 													"flags": {},
 													"indexSignature": {
-														"id": 155,
+														"id": 153,
 														"name": "__index",
 														"kind": 8192,
 														"kindString": "Index signature",
 														"flags": {},
 														"parameters": [
 															{
-																"id": 156,
+																"id": 154,
 																"name": "key",
 																"kind": 32768,
 																"flags": {},
@@ -2816,7 +2733,7 @@
 											"defaultValue": "..."
 										},
 										{
-											"id": 157,
+											"id": 155,
 											"name": "info",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2827,20 +2744,20 @@
 											"type": {
 												"type": "reflection",
 												"declaration": {
-													"id": 158,
+													"id": 156,
 													"name": "__type",
 													"kind": 65536,
 													"kindString": "Type literal",
 													"flags": {},
 													"indexSignature": {
-														"id": 159,
+														"id": 157,
 														"name": "__index",
 														"kind": 8192,
 														"kindString": "Index signature",
 														"flags": {},
 														"parameters": [
 															{
-																"id": 160,
+																"id": 158,
 																"name": "key",
 																"kind": 32768,
 																"flags": {},
@@ -2860,7 +2777,7 @@
 											"defaultValue": "..."
 										},
 										{
-											"id": 161,
+											"id": 159,
 											"name": "uri",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2877,14 +2794,14 @@
 									],
 									"type": {
 										"type": "reference",
-										"id": 149,
+										"id": 147,
 										"name": "default"
 									}
 								}
 							]
 						},
 						{
-							"id": 162,
+							"id": 160,
 							"name": "apiClient",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2894,7 +2811,7 @@
 							"sources": [
 								{
 									"fileName": "api/models/Video.ts",
-									"line": 13,
+									"line": 15,
 									"character": 19
 								}
 							],
@@ -2914,7 +2831,7 @@
 							}
 						},
 						{
-							"id": 163,
+							"id": 161,
 							"name": "id",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2924,7 +2841,7 @@
 							"sources": [
 								{
 									"fileName": "api/models/Video.ts",
-									"line": 14,
+									"line": 16,
 									"character": 12
 								}
 							],
@@ -2943,7 +2860,7 @@
 							}
 						},
 						{
-							"id": 164,
+							"id": 162,
 							"name": "metadata",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2953,27 +2870,27 @@
 							"sources": [
 								{
 									"fileName": "api/models/Video.ts",
-									"line": 15,
+									"line": 17,
 									"character": 18
 								}
 							],
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 165,
+									"id": 163,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"indexSignature": {
-										"id": 166,
+										"id": 164,
 										"name": "__index",
 										"kind": 8192,
 										"kindString": "Index signature",
 										"flags": {},
 										"parameters": [
 											{
-												"id": 167,
+												"id": 165,
 												"name": "key",
 												"kind": 32768,
 												"flags": {},
@@ -2992,7 +2909,7 @@
 							}
 						},
 						{
-							"id": 169,
+							"id": 167,
 							"name": "uploadProgress",
 							"kind": 1024,
 							"kindString": "Property",
@@ -3002,7 +2919,7 @@
 							"sources": [
 								{
 									"fileName": "api/models/Video.ts",
-									"line": 17,
+									"line": 19,
 									"character": 24
 								}
 							],
@@ -3012,7 +2929,7 @@
 							}
 						},
 						{
-							"id": 168,
+							"id": 166,
 							"name": "uri",
 							"kind": 1024,
 							"kindString": "Property",
@@ -3022,7 +2939,7 @@
 							"sources": [
 								{
 									"fileName": "api/models/Video.ts",
-									"line": 16,
+									"line": 18,
 									"character": 13
 								}
 							],
@@ -3032,7 +2949,7 @@
 							}
 						},
 						{
-							"id": 201,
+							"id": 199,
 							"name": "getId",
 							"kind": 2048,
 							"kindString": "Method",
@@ -3042,13 +2959,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Video.ts",
-									"line": 189,
+									"line": 191,
 									"character": 14
 								}
 							],
 							"signatures": [
 								{
-									"id": 202,
+									"id": 200,
 									"name": "getId",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -3073,7 +2990,7 @@
 							]
 						},
 						{
-							"id": 203,
+							"id": 201,
 							"name": "getName",
 							"kind": 2048,
 							"kindString": "Method",
@@ -3083,13 +3000,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Video.ts",
-									"line": 196,
+									"line": 198,
 									"character": 16
 								}
 							],
 							"signatures": [
 								{
-									"id": 204,
+									"id": 202,
 									"name": "getName",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -3105,7 +3022,7 @@
 							]
 						},
 						{
-							"id": 199,
+							"id": 197,
 							"name": "getUploadProgress",
 							"kind": 2048,
 							"kindString": "Method",
@@ -3115,13 +3032,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Video.ts",
-									"line": 181,
+									"line": 183,
 									"character": 26
 								}
 							],
 							"signatures": [
 								{
-									"id": 200,
+									"id": 198,
 									"name": "getUploadProgress",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -3138,7 +3055,7 @@
 							]
 						},
 						{
-							"id": 170,
+							"id": 168,
 							"name": "init",
 							"kind": 2048,
 							"kindString": "Method",
@@ -3148,13 +3065,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Video.ts",
-									"line": 51,
+									"line": 53,
 									"character": 19
 								}
 							],
 							"signatures": [
 								{
-									"id": 171,
+									"id": 169,
 									"name": "init",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -3165,7 +3082,7 @@
 									},
 									"parameters": [
 										{
-											"id": 172,
+											"id": 170,
 											"name": "apiClient",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -3180,7 +3097,7 @@
 											}
 										},
 										{
-											"id": 173,
+											"id": 171,
 											"name": "sessionId",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -3200,20 +3117,20 @@
 											{
 												"type": "reflection",
 												"declaration": {
-													"id": 174,
+													"id": 172,
 													"name": "__type",
 													"kind": 65536,
 													"kindString": "Type literal",
 													"flags": {},
 													"indexSignature": {
-														"id": 175,
+														"id": 173,
 														"name": "__index",
 														"kind": 8192,
 														"kindString": "Index signature",
 														"flags": {},
 														"parameters": [
 															{
-																"id": 176,
+																"id": 174,
 																"name": "key",
 																"kind": 32768,
 																"flags": {},
@@ -3237,7 +3154,7 @@
 							]
 						},
 						{
-							"id": 189,
+							"id": 187,
 							"name": "pushUpdates",
 							"kind": 2048,
 							"kindString": "Method",
@@ -3247,13 +3164,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Video.ts",
-									"line": 112,
+									"line": 114,
 									"character": 20
 								}
 							],
 							"signatures": [
 								{
-									"id": 190,
+									"id": 188,
 									"name": "pushUpdates",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -3270,7 +3187,7 @@
 												"typeArguments": [
 													{
 														"type": "reference",
-														"id": 255,
+														"id": 253,
 														"name": "DataResponse"
 													}
 												],
@@ -3283,7 +3200,7 @@
 							]
 						},
 						{
-							"id": 177,
+							"id": 175,
 							"name": "recordStartTime",
 							"kind": 2048,
 							"kindString": "Method",
@@ -3293,13 +3210,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Video.ts",
-									"line": 80,
+									"line": 82,
 									"character": 24
 								}
 							],
 							"signatures": [
 								{
-									"id": 178,
+									"id": 176,
 									"name": "recordStartTime",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -3309,7 +3226,7 @@
 									},
 									"parameters": [
 										{
-											"id": 179,
+											"id": 177,
 											"name": "timestamp",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -3333,7 +3250,7 @@
 							]
 						},
 						{
-							"id": 180,
+							"id": 178,
 							"name": "recordStopTime",
 							"kind": 2048,
 							"kindString": "Method",
@@ -3343,13 +3260,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Video.ts",
-									"line": 92,
+									"line": 94,
 									"character": 23
 								}
 							],
 							"signatures": [
 								{
-									"id": 181,
+									"id": 179,
 									"name": "recordStopTime",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -3359,7 +3276,7 @@
 									},
 									"parameters": [
 										{
-											"id": 182,
+											"id": 180,
 											"name": "timestamp",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -3383,7 +3300,7 @@
 							]
 						},
 						{
-							"id": 191,
+							"id": 189,
 							"name": "setUri",
 							"kind": 2048,
 							"kindString": "Method",
@@ -3393,13 +3310,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Video.ts",
-									"line": 128,
+									"line": 130,
 									"character": 15
 								}
 							],
 							"signatures": [
 								{
-									"id": 192,
+									"id": 190,
 									"name": "setUri",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -3409,7 +3326,7 @@
 									},
 									"parameters": [
 										{
-											"id": 193,
+											"id": 191,
 											"name": "uri",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -3431,7 +3348,7 @@
 							]
 						},
 						{
-							"id": 183,
+							"id": 181,
 							"name": "updateInfo",
 							"kind": 2048,
 							"kindString": "Method",
@@ -3441,13 +3358,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Video.ts",
-									"line": 103,
+									"line": 105,
 									"character": 19
 								}
 							],
 							"signatures": [
 								{
-									"id": 184,
+									"id": 182,
 									"name": "updateInfo",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -3457,7 +3374,7 @@
 									},
 									"parameters": [
 										{
-											"id": 185,
+											"id": 183,
 											"name": "info",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -3468,20 +3385,20 @@
 											"type": {
 												"type": "reflection",
 												"declaration": {
-													"id": 186,
+													"id": 184,
 													"name": "__type",
 													"kind": 65536,
 													"kindString": "Type literal",
 													"flags": {},
 													"indexSignature": {
-														"id": 187,
+														"id": 185,
 														"name": "__index",
 														"kind": 8192,
 														"kindString": "Index signature",
 														"flags": {},
 														"parameters": [
 															{
-																"id": 188,
+																"id": 186,
 																"name": "key",
 																"kind": 32768,
 																"flags": {},
@@ -3508,7 +3425,7 @@
 							]
 						},
 						{
-							"id": 194,
+							"id": 192,
 							"name": "uploadFile",
 							"kind": 2048,
 							"kindString": "Method",
@@ -3518,13 +3435,13 @@
 							"sources": [
 								{
 									"fileName": "api/models/Video.ts",
-									"line": 141,
+									"line": 143,
 									"character": 25
 								}
 							],
 							"signatures": [
 								{
-									"id": 195,
+									"id": 193,
 									"name": "uploadFile",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -3535,7 +3452,7 @@
 									},
 									"parameters": [
 										{
-											"id": 196,
+											"id": 194,
 											"name": "uri",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -3550,7 +3467,7 @@
 											"defaultValue": "..."
 										},
 										{
-											"id": 197,
+											"id": 195,
 											"name": "codec",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -3565,7 +3482,7 @@
 											"defaultValue": "'mp4'"
 										},
 										{
-											"id": 198,
+											"id": 196,
 											"name": "overwrite",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -3599,41 +3516,41 @@
 							"title": "Constructors",
 							"kind": 512,
 							"children": [
-								150
+								148
 							]
 						},
 						{
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
+								160,
+								161,
 								162,
-								163,
-								164,
-								169,
-								168
+								167,
+								166
 							]
 						},
 						{
 							"title": "Methods",
 							"kind": 2048,
 							"children": [
-								201,
-								203,
 								199,
-								170,
+								201,
+								197,
+								168,
+								187,
+								175,
+								178,
 								189,
-								177,
-								180,
-								191,
-								183,
-								194
+								181,
+								192
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "api/models/Video.ts",
-							"line": 12,
+							"line": 14,
 							"character": 26
 						},
 						{
@@ -3649,7 +3566,7 @@
 					"title": "Classes",
 					"kind": 128,
 					"children": [
-						149
+						147
 					]
 				}
 			],
@@ -3662,67 +3579,67 @@
 			]
 		},
 		{
-			"id": 242,
+			"id": 240,
 			"name": "components",
 			"kind": 1,
 			"kindString": "Module",
 			"flags": {},
 			"children": [
 				{
-					"id": 382,
+					"id": 380,
 					"name": "ExperimentRunner",
 					"kind": 16777216,
 					"kindString": "Reference",
 					"flags": {},
-					"target": 207
+					"target": 205
 				},
 				{
-					"id": 387,
+					"id": 385,
 					"name": "Experiments",
 					"kind": 16777216,
 					"kindString": "Reference",
 					"flags": {},
-					"target": 241
+					"target": 239
 				},
 				{
-					"id": 384,
+					"id": 382,
 					"name": "SenseyeButton",
 					"kind": 16777216,
 					"kindString": "Reference",
 					"flags": {},
-					"target": 211
+					"target": 209
 				},
 				{
-					"id": 385,
+					"id": 383,
 					"name": "SenseyePicker",
 					"kind": 16777216,
 					"kindString": "Reference",
 					"flags": {},
-					"target": 215
+					"target": 213
 				},
 				{
-					"id": 386,
+					"id": 384,
 					"name": "SenseyeTextInput",
 					"kind": 16777216,
 					"kindString": "Reference",
 					"flags": {},
-					"target": 220
+					"target": 218
 				},
 				{
-					"id": 388,
+					"id": 386,
 					"name": "Surveys",
 					"kind": 16777216,
 					"kindString": "Reference",
 					"flags": {},
-					"target": 251
+					"target": 249
 				},
 				{
-					"id": 383,
+					"id": 381,
 					"name": "VideoRecorder",
 					"kind": 16777216,
 					"kindString": "Reference",
 					"flags": {},
-					"target": 225
+					"target": 223
 				}
 			],
 			"groups": [
@@ -3730,13 +3647,13 @@
 					"title": "References",
 					"kind": 16777216,
 					"children": [
-						382,
-						387,
-						384,
+						380,
 						385,
+						382,
+						383,
+						384,
 						386,
-						388,
-						383
+						381
 					]
 				}
 			],
@@ -3749,14 +3666,14 @@
 			]
 		},
 		{
-			"id": 206,
+			"id": 204,
 			"name": "components/ExperimentRunner",
 			"kind": 1,
 			"kindString": "Module",
 			"flags": {},
 			"children": [
 				{
-					"id": 207,
+					"id": 205,
 					"name": "default",
 					"kind": 64,
 					"kindString": "Function",
@@ -3764,7 +3681,7 @@
 					"sources": [
 						{
 							"fileName": "components/ExperimentRunner.tsx",
-							"line": 18,
+							"line": 22,
 							"character": 40
 						},
 						{
@@ -3780,14 +3697,17 @@
 					],
 					"signatures": [
 						{
-							"id": 208,
+							"id": 206,
 							"name": "default",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Component that initializes a session and executes a given series of experiments.\nSynchronizes experiment events with video recording."
+							},
 							"parameters": [
 								{
-									"id": 209,
+									"id": 207,
 									"name": "props",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3811,7 +3731,7 @@
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						207
+						205
 					]
 				}
 			],
@@ -3824,14 +3744,14 @@
 			]
 		},
 		{
-			"id": 210,
+			"id": 208,
 			"name": "components/SenseyeButton",
 			"kind": 1,
 			"kindString": "Module",
 			"flags": {},
 			"children": [
 				{
-					"id": 211,
+					"id": 209,
 					"name": "default",
 					"kind": 64,
 					"kindString": "Function",
@@ -3855,14 +3775,14 @@
 					],
 					"signatures": [
 						{
-							"id": 212,
+							"id": 210,
 							"name": "default",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 213,
+									"id": 211,
 									"name": "props",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3886,7 +3806,7 @@
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						211
+						209
 					]
 				}
 			],
@@ -3899,21 +3819,21 @@
 			]
 		},
 		{
-			"id": 214,
+			"id": 212,
 			"name": "components/SenseyePicker",
 			"kind": 1,
 			"kindString": "Module",
 			"flags": {},
 			"children": [
 				{
-					"id": 218,
+					"id": 216,
 					"name": "default",
 					"kind": 2,
 					"kindString": "Namespace",
 					"flags": {}
 				},
 				{
-					"id": 215,
+					"id": 213,
 					"name": "default",
 					"kind": 64,
 					"kindString": "Function",
@@ -3937,14 +3857,14 @@
 					],
 					"signatures": [
 						{
-							"id": 216,
+							"id": 214,
 							"name": "default",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 217,
+									"id": 215,
 									"name": "props",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3968,14 +3888,14 @@
 					"title": "Namespaces",
 					"kind": 2,
 					"children": [
-						218
+						216
 					]
 				},
 				{
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						215
+						213
 					]
 				}
 			],
@@ -3988,21 +3908,21 @@
 			]
 		},
 		{
-			"id": 219,
+			"id": 217,
 			"name": "components/SenseyeTextInput",
 			"kind": 1,
 			"kindString": "Module",
 			"flags": {},
 			"children": [
 				{
-					"id": 223,
+					"id": 221,
 					"name": "default",
 					"kind": 2,
 					"kindString": "Namespace",
 					"flags": {}
 				},
 				{
-					"id": 220,
+					"id": 218,
 					"name": "default",
 					"kind": 64,
 					"kindString": "Function",
@@ -4026,14 +3946,14 @@
 					],
 					"signatures": [
 						{
-							"id": 221,
+							"id": 219,
 							"name": "default",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 222,
+									"id": 220,
 									"name": "props",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4057,14 +3977,14 @@
 					"title": "Namespaces",
 					"kind": 2,
 					"children": [
-						223
+						221
 					]
 				},
 				{
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						220
+						218
 					]
 				}
 			],
@@ -4077,14 +3997,14 @@
 			]
 		},
 		{
-			"id": 224,
+			"id": 222,
 			"name": "components/VideoRecorder",
 			"kind": 1,
 			"kindString": "Module",
 			"flags": {},
 			"children": [
 				{
-					"id": 225,
+					"id": 223,
 					"name": "default",
 					"kind": 32,
 					"kindString": "Variable",
@@ -4098,7 +4018,7 @@
 					"sources": [
 						{
 							"fileName": "components/VideoRecorder.tsx",
-							"line": 74,
+							"line": 76,
 							"character": 19
 						},
 						{
@@ -4145,7 +4065,7 @@
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						225
+						223
 					]
 				}
 			],
@@ -4158,35 +4078,35 @@
 			]
 		},
 		{
-			"id": 241,
+			"id": 239,
 			"name": "components/experiments",
 			"kind": 1,
 			"kindString": "Module",
 			"flags": {},
 			"children": [
 				{
-					"id": 379,
+					"id": 377,
 					"name": "Calibration",
 					"kind": 16777216,
 					"kindString": "Reference",
 					"flags": {},
-					"target": 227
+					"target": 225
 				},
 				{
-					"id": 380,
+					"id": 378,
 					"name": "Nystagmus",
 					"kind": 16777216,
 					"kindString": "Reference",
 					"flags": {},
-					"target": 232
+					"target": 230
 				},
 				{
-					"id": 381,
+					"id": 379,
 					"name": "Plr",
 					"kind": 16777216,
 					"kindString": "Reference",
 					"flags": {},
-					"target": 237
+					"target": 235
 				}
 			],
 			"groups": [
@@ -4194,9 +4114,9 @@
 					"title": "References",
 					"kind": 16777216,
 					"children": [
-						379,
-						380,
-						381
+						377,
+						378,
+						379
 					]
 				}
 			],
@@ -4219,21 +4139,21 @@
 			]
 		},
 		{
-			"id": 226,
+			"id": 224,
 			"name": "components/experiments/Calibration",
 			"kind": 1,
 			"kindString": "Module",
 			"flags": {},
 			"children": [
 				{
-					"id": 230,
+					"id": 228,
 					"name": "default",
 					"kind": 2,
 					"kindString": "Namespace",
 					"flags": {}
 				},
 				{
-					"id": 227,
+					"id": 225,
 					"name": "default",
 					"kind": 64,
 					"kindString": "Function",
@@ -4252,7 +4172,7 @@
 					],
 					"signatures": [
 						{
-							"id": 228,
+							"id": 226,
 							"name": "default",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -4262,7 +4182,7 @@
 							},
 							"parameters": [
 								{
-									"id": 229,
+									"id": 227,
 									"name": "props",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4286,14 +4206,14 @@
 					"title": "Namespaces",
 					"kind": 2,
 					"children": [
-						230
+						228
 					]
 				},
 				{
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						227
+						225
 					]
 				}
 			],
@@ -4306,21 +4226,21 @@
 			]
 		},
 		{
-			"id": 231,
+			"id": 229,
 			"name": "components/experiments/Nystagmus",
 			"kind": 1,
 			"kindString": "Module",
 			"flags": {},
 			"children": [
 				{
-					"id": 235,
+					"id": 233,
 					"name": "default",
 					"kind": 2,
 					"kindString": "Namespace",
 					"flags": {}
 				},
 				{
-					"id": 232,
+					"id": 230,
 					"name": "default",
 					"kind": 64,
 					"kindString": "Function",
@@ -4339,14 +4259,14 @@
 					],
 					"signatures": [
 						{
-							"id": 233,
+							"id": 231,
 							"name": "default",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 234,
+									"id": 232,
 									"name": "props",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4370,14 +4290,14 @@
 					"title": "Namespaces",
 					"kind": 2,
 					"children": [
-						235
+						233
 					]
 				},
 				{
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						232
+						230
 					]
 				}
 			],
@@ -4390,21 +4310,21 @@
 			]
 		},
 		{
-			"id": 236,
+			"id": 234,
 			"name": "components/experiments/Plr",
 			"kind": 1,
 			"kindString": "Module",
 			"flags": {},
 			"children": [
 				{
-					"id": 240,
+					"id": 238,
 					"name": "default",
 					"kind": 2,
 					"kindString": "Namespace",
 					"flags": {}
 				},
 				{
-					"id": 237,
+					"id": 235,
 					"name": "default",
 					"kind": 64,
 					"kindString": "Function",
@@ -4423,7 +4343,7 @@
 					],
 					"signatures": [
 						{
-							"id": 238,
+							"id": 236,
 							"name": "default",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -4433,7 +4353,7 @@
 							},
 							"parameters": [
 								{
-									"id": 239,
+									"id": 237,
 									"name": "props",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4457,14 +4377,14 @@
 					"title": "Namespaces",
 					"kind": 2,
 					"children": [
-						240
+						238
 					]
 				},
 				{
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						237
+						235
 					]
 				}
 			],
@@ -4477,27 +4397,27 @@
 			]
 		},
 		{
-			"id": 251,
+			"id": 249,
 			"name": "components/surveys",
 			"kind": 1,
 			"kindString": "Module",
 			"flags": {},
 			"children": [
 				{
-					"id": 389,
+					"id": 387,
 					"name": "Demographic",
 					"kind": 16777216,
 					"kindString": "Reference",
 					"flags": {},
-					"target": 244
+					"target": 242
 				},
 				{
-					"id": 390,
+					"id": 388,
 					"name": "Validation",
 					"kind": 16777216,
 					"kindString": "Reference",
 					"flags": {},
-					"target": 248
+					"target": 246
 				}
 			],
 			"groups": [
@@ -4505,8 +4425,8 @@
 					"title": "References",
 					"kind": 16777216,
 					"children": [
-						389,
-						390
+						387,
+						388
 					]
 				}
 			],
@@ -4529,14 +4449,14 @@
 			]
 		},
 		{
-			"id": 243,
+			"id": 241,
 			"name": "components/surveys/Demographic",
 			"kind": 1,
 			"kindString": "Module",
 			"flags": {},
 			"children": [
 				{
-					"id": 244,
+					"id": 242,
 					"name": "default",
 					"kind": 64,
 					"kindString": "Function",
@@ -4544,7 +4464,7 @@
 					"sources": [
 						{
 							"fileName": "components/surveys/Demographic.tsx",
-							"line": 22,
+							"line": 26,
 							"character": 41
 						},
 						{
@@ -4555,14 +4475,14 @@
 					],
 					"signatures": [
 						{
-							"id": 245,
+							"id": 243,
 							"name": "default",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 246,
+									"id": 244,
 									"name": "props",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4586,7 +4506,7 @@
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						244
+						242
 					]
 				}
 			],
@@ -4599,14 +4519,14 @@
 			]
 		},
 		{
-			"id": 247,
+			"id": 245,
 			"name": "components/surveys/Validation",
 			"kind": 1,
 			"kindString": "Module",
 			"flags": {},
 			"children": [
 				{
-					"id": 248,
+					"id": 246,
 					"name": "default",
 					"kind": 64,
 					"kindString": "Function",
@@ -4614,7 +4534,7 @@
 					"sources": [
 						{
 							"fileName": "components/surveys/Validation.tsx",
-							"line": 26,
+							"line": 28,
 							"character": 40
 						},
 						{
@@ -4625,14 +4545,14 @@
 					],
 					"signatures": [
 						{
-							"id": 249,
+							"id": 247,
 							"name": "default",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 250,
+									"id": 248,
 									"name": "props",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4656,7 +4576,7 @@
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						248
+						246
 					]
 				}
 			],
@@ -4669,38 +4589,38 @@
 			]
 		},
 		{
-			"id": 252,
+			"id": 250,
 			"name": "index",
 			"kind": 1,
 			"kindString": "Module",
 			"flags": {},
 			"children": [
 				{
-					"id": 393,
+					"id": 391,
 					"name": "ExperimentRunner",
-					"kind": 16777216,
-					"kindString": "Reference",
-					"flags": {},
-					"target": 207
-				},
-				{
-					"id": 398,
-					"name": "Experiments",
-					"kind": 16777216,
-					"kindString": "Reference",
-					"flags": {},
-					"target": 241
-				},
-				{
-					"id": 392,
-					"name": "Models",
 					"kind": 16777216,
 					"kindString": "Reference",
 					"flags": {},
 					"target": 205
 				},
 				{
-					"id": 391,
+					"id": 396,
+					"name": "Experiments",
+					"kind": 16777216,
+					"kindString": "Reference",
+					"flags": {},
+					"target": 239
+				},
+				{
+					"id": 390,
+					"name": "Models",
+					"kind": 16777216,
+					"kindString": "Reference",
+					"flags": {},
+					"target": 203
+				},
+				{
+					"id": 389,
 					"name": "SenseyeApiClient",
 					"kind": 16777216,
 					"kindString": "Reference",
@@ -4708,47 +4628,47 @@
 					"target": 3
 				},
 				{
-					"id": 395,
+					"id": 393,
 					"name": "SenseyeButton",
 					"kind": 16777216,
 					"kindString": "Reference",
 					"flags": {},
-					"target": 211
+					"target": 209
 				},
 				{
-					"id": 396,
+					"id": 394,
 					"name": "SenseyePicker",
 					"kind": 16777216,
 					"kindString": "Reference",
 					"flags": {},
-					"target": 215
+					"target": 213
 				},
 				{
-					"id": 397,
+					"id": 395,
 					"name": "SenseyeTextInput",
 					"kind": 16777216,
 					"kindString": "Reference",
 					"flags": {},
-					"target": 220
+					"target": 218
 				},
 				{
-					"id": 399,
+					"id": 397,
 					"name": "Surveys",
 					"kind": 16777216,
 					"kindString": "Reference",
 					"flags": {},
-					"target": 251
+					"target": 249
 				},
 				{
-					"id": 394,
+					"id": 392,
 					"name": "VideoRecorder",
 					"kind": 16777216,
 					"kindString": "Reference",
 					"flags": {},
-					"target": 225
+					"target": 223
 				},
 				{
-					"id": 426,
+					"id": 424,
 					"name": "ComputeResult",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -4763,14 +4683,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 427,
+							"id": 425,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 428,
+									"id": 426,
 									"name": "eye_features",
 									"kind": 1024,
 									"kindString": "Property",
@@ -4785,7 +4705,7 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 429,
+											"id": 427,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
@@ -4798,14 +4718,14 @@
 												}
 											],
 											"indexSignature": {
-												"id": 430,
+												"id": 428,
 												"name": "__index",
 												"kind": 8192,
 												"kindString": "Index signature",
 												"flags": {},
 												"parameters": [
 													{
-														"id": 431,
+														"id": 429,
 														"name": "key",
 														"kind": 32768,
 														"flags": {},
@@ -4824,7 +4744,7 @@
 									}
 								},
 								{
-									"id": 432,
+									"id": 430,
 									"name": "prediction",
 									"kind": 1024,
 									"kindString": "Property",
@@ -4839,14 +4759,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 433,
+											"id": 431,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 435,
+													"id": 433,
 													"name": "bac_prediction",
 													"kind": 1024,
 													"kindString": "Property",
@@ -4869,7 +4789,7 @@
 													}
 												},
 												{
-													"id": 436,
+													"id": 434,
 													"name": "cog_load_prediction",
 													"kind": 1024,
 													"kindString": "Property",
@@ -4892,7 +4812,7 @@
 													}
 												},
 												{
-													"id": 434,
+													"id": 432,
 													"name": "fatigue_prediction",
 													"kind": 1024,
 													"kindString": "Property",
@@ -4915,7 +4835,7 @@
 													}
 												},
 												{
-													"id": 437,
+													"id": 435,
 													"name": "predicted_state",
 													"kind": 1024,
 													"kindString": "Property",
@@ -4941,10 +4861,10 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														435,
-														436,
+														433,
 														434,
-														437
+														432,
+														435
 													]
 												}
 											],
@@ -4964,8 +4884,8 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										428,
-										432
+										426,
+										430
 									]
 								}
 							],
@@ -4980,7 +4900,7 @@
 					}
 				},
 				{
-					"id": 415,
+					"id": 413,
 					"name": "ComputeResultResponse",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -4998,14 +4918,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 416,
+							"id": 414,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 418,
+									"id": 416,
 									"name": "error",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5022,14 +4942,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 419,
+											"id": 417,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 420,
+													"id": 418,
 													"name": "code",
 													"kind": 1024,
 													"kindString": "Property",
@@ -5047,7 +4967,7 @@
 													}
 												},
 												{
-													"id": 421,
+													"id": 419,
 													"name": "message",
 													"kind": 1024,
 													"kindString": "Property",
@@ -5070,8 +4990,8 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														420,
-														421
+														418,
+														419
 													]
 												}
 											],
@@ -5086,7 +5006,7 @@
 									}
 								},
 								{
-									"id": 417,
+									"id": 415,
 									"name": "results",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5107,7 +5027,7 @@
 										"type": "array",
 										"elementType": {
 											"type": "reference",
-											"id": 281,
+											"id": 279,
 											"name": "ComputeResult"
 										}
 									}
@@ -5118,8 +5038,8 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										418,
-										417
+										416,
+										415
 									]
 								}
 							],
@@ -5134,7 +5054,7 @@
 					}
 				},
 				{
-					"id": 422,
+					"id": 420,
 					"name": "ComputeTaskResponse",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -5152,14 +5072,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 423,
+							"id": 421,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 424,
+									"id": 422,
 									"name": "id",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5180,7 +5100,7 @@
 									}
 								},
 								{
-									"id": 425,
+									"id": 423,
 									"name": "status",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5206,8 +5126,8 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										424,
-										425
+										422,
+										423
 									]
 								}
 							],
@@ -5222,7 +5142,7 @@
 					}
 				},
 				{
-					"id": 400,
+					"id": 398,
 					"name": "DataResponse",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -5240,14 +5160,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 401,
+							"id": 399,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 402,
+									"id": 400,
 									"name": "data",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5267,7 +5187,7 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 403,
+											"id": 401,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
@@ -5280,14 +5200,14 @@
 												}
 											],
 											"indexSignature": {
-												"id": 404,
+												"id": 402,
 												"name": "__index",
 												"kind": 8192,
 												"kindString": "Index signature",
 												"flags": {},
 												"parameters": [
 													{
-														"id": 405,
+														"id": 403,
 														"name": "key",
 														"kind": 32768,
 														"flags": {},
@@ -5306,7 +5226,7 @@
 									}
 								},
 								{
-									"id": 406,
+									"id": 404,
 									"name": "error",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5326,14 +5246,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 407,
+											"id": 405,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 408,
+													"id": 406,
 													"name": "code",
 													"kind": 1024,
 													"kindString": "Property",
@@ -5351,7 +5271,7 @@
 													}
 												},
 												{
-													"id": 409,
+													"id": 407,
 													"name": "description",
 													"kind": 1024,
 													"kindString": "Property",
@@ -5369,7 +5289,7 @@
 													}
 												},
 												{
-													"id": 410,
+													"id": 408,
 													"name": "message",
 													"kind": 1024,
 													"kindString": "Property",
@@ -5387,7 +5307,7 @@
 													}
 												},
 												{
-													"id": 411,
+													"id": 409,
 													"name": "root",
 													"kind": 1024,
 													"kindString": "Property",
@@ -5407,14 +5327,14 @@
 													"type": {
 														"type": "reflection",
 														"declaration": {
-															"id": 412,
+															"id": 410,
 															"name": "__type",
 															"kind": 65536,
 															"kindString": "Type literal",
 															"flags": {},
 															"children": [
 																{
-																	"id": 414,
+																	"id": 412,
 																	"name": "description",
 																	"kind": 1024,
 																	"kindString": "Property",
@@ -5432,7 +5352,7 @@
 																	}
 																},
 																{
-																	"id": 413,
+																	"id": 411,
 																	"name": "type",
 																	"kind": 1024,
 																	"kindString": "Property",
@@ -5455,8 +5375,8 @@
 																	"title": "Properties",
 																	"kind": 1024,
 																	"children": [
-																		414,
-																		413
+																		412,
+																		411
 																	]
 																}
 															],
@@ -5476,10 +5396,10 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
+														406,
+														407,
 														408,
-														409,
-														410,
-														411
+														409
 													]
 												}
 											],
@@ -5499,8 +5419,8 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										402,
-										406
+										400,
+										404
 									]
 								}
 							],
@@ -5515,7 +5435,7 @@
 					}
 				},
 				{
-					"id": 440,
+					"id": 438,
 					"name": "Datum",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -5546,7 +5466,7 @@
 					}
 				},
 				{
-					"id": 441,
+					"id": 439,
 					"name": "ExperimentData",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -5561,14 +5481,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 442,
+							"id": 440,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 444,
+									"id": 442,
 									"name": "data",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5583,7 +5503,7 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 445,
+											"id": 443,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
@@ -5596,14 +5516,14 @@
 												}
 											],
 											"indexSignature": {
-												"id": 446,
+												"id": 444,
 												"name": "__index",
 												"kind": 8192,
 												"kindString": "Index signature",
 												"flags": {},
 												"parameters": [
 													{
-														"id": 447,
+														"id": 445,
 														"name": "key",
 														"kind": 32768,
 														"flags": {},
@@ -5622,7 +5542,7 @@
 									}
 								},
 								{
-									"id": 443,
+									"id": 441,
 									"name": "timestamp",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5645,8 +5565,8 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										444,
-										443
+										442,
+										441
 									]
 								}
 							],
@@ -5661,7 +5581,7 @@
 					}
 				},
 				{
-					"id": 469,
+					"id": 467,
 					"name": "ExperimentProps",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -5676,14 +5596,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 470,
+							"id": 468,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 472,
+									"id": 470,
 									"name": "background",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5704,7 +5624,7 @@
 									}
 								},
 								{
-									"id": 474,
+									"id": 472,
 									"name": "height",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5725,7 +5645,7 @@
 									}
 								},
 								{
-									"id": 471,
+									"id": 469,
 									"name": "instructions",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5746,7 +5666,7 @@
 									}
 								},
 								{
-									"id": 473,
+									"id": 471,
 									"name": "width",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5767,7 +5687,7 @@
 									}
 								},
 								{
-									"id": 476,
+									"id": 474,
 									"name": "onEnd",
 									"kind": 2048,
 									"kindString": "Method",
@@ -5776,7 +5696,7 @@
 									}
 								},
 								{
-									"id": 475,
+									"id": 473,
 									"name": "onStart",
 									"kind": 2048,
 									"kindString": "Method",
@@ -5785,7 +5705,7 @@
 									}
 								},
 								{
-									"id": 477,
+									"id": 475,
 									"name": "onUpdate",
 									"kind": 2048,
 									"kindString": "Method",
@@ -5799,19 +5719,19 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
+										470,
 										472,
-										474,
-										471,
-										473
+										469,
+										471
 									]
 								},
 								{
 									"title": "Methods",
 									"kind": 2048,
 									"children": [
-										476,
-										475,
-										477
+										474,
+										473,
+										475
 									]
 								}
 							],
@@ -5826,7 +5746,7 @@
 					}
 				},
 				{
-					"id": 465,
+					"id": 463,
 					"name": "Point",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -5841,14 +5761,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 466,
+							"id": 464,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 467,
+									"id": 465,
 									"name": "x",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5866,7 +5786,7 @@
 									}
 								},
 								{
-									"id": 468,
+									"id": 466,
 									"name": "y",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5889,8 +5809,8 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										467,
-										468
+										465,
+										466
 									]
 								}
 							],
@@ -5905,7 +5825,7 @@
 					}
 				},
 				{
-					"id": 438,
+					"id": 436,
 					"name": "PredictedState",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -5936,7 +5856,7 @@
 					}
 				},
 				{
-					"id": 461,
+					"id": 459,
 					"name": "RecorderStatusChangeEvent",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -5951,14 +5871,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 462,
+							"id": 460,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 463,
+									"id": 461,
 									"name": "cameraStatus",
 									"kind": 1024,
 									"kindString": "Property",
@@ -5989,7 +5909,7 @@
 									}
 								},
 								{
-									"id": 464,
+									"id": 462,
 									"name": "recordAudioPermissionStatus",
 									"kind": 1024,
 									"kindString": "Property",
@@ -6025,8 +5945,8 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										463,
-										464
+										461,
+										462
 									]
 								}
 							],
@@ -6041,7 +5961,7 @@
 					}
 				},
 				{
-					"id": 454,
+					"id": 452,
 					"name": "RecordingStartEvent",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -6056,14 +5976,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 455,
+							"id": 453,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 456,
+									"id": 454,
 									"name": "nativeEvent",
 									"kind": 1024,
 									"kindString": "Property",
@@ -6078,14 +5998,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 457,
+											"id": 455,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 460,
+													"id": 458,
 													"name": "deviceOrientation",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6103,7 +6023,7 @@
 													}
 												},
 												{
-													"id": 458,
+													"id": 456,
 													"name": "uri",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6121,7 +6041,7 @@
 													}
 												},
 												{
-													"id": 459,
+													"id": 457,
 													"name": "videoOrientation",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6144,9 +6064,9 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														460,
 														458,
-														459
+														456,
+														457
 													]
 												}
 											],
@@ -6166,7 +6086,7 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										456
+										454
 									]
 								}
 							],
@@ -6181,7 +6101,7 @@
 					}
 				},
 				{
-					"id": 452,
+					"id": 450,
 					"name": "SessionConditionType",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -6220,7 +6140,7 @@
 					}
 				},
 				{
-					"id": 448,
+					"id": 446,
 					"name": "SessionData",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -6235,7 +6155,7 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 449,
+							"id": 447,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
@@ -6248,14 +6168,14 @@
 								}
 							],
 							"indexSignature": {
-								"id": 450,
+								"id": 448,
 								"name": "__index",
 								"kind": 8192,
 								"kindString": "Index signature",
 								"flags": {},
 								"parameters": [
 									{
-										"id": 451,
+										"id": 449,
 										"name": "key",
 										"kind": 32768,
 										"flags": {},
@@ -6269,7 +6189,7 @@
 									"type": "array",
 									"elementType": {
 										"type": "reference",
-										"id": 296,
+										"id": 294,
 										"name": "ExperimentData"
 									}
 								}
@@ -6278,7 +6198,7 @@
 					}
 				},
 				{
-					"id": 453,
+					"id": 451,
 					"name": "SurveyType",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -6305,7 +6225,7 @@
 					}
 				},
 				{
-					"id": 439,
+					"id": 437,
 					"name": "TaskStatus",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -6352,7 +6272,7 @@
 					}
 				},
 				{
-					"id": 253,
+					"id": 251,
 					"name": "default",
 					"kind": 1024,
 					"kindString": "Property",
@@ -6363,7 +6283,7 @@
 					}
 				},
 				{
-					"id": 480,
+					"id": 478,
 					"name": "Constants",
 					"kind": 32,
 					"kindString": "Variable",
@@ -6376,21 +6296,21 @@
 					"sources": [
 						{
 							"fileName": "utils/index.ts",
-							"line": 14,
+							"line": 31,
 							"character": 22
 						}
 					],
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 481,
+							"id": 479,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 483,
+									"id": 481,
 									"name": "API_BASE_PATH",
 									"kind": 1024,
 									"kindString": "Property",
@@ -6402,7 +6322,7 @@
 									"defaultValue": "'/v1'"
 								},
 								{
-									"id": 482,
+									"id": 480,
 									"name": "API_HOST",
 									"kind": 1024,
 									"kindString": "Property",
@@ -6414,7 +6334,7 @@
 									"defaultValue": "'api.senseye.co'"
 								},
 								{
-									"id": 500,
+									"id": 498,
 									"name": "FormData",
 									"kind": 1024,
 									"kindString": "Property",
@@ -6422,14 +6342,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 501,
+											"id": 499,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 506,
+													"id": 504,
 													"name": "EYE",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6437,14 +6357,14 @@
 													"type": {
 														"type": "reflection",
 														"declaration": {
-															"id": 507,
+															"id": 505,
 															"name": "__type",
 															"kind": 65536,
 															"kindString": "Type literal",
 															"flags": {},
 															"children": [
 																{
-																	"id": 509,
+																	"id": 507,
 																	"name": "labels",
 																	"kind": 1024,
 																	"kindString": "Property",
@@ -6459,7 +6379,7 @@
 																	"defaultValue": "..."
 																},
 																{
-																	"id": 508,
+																	"id": 506,
 																	"name": "values",
 																	"kind": 1024,
 																	"kindString": "Property",
@@ -6479,8 +6399,8 @@
 																	"title": "Properties",
 																	"kind": 1024,
 																	"children": [
-																		509,
-																		508
+																		507,
+																		506
 																	]
 																}
 															]
@@ -6489,7 +6409,7 @@
 													"defaultValue": "..."
 												},
 												{
-													"id": 510,
+													"id": 508,
 													"name": "FATIGUE",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6497,14 +6417,14 @@
 													"type": {
 														"type": "reflection",
 														"declaration": {
-															"id": 511,
+															"id": 509,
 															"name": "__type",
 															"kind": 65536,
 															"kindString": "Type literal",
 															"flags": {},
 															"children": [
 																{
-																	"id": 513,
+																	"id": 511,
 																	"name": "labels",
 																	"kind": 1024,
 																	"kindString": "Property",
@@ -6519,7 +6439,7 @@
 																	"defaultValue": "..."
 																},
 																{
-																	"id": 512,
+																	"id": 510,
 																	"name": "values",
 																	"kind": 1024,
 																	"kindString": "Property",
@@ -6539,8 +6459,8 @@
 																	"title": "Properties",
 																	"kind": 1024,
 																	"children": [
-																		513,
-																		512
+																		511,
+																		510
 																	]
 																}
 															]
@@ -6549,7 +6469,7 @@
 													"defaultValue": "..."
 												},
 												{
-													"id": 502,
+													"id": 500,
 													"name": "GENDER",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6557,14 +6477,14 @@
 													"type": {
 														"type": "reflection",
 														"declaration": {
-															"id": 503,
+															"id": 501,
 															"name": "__type",
 															"kind": 65536,
 															"kindString": "Type literal",
 															"flags": {},
 															"children": [
 																{
-																	"id": 505,
+																	"id": 503,
 																	"name": "labels",
 																	"kind": 1024,
 																	"kindString": "Property",
@@ -6579,7 +6499,7 @@
 																	"defaultValue": "..."
 																},
 																{
-																	"id": 504,
+																	"id": 502,
 																	"name": "values",
 																	"kind": 1024,
 																	"kindString": "Property",
@@ -6599,8 +6519,8 @@
 																	"title": "Properties",
 																	"kind": 1024,
 																	"children": [
-																		505,
-																		504
+																		503,
+																		502
 																	]
 																}
 															]
@@ -6609,7 +6529,7 @@
 													"defaultValue": "..."
 												},
 												{
-													"id": 514,
+													"id": 512,
 													"name": "MERIDIEM",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6617,14 +6537,14 @@
 													"type": {
 														"type": "reflection",
 														"declaration": {
-															"id": 515,
+															"id": 513,
 															"name": "__type",
 															"kind": 65536,
 															"kindString": "Type literal",
 															"flags": {},
 															"children": [
 																{
-																	"id": 517,
+																	"id": 515,
 																	"name": "labels",
 																	"kind": 1024,
 																	"kindString": "Property",
@@ -6639,7 +6559,7 @@
 																	"defaultValue": "..."
 																},
 																{
-																	"id": 516,
+																	"id": 514,
 																	"name": "values",
 																	"kind": 1024,
 																	"kindString": "Property",
@@ -6659,8 +6579,8 @@
 																	"title": "Properties",
 																	"kind": 1024,
 																	"children": [
-																		517,
-																		516
+																		515,
+																		514
 																	]
 																}
 															]
@@ -6674,10 +6594,10 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														506,
-														510,
-														502,
-														514
+														504,
+														508,
+														500,
+														512
 													]
 												}
 											]
@@ -6686,7 +6606,7 @@
 									"defaultValue": "..."
 								},
 								{
-									"id": 486,
+									"id": 484,
 									"name": "PredictedState",
 									"kind": 1024,
 									"kindString": "Property",
@@ -6694,14 +6614,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 487,
+											"id": 485,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 490,
+													"id": 488,
 													"name": "NOT_READY_BAC",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6713,7 +6633,7 @@
 													"defaultValue": "'Not Ready: Drunk'"
 												},
 												{
-													"id": 489,
+													"id": 487,
 													"name": "NOT_READY_FATIGUE",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6725,7 +6645,7 @@
 													"defaultValue": "'Not Ready: Fatigued'"
 												},
 												{
-													"id": 488,
+													"id": 486,
 													"name": "READY",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6742,9 +6662,9 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														490,
-														489,
-														488
+														488,
+														487,
+														486
 													]
 												}
 											]
@@ -6753,7 +6673,7 @@
 									"defaultValue": "..."
 								},
 								{
-									"id": 484,
+									"id": 482,
 									"name": "SessionCondition",
 									"kind": 1024,
 									"kindString": "Property",
@@ -6767,7 +6687,7 @@
 											},
 											{
 												"type": "reference",
-												"id": 307,
+												"id": 305,
 												"name": "SessionConditionType"
 											}
 										],
@@ -6776,7 +6696,7 @@
 									"defaultValue": "..."
 								},
 								{
-									"id": 485,
+									"id": 483,
 									"name": "SurveyType",
 									"kind": 1024,
 									"kindString": "Property",
@@ -6790,7 +6710,7 @@
 											},
 											{
 												"type": "reference",
-												"id": 308,
+												"id": 306,
 												"name": "SurveyType"
 											}
 										],
@@ -6799,7 +6719,7 @@
 									"defaultValue": "..."
 								},
 								{
-									"id": 491,
+									"id": 489,
 									"name": "TaskStatus",
 									"kind": 1024,
 									"kindString": "Property",
@@ -6807,14 +6727,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 492,
+											"id": 490,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 497,
+													"id": 495,
 													"name": "FAILURE",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6826,7 +6746,7 @@
 													"defaultValue": "'FAILURE'"
 												},
 												{
-													"id": 493,
+													"id": 491,
 													"name": "PENDING",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6838,7 +6758,7 @@
 													"defaultValue": "'PENDING'"
 												},
 												{
-													"id": 494,
+													"id": 492,
 													"name": "RECEIVED",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6850,7 +6770,7 @@
 													"defaultValue": "'RECEIVED'"
 												},
 												{
-													"id": 499,
+													"id": 497,
 													"name": "RETRY",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6862,7 +6782,7 @@
 													"defaultValue": "'RETRY'"
 												},
 												{
-													"id": 498,
+													"id": 496,
 													"name": "REVOKED",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6874,7 +6794,7 @@
 													"defaultValue": "'REVOKED'"
 												},
 												{
-													"id": 495,
+													"id": 493,
 													"name": "STARTED",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6886,7 +6806,7 @@
 													"defaultValue": "'STARTED'"
 												},
 												{
-													"id": 496,
+													"id": 494,
 													"name": "SUCCESS",
 													"kind": 1024,
 													"kindString": "Property",
@@ -6903,13 +6823,13 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														497,
-														493,
-														494,
-														499,
-														498,
 														495,
-														496
+														491,
+														492,
+														497,
+														496,
+														493,
+														494
 													]
 												}
 											]
@@ -6923,13 +6843,13 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										483,
-										482,
-										500,
-										486,
+										481,
+										480,
+										498,
 										484,
-										485,
-										491
+										482,
+										483,
+										489
 									]
 								}
 							]
@@ -6938,7 +6858,7 @@
 					"defaultValue": "..."
 				},
 				{
-					"id": 478,
+					"id": 476,
 					"name": "getCurrentTimestamp",
 					"kind": 64,
 					"kindString": "Function",
@@ -6946,13 +6866,13 @@
 					"sources": [
 						{
 							"fileName": "utils/index.ts",
-							"line": 7,
+							"line": 9,
 							"character": 35
 						}
 					],
 					"signatures": [
 						{
-							"id": 479,
+							"id": 477,
 							"name": "getCurrentTimestamp",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -6973,57 +6893,57 @@
 					"title": "References",
 					"kind": 16777216,
 					"children": [
-						393,
-						398,
-						392,
 						391,
-						395,
 						396,
+						390,
+						389,
+						393,
+						394,
+						395,
 						397,
-						399,
-						394
+						392
 					]
 				},
 				{
 					"title": "Type aliases",
 					"kind": 4194304,
 					"children": [
-						426,
-						415,
-						422,
-						400,
-						440,
-						441,
-						469,
-						465,
+						424,
+						413,
+						420,
+						398,
 						438,
-						461,
-						454,
+						439,
+						467,
+						463,
+						436,
+						459,
 						452,
-						448,
-						453,
-						439
+						450,
+						446,
+						451,
+						437
 					]
 				},
 				{
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						253
+						251
 					]
 				},
 				{
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						480
+						478
 					]
 				},
 				{
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						478
+						476
 					]
 				}
 			],
@@ -7036,14 +6956,14 @@
 			]
 		},
 		{
-			"id": 254,
+			"id": 252,
 			"name": "types",
 			"kind": 1,
 			"kindString": "Module",
 			"flags": {},
 			"children": [
 				{
-					"id": 281,
+					"id": 279,
 					"name": "ComputeResult",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -7058,14 +6978,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 282,
+							"id": 280,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 283,
+									"id": 281,
 									"name": "eye_features",
 									"kind": 1024,
 									"kindString": "Property",
@@ -7080,7 +7000,7 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 284,
+											"id": 282,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
@@ -7093,14 +7013,14 @@
 												}
 											],
 											"indexSignature": {
-												"id": 285,
+												"id": 283,
 												"name": "__index",
 												"kind": 8192,
 												"kindString": "Index signature",
 												"flags": {},
 												"parameters": [
 													{
-														"id": 286,
+														"id": 284,
 														"name": "key",
 														"kind": 32768,
 														"flags": {},
@@ -7119,7 +7039,7 @@
 									}
 								},
 								{
-									"id": 287,
+									"id": 285,
 									"name": "prediction",
 									"kind": 1024,
 									"kindString": "Property",
@@ -7134,14 +7054,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 288,
+											"id": 286,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 290,
+													"id": 288,
 													"name": "bac_prediction",
 													"kind": 1024,
 													"kindString": "Property",
@@ -7164,7 +7084,7 @@
 													}
 												},
 												{
-													"id": 291,
+													"id": 289,
 													"name": "cog_load_prediction",
 													"kind": 1024,
 													"kindString": "Property",
@@ -7187,7 +7107,7 @@
 													}
 												},
 												{
-													"id": 289,
+													"id": 287,
 													"name": "fatigue_prediction",
 													"kind": 1024,
 													"kindString": "Property",
@@ -7210,7 +7130,7 @@
 													}
 												},
 												{
-													"id": 292,
+													"id": 290,
 													"name": "predicted_state",
 													"kind": 1024,
 													"kindString": "Property",
@@ -7236,10 +7156,10 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														290,
-														291,
+														288,
 														289,
-														292
+														287,
+														290
 													]
 												}
 											],
@@ -7259,8 +7179,8 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										283,
-										287
+										281,
+										285
 									]
 								}
 							],
@@ -7275,7 +7195,7 @@
 					}
 				},
 				{
-					"id": 270,
+					"id": 268,
 					"name": "ComputeResultResponse",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -7293,14 +7213,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 271,
+							"id": 269,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 273,
+									"id": 271,
 									"name": "error",
 									"kind": 1024,
 									"kindString": "Property",
@@ -7317,14 +7237,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 274,
+											"id": 272,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 275,
+													"id": 273,
 													"name": "code",
 													"kind": 1024,
 													"kindString": "Property",
@@ -7342,7 +7262,7 @@
 													}
 												},
 												{
-													"id": 276,
+													"id": 274,
 													"name": "message",
 													"kind": 1024,
 													"kindString": "Property",
@@ -7365,8 +7285,8 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														275,
-														276
+														273,
+														274
 													]
 												}
 											],
@@ -7381,7 +7301,7 @@
 									}
 								},
 								{
-									"id": 272,
+									"id": 270,
 									"name": "results",
 									"kind": 1024,
 									"kindString": "Property",
@@ -7402,7 +7322,7 @@
 										"type": "array",
 										"elementType": {
 											"type": "reference",
-											"id": 281,
+											"id": 279,
 											"name": "ComputeResult"
 										}
 									}
@@ -7413,8 +7333,8 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										273,
-										272
+										271,
+										270
 									]
 								}
 							],
@@ -7429,7 +7349,7 @@
 					}
 				},
 				{
-					"id": 277,
+					"id": 275,
 					"name": "ComputeTaskResponse",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -7447,14 +7367,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 278,
+							"id": 276,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 279,
+									"id": 277,
 									"name": "id",
 									"kind": 1024,
 									"kindString": "Property",
@@ -7475,7 +7395,7 @@
 									}
 								},
 								{
-									"id": 280,
+									"id": 278,
 									"name": "status",
 									"kind": 1024,
 									"kindString": "Property",
@@ -7501,8 +7421,8 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										279,
-										280
+										277,
+										278
 									]
 								}
 							],
@@ -7517,7 +7437,7 @@
 					}
 				},
 				{
-					"id": 255,
+					"id": 253,
 					"name": "DataResponse",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -7535,14 +7455,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 256,
+							"id": 254,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 257,
+									"id": 255,
 									"name": "data",
 									"kind": 1024,
 									"kindString": "Property",
@@ -7562,7 +7482,7 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 258,
+											"id": 256,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
@@ -7575,14 +7495,14 @@
 												}
 											],
 											"indexSignature": {
-												"id": 259,
+												"id": 257,
 												"name": "__index",
 												"kind": 8192,
 												"kindString": "Index signature",
 												"flags": {},
 												"parameters": [
 													{
-														"id": 260,
+														"id": 258,
 														"name": "key",
 														"kind": 32768,
 														"flags": {},
@@ -7601,7 +7521,7 @@
 									}
 								},
 								{
-									"id": 261,
+									"id": 259,
 									"name": "error",
 									"kind": 1024,
 									"kindString": "Property",
@@ -7621,14 +7541,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 262,
+											"id": 260,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 263,
+													"id": 261,
 													"name": "code",
 													"kind": 1024,
 													"kindString": "Property",
@@ -7646,7 +7566,7 @@
 													}
 												},
 												{
-													"id": 264,
+													"id": 262,
 													"name": "description",
 													"kind": 1024,
 													"kindString": "Property",
@@ -7664,7 +7584,7 @@
 													}
 												},
 												{
-													"id": 265,
+													"id": 263,
 													"name": "message",
 													"kind": 1024,
 													"kindString": "Property",
@@ -7682,7 +7602,7 @@
 													}
 												},
 												{
-													"id": 266,
+													"id": 264,
 													"name": "root",
 													"kind": 1024,
 													"kindString": "Property",
@@ -7702,14 +7622,14 @@
 													"type": {
 														"type": "reflection",
 														"declaration": {
-															"id": 267,
+															"id": 265,
 															"name": "__type",
 															"kind": 65536,
 															"kindString": "Type literal",
 															"flags": {},
 															"children": [
 																{
-																	"id": 269,
+																	"id": 267,
 																	"name": "description",
 																	"kind": 1024,
 																	"kindString": "Property",
@@ -7727,7 +7647,7 @@
 																	}
 																},
 																{
-																	"id": 268,
+																	"id": 266,
 																	"name": "type",
 																	"kind": 1024,
 																	"kindString": "Property",
@@ -7750,8 +7670,8 @@
 																	"title": "Properties",
 																	"kind": 1024,
 																	"children": [
-																		269,
-																		268
+																		267,
+																		266
 																	]
 																}
 															],
@@ -7771,10 +7691,10 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
+														261,
+														262,
 														263,
-														264,
-														265,
-														266
+														264
 													]
 												}
 											],
@@ -7794,8 +7714,8 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										257,
-										261
+										255,
+										259
 									]
 								}
 							],
@@ -7810,7 +7730,7 @@
 					}
 				},
 				{
-					"id": 295,
+					"id": 293,
 					"name": "Datum",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -7841,7 +7761,7 @@
 					}
 				},
 				{
-					"id": 296,
+					"id": 294,
 					"name": "ExperimentData",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -7856,14 +7776,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 297,
+							"id": 295,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 299,
+									"id": 297,
 									"name": "data",
 									"kind": 1024,
 									"kindString": "Property",
@@ -7878,7 +7798,7 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 300,
+											"id": 298,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
@@ -7891,14 +7811,14 @@
 												}
 											],
 											"indexSignature": {
-												"id": 301,
+												"id": 299,
 												"name": "__index",
 												"kind": 8192,
 												"kindString": "Index signature",
 												"flags": {},
 												"parameters": [
 													{
-														"id": 302,
+														"id": 300,
 														"name": "key",
 														"kind": 32768,
 														"flags": {},
@@ -7917,7 +7837,7 @@
 									}
 								},
 								{
-									"id": 298,
+									"id": 296,
 									"name": "timestamp",
 									"kind": 1024,
 									"kindString": "Property",
@@ -7940,8 +7860,8 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										299,
-										298
+										297,
+										296
 									]
 								}
 							],
@@ -7956,7 +7876,7 @@
 					}
 				},
 				{
-					"id": 324,
+					"id": 322,
 					"name": "ExperimentProps",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -7971,14 +7891,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 325,
+							"id": 323,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 327,
+									"id": 325,
 									"name": "background",
 									"kind": 1024,
 									"kindString": "Property",
@@ -7999,7 +7919,7 @@
 									}
 								},
 								{
-									"id": 329,
+									"id": 327,
 									"name": "height",
 									"kind": 1024,
 									"kindString": "Property",
@@ -8020,7 +7940,7 @@
 									}
 								},
 								{
-									"id": 326,
+									"id": 324,
 									"name": "instructions",
 									"kind": 1024,
 									"kindString": "Property",
@@ -8041,7 +7961,7 @@
 									}
 								},
 								{
-									"id": 328,
+									"id": 326,
 									"name": "width",
 									"kind": 1024,
 									"kindString": "Property",
@@ -8062,7 +7982,7 @@
 									}
 								},
 								{
-									"id": 331,
+									"id": 329,
 									"name": "onEnd",
 									"kind": 2048,
 									"kindString": "Method",
@@ -8071,7 +7991,7 @@
 									}
 								},
 								{
-									"id": 330,
+									"id": 328,
 									"name": "onStart",
 									"kind": 2048,
 									"kindString": "Method",
@@ -8080,7 +8000,7 @@
 									}
 								},
 								{
-									"id": 332,
+									"id": 330,
 									"name": "onUpdate",
 									"kind": 2048,
 									"kindString": "Method",
@@ -8094,19 +8014,19 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
+										325,
 										327,
-										329,
-										326,
-										328
+										324,
+										326
 									]
 								},
 								{
 									"title": "Methods",
 									"kind": 2048,
 									"children": [
-										331,
-										330,
-										332
+										329,
+										328,
+										330
 									]
 								}
 							],
@@ -8121,7 +8041,7 @@
 					}
 				},
 				{
-					"id": 320,
+					"id": 318,
 					"name": "Point",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -8136,14 +8056,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 321,
+							"id": 319,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 322,
+									"id": 320,
 									"name": "x",
 									"kind": 1024,
 									"kindString": "Property",
@@ -8161,7 +8081,7 @@
 									}
 								},
 								{
-									"id": 323,
+									"id": 321,
 									"name": "y",
 									"kind": 1024,
 									"kindString": "Property",
@@ -8184,8 +8104,8 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										322,
-										323
+										320,
+										321
 									]
 								}
 							],
@@ -8200,7 +8120,7 @@
 					}
 				},
 				{
-					"id": 293,
+					"id": 291,
 					"name": "PredictedState",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -8231,7 +8151,7 @@
 					}
 				},
 				{
-					"id": 316,
+					"id": 314,
 					"name": "RecorderStatusChangeEvent",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -8246,14 +8166,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 317,
+							"id": 315,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 318,
+									"id": 316,
 									"name": "cameraStatus",
 									"kind": 1024,
 									"kindString": "Property",
@@ -8284,7 +8204,7 @@
 									}
 								},
 								{
-									"id": 319,
+									"id": 317,
 									"name": "recordAudioPermissionStatus",
 									"kind": 1024,
 									"kindString": "Property",
@@ -8320,8 +8240,8 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										318,
-										319
+										316,
+										317
 									]
 								}
 							],
@@ -8336,7 +8256,7 @@
 					}
 				},
 				{
-					"id": 309,
+					"id": 307,
 					"name": "RecordingStartEvent",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -8351,14 +8271,14 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 310,
+							"id": 308,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 311,
+									"id": 309,
 									"name": "nativeEvent",
 									"kind": 1024,
 									"kindString": "Property",
@@ -8373,14 +8293,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 312,
+											"id": 310,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 315,
+													"id": 313,
 													"name": "deviceOrientation",
 													"kind": 1024,
 													"kindString": "Property",
@@ -8398,7 +8318,7 @@
 													}
 												},
 												{
-													"id": 313,
+													"id": 311,
 													"name": "uri",
 													"kind": 1024,
 													"kindString": "Property",
@@ -8416,7 +8336,7 @@
 													}
 												},
 												{
-													"id": 314,
+													"id": 312,
 													"name": "videoOrientation",
 													"kind": 1024,
 													"kindString": "Property",
@@ -8439,9 +8359,9 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														315,
 														313,
-														314
+														311,
+														312
 													]
 												}
 											],
@@ -8461,7 +8381,7 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										311
+										309
 									]
 								}
 							],
@@ -8476,7 +8396,7 @@
 					}
 				},
 				{
-					"id": 307,
+					"id": 305,
 					"name": "SessionConditionType",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -8515,7 +8435,7 @@
 					}
 				},
 				{
-					"id": 303,
+					"id": 301,
 					"name": "SessionData",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -8530,7 +8450,7 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 304,
+							"id": 302,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
@@ -8543,14 +8463,14 @@
 								}
 							],
 							"indexSignature": {
-								"id": 305,
+								"id": 303,
 								"name": "__index",
 								"kind": 8192,
 								"kindString": "Index signature",
 								"flags": {},
 								"parameters": [
 									{
-										"id": 306,
+										"id": 304,
 										"name": "key",
 										"kind": 32768,
 										"flags": {},
@@ -8564,7 +8484,7 @@
 									"type": "array",
 									"elementType": {
 										"type": "reference",
-										"id": 296,
+										"id": 294,
 										"name": "ExperimentData"
 									}
 								}
@@ -8573,7 +8493,7 @@
 					}
 				},
 				{
-					"id": 308,
+					"id": 306,
 					"name": "SurveyType",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -8600,7 +8520,7 @@
 					}
 				},
 				{
-					"id": 294,
+					"id": 292,
 					"name": "TaskStatus",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -8652,21 +8572,21 @@
 					"title": "Type aliases",
 					"kind": 4194304,
 					"children": [
-						281,
-						270,
-						277,
-						255,
-						295,
-						296,
-						324,
-						320,
+						279,
+						268,
+						275,
+						253,
 						293,
-						316,
-						309,
+						294,
+						322,
+						318,
+						291,
+						314,
 						307,
-						303,
-						308,
-						294
+						305,
+						301,
+						306,
+						292
 					]
 				}
 			],
@@ -8679,14 +8599,14 @@
 			]
 		},
 		{
-			"id": 333,
+			"id": 331,
 			"name": "utils",
 			"kind": 1,
 			"kindString": "Module",
 			"flags": {},
 			"children": [
 				{
-					"id": 336,
+					"id": 334,
 					"name": "Constants",
 					"kind": 32,
 					"kindString": "Variable",
@@ -8699,21 +8619,21 @@
 					"sources": [
 						{
 							"fileName": "utils/index.ts",
-							"line": 14,
+							"line": 31,
 							"character": 22
 						}
 					],
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 337,
+							"id": 335,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"children": [
 								{
-									"id": 339,
+									"id": 337,
 									"name": "API_BASE_PATH",
 									"kind": 1024,
 									"kindString": "Property",
@@ -8725,7 +8645,7 @@
 									"defaultValue": "'/v1'"
 								},
 								{
-									"id": 338,
+									"id": 336,
 									"name": "API_HOST",
 									"kind": 1024,
 									"kindString": "Property",
@@ -8737,7 +8657,7 @@
 									"defaultValue": "'api.senseye.co'"
 								},
 								{
-									"id": 356,
+									"id": 354,
 									"name": "FormData",
 									"kind": 1024,
 									"kindString": "Property",
@@ -8745,14 +8665,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 357,
+											"id": 355,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 362,
+													"id": 360,
 													"name": "EYE",
 													"kind": 1024,
 													"kindString": "Property",
@@ -8760,14 +8680,14 @@
 													"type": {
 														"type": "reflection",
 														"declaration": {
-															"id": 363,
+															"id": 361,
 															"name": "__type",
 															"kind": 65536,
 															"kindString": "Type literal",
 															"flags": {},
 															"children": [
 																{
-																	"id": 365,
+																	"id": 363,
 																	"name": "labels",
 																	"kind": 1024,
 																	"kindString": "Property",
@@ -8782,7 +8702,7 @@
 																	"defaultValue": "..."
 																},
 																{
-																	"id": 364,
+																	"id": 362,
 																	"name": "values",
 																	"kind": 1024,
 																	"kindString": "Property",
@@ -8802,8 +8722,8 @@
 																	"title": "Properties",
 																	"kind": 1024,
 																	"children": [
-																		365,
-																		364
+																		363,
+																		362
 																	]
 																}
 															]
@@ -8812,7 +8732,7 @@
 													"defaultValue": "..."
 												},
 												{
-													"id": 366,
+													"id": 364,
 													"name": "FATIGUE",
 													"kind": 1024,
 													"kindString": "Property",
@@ -8820,14 +8740,14 @@
 													"type": {
 														"type": "reflection",
 														"declaration": {
-															"id": 367,
+															"id": 365,
 															"name": "__type",
 															"kind": 65536,
 															"kindString": "Type literal",
 															"flags": {},
 															"children": [
 																{
-																	"id": 369,
+																	"id": 367,
 																	"name": "labels",
 																	"kind": 1024,
 																	"kindString": "Property",
@@ -8842,7 +8762,7 @@
 																	"defaultValue": "..."
 																},
 																{
-																	"id": 368,
+																	"id": 366,
 																	"name": "values",
 																	"kind": 1024,
 																	"kindString": "Property",
@@ -8862,8 +8782,8 @@
 																	"title": "Properties",
 																	"kind": 1024,
 																	"children": [
-																		369,
-																		368
+																		367,
+																		366
 																	]
 																}
 															]
@@ -8872,7 +8792,7 @@
 													"defaultValue": "..."
 												},
 												{
-													"id": 358,
+													"id": 356,
 													"name": "GENDER",
 													"kind": 1024,
 													"kindString": "Property",
@@ -8880,14 +8800,14 @@
 													"type": {
 														"type": "reflection",
 														"declaration": {
-															"id": 359,
+															"id": 357,
 															"name": "__type",
 															"kind": 65536,
 															"kindString": "Type literal",
 															"flags": {},
 															"children": [
 																{
-																	"id": 361,
+																	"id": 359,
 																	"name": "labels",
 																	"kind": 1024,
 																	"kindString": "Property",
@@ -8902,7 +8822,7 @@
 																	"defaultValue": "..."
 																},
 																{
-																	"id": 360,
+																	"id": 358,
 																	"name": "values",
 																	"kind": 1024,
 																	"kindString": "Property",
@@ -8922,8 +8842,8 @@
 																	"title": "Properties",
 																	"kind": 1024,
 																	"children": [
-																		361,
-																		360
+																		359,
+																		358
 																	]
 																}
 															]
@@ -8932,7 +8852,7 @@
 													"defaultValue": "..."
 												},
 												{
-													"id": 370,
+													"id": 368,
 													"name": "MERIDIEM",
 													"kind": 1024,
 													"kindString": "Property",
@@ -8940,14 +8860,14 @@
 													"type": {
 														"type": "reflection",
 														"declaration": {
-															"id": 371,
+															"id": 369,
 															"name": "__type",
 															"kind": 65536,
 															"kindString": "Type literal",
 															"flags": {},
 															"children": [
 																{
-																	"id": 373,
+																	"id": 371,
 																	"name": "labels",
 																	"kind": 1024,
 																	"kindString": "Property",
@@ -8962,7 +8882,7 @@
 																	"defaultValue": "..."
 																},
 																{
-																	"id": 372,
+																	"id": 370,
 																	"name": "values",
 																	"kind": 1024,
 																	"kindString": "Property",
@@ -8982,8 +8902,8 @@
 																	"title": "Properties",
 																	"kind": 1024,
 																	"children": [
-																		373,
-																		372
+																		371,
+																		370
 																	]
 																}
 															]
@@ -8997,10 +8917,10 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														362,
-														366,
-														358,
-														370
+														360,
+														364,
+														356,
+														368
 													]
 												}
 											]
@@ -9009,7 +8929,7 @@
 									"defaultValue": "..."
 								},
 								{
-									"id": 342,
+									"id": 340,
 									"name": "PredictedState",
 									"kind": 1024,
 									"kindString": "Property",
@@ -9017,14 +8937,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 343,
+											"id": 341,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 346,
+													"id": 344,
 													"name": "NOT_READY_BAC",
 													"kind": 1024,
 													"kindString": "Property",
@@ -9036,7 +8956,7 @@
 													"defaultValue": "'Not Ready: Drunk'"
 												},
 												{
-													"id": 345,
+													"id": 343,
 													"name": "NOT_READY_FATIGUE",
 													"kind": 1024,
 													"kindString": "Property",
@@ -9048,7 +8968,7 @@
 													"defaultValue": "'Not Ready: Fatigued'"
 												},
 												{
-													"id": 344,
+													"id": 342,
 													"name": "READY",
 													"kind": 1024,
 													"kindString": "Property",
@@ -9065,9 +8985,9 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														346,
-														345,
-														344
+														344,
+														343,
+														342
 													]
 												}
 											]
@@ -9076,7 +8996,7 @@
 									"defaultValue": "..."
 								},
 								{
-									"id": 340,
+									"id": 338,
 									"name": "SessionCondition",
 									"kind": 1024,
 									"kindString": "Property",
@@ -9090,7 +9010,7 @@
 											},
 											{
 												"type": "reference",
-												"id": 307,
+												"id": 305,
 												"name": "SessionConditionType"
 											}
 										],
@@ -9099,7 +9019,7 @@
 									"defaultValue": "..."
 								},
 								{
-									"id": 341,
+									"id": 339,
 									"name": "SurveyType",
 									"kind": 1024,
 									"kindString": "Property",
@@ -9113,7 +9033,7 @@
 											},
 											{
 												"type": "reference",
-												"id": 308,
+												"id": 306,
 												"name": "SurveyType"
 											}
 										],
@@ -9122,7 +9042,7 @@
 									"defaultValue": "..."
 								},
 								{
-									"id": 347,
+									"id": 345,
 									"name": "TaskStatus",
 									"kind": 1024,
 									"kindString": "Property",
@@ -9130,14 +9050,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 348,
+											"id": 346,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 353,
+													"id": 351,
 													"name": "FAILURE",
 													"kind": 1024,
 													"kindString": "Property",
@@ -9149,7 +9069,7 @@
 													"defaultValue": "'FAILURE'"
 												},
 												{
-													"id": 349,
+													"id": 347,
 													"name": "PENDING",
 													"kind": 1024,
 													"kindString": "Property",
@@ -9161,7 +9081,7 @@
 													"defaultValue": "'PENDING'"
 												},
 												{
-													"id": 350,
+													"id": 348,
 													"name": "RECEIVED",
 													"kind": 1024,
 													"kindString": "Property",
@@ -9173,7 +9093,7 @@
 													"defaultValue": "'RECEIVED'"
 												},
 												{
-													"id": 355,
+													"id": 353,
 													"name": "RETRY",
 													"kind": 1024,
 													"kindString": "Property",
@@ -9185,7 +9105,7 @@
 													"defaultValue": "'RETRY'"
 												},
 												{
-													"id": 354,
+													"id": 352,
 													"name": "REVOKED",
 													"kind": 1024,
 													"kindString": "Property",
@@ -9197,7 +9117,7 @@
 													"defaultValue": "'REVOKED'"
 												},
 												{
-													"id": 351,
+													"id": 349,
 													"name": "STARTED",
 													"kind": 1024,
 													"kindString": "Property",
@@ -9209,7 +9129,7 @@
 													"defaultValue": "'STARTED'"
 												},
 												{
-													"id": 352,
+													"id": 350,
 													"name": "SUCCESS",
 													"kind": 1024,
 													"kindString": "Property",
@@ -9226,13 +9146,13 @@
 													"title": "Properties",
 													"kind": 1024,
 													"children": [
-														353,
-														349,
-														350,
-														355,
-														354,
 														351,
-														352
+														347,
+														348,
+														353,
+														352,
+														349,
+														350
 													]
 												}
 											]
@@ -9246,13 +9166,13 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										339,
-										338,
-										356,
-										342,
+										337,
+										336,
+										354,
 										340,
-										341,
-										347
+										338,
+										339,
+										345
 									]
 								}
 							]
@@ -9261,7 +9181,7 @@
 					"defaultValue": "..."
 				},
 				{
-					"id": 334,
+					"id": 332,
 					"name": "getCurrentTimestamp",
 					"kind": 64,
 					"kindString": "Function",
@@ -9269,13 +9189,13 @@
 					"sources": [
 						{
 							"fileName": "utils/index.ts",
-							"line": 7,
+							"line": 9,
 							"character": 35
 						}
 					],
 					"signatures": [
 						{
-							"id": 335,
+							"id": 333,
 							"name": "getCurrentTimestamp",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -9296,14 +9216,14 @@
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						336
+						334
 					]
 				},
 				{
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						334
+						332
 					]
 				}
 			],
@@ -9324,26 +9244,26 @@
 				1,
 				54,
 				2,
-				205,
+				203,
 				55,
-				103,
-				148,
-				242,
-				206,
-				210,
-				214,
-				219,
+				102,
+				146,
+				240,
+				204,
+				208,
+				212,
+				217,
+				222,
+				239,
 				224,
+				229,
+				234,
+				249,
 				241,
-				226,
-				231,
-				236,
-				251,
-				243,
-				247,
+				245,
+				250,
 				252,
-				254,
-				333
+				331
 			]
 		}
 	]

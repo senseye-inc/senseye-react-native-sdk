@@ -9,9 +9,13 @@ import {
   View,
 } from 'react-native';
 
-import { Models } from '@api';
-import { SenseyePicker, SenseyeTextInput, SenseyeButton } from '@components';
-import { Constants } from '@utils';
+import {
+  SenseyePicker,
+  SenseyeTextInput,
+  SenseyeButton,
+  Models,
+  Constants,
+} from '@senseyeinc/react-native-senseye-sdk';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
@@ -76,7 +80,7 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
     <SafeAreaView style={styles.container}>
       <Image
         style={styles.logo}
-        source={require('../assets/senseye-white-logo.png')}
+        source={require('../../assets/senseye-white-logo.png')}
       />
       <ScrollView
         style={styles.innerContainer}

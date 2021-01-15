@@ -1,8 +1,11 @@
 import axios from 'axios';
 import type { AxiosInstance, AxiosRequestConfig } from 'axios';
 
-import { Constants } from '@utils';
-import type { ComputeResultResponse, ComputeTaskResponse } from '@types';
+import { Constants } from '@senseyeinc/react-native-senseye-sdk';
+import type {
+  ComputeResultResponse,
+  ComputeTaskResponse,
+} from '@senseyeinc/react-native-senseye-sdk';
 
 /**
  * Client that interfaces with Senseye's REST API. Provides wrapper functions for
@@ -64,7 +67,7 @@ export default class SenseyeApiClient {
    * @returns    A `Promise` that will produce a `ComputeTaskResponse`.
    */
   public predictFatigue(uri: string) {
-    return this.post<ComputeTaskResponse>('/v1/PredictFatigue', {
+    return this.post<ComputeTaskResponse>('/PredictFatigue', {
       video_uri: uri,
     });
   }
@@ -76,7 +79,7 @@ export default class SenseyeApiClient {
    * @returns    A `Promise` that will produce a `ComputeTaskResponse`.
    */
   public predictBAC(uri: string) {
-    return this.post<ComputeTaskResponse>('/v1/PredictBAC', {
+    return this.post<ComputeTaskResponse>('/PredictBAC', {
       video_uri: uri,
     });
   }
@@ -88,7 +91,7 @@ export default class SenseyeApiClient {
    * @returns    A `Promise` that will produce a `ComputeTaskResponse`.
    */
   public predictCognitiveLoad(uri: string) {
-    return this.post<ComputeTaskResponse>('/v1/PredictCognitiveLoad', {
+    return this.post<ComputeTaskResponse>('/PredictCognitiveLoad', {
       video_uri: uri,
     });
   }
@@ -102,7 +105,7 @@ export default class SenseyeApiClient {
    *              the task's most recent status.
    */
   public getComputeTask(id: string) {
-    return this.get<ComputeTaskResponse>('/v1/GetVideoTask/' + id);
+    return this.get<ComputeTaskResponse>('/GetVideoTask/' + id);
   }
 
   /**
@@ -112,7 +115,7 @@ export default class SenseyeApiClient {
    * @returns   A `Promise` that will produce a `ComputeTaskResponse`.
    */
   public cancelComputeTask(id: string) {
-    return this.post<ComputeTaskResponse>('/v1/CancelVideoTask', { id: id });
+    return this.post<ComputeTaskResponse>('/CancelVideoTask', { id: id });
   }
 
   /**
@@ -123,6 +126,6 @@ export default class SenseyeApiClient {
    * @returns   A `Promise` that will produce a `ComputeResultResponse`.
    */
   public getComputeResult(id: string) {
-    return this.get<ComputeResultResponse>('/v1/GetVideoResult/' + id);
+    return this.get<ComputeResultResponse>('/GetVideoResult/' + id);
   }
 }

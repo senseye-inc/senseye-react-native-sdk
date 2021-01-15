@@ -8,24 +8,18 @@ import {
   getSystemVersion,
 } from 'react-native-device-info';
 
-import { getCurrentTimestamp } from '@utils';
-import type { SenseyeApiClient } from '@api';
-import type { Survey, Video } from '@api/models';
+import {
+  Constants,
+  getCurrentTimestamp,
+} from '@senseyeinc/react-native-senseye-sdk';
 import type {
+  SenseyeApiClient,
   DataResponse,
   ExperimentData,
   SessionData,
   SessionConditionType,
-} from '@types';
-
-/** Valid session conditions. */
-export const Conditions: Record<string, SessionConditionType> = {
-  GOOD: 'GOOD',
-  BAD: 'BAD',
-  TEST: 'TEST',
-  UNENDED: 'UNENDED',
-  UNSPECIFIED: 'UNSPECIFIED',
-};
+  Models,
+} from '@senseyeinc/react-native-senseye-sdk';
 
 /**
  * Class that models a session, facilitating the gathering and association of event
@@ -39,7 +33,7 @@ export default class Session {
   private user: { [key: string]: any };
   private data: SessionData;
   private bufferLimit: number;
-  private videos: Video[];
+  private videos: Models.Video[];
 
   /**
    * @param  bufferLimit  The max number of {@link ExperimentData} that can be held
@@ -181,7 +175,9 @@ export default class Session {
    * @param  condition  A condition describing the session upon stopping.
    *                      See Constants.Condition for valid values.
    */
-  public async stop(condition: SessionConditionType = Conditions.UNSPECIFIED) {
+  public async stop(
+    condition: SessionConditionType = Constants.SessionCondition.UNSPECIFIED
+  ) {
     const timestamp = getCurrentTimestamp();
 
     if (!this.apiClient || !this.id) {
@@ -191,7 +187,7 @@ export default class Session {
     // successful or not, data will be wiped from the buffer unless an error was thrown
     const flushSuccess = await this.flushData();
     if (!flushSuccess) {
-      condition = Conditions.BAD;
+      condition = Constants.SessionCondition.BAD;
     }
 
     await this.apiClient.put<DataResponse>('/data/sessions/' + this.id, {
@@ -253,7 +249,7 @@ export default class Session {
    *
    * @param  survey  Instance of a {@link Survey}.
    */
-  public async pushSurvey(survey: Survey) {
+  public async pushSurvey(survey: Models.Survey) {
     if (!this.apiClient || !this.id) {
       throw Error('Session must be initialized first.');
     }
@@ -280,7 +276,7 @@ export default class Session {
    *
    * @param  video  Instance of an uninitialized {@link Video}.
    */
-  public async pushVideo(video: Video) {
+  public async pushVideo(video: Models.Video) {
     if (!this.apiClient || !this.id) {
       throw Error('Session must be initialized first.');
     }

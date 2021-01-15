@@ -1,5 +1,7 @@
-import { Conditions as SessionCondition } from '@api/models/Session';
-import { Types as SurveyType } from '@api/models/Survey';
+import type {
+  SessionConditionType,
+  SurveyType,
+} from '@senseyeinc/react-native-senseye-sdk';
 
 /**
  * @returns The number of seconds elapsed since January 1, 1970 00:00:00 UTC.
@@ -8,14 +10,29 @@ export function getCurrentTimestamp() {
   return Date.now() / 1000;
 }
 
+/** Valid session conditions. */
+const SessionConditions: Record<string, SessionConditionType> = {
+  GOOD: 'GOOD',
+  BAD: 'BAD',
+  TEST: 'TEST',
+  UNENDED: 'UNENDED',
+  UNSPECIFIED: 'UNSPECIFIED',
+};
+
+/** Valid survey types. */
+const SurveyTypes: Record<string, SurveyType> = {
+  DEMOGRAPHIC: 'demographic',
+  VALIDATION: 'validation',
+};
+
 /**
  * Senseye constants.
  */
 export const Constants = {
   API_HOST: 'api.senseye.co',
   API_BASE_PATH: '/v1',
-  SessionCondition: SessionCondition,
-  SurveyType: SurveyType,
+  SessionCondition: SessionConditions,
+  SurveyType: SurveyTypes,
   PredictedState: {
     READY: 'Ready',
     NOT_READY_FATIGUE: 'Not Ready: Fatigued',

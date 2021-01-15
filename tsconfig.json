@@ -2,8 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "react-native-senseye-sdk": ["./src/index"],
-      "@*": ["./src/*"]
+      "@senseyeinc/react-native-senseye-sdk": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

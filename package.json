@@ -1,6 +1,6 @@
 {
   "name": "@senseyeinc/react-native-senseye-sdk",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "The Senseye SDK provides direct integration into the Senseye API on both iOS and Android for React Native apps. The JavaScript API is simple and cross-platform. Ready to get started? Follow the instructions below.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -29,7 +29,6 @@
     "pods": "cd example && pod-install --quiet",
     "bootstrap": "yarn example && yarn && yarn pods",
     "docs": "live-server --open=./docs --port=9090"
-
   },
   "keywords": [
     "react-native",
@@ -61,11 +60,11 @@
     "live-server": "^1.2.1",
     "pod-install": "^0.1.0",
     "prettier": "^2.0.5",
-    "react": "16.11.0",
-    "react-native": "0.62.2",
+    "react": "16.13.1",
+    "react-native": "0.63.2",
     "react-native-builder-bob": "^0.17.1",
     "react-native-camera": "^3.40.0",
-    "react-native-device-info": "^7.3.1",
+    "react-native-device-info": "^8.0.0",
     "release-it": "^13.5.8",
     "typedoc": "^0.20.14",
     "typescript": "^3.8.3"
