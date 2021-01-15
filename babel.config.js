@@ -4,20 +4,9 @@ module.exports = {
     [
       'module-resolver',
       {
-        root: ['./src'],
-        extensions: [
-          '.ios.ts',
-          '.android.ts',
-          '.js',
-          '.ts',
-          '.ios.tsx',
-          '.android.tsx',
-          '.tsx',
-          '.jsx',
-          '.json',
-        ],
+        root: ['.'],
         alias: {
-          '@': './src/',
+          '@senseyeinc/react-native-senseye-sdk': './src/index',
         },
       },
     ],

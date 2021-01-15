@@ -5,15 +5,15 @@ The Senseye SDK provides direct integration into the Senseye API on both iOS and
 ## What’s in this repo
 ```
 .  
-+-- android/ # Project scaffolding for Android development
-+-- ios/ # Project scaffolding for iOS development
-+-- docs/ # See Documentation section of this README  
-+-- examples/ # Contains usage examples for React components
++-- android/      # Android-specific source code
++-- ios/          # iOS-specific source code
++-- docs/         # See Documentation section of this README  
++-- examples/     # Contains example apps that demo the usage of the SDK
 +-- src/
-|   +-- api/ # source code for communicating with the Senseye API
-|   +-- components/ # source code for serving Senseye components
-+-- package.json #  Includes application dependencies, build utilities, and pre-commit hook directives. See [contributing guide](CONTRIBUTING.md) for more information on these directives.
-+-- .circleci/ # (Ignore. Reserved for future development)
+|   +-- api/        # Modules for interfacing with the Senseye API
+|   +-- components/ # Modules for serving Senseye frontend components
++-- package.json  #  Includes application dependencies, build utilities, and pre-commit hook directives. See [contributing guide](CONTRIBUTING.md) for more information on these directives.
++-- .circleci/    # (Ignore. Reserved for future development)
 ```
 
 ## Included Tasks
@@ -36,7 +36,7 @@ You can `yarn add --dev babel-plugin-module-resolver`, then quit VS Code entirel
 
 npm:
 ```sh
-npm install @senseyeinc/react-native-senseye-sdk`
+npm install @senseyeinc/react-native-senseye-sdk
 ```
 
 yarn:
@@ -50,7 +50,11 @@ You can then import task components into your React application. For example:
 ```javascript
 import { Experiments } from '@senseyeinc/react-native-senseye-sdk'
 
-<Experiments.Calibration/>
+export default function App() {
+  return (
+    <Experiments.Calibration/>
+  );
+}
 ```
 
 If you prefer to build the SDK locally, clone this repo and run `yarn install` to get started.

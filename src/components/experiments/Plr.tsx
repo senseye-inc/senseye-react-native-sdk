@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Animated, Dimensions, Easing, View, StyleSheet } from 'react-native';
 
-import { getCurrentTimestamp } from '@utils';
-import type { ExperimentProps } from '@types';
+import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
+import type { ExperimentProps } from '@senseyeinc/react-native-senseye-sdk';
 
 // device screen height and width
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -23,16 +23,6 @@ type PlrProps = ExperimentProps & {
 
 /** Measures pupillary light reflex by manipulating the luminance of the screen  */
 export default function Plr(props: PlrProps) {
-  function _onStart() {
-    if (props.onStart) {
-      props.onStart();
-    }
-  }
-  function _onEnd() {
-    if (props.onEnd) {
-      props.onEnd();
-    }
-  }
   const [updateCount, setUpdateCount] = React.useState(0);
   // instantiates animation object with default starting value
   const screenColor = React.useRef(new Animated.Value(0)).current;
@@ -57,30 +47,41 @@ export default function Plr(props: PlrProps) {
     }
   });
 
+  const _onStart = () => {
+    if (props.onStart) {
+      props.onStart();
+    }
+  };
+  const _onEnd = React.useCallback(() => {
+    if (props.onEnd) {
+      props.onEnd();
+    }
+  }, [props]);
+
   // responsible for the pace that each screen updates
-  const handleScreenColor = () => {
+  const handleScreenColor = React.useCallback(() => {
     Animated.timing(screenColor, {
       toValue: updateCount,
       duration: props.duration * 1000,
       easing: Easing.step0,
       useNativeDriver: false,
     }).start(() => {
-      if (updateCount < props.color_values.length) {
+      if (updateCount < props.color_values.length - 1) {
         setUpdateCount(updateCount + 1);
-        handleScreenColor();
       } else {
         _onEnd();
       }
     });
-  };
+  }, [updateCount, screenColor, props, _onEnd]);
+
+  React.useEffect(() => {
+    handleScreenColor();
+  }, [handleScreenColor]);
 
   return (
     <View style={styles(props).container}>
       <Animated.View
-        onLayout={() => {
-          _onStart();
-          handleScreenColor();
-        }}
+        onLayout={_onStart}
         style={{ ...styles(props).plrBackground, ...animatedStyles }}
       />
       <View style={{ ...styles(props).crossVertical }} />

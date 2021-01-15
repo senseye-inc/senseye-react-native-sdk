@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Animated, Easing, View, StyleSheet } from 'react-native';
 
-import { getCurrentTimestamp } from '@utils';
-import type { ExperimentProps } from '@types';
+import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
+import type { ExperimentProps } from '@senseyeinc/react-native-senseye-sdk';
 
 type NystagmusProps = ExperimentProps & {
   /** The amount of time (in seconds) the focal point pauses when at the far left and far right side of screen  */
@@ -22,18 +22,8 @@ type NystagmusProps = ExperimentProps & {
 };
 
 export default function Nystagmus(props: NystagmusProps) {
-  function _onStart() {
-    if (props.onStart) {
-      props.onStart();
-    }
-  }
-  function _onEnd() {
-    if (props.onEnd) {
-      props.onEnd();
-    }
-  }
   // an iteration is complete when the dot moves from the far right side of the screen, to the left, back to the right
-  const [iterationCount, setIterationCount] = React.useState(1);
+  const [iterationCount, setIterationCount] = React.useState(0);
   // instaniates animation object with default starting value
   const xAxisAnimation = React.useRef(new Animated.Value(props.initialX))
     .current;
@@ -59,61 +49,73 @@ export default function Nystagmus(props: NystagmusProps) {
     }
   });
 
-  /* Responsible for moving target from center of screen to the start position (right side).
-    because the dot starts in the center of the screen,
-    the first time the dot reaches the right side of the
-    screen doesn't count as being part of an iteration. */
-  let moveToStartPos = () => {
-    Animated.delay(props.start_pause_time * 1000);
-    Animated.timing(xAxisAnimation, {
-      toValue: 1,
-      duration: props.speed * 1000,
-      easing: Easing.ease,
-      useNativeDriver: true,
-    }).start(() => {
-      moveDot();
-    });
+  const _onStart = () => {
+    if (props.onStart) {
+      props.onStart();
+    }
   };
+  const _onEnd = React.useCallback(() => {
+    if (props.onEnd) {
+      props.onEnd();
+    }
+  }, [props]);
 
   /* controls how the target animates across
     the screen and the amount of times the animation iterates */
-  let moveDot = () => {
-    Animated.sequence([
-      // goes to the right
+  const moveDot = React.useCallback(() => {
+    let sequence: Animated.CompositeAnimation[] = [];
+    if (iterationCount === 0) {
+      sequence = [
+        /* moves target from the center of the screen to the start position (right side).
+          this initial motion does not count as being part of an iteration. */
+        Animated.delay(props.start_pause_time * 1000),
+        Animated.timing(xAxisAnimation, {
+          toValue: 1,
+          duration: props.speed * 1000,
+          easing: Easing.ease,
+          useNativeDriver: true,
+        }),
+      ];
+    }
+    // moves target for 1 iteration
+    sequence = [
+      ...sequence,
+      // move to the left
       Animated.timing(xAxisAnimation, {
-        toValue: 2, // when it gets here reset to go leftwards or pause here depending on iteration
+        toValue: 2,
         duration: props.speed * 1000,
         easing: Easing.ease,
         useNativeDriver: true,
         delay: props.pause_time * 1000,
       }),
-      //pauses
+      // pause
       Animated.delay(props.pause_time * 1000),
-      // goes to the left
+      // move to the right
       Animated.timing(xAxisAnimation, {
-        toValue: 1,
+        toValue: 1, // when it gets here reset to go right or pause here depending on iteration
         duration: props.speed * 1000,
         easing: Easing.ease,
         useNativeDriver: true,
       }),
-    ]).start(() => {
-      // if iterations is greater than 0, then rerun animation until all iterations have been fulfilled
-      if (props.iterations > 0 && iterationCount < props.iterations) {
+    ];
+    // run constructed animation sequence
+    Animated.sequence(sequence).start(() => {
+      if (iterationCount < props.iterations - 1) {
         setIterationCount(iterationCount + 1);
-        // repeat animation until specified iterations is reached
-        moveDot();
+      } else {
+        _onEnd();
       }
-      _onEnd();
     });
-  };
+  }, [iterationCount, xAxisAnimation, props, _onEnd]);
+
+  React.useEffect(() => {
+    moveDot();
+  }, [moveDot]);
 
   return (
     <View style={styles(props).container}>
       <Animated.View
-        onLayout={() => {
-          _onStart();
-          moveToStartPos();
-        }}
+        onLayout={_onStart}
         style={[styles(props).target, animatedStyles]}
       />
     </View>
@@ -141,7 +143,7 @@ const styles = (props: NystagmusProps) =>
 Nystagmus.defaultProps = {
   background: '#000000',
   pause_time: 4,
-  start_pause_time: 4,
+  start_pause_time: 1,
   iterations: 1,
   speed: 2,
   targetSize: 30,

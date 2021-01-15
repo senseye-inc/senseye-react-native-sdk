@@ -7,13 +7,15 @@ import type {
   RecordResponse,
 } from 'react-native-camera';
 
-import { Models } from '@api';
-import { getCurrentTimestamp } from '@utils';
+import {
+  Models,
+  getCurrentTimestamp,
+} from '@senseyeinc/react-native-senseye-sdk';
 import type {
   RecorderStatusChangeEvent,
   RecordingStartEvent,
   Point,
-} from '@types';
+} from '@senseyeinc/react-native-senseye-sdk';
 
 type VideoRecorderProps = {
   /** Type of camera to use. Possible values: 'front' | 'back' */

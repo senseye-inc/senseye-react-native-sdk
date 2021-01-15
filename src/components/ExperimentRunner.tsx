@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { Alert, View } from 'react-native';
 
-import { SenseyeApiClient, Models } from '@api';
-import { Experiments, VideoRecorder } from '@components';
+import {
+  Experiments,
+  VideoRecorder,
+  Models,
+} from '@senseyeinc/react-native-senseye-sdk';
+import type { SenseyeApiClient } from '@senseyeinc/react-native-senseye-sdk';
 
-/**
- * Component that initializes a session and executes a given series of experiments.
- * Synchronizes experiment events with video recording.
- */
 type ExperimentRunnerProps = {
   experiments: any[]; // TODO: add type
   userId: string;
@@ -15,19 +15,26 @@ type ExperimentRunnerProps = {
   apiClient?: SenseyeApiClient;
 };
 
+/**
+ * Component that initializes a session and executes a given series of experiments.
+ * Synchronizes experiment events with video recording.
+ */
 export default function ExperimentRunner(props: ExperimentRunnerProps) {
   // TODO: this is dummy data
-  props.experiments = [
-    <Experiments.Calibration />,
-    <Experiments.Nystagmus />,
-    <Experiments.Plr />,
-  ];
+  const experiments = React.useMemo(
+    () => [
+      <Experiments.Calibration />,
+      <Experiments.Nystagmus />,
+      <Experiments.Plr />,
+    ],
+    []
+  );
 
   const [cameraRef, setCameraRef] = React.useState<any>();
   const [isPreview, setIsPreview] = React.useState<boolean>(true);
   const [experimentIndex, setExperimentIndex] = React.useState<number>(0);
   const [experiment, setExperiment] = React.useState<JSX.Element>(
-    props.experiments[experimentIndex]
+    experiments[experimentIndex]
   );
 
   // TODO: initialize session and integrate into callbacks
@@ -47,25 +54,25 @@ export default function ExperimentRunner(props: ExperimentRunnerProps) {
     }
   }
 
-  function onDoubleTap() {
+  const onDoubleTap = React.useCallback(() => {
     if (cameraRef !== undefined && isPreview) {
-      setExperiment(props.experiments[experimentIndex]);
-      experiment.props.onEnd(cameraRef.stopRecording());
+      experiments[experimentIndex].props.onEnd(cameraRef.stopRecording());
+      setExperiment(experiments[experimentIndex]);
       setIsPreview(false);
       cameraRef.startRecording();
     }
-  }
+  }, [cameraRef, isPreview, experiments, experimentIndex]);
 
-  function onRecordingEnd() {
+  const onRecordingEnd = React.useCallback(() => {
     setExperimentIndex(experimentIndex + 1);
     setIsPreview(true);
-  }
+  }, [experimentIndex]);
 
   React.useEffect(() => {
     if (isPreview) {
-      Alert.alert(experiment.props.instructions + '\n[double tap to begin]');
+      Alert.alert('Instructions', experiment.props.instructions);
     }
-  }, [isPreview, experiment.props]);
+  }, [isPreview, experiment]);
 
   return (
     <View>
