@@ -4,13 +4,14 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
+    "android": "react-native run-android && react-native start",
     "ios": "react-native run-ios",
-    "start": "react-native start"
+    "expo": "expo start"
   },
   "dependencies": {
     "@react-native-picker/picker": "^1.9.10",
     "axios": "^0.21.0",
+    "expo": "^40.0.0",
     "react": "16.13.1",
     "react-native": "0.63.2",
     "react-native-camera": "^3.40.0",

@@ -1,4 +1,9 @@
 {
   "name": "SenseyeSdkExample",
-  "displayName": "SenseyeSdk Example"
+  "displayName": "SenseyeSdk Example",
+  "expo": {
+    "entryPoint": "./index-expo.ts",
+    "name": "SenseyeSdkExample",
+    "slug": "senseyesdk-example"
+  }
 }

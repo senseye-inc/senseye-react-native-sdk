@@ -10,24 +10,18 @@ To get started with the project, run `yarn bootstrap` in the root directory to i
 yarn bootstrap
 ```
 
-While developing, you can run the [example app](/example/) to test your changes.
-
-To start the packager:
+iOS developers should additionally have [CocoaPods](https://cocoapods.org/) and install dependencies:
 
 ```sh
-yarn example start
+yarn pods
 ```
 
-To run the example app on Android:
+While developing, you can use the example scaffolding to test your changes.
+
+To run a cross-platform example using Expo:
 
 ```sh
-yarn example android
-```
-
-To run the example app on iOS:
-
-```sh
-yarn example ios
+yarn example expo
 ```
 
 Make sure your code passes TypeScript and ESLint. Run the following to verify:
@@ -49,9 +43,15 @@ Remember to add tests for your change if possible. Run the unit tests by:
 yarn test
 ```
 
-To edit the Objective-C files, open `example/ios/SenseyeSdkExample.xcworkspace` in XCode and find the source files at `Pods > Development Pods > react-native-senseye-sdk`.
+A pre-commit hook will automatically run `yarn lint && yarn typescript` on any `git commit`. To skip pre-commit linting, include the `--no-verify` flag:
 
-To edit the Kotlin files, open `example/android` in Android studio and find the source files at `senseyesdk` under `Android`.
+```sh
+git commit --no-verify
+```
+
+To edit the Objective-C files, open `/example/ios/SenseyeSdkExample.xcworkspace` in XCode and find the source files at `Pods > Development Pods > react-native-senseye-sdk`.
+
+To edit the Kotlin files, open `/example/android` in Android studio and find the source files at `senseyesdk` under `Android`.
 
 ### Commit message convention
 
@@ -61,7 +61,7 @@ We follow the [conventional commits specification](https://www.conventionalcommi
 - `feat`: new features, e.g. add new method to the module.
 - `refactor`: code refactor, e.g. migrate from class components to hooks.
 - `docs`: changes into documentation, e.g. add usage example for the module..
-- `test`: adding or updating tests, eg add integration tests using detox.
+- `test`: adding or updating tests, e.g. add integration tests using detox.
 - `chore`: tooling changes, e.g. change CI config.
 
 Our pre-commit hooks verify that your commit message matches this format when committing.
@@ -83,8 +83,7 @@ The `package.json` file contains various scripts for common tasks:
 - `yarn lint`: lint files with ESLint.
 - `yarn test`: run unit tests with Jest.
 - `yarn example start`: start the Metro server for the example app.
-- `yarn example android`: run the example app on Android.
-- `yarn example ios`: run the example app on iOS.
+- `yarn example [android/expo/ios]`: run the example app on mobile targets.
 
 ### Sending a pull request
 
