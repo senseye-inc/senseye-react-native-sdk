@@ -61,9 +61,10 @@ export default function App() {
 }
 ```
 ## Example App
-A cross-platform example app (built using [Expo](https://expo.io/)) has been provided in the example/ directory. You can run `yarn bootstrap` to install its dependencies and then `yarn example expo` to start it.
+Example apps have been provided in the [example/](/example/) directory.
+There is a cross-platform example app (built using [Expo](https://expo.io/)), and React Native apps for Android and iOS. You can run `yarn bootstrap` to install the example dependencies.
 
-More information is available in the [example README](/example/README.md).
+Instructions on how to start the example apps are available in the [example README](/example/README.md).
 
 ## Documentation
 
