@@ -4,7 +4,7 @@ import { Animated, Dimensions, Easing, View, StyleSheet } from 'react-native';
 import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
 import type { ExperimentProps } from '@senseyeinc/react-native-senseye-sdk';
 
-// device screen height and width
+// application window height and width
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
@@ -26,15 +26,16 @@ type CalibrationProps = ExperimentProps & {
  * gaze information used to assess behavior in the other tasks.
  */
 export default function Calibration(props: CalibrationProps) {
+  const { duration, delay, dot_points, onStart, onEnd, onUpdate } = props;
   const [dotMoveCount, setDotMoveCount] = React.useState(0);
   // instantiates animation object
   const moveAnimationValue = React.useRef(new Animated.ValueXY()).current;
-  // returns an array of index values from props.dot_points
-  const dotIndexes = props.dot_points.map((_, i) => i);
+  // returns an array of index values from dot_points
+  const dotIndexes = dot_points.map((_, i) => i);
   // grabs first index: [x,y] grabs x-coordinate within the bounds of SCREEN_HEIGHT
-  const xOutput = props.dot_points.map((xy) => xy[0] * SCREEN_WIDTH).flat(2);
+  const xOutput = dot_points.map((xy) => xy[0] * SCREEN_WIDTH).flat(2);
   // grabs second index: [x,y] grabs y-coordinate within the bounds of SCREEN_HEIGHT
-  const yOutput = props.dot_points.map((xy) => xy[1] * SCREEN_HEIGHT).flat(2);
+  const yOutput = dot_points.map((xy) => xy[1] * SCREEN_HEIGHT).flat(2);
   // iterates through x-coordinates values
   const targetXPos = moveAnimationValue.x.interpolate({
     inputRange: dotIndexes,
@@ -52,49 +53,49 @@ export default function Calibration(props: CalibrationProps) {
   };
 
   moveAnimationValue.addListener((value) => {
-    if (props.onUpdate) {
+    if (onUpdate) {
       /*
         Returns data containing a timestamp and the dot's updated (x,y) position relative to the canvas.
           (0, 0) represents the top left of the canvas.
           (1, 1) represents the bottom right of the canvas.
         */
-      props.onUpdate({
+      onUpdate({
         timestamp: getCurrentTimestamp(),
         data: {
-          x: props.dot_points[value.x][0],
-          y: props.dot_points[value.y][1],
+          x: dot_points[value.x][0],
+          y: dot_points[value.y][1],
         },
       });
     }
   });
 
   const _onStart = () => {
-    if (props.onStart) {
-      props.onStart();
+    if (onStart) {
+      onStart();
     }
   };
   const _onEnd = React.useCallback(() => {
-    if (props.onEnd) {
-      props.onEnd();
+    if (onEnd) {
+      onEnd();
     }
-  }, [props]);
+  }, [onEnd]);
 
   // updates dot position
   const moveDot = React.useCallback(() => {
     Animated.timing(moveAnimationValue, {
       toValue: { x: dotMoveCount, y: dotMoveCount },
-      duration: props.duration,
+      duration: duration,
       easing: Easing.step0,
-      delay: props.delay,
+      delay: delay,
       useNativeDriver: true,
     }).start(() => {
-      if (dotMoveCount < props.dot_points.length - 1) {
+      if (dotMoveCount < dot_points.length - 1) {
         setDotMoveCount(dotMoveCount + 1);
       } else {
         _onEnd();
       }
     });
-  }, [dotMoveCount, moveAnimationValue, props, _onEnd]);
+  }, [dotMoveCount, moveAnimationValue, duration, delay, dot_points, _onEnd]);
 
   React.useEffect(() => {
     moveDot();
@@ -128,8 +129,8 @@ const styles = (props: CalibrationProps) =>
 
 Calibration.defaultProps = {
   background: '#000000',
-  duration: 2000,
-  delay: 0,
+  duration: 1000,
+  delay: 1000,
   radius: 15,
   dot_color: '#FFFFFF',
   dot_points: [
@@ -145,14 +146,12 @@ Calibration.defaultProps = {
     [0.6, 0.75],
     [0.8, 0.75],
   ],
+  name: 'calibration',
   instructions:
     '\
-    Please keep your head still throughout the assessment.\n\n\
-    As each dot appears, look at it immediately, and continue to stare at the dot until a new dot appears.\n\n\
-    Double tap the screen to begin.',
+Please keep your head still throughout the assessment.\n\n\
+As each dot appears, look at it immediately, and continue to stare at the dot until a new dot appears.\n\n\
+Double tap the screen to begin.',
   width: '100%',
   height: '100%',
-  callback: undefined,
-  onStart: undefined,
-  onEnd: undefined,
 };

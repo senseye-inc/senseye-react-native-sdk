@@ -1,3 +1,7 @@
+import type { RecordOptions } from 'react-native-camera';
+
+import type { Models } from '@senseyeinc/react-native-senseye-sdk';
+
 /**
  * Response body from Senseye Data API endpoints (`/data/*`).
  * Will contain either `data` or `error` depending on success. Note `data` may also
@@ -116,7 +120,28 @@ export type Point = {
   y: number;
 };
 
+/**
+ * Object produced from a {@link VideoRecoder} ref callback.
+ */
+export type VideoRecorderObject = {
+  /**
+   * Starts a video recording. Do not call this if another recording is already in progress
+   * or until after {@link VideoRecorder.onRecordingEnd}.
+   *
+   * @param  name           Name to assign to a {@link Video} that will be created and returned by this function.
+   * @param  recordOptions  https://react-native-camera.github.io/react-native-camera/docs/rncamera#recordasync-options-promise
+   * @returns               An uninitialized {@link Video} that will be populated with metadata during the recording.
+   */
+  startRecording(name: string, recordOptions?: RecordOptions): Models.Video;
+  /**
+   * Stops the video recording.
+   */
+  stopRecording(): void;
+};
+
 export type ExperimentProps = {
+  /** Name of the experiment. **/
+  name: string;
   /** Instructions to follow during the experiment. */
   instructions: string;
   /** Background color of experiment. */

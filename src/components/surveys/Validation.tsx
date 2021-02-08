@@ -16,7 +16,7 @@ import {
 } from '@senseyeinc/react-native-senseye-sdk';
 import type { ComputeResult } from '@senseyeinc/react-native-senseye-sdk';
 
-// gets device screen height and width
+// gets application window height and width
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 

@@ -10,6 +10,7 @@
     "start": "react-native start"
   },
   "dependencies": {
+    "@react-native-community/cameraroll": "^4.0.2",
     "@react-native-picker/picker": "^1.9.10",
     "axios": "^0.21.0",
     "expo": "^40.0.0",

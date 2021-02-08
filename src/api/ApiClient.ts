@@ -120,7 +120,7 @@ export default class SenseyeApiClient {
 
   /**
    * Fetches the results of a compute task. Note this may timeout if the task
-   * hasn't successfully completed yet. See {SenseyeApiClient.getComputeTask}.
+   * hasn't successfully completed yet. See {@link SenseyeApiClient.getComputeTask}.
    *
    * @param  id Task ID. Can be obtained from `ComputeTaskResponse.id`.
    * @returns   A `Promise` that will produce a `ComputeResultResponse`.

@@ -193,9 +193,16 @@ export default class Video {
   }
 
   /**
-   * @returns The video's name.
+   * @returns The video's assigned name.
    */
   public getName() {
     return this.metadata.name;
+  }
+
+  /**
+   * @returns The video's file uri.
+   */
+  public getUri() {
+    return this.uri;
   }
 }

@@ -22,6 +22,15 @@ type NystagmusProps = ExperimentProps & {
 };
 
 export default function Nystagmus(props: NystagmusProps) {
+  const {
+    start_pause_time,
+    speed,
+    pause_time,
+    iterations,
+    onStart,
+    onEnd,
+    onUpdate,
+  } = props;
   // an iteration is complete when the dot moves from the far right side of the screen, to the left, back to the right
   const [iterationCount, setIterationCount] = React.useState(0);
   // instaniates animation object with default starting value
@@ -38,9 +47,9 @@ export default function Nystagmus(props: NystagmusProps) {
   };
 
   xAxisAnimation.addListener((value) => {
-    if (props.onUpdate) {
+    if (onUpdate) {
       // returns data containing a timestamp and the dot's updated x position
-      props.onUpdate({
+      onUpdate({
         timestamp: getCurrentTimestamp(),
         data: {
           value: value.value, // TODO: Not implemented properly
@@ -50,15 +59,15 @@ export default function Nystagmus(props: NystagmusProps) {
   });
 
   const _onStart = () => {
-    if (props.onStart) {
-      props.onStart();
+    if (onStart) {
+      onStart();
     }
   };
   const _onEnd = React.useCallback(() => {
-    if (props.onEnd) {
-      props.onEnd();
+    if (onEnd) {
+      onEnd();
     }
-  }, [props]);
+  }, [onEnd]);
 
   /* controls how the target animates across
     the screen and the amount of times the animation iterates */
@@ -68,10 +77,10 @@ export default function Nystagmus(props: NystagmusProps) {
       sequence = [
         /* moves target from the center of the screen to the start position (right side).
           this initial motion does not count as being part of an iteration. */
-        Animated.delay(props.start_pause_time * 1000),
+        Animated.delay(start_pause_time * 1000),
         Animated.timing(xAxisAnimation, {
           toValue: 1,
-          duration: props.speed * 1000,
+          duration: speed * 1000,
           easing: Easing.ease,
           useNativeDriver: true,
         }),
@@ -83,30 +92,38 @@ export default function Nystagmus(props: NystagmusProps) {
       // move to the left
       Animated.timing(xAxisAnimation, {
         toValue: 2,
-        duration: props.speed * 1000,
+        duration: speed * 1000,
         easing: Easing.ease,
         useNativeDriver: true,
-        delay: props.pause_time * 1000,
+        delay: pause_time * 1000,
       }),
       // pause
-      Animated.delay(props.pause_time * 1000),
+      Animated.delay(pause_time * 1000),
       // move to the right
       Animated.timing(xAxisAnimation, {
         toValue: 1, // when it gets here reset to go right or pause here depending on iteration
-        duration: props.speed * 1000,
+        duration: speed * 1000,
         easing: Easing.ease,
         useNativeDriver: true,
       }),
     ];
     // run constructed animation sequence
     Animated.sequence(sequence).start(() => {
-      if (iterationCount < props.iterations - 1) {
+      if (iterationCount < iterations - 1) {
         setIterationCount(iterationCount + 1);
       } else {
         _onEnd();
       }
     });
-  }, [iterationCount, xAxisAnimation, props, _onEnd]);
+  }, [
+    iterationCount,
+    xAxisAnimation,
+    start_pause_time,
+    speed,
+    pause_time,
+    iterations,
+    _onEnd,
+  ]);
 
   React.useEffect(() => {
     moveDot();
@@ -149,12 +166,12 @@ Nystagmus.defaultProps = {
   targetSize: 30,
   targetColor: '#FFFFFF',
   initialX: 0,
+  name: 'nystagmus',
   instructions:
     '\
-    Follow the target with your eyes as it moves.\n\n\
-    Continue to track the target with your eyes until it stops moving.\n\n\
-    Double tap the screen to begin.',
+Follow the target with your eyes as it moves.\n\n\
+Continue to track the target with your eyes until it stops moving.\n\n\
+Double tap the screen to begin.',
   width: '100%',
   height: '100%',
-  onEnd: undefined,
 };

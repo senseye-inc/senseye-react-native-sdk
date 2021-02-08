@@ -56,15 +56,15 @@ export default class Session {
    * certain functions within this class, otherwise errors may be encountered.
    *
    * @param  apiClient  Client configured to communicate with Senseye's API.
-   * @param  userId     Custom username or ID of the participant. Must be unique to the
-   *                      participant within the context of the API token/key of the client.
+   * @param  uniqueId   Custom username or ID of the participant. Must be unique to the
+   *                      participant within the context of the API token/key passed into the client.
    * @param  surveyId   ID of a {@link Survey} to associate to the session. Will ideally be
    *                      the `demographic` survey pertaining to the partcipant.
    * @returns           A `Promise` that will produce the created session's metadata.
    */
   public async init(
     apiClient: SenseyeApiClient,
-    userId: string,
+    uniqueId: string,
     surveyId?: string
   ) {
     if (this.id !== undefined) {
@@ -76,7 +76,7 @@ export default class Session {
     try {
       var user = (
         await this.apiClient.post<DataResponse>('/data/users', {
-          username: userId,
+          username: uniqueId,
           survey_ids: surveyId ? [surveyId] : [],
         })
       ).data.data;
@@ -86,7 +86,7 @@ export default class Session {
         const existingUser = (
           await this.apiClient.get<DataResponse>('/data/users', {
             params: {
-              username: userId,
+              username: uniqueId,
             },
           })
         ).data.data;
@@ -173,7 +173,7 @@ export default class Session {
    * Stops the current session and flushes all accumulated/remaining data.
    *
    * @param  condition  A condition describing the session upon stopping.
-   *                      See Constants.Condition for valid values.
+   *                      See {@link Constants.SessionCondition} for valid values.
    */
   public async stop(
     condition: SessionConditionType = Constants.SessionCondition.UNSPECIFIED
