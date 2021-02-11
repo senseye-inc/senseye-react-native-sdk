@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, StyleSheet, Text, TextInput, KeyboardType } from 'react-native';
 
-type SenseyeTextInputProps = {
+export type SenseyeTextInputProps = {
   label: string;
   keyboardType: KeyboardType;
   placeholderText: string;

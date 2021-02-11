@@ -19,7 +19,7 @@ export default class Video {
   private uploadProgress: number;
 
   /**
-   * @param  name   Name of the video. Must be unique within the context of `sessionId`.
+   * @param  name   Name of the video. Must be unique within the context of a {@link Session}.
    * @param  config Camera and/or recording configurations.
    * @param  info   Any extra information or metadata.
    * @param  uri    Video file URI. (Android) Ensure it is prefixed with `file://`.
@@ -44,7 +44,7 @@ export default class Video {
   /**
    * Initializes a video model through Senseye's API. Note this should only be
    * done once per instance. Ensure initialization is successful before executing
-   * certain functions within this class, otherwise errors may be encountered.
+   * certain functions within this class, otherwise errors may be thrown..
    *
    * @param  apiClient  Client configured to communicate with Senseye's API.
    * @param  sessionId  ID of a {@link Session} to associate with.
@@ -98,9 +98,9 @@ export default class Video {
   }
 
   /**
-   * Updates the video's `info` metadata.
+   * Updates the video's {@link info} metadata.
    *
-   * @param  info  Metadata to be merged on top of any previous `info` metadata.
+   * @param  info  Metadata to be merged on top of any prior {@link info} metadata.
    */
   public updateInfo(info: { [key: string]: any }) {
     this.metadata.info = { ...this.metadata.info, ...info };
@@ -135,7 +135,7 @@ export default class Video {
    * Uploads a file and associates it with the video model.
    *
    * @param  uri        Video file URI. (Android) Ensure it is prefixed with `file://`.
-   *                      Defaults to `Video.uri` ({@link Video.setUri}).
+   *                      Defaults to {@link uri} (see {@link setUri | setUri()}).
    * @param  codec      Specifies the codec of the video file.
    * @param  overwrite  Specifies whether to overwrite a previously uploaded file.
    * @returns           A `Promise` that will produce the video's updated metadata.
@@ -175,18 +175,17 @@ export default class Video {
   }
 
   /**
-   * Use this to track upload progress after calling {@link Video.uploadFile}.
+   * Use this to track upload progress after calling {@link uploadFile | uploadFile()}.
    *
    * @returns The upload percentage as a number from 0 to 100, and -1 if
-   *            `uploadFile()` has not been executed yet.
+   *            {@link uploadFile | uploadFile()} has not been executed yet.
    */
   public getUploadProgress() {
     return this.uploadProgress;
   }
 
   /**
-   * @returns The video's ID, or `undefined` if the instance hasn't been successfully
-   *            initialized yet ({@link Video.init}).
+   * @returns {@link id}, or `undefined` if the instance hasn't succesfully {@link init | initialized} yet.
    */
   public getId() {
     return this.id;

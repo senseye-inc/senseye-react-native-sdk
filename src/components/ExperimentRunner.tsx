@@ -8,13 +8,13 @@ import type {
   VideoRecorderObject,
 } from '@senseyeinc/react-native-senseye-sdk';
 
-type ExperimentRunnerProps = {
+export type ExperimentRunnerProps = {
   /**
    * Specifying this will prompt the runner to initialize a {@link Session} and
-   * execute data collection using Senseye's API. Requires an internet connection.
+   * perform data collection using Senseye's API (requires an internet connection).
    */
   sessionConfig?: {
-    /* Client configured to communicate with Senseye's API. */
+    /** Client configured to communicate with Senseye's API. */
     apiClient: SenseyeApiClient;
     /**
      * Custom username or ID of the participant. Must be unique to the participant
@@ -26,9 +26,9 @@ type ExperimentRunnerProps = {
   };
   /**
    * Function to be called once all experiments are complete. If a session was initialized,
-   * `session` will be an intialized {@link Session} and `videos` a list of initialized
-   * {@link Video | Videos} ready to be uploaded ({@link Video.uploadFile}).
-   * Otheriwse, `session` will be undefined and `videos` a list of uninitialized {@link Video | Videos}.
+   * `session` will be an initialized {@link Session} and `videos` a list of initialized
+   * {@link Video | Videos} that are ready to upload. Otherwise, `session` will be undefined
+   * and `videos` a list of uninitialized {@link Video | Videos}.
    */
   onEnd?(session: Models.Session | undefined, videos: Models.Video[]): void;
   /**
@@ -40,7 +40,7 @@ type ExperimentRunnerProps = {
 
 /**
  * Component that executes a series of {@link Experiments} passed in as children elements (`props.children`).
- * Orchestrates video recording and data collection during the experiments (one video per experiment).
+ * Orchestrates video recording and data collection throughout the experiments (one video per experiment).
  */
 const ExperimentRunner: React.FunctionComponent<ExperimentRunnerProps> = (
   props
@@ -172,7 +172,7 @@ const ExperimentRunner: React.FunctionComponent<ExperimentRunnerProps> = (
     }
   }, [isPreview, children, experimentIndex, isInitialized, sessionConfig]);
 
-  // execute onEnd callback once all experiments are completed
+  // execute onEnd callback once all experiments are complete
   React.useEffect(() => {
     if (experimentIndex >= children.length && !isRecording) {
       _onEnd();

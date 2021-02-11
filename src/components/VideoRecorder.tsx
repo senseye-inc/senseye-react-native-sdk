@@ -18,7 +18,7 @@ import type {
   VideoRecorderObject,
 } from '@senseyeinc/react-native-senseye-sdk';
 
-type VideoRecorderProps = {
+export type VideoRecorderProps = {
   /** Type of camera to use. Possible values: 'front' | 'back' */
   type?: RNCameraProps['type'];
   /** (Android) Overrides the `type` property and uses the camera specified by its id. */
@@ -67,8 +67,8 @@ type VideoRecorderProps = {
 
 /**
  * Component that uses RNCamera to record videos. Since this mainly acts as a wrapper
- * around RNCamera, more information regarding some of its properties may be found here:
- * https://react-native-camera.github.io/react-native-camera/docs/rncamera#properties.
+ * around RNCamera, more information regarding some properties may be found
+ * {@link https://react-native-camera.github.io/react-native-camera/docs/rncamera#properties | here}.
  *
  * Passing in a `ref` callback will produce a {@link VideoRecorderObject}.
  */

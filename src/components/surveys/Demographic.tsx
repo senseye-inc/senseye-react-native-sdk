@@ -19,7 +19,7 @@ import {
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 
-type DemographicSurveyProps = {
+export type DemographicSurveyProps = {
   onComplete?(survey: Models.Survey, userId: string): void;
 };
 

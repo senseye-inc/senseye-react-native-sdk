@@ -8,7 +8,7 @@ import type { ExperimentProps } from '@senseyeinc/react-native-senseye-sdk';
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
-type CalibrationProps = ExperimentProps & {
+export type CalibrationProps = ExperimentProps & {
   /** How long a dot is displayed on-screen in milliseconds.  */
   duration: number;
   /** Delay (ms) between render of old dot and new dot. */

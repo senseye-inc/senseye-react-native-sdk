@@ -121,12 +121,12 @@ export type Point = {
 };
 
 /**
- * Object produced from a {@link VideoRecoder} ref callback.
+ * Reference object produced by {@link VideoRecoder}.
  */
 export type VideoRecorderObject = {
   /**
    * Starts a video recording. Do not call this if another recording is already in progress
-   * or until after {@link VideoRecorder.onRecordingEnd}.
+   * or until after `VideoRecorder.onRecordingEnd`.
    *
    * @param  name           Name to assign to a {@link Video} that will be produced by this function.
    * @param  recordOptions  https://react-native-camera.github.io/react-native-camera/docs/rncamera#recordasync-options-promise
@@ -143,7 +143,7 @@ export type VideoRecorderObject = {
 };
 
 export type ExperimentProps = {
-  /** Name of the experiment. **/
+  /** Name of the experiment. */
   name: string;
   /** Instructions to follow during the experiment. */
   instructions: string;

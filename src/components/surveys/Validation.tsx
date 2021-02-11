@@ -20,7 +20,7 @@ import type { ComputeResult } from '@senseyeinc/react-native-senseye-sdk';
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
-type ValidationSurveyProps = {
+export type ValidationSurveyProps = {
   results: ComputeResult[];
   onComplete?(survey: Models.Survey): void;
 };

@@ -4,7 +4,7 @@ import { Animated, Easing, View, StyleSheet } from 'react-native';
 import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
 import type { ExperimentProps } from '@senseyeinc/react-native-senseye-sdk';
 
-type NystagmusProps = ExperimentProps & {
+export type NystagmusProps = ExperimentProps & {
   /** The amount of time (in seconds) the focal point pauses when at the far left and far right side of screen  */
   pause_time: number;
   /** The amount of time that passes before the assessment starts  */
