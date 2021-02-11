@@ -1,41 +1,43 @@
 import * as React from 'react';
-import { Alert, StyleSheet, View } from 'react-native';
-import CameraRoll from '@react-native-community/cameraroll';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import { styles } from './styles';
 import {
-  ExperimentRunner,
-  Experiments,
-  Models,
-} from '@senseyeinc/react-native-senseye-sdk';
+  CalibrationScreen,
+  NystagmusScreen,
+  PlrScreen,
+  FullDemoScreen,
+} from './screens';
+
+const SenseyeTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#00D8BB',
+    background: '#DBEEF1',
+    card: '#22294E',
+    text: '#DBEEF1',
+    border: '#6F93ED',
+  },
+};
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const onEnd = React.useCallback((_, videos) => {
-    videos.forEach((video: Models.Video) => {
-      CameraRoll.save(video.getUri(), { type: 'video' }).then((newUri) => {
-        video.setUri(newUri);
-        console.log(video.getName() + ': ' + newUri);
-      });
-    });
-    Alert.alert(
-      'Complete!',
-      "Recorded videos have been transferred to your device's Camera Roll."
-    );
-  }, []);
-
   return (
-    <View style={styles.container}>
-      <ExperimentRunner onEnd={onEnd}>
-        <Experiments.Calibration />
-        <Experiments.Nystagmus />
-        <Experiments.Plr />
-      </ExperimentRunner>
-    </View>
+    <NavigationContainer theme={SenseyeTheme}>
+      <Tab.Navigator
+        initialRouteName="Calibration"
+        tabBarOptions={{
+          labelStyle: styles.tabLabel,
+        }}
+      >
+        <Tab.Screen name="Calibration" component={CalibrationScreen} />
+        <Tab.Screen name="Nystagmus" component={NystagmusScreen} />
+        <Tab.Screen name="PLR" component={PlrScreen} />
+        <Tab.Screen name="Full Demo" component={FullDemoScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'stretch',
-    justifyContent: 'center',
-  },
-});

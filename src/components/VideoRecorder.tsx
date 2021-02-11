@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import type {
   RNCameraProps,
@@ -114,7 +114,7 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
     React.useImperativeHandle(
       ref,
       () => ({
-        startRecording: (name: string, recordOptions?: RecordOptions) => {
+        startRecording: async (name: string, recordOptions?: RecordOptions) => {
           if (camera) {
             recordOptions = {
               ...defaultRecordOptions,
@@ -133,21 +133,33 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
               camera_id: props.cameraId,
             };
 
+            if (
+              Platform.OS === 'ios' &&
+              typeof recordOptions.codec === 'string'
+            ) {
+              recordOptions.codec =
+                RNCamera.Constants.VideoCodec[recordOptions.codec];
+              console.log(recordOptions.codec);
+            }
+
             const v = new Models.Video(name, config, info);
             setVideo(v);
-            camera.recordAsync(recordOptions).then((result: RecordResponse) => {
-              v.setUri(result.uri);
-              v.updateInfo({
-                // TODO: currently not implemented in RNCamera for Camera2Api (Android)
-                // orientation: {
-                //   video: result.videoOrientation,
-                //   device: result.deviceOrientation,
-                // },
-                codec: result.codec,
-                recording_interrupted: result.isRecordingInterrupted,
+
+            return camera
+              .recordAsync(recordOptions)
+              .then((result: RecordResponse) => {
+                v.setUri(result.uri);
+                v.updateInfo({
+                  // TODO: currently not implemented in RNCamera for Camera2Api (Android)
+                  // orientation: {
+                  //   video: result.videoOrientation,
+                  //   device: result.deviceOrientation,
+                  // },
+                  codec: result.codec,
+                  recording_interrupted: result.isRecordingInterrupted,
+                });
+                return v;
               });
-            });
-            return v;
           }
           throw Error('Camera is unmounted or unavailable.');
         },

@@ -5,8 +5,8 @@ import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
 import type { ExperimentProps } from '@senseyeinc/react-native-senseye-sdk';
 
 // application window height and width
-const SCREEN_WIDTH = Dimensions.get('window').width;
-const SCREEN_HEIGHT = Dimensions.get('window').height;
+const WINDOW_WIDTH = Dimensions.get('window').width;
+const WINDOW_HEIGHT = Dimensions.get('window').height;
 
 type CalibrationProps = ExperimentProps & {
   /** How long a dot is displayed on-screen in milliseconds.  */
@@ -32,10 +32,10 @@ export default function Calibration(props: CalibrationProps) {
   const moveAnimationValue = React.useRef(new Animated.ValueXY()).current;
   // returns an array of index values from dot_points
   const dotIndexes = dot_points.map((_, i) => i);
-  // grabs first index: [x,y] grabs x-coordinate within the bounds of SCREEN_HEIGHT
-  const xOutput = dot_points.map((xy) => xy[0] * SCREEN_WIDTH).flat(2);
-  // grabs second index: [x,y] grabs y-coordinate within the bounds of SCREEN_HEIGHT
-  const yOutput = dot_points.map((xy) => xy[1] * SCREEN_HEIGHT).flat(2);
+  // grabs first index: [x,y] grabs x-coordinate within the bounds of WINDOW_HEIGHT
+  const xOutput = dot_points.map((xy) => xy[0] * WINDOW_WIDTH).flat(2);
+  // grabs second index: [x,y] grabs y-coordinate within the bounds of WINDOW_HEIGHT
+  const yOutput = dot_points.map((xy) => xy[1] * WINDOW_HEIGHT).flat(2);
   // iterates through x-coordinates values
   const targetXPos = moveAnimationValue.x.interpolate({
     inputRange: dotIndexes,

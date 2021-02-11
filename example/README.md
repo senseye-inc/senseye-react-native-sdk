@@ -1,12 +1,20 @@
 # SDK Example Apps
 
-Three example apps have been provided - a cross-platform example app (built using [Expo](https://expo.io/)), and React Native apps for Android and iOS.
+Two example apps have been provided - a cross-platform example app (built using [Expo](https://expo.io/)), and a React Native app for Android and iOS.
 
 ## Setup
 
 Within this directory, use [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/) to install dependencies required for the example apps, including developer dependencies. Note that the dependencies in `package.json` are *not* required outside of running examples in this directory.
 
 You can also run `yarn bootstrap` from the root directory to install the required dependencies.
+
+### iOS Specific Setup
+
+Install CocoaPods dependencies by running `npx pod-install` in this directory.
+
+During early test deployment onto a device, you may need to go into Settings > Device Management to trust the developer app.
+
+Allow the device to search for services on the same network so that the Metro bundler can actively load JavaScript code changes onto your device.
 
 npm:
 ```sh
@@ -48,4 +56,4 @@ iOS
 yarn ios
 ```
 
-Modify `/example/src/App.tsx` to render other experiment tasks such as Calibration, Nystagmus, PLR, and so on.
+The "Full Demo" can be modified to run a custom series of experiment tasks (Calibration, Nystagmus, PLR, etc.) by making changes inside `/example/src/screens/FullDemoScreen.tsx`.

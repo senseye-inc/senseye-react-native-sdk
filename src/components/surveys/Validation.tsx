@@ -17,8 +17,8 @@ import {
 import type { ComputeResult } from '@senseyeinc/react-native-senseye-sdk';
 
 // gets application window height and width
-const SCREEN_WIDTH = Dimensions.get('window').width;
-const SCREEN_HEIGHT = Dimensions.get('window').height;
+const WINDOW_WIDTH = Dimensions.get('window').width;
+const WINDOW_HEIGHT = Dimensions.get('window').height;
 
 type ValidationSurveyProps = {
   results: ComputeResult[];
@@ -126,12 +126,12 @@ const Xmark = () => {
 
 const styles = StyleSheet.create({
   container: {
-    width: SCREEN_WIDTH,
+    width: WINDOW_WIDTH,
     height: '100%',
     backgroundColor: '#141726',
   },
   layout: {
-    height: SCREEN_HEIGHT,
+    height: WINDOW_HEIGHT,
     justifyContent: 'flex-start',
   },
   innerContainer: {

@@ -169,8 +169,8 @@ Nystagmus.defaultProps = {
   name: 'nystagmus',
   instructions:
     '\
-Follow the target with your eyes as it moves.\n\n\
-Continue to track the target with your eyes until it stops moving.\n\n\
+Please keep your head still throughout the assessment.\n\n\
+Follow the target with your eyes as it moves back and forth across the screen.\n\n\
 Double tap the screen to begin.',
   width: '100%',
   height: '100%',

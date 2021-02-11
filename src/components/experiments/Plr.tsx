@@ -1,12 +1,8 @@
 import * as React from 'react';
-import { Animated, Dimensions, Easing, View, StyleSheet } from 'react-native';
+import { Animated, Easing, View, StyleSheet } from 'react-native';
 
 import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
 import type { ExperimentProps } from '@senseyeinc/react-native-senseye-sdk';
-
-// application window height and width
-const SCREEN_WIDTH = Dimensions.get('window').width;
-const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 type PlrProps = ExperimentProps & {
   /** Dictates the color sequence of the background */
@@ -112,14 +108,6 @@ const styles = (props: PlrProps) =>
       height: props.fixation_length - props.fixation_outline_size * 2,
       width: props.fixation_width - props.fixation_outline_size * 2,
       position: 'absolute',
-      right:
-        props.width / 2 -
-        props.fixation_width / 2 +
-        props.fixation_outline_size,
-      bottom:
-        props.height / 2 -
-        props.fixation_length / 2 +
-        props.fixation_outline_size,
       backgroundColor: '#888888',
       zIndex: 5,
     },
@@ -127,14 +115,6 @@ const styles = (props: PlrProps) =>
       height: props.fixation_width - props.fixation_outline_size * 2,
       width: props.fixation_length - props.fixation_outline_size * 2,
       position: 'absolute',
-      right:
-        props.width / 2 -
-        props.fixation_length / 2 +
-        props.fixation_outline_size,
-      bottom:
-        props.height / 2 -
-        props.fixation_width / 2 +
-        props.fixation_outline_size,
       backgroundColor: '#888888',
       zIndex: 5,
     },
@@ -142,8 +122,6 @@ const styles = (props: PlrProps) =>
       height: props.fixation_length,
       width: props.fixation_width,
       position: 'absolute',
-      right: props.width / 2 - props.fixation_width / 2,
-      bottom: props.height / 2 - props.fixation_length / 2,
       backgroundColor: '#555555',
       zIndex: 4,
     },
@@ -151,8 +129,6 @@ const styles = (props: PlrProps) =>
       height: props.fixation_width,
       width: props.fixation_length,
       position: 'absolute',
-      right: props.width / 2 - props.fixation_length / 2,
-      bottom: props.height / 2 - props.fixation_width / 2,
       backgroundColor: '#555555',
       zIndex: 4,
     },
@@ -176,6 +152,6 @@ Plr.defaultProps = {
 Please keep your head still throughout the assessment.\n\n\
 Continue to look at the cross in the center of the screen as the background changes from gray to black to white to black.\n\n\
 Double tap the screen to begin.',
-  width: SCREEN_WIDTH,
-  height: SCREEN_HEIGHT,
+  width: '100%',
+  height: '100%',
 };

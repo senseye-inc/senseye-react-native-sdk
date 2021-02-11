@@ -25,12 +25,17 @@ type ExperimentRunnerProps = {
     demographicSurvey: Models.Survey;
   };
   /**
-   * Function called once all experiments are completed. If `sessionConfig` was specified,
+   * Function to be called once all experiments are complete. If a session was initialized,
    * `session` will be an intialized {@link Session} and `videos` a list of initialized
    * {@link Video | Videos} ready to be uploaded ({@link Video.uploadFile}).
-   * Otherwise, `session` will be undefined and `videos` a list of uninitialized {@link Video | Videos}.
+   * Otheriwse, `session` will be undefined and `videos` a list of uninitialized {@link Video | Videos}.
    */
   onEnd?(session: Models.Session | undefined, videos: Models.Video[]): void;
+  /**
+   * Function to be called if the session fails to initialize, usually when there
+   * is a problem contacting the API server.
+   */
+  onInitializationError?(): void;
 };
 
 /**
@@ -40,11 +45,12 @@ type ExperimentRunnerProps = {
 const ExperimentRunner: React.FunctionComponent<ExperimentRunnerProps> = (
   props
 ) => {
-  const { sessionConfig, onEnd } = props;
+  const { sessionConfig, onEnd, onInitializationError } = props;
   const [recorder, setRecorder] = React.useState<VideoRecorderObject>();
   const [experimentIndex, setExperimentIndex] = React.useState<number>(0);
   const [isPreview, setIsPreview] = React.useState<boolean>(true);
   const [isInitialized, setIsInitialized] = React.useState<boolean>(false);
+  const [isRecording, setIsRecording] = React.useState<boolean>(false);
   const [session, setSession] = React.useState<Models.Session>();
   const [videos] = React.useState<Models.Video[]>([]);
   const [children] = React.useState<React.ReactElement[]>(() => {
@@ -65,13 +71,20 @@ const ExperimentRunner: React.FunctionComponent<ExperimentRunnerProps> = (
 
   const onDoubleTap = React.useCallback(() => {
     if (recorder) {
-      const v = recorder.startRecording(
-        experimentIndex + '_' + children[experimentIndex].props.name
-      );
-      videos.push(v);
-      if (session) {
-        session.pushVideo(v);
-      }
+      setIsRecording(true);
+      recorder
+        .startRecording(
+          experimentIndex + '_' + children[experimentIndex].props.name
+        )
+        .then((video) => {
+          videos.push(video);
+          if (session) {
+            session.pushVideo(video);
+          }
+        })
+        .finally(() => {
+          setIsRecording(false);
+        });
     }
   }, [recorder, session, videos, children, experimentIndex]);
 
@@ -105,6 +118,15 @@ const ExperimentRunner: React.FunctionComponent<ExperimentRunnerProps> = (
     }
   }, [session, videos, onEnd]);
 
+  const _onInitializationError = React.useCallback(() => {
+    // initialization failed, but unblock the runner to execute experiments w/o data collection
+    setIsInitialized(true);
+
+    if (onInitializationError) {
+      onInitializationError();
+    }
+  }, [onInitializationError]);
+
   // initialize a session if specified
   React.useEffect(() => {
     const initializeSession = (
@@ -113,11 +135,13 @@ const ExperimentRunner: React.FunctionComponent<ExperimentRunnerProps> = (
       surveyId: string
     ) => {
       const s = new Models.Session();
-      setSession(s);
-      s.init(apiClient, uniqueId, surveyId).then(() => {
-        setIsInitialized(true);
-        s.start();
-      });
+      s.init(apiClient, uniqueId, surveyId)
+        .then(() => {
+          setSession(s);
+          setIsInitialized(true);
+          s.start();
+        })
+        .catch(_onInitializationError);
     };
 
     if (!session && sessionConfig) {
@@ -125,14 +149,17 @@ const ExperimentRunner: React.FunctionComponent<ExperimentRunnerProps> = (
       const surveyId = demographicSurvey.getId();
       if (!surveyId) {
         // initialize survey if not done so already
-        demographicSurvey.init(apiClient).then((survey) => {
-          initializeSession(apiClient, uniqueId, survey._id);
-        });
+        demographicSurvey
+          .init(apiClient)
+          .then((survey) => {
+            initializeSession(apiClient, uniqueId, survey._id);
+          })
+          .catch(_onInitializationError);
       } else {
         initializeSession(apiClient, uniqueId, surveyId);
       }
     }
-  }, [session, sessionConfig]);
+  }, [session, sessionConfig, _onInitializationError]);
 
   // display instructions dialog at preview screen before each experiment
   React.useEffect(() => {
@@ -147,18 +174,19 @@ const ExperimentRunner: React.FunctionComponent<ExperimentRunnerProps> = (
 
   // execute onEnd callback once all experiments are completed
   React.useEffect(() => {
-    if (experimentIndex >= children.length) {
+    if (experimentIndex >= children.length && !isRecording) {
       _onEnd();
     }
-  }, [experimentIndex, children.length, _onEnd]);
+  }, [experimentIndex, children.length, isRecording, _onEnd]);
 
   return (
     <View style={styles.container}>
       <Modal
+        animationType="fade"
         transparent={true}
         visible={sessionConfig !== undefined && !isInitialized}
       >
-        <View style={styles.centeredView}>
+        <View style={styles.modalContainer}>
           <View style={styles.modalView}>
             <Text>Initializing session...</Text>
           </View>
@@ -191,9 +219,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
   },
-  centeredView: {
+  modalContainer: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
   },
   modalView: {
