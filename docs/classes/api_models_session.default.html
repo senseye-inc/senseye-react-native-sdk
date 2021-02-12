@@ -146,7 +146,7 @@
 									<div class="tsd-comment tsd-typography">
 										<p>The max number of <a href="../modules/types.html#experimentdata">ExperimentData</a> that can be held
 											within any one group by the buffer. If the limit is reached,
-										a data flush will be automatically triggered ({@link Session.flushData}).</p>
+										<a href="api_models_session.default.html#flushdata">flushData()</a> will be automatically triggered.</p>
 									</div>
 								</li>
 							</ul>
@@ -256,14 +256,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api/models/Session.ts:208</li>
+									<li>Defined in api/models/Session.ts:207</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Adds experiment data into a buffer and groups them according to the specified key.
-										If any grouping reaches the {@link Session.bufferLimit}, a data flush will
-									be automatically triggered ({@link Session.flushData})).</p>
+									<p>Adds experiment data into a buffer and groups them according to the specified <code>key</code>.
+										If any grouping reaches the <a href="api_models_session.default.html#bufferlimit">bufferLimit</a>, <a href="api_models_session.default.html#flushdata">flushData()</a>
+									will be automatically triggered.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -295,7 +295,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api/models/Session.ts:220</li>
+									<li>Defined in api/models/Session.ts:219</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -318,12 +318,11 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api/models/Session.ts:299</li>
+									<li>Defined in api/models/Session.ts:297</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h4>
-							<p><code>Session.id</code>, or <code>undefined</code> if the instance hasn&#39;t been successfully
-							initialized yet ({@link Session.init}).</p>
+							<p><a href="api_models_session.default.html#id">id</a>, or <code>undefined</code> if the instance hasn&#39;t succesfully <a href="api_models_session.default.html#init">initialized</a> yet.</p>
 						</li>
 					</ul>
 				</section>
@@ -337,11 +336,11 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api/models/Session.ts:291</li>
+									<li>Defined in api/models/Session.ts:290</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="api_models_video.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">[]</span></h4>
-							<p>An array of <a href="../modules/api_models.html#video">Video</a> tracked by the session.</p>
+							<p>An array of videos associated with the session.</p>
 						</li>
 					</ul>
 				</section>
@@ -349,7 +348,7 @@
 					<a name="init" class="tsd-anchor"></a>
 					<h3>init</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">init<span class="tsd-signature-symbol">(</span>apiClient<span class="tsd-signature-symbol">: </span><a href="api_apiclient.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a>, userId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, surveyId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">init<span class="tsd-signature-symbol">(</span>apiClient<span class="tsd-signature-symbol">: </span><a href="api_apiclient.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a>, uniqueId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, surveyId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -362,7 +361,7 @@
 								<div class="lead">
 									<p>Creates a session model with the specified parameters. Note this should only be
 										done once per instance. Ensure initialization is successful before executing
-									certain functions within this class, otherwise errors may be encountered.</p>
+									certain functions within this class, otherwise errors may be thrown..</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -374,17 +373,17 @@
 									</div>
 								</li>
 								<li>
-									<h5>userId: <span class="tsd-signature-type">string</span></h5>
+									<h5>uniqueId: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Custom username or ID of the participant. Must be unique to the
-										participant within the context of the API token/key of the client.</p>
+										participant within the context of the API token/key passed into the client.</p>
 									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> surveyId: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>ID of a <a href="../modules/api_models.html#survey">Survey</a> to associate to the session. Will ideally be
-										the <code>demographic</code> survey pertaining to the partcipant.</p>
+										the demographic survey pertaining to the participant.</p>
 									</div>
 								</li>
 							</ul>
@@ -403,13 +402,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api/models/Session.ts:252</li>
+									<li>Defined in api/models/Session.ts:250</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Initializes the provided survey ({@link Survey.init}), if not done so already,
-									and associates it with the session.</p>
+									<p>Initializes the provided survey if not done so already, and associates it with the session.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -417,7 +415,7 @@
 								<li>
 									<h5>survey: <a href="api_models_survey.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Instance of a <a href="../modules/api_models.html#survey">Survey</a>.</p>
+										<p>Instance of a <code>Survey</code>.</p>
 									</div>
 								</li>
 							</ul>
@@ -435,12 +433,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api/models/Session.ts:279</li>
+									<li>Defined in api/models/Session.ts:278</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Initializes the provided video ({@link Video.init}), which associates it with the session.</p>
+									<p>Initializes the provided video, which associates it with the session.
+									See <a href="api_models_session.default.html#getvideos">getVideos()</a>.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -448,7 +447,7 @@
 								<li>
 									<h5>video: <a href="api_models_video.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Instance of an uninitialized <a href="../modules/api_models.html#video">Video</a>.</p>
+										<p>Instance of an uninitialized <code>Video</code>.</p>
 									</div>
 								</li>
 							</ul>
@@ -489,7 +488,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api/models/Session.ts:178</li>
+									<li>Defined in api/models/Session.ts:177</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -502,8 +501,7 @@
 								<li>
 									<h5>condition: <a href="../modules/types.html#sessionconditiontype" class="tsd-signature-type" data-tsd-kind="Type alias">SessionConditionType</a><span class="tsd-signature-symbol"> = ...</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>A condition describing the session upon stopping.
-										See Constants.Condition for valid values.</p>
+										<p>A condition describing the session upon stopping.</p>
 									</div>
 								</li>
 							</ul>
@@ -569,6 +567,9 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/components_experiments_plr.html">components/experiments/<wbr>Plr</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/components_experiments_smoothpursuit.html">components/experiments/<wbr>Smooth<wbr>Pursuit</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/components_surveys.html">components/surveys</a>

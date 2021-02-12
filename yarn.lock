@@ -8052,10 +8052,10 @@ react-native-builder-bob@^0.17.1:
   optionalDependencies:
     jetifier "^1.6.6"
 
-react-native-camera@^3.40.0:
-  version "3.42.0"
-  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-3.42.0.tgz#e9778b77a2da96e42d604d1766ca331281b5b85f"
-  integrity sha512-DFsZeRy9TKP/pGef5iLX1AWxP9eAnlbGcA76fEoFXse6EP56sdgjYe+wudJsGZ//arGrYBqjq6wog13HMsJaoQ==
+react-native-camera@^3.42.2:
+  version "3.42.2"
+  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-3.42.2.tgz#df0f9d0d4d7dd317abf1f474b245508121818b20"
+  integrity sha512-sqeVZiHP3hDdSVlVTM62Nry9+Enff06IqicK2bth+NKWPccwOHw4QXLMf7M5rpGFAIfbSGCcy0U1r+biv6R6rw==
   dependencies:
     prop-types "^15.6.2"
 

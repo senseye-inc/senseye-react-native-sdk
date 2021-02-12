@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, ViewStyle } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import type {
   RNCameraProps,
@@ -15,9 +15,10 @@ import type {
   RecorderStatusChangeEvent,
   RecordingStartEvent,
   Point,
+  VideoRecorderObject,
 } from '@senseyeinc/react-native-senseye-sdk';
 
-type VideoRecorderProps = {
+export type VideoRecorderProps = {
   /** Type of camera to use. Possible values: 'front' | 'back' */
   type?: RNCameraProps['type'];
   /** (Android) Overrides the `type` property and uses the camera specified by its id. */
@@ -66,14 +67,12 @@ type VideoRecorderProps = {
 
 /**
  * Component that uses RNCamera to record videos. Since this mainly acts as a wrapper
- * around RNCamera, more information regarding some of its properties may be found here:
- * https://react-native-camera.github.io/react-native-camera/docs/rncamera#properties.
+ * around RNCamera, more information regarding some properties may be found
+ * {@link https://react-native-camera.github.io/react-native-camera/docs/rncamera#properties | here}.
  *
- * Passing in a `ref` callback will provide a reference to this component with
- * the following functions: `startRecording()` and `stopRecording()`, which calls
- * `RNCamera.recordAsync(props.recordOptions)` and `RNCamera.stopRecording()`, respectively.
+ * Passing in a `ref` callback will produce a {@link VideoRecorderObject}.
  */
-const VideoRecorder = React.forwardRef<any, VideoRecorderProps>(
+const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
   (props, ref) => {
     const {
       showPreview,
@@ -81,103 +80,106 @@ const VideoRecorder = React.forwardRef<any, VideoRecorderProps>(
       onRecordingEnd,
       ...rncProps
     } = props;
-    const [style, setStyle] = React.useState<ViewStyle>(
-      showPreview ? styles.preview : styles.hidden
-    );
-    const [cameraRef, setCameraRef] = React.useState<RNCamera | null>();
     const [video, setVideo] = React.useState<Models.Video>();
+    const [camera, setCamera] = React.useState<RNCamera>();
 
-    function _onRecordingStart(event: RecordingStartEvent) {
-      if (video) {
-        video.recordStartTime(getCurrentTimestamp());
+    const setRef = React.useCallback((node) => {
+      if (node) {
+        setCamera(node);
       }
-      if (onRecordingStart) {
-        onRecordingStart(event);
-      }
-    }
-    function _onRecordingEnd() {
+    }, []);
+
+    const _onRecordingStart = React.useCallback(
+      (event: RecordingStartEvent) => {
+        if (video) {
+          video.recordStartTime(getCurrentTimestamp());
+        }
+        if (onRecordingStart) {
+          onRecordingStart(event);
+        }
+      },
+      [video, onRecordingStart]
+    );
+
+    const _onRecordingEnd = React.useCallback(() => {
       if (video) {
         video.recordStopTime(getCurrentTimestamp());
       }
       if (onRecordingEnd) {
         onRecordingEnd();
       }
-    }
+    }, [video, onRecordingEnd]);
 
-    React.useImperativeHandle(ref, () => ({
-      /**
-       * Starts a video recording. Do not call this again until after {@link VideoRecorder.onRecordingEnd}
-       * or if an error is returned, otherwise the current {@link Video} will be overwritten.
-       *
-       * @param  name           Name to assign to {@link Video}.
-       * @param  recordOptions  https://react-native-camera.github.io/react-native-camera/docs/rncamera#recordasync-options-promise
-       * @returns               A `Promise` that will produce an uninitialized {@link Video}
-       *                          populated with metadata during the recording.
-       */
-      startRecording: async (
-        name: string,
-        recordOptions: RecordOptions = {
-          quality: '4:3',
-          orientation: 'auto',
-          codec: 'H264',
-          mirrorVideo: false,
-        }
-      ) => {
-        if (cameraRef) {
-          const config = {
-            quality: recordOptions.quality,
-            bitrate: recordOptions.videoBitrate,
-            orientation: recordOptions.orientation,
-            codec: recordOptions.codec,
-            horizontal_flip: recordOptions.mirrorVideo,
-          };
-          const info = {
-            camera_type: props.type,
-            camera_id: props.cameraId,
-          };
+    // expose recording functions to the ref
+    React.useImperativeHandle(
+      ref,
+      () => ({
+        startRecording: async (name: string, recordOptions?: RecordOptions) => {
+          if (camera) {
+            recordOptions = {
+              ...defaultRecordOptions,
+              ...(recordOptions || {}),
+            };
 
-          setVideo(new Models.Video(name, config, info));
-          return cameraRef
-            .recordAsync(recordOptions)
-            .then((result: RecordResponse) => {
-              if (video) {
-                video.setUri(result.uri);
-                video.updateInfo({
-                  orientation: {
-                    video: result.videoOrientation,
-                    device: result.deviceOrientation,
-                  },
+            const config = {
+              quality: recordOptions.quality,
+              bitrate: recordOptions.videoBitrate,
+              orientation: recordOptions.orientation,
+              codec: recordOptions.codec,
+              horizontal_flip: recordOptions.mirrorVideo,
+            };
+            const info = {
+              camera_type: props.type,
+              camera_id: props.cameraId,
+            };
+
+            if (
+              Platform.OS === 'ios' &&
+              typeof recordOptions.codec === 'string'
+            ) {
+              recordOptions.codec =
+                RNCamera.Constants.VideoCodec[recordOptions.codec];
+              console.log(recordOptions.codec);
+            }
+
+            const v = new Models.Video(name, config, info);
+            setVideo(v);
+
+            return camera
+              .recordAsync(recordOptions)
+              .then((result: RecordResponse) => {
+                v.setUri(result.uri);
+                v.updateInfo({
+                  // TODO: currently not implemented in RNCamera for Camera2Api (Android)
+                  // orientation: {
+                  //   video: result.videoOrientation,
+                  //   device: result.deviceOrientation,
+                  // },
                   codec: result.codec,
                   recording_interrupted: result.isRecordingInterrupted,
                 });
-              }
-              return video;
-            });
-        }
-        throw Error('Camera is not mounted or unavailable.');
-      },
-      /**
-       * Stops the video recording. Should be called after `startRecording()`.
-       */
-      stopRecording: () => {
-        if (cameraRef) {
-          cameraRef.stopRecording();
-        }
-      },
-    }));
-
-    React.useEffect(() => {
-      setStyle(showPreview ? styles.preview : styles.hidden);
-    }, [showPreview]);
+                return v;
+              });
+          }
+          throw Error('Camera is unmounted or unavailable.');
+        },
+        stopRecording: () => {
+          if (camera) {
+            camera.stopRecording();
+          } else {
+            throw Error('Camera is unmounted or unavailable.');
+          }
+        },
+      }),
+      [camera, props.type, props.cameraId]
+    );
 
     return (
       <RNCamera
         {...rncProps}
-        ref={(rncRef) => {
-          setCameraRef(rncRef);
-        }}
-        style={style}
-        onRecordingStart={(event) => _onRecordingStart(event)}
+        ref={setRef}
+        style={showPreview ? styles.preview : styles.hidden}
+        onRecordingStart={_onRecordingStart}
         onRecordingEnd={_onRecordingEnd}
       />
     );
@@ -185,7 +187,7 @@ const VideoRecorder = React.forwardRef<any, VideoRecorderProps>(
 );
 
 VideoRecorder.defaultProps = {
-  type: RNCamera.Constants.Type.front,
+  type: 'front',
   cameraId: undefined, // TODO: detect 'Pixel 4' device model and default to 2 (nIR camera)
   useCamera2Api: true,
   androidCameraPermissionOptions: {
@@ -199,18 +201,19 @@ VideoRecorder.defaultProps = {
   showPreview: true,
 };
 
+const defaultRecordOptions: RecordOptions = {
+  quality: '4:3',
+  orientation: 'auto',
+  codec: 'H264',
+  mirrorVideo: false,
+};
+
 const styles = StyleSheet.create({
   preview: {
     flex: 1,
-    opacity: 1,
-    height: '100%',
-    width: '100%',
   },
   hidden: {
     flex: 0,
-    opacity: 0,
-    height: 0,
-    width: 0,
   },
 });
 

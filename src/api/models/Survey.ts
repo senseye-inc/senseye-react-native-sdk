@@ -47,7 +47,7 @@ export default class Survey {
   /**
    * Initializes a survey model through Senseye's API. Note this should only be
    * done once per instance. Ensure initialization is successful before executing
-   * certain functions within this class, otherwise errors may be encountered.
+   * certain functions within this class, otherwise errors may be thrown..
    *
    * @param  apiClient  Client configured to communicate with Senseye's API.
    * @returns           A `Promise` that will produce the created survey's metadata.
@@ -86,9 +86,9 @@ export default class Survey {
   }
 
   /**
-   * Updates the survey's `info` metadata.
+   * Updates the survey's {@link info} metadata.
    *
-   * @param  info Metadata to be merged on top of any previous `info` metadata.
+   * @param  info Metadata to be merged on top of any prior {@link info} metadata.
    */
   public updateInfo(info: { [key: string]: any }) {
     this.metadata.info = { ...this.metadata.info, ...info };
@@ -111,8 +111,7 @@ export default class Survey {
   }
 
   /**
-   * @returns The survey's ID, or `undefined` if the instance hasn't been successfully
-   *            initialized yet ({@link Survey.init}).
+   * @returns {@link id}, or `undefined` if the instance hasn't succesfully {@link init | initialized} yet.
    */
   public getId() {
     return this.id;

@@ -17,9 +17,9 @@ import {
   Constants,
 } from '@senseyeinc/react-native-senseye-sdk';
 
-const SCREEN_WIDTH = Dimensions.get('window').width;
+const WINDOW_WIDTH = Dimensions.get('window').width;
 
-type DemographicSurveyProps = {
+export type DemographicSurveyProps = {
   onComplete?(survey: Models.Survey, userId: string): void;
 };
 
@@ -185,7 +185,7 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
 
 const styles = StyleSheet.create({
   container: {
-    width: SCREEN_WIDTH,
+    width: WINDOW_WIDTH,
     height: '100%',
     backgroundColor: '#141726',
   },

@@ -1,21 +1,30 @@
 {
   "name": "react-native-senseye-sdk-example",
   "description": "Example app for react-native-senseye-sdk",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
-    "android": "react-native run-android && react-native start",
+    "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "expo": "expo start"
+    "expo": "expo start",
+    "start": "react-native start"
   },
   "dependencies": {
+    "@react-native-community/cameraroll": "^4.0.2",
+    "@react-native-community/masked-view": "^0.1.10",
     "@react-native-picker/picker": "^1.9.10",
+    "@react-navigation/bottom-tabs": "^5.11.7",
+    "@react-navigation/native": "^5.9.2",
     "axios": "^0.21.0",
     "expo": "^40.0.0",
     "react": "16.13.1",
     "react-native": "0.63.2",
-    "react-native-camera": "^3.40.0",
-    "react-native-device-info": "^8.0.0"
+    "react-native-camera": "^3.42.2",
+    "react-native-device-info": "^8.0.0",
+    "react-native-gesture-handler": "^1.10.0",
+    "react-native-reanimated": "^1.13.2",
+    "react-native-safe-area-context": "^3.1.9",
+    "react-native-screens": "^2.17.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",

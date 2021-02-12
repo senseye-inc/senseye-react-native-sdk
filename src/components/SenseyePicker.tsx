@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
-type SenseyePickerProps = {
+export type SenseyePickerProps = {
   options: {
     labels: string[];
     values: React.ReactText[];

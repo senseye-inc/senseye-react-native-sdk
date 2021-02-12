@@ -12,7 +12,7 @@ import type {
  * standard GET, DELETE, POST and PUT requests, as well as specific Senseye endpoints.
  */
 export default class SenseyeApiClient {
-  public axios: AxiosInstance;
+  private axios: AxiosInstance;
 
   /**
    * @param host  Domain name or IP address of the API host. e.g. api.senseye.co[:80]
@@ -64,7 +64,7 @@ export default class SenseyeApiClient {
    * Initiates a compute task to predict fatigue probability of the participant in a given video.
    *
    * @param  uri URI to a video containing a participant.
-   * @returns    A `Promise` that will produce a `ComputeTaskResponse`.
+   * @returns    A `Promise` that will produce a {@link ComputeTaskResponse}.
    */
   public predictFatigue(uri: string) {
     return this.post<ComputeTaskResponse>('/PredictFatigue', {
@@ -76,7 +76,7 @@ export default class SenseyeApiClient {
    * Initiates a compute task to predict intoxication probability of the participant in a given video.
    *
    * @param  uri URI to a video containing a participant.
-   * @returns    A `Promise` that will produce a `ComputeTaskResponse`.
+   * @returns    A `Promise` that will produce a {@link ComputeTaskResponse}.
    */
   public predictBAC(uri: string) {
     return this.post<ComputeTaskResponse>('/PredictBAC', {
@@ -88,7 +88,7 @@ export default class SenseyeApiClient {
    * Initiates a compute task to predict cognitive load probability of the participant in a given video.
    *
    * @param  uri URI to a video containing a participant.
-   * @returns    A `Promise` that will produce a `ComputeTaskResponse`.
+   * @returns    A `Promise` that will produce a {@link ComputeTaskResponse}.
    */
   public predictCognitiveLoad(uri: string) {
     return this.post<ComputeTaskResponse>('/PredictCognitiveLoad', {
@@ -98,10 +98,10 @@ export default class SenseyeApiClient {
 
   /**
    * Fetches the latest status of a compute task. Use this to poll for `SUCCESS`
-   * before calling {@link SenseyeApiClient.getComputeResult}.
+   * before calling {@link getComputeResult | getComputeResult()}.
    *
-   * @param  id Task ID. Can be obtained from `ComputeTaskResponse.id`.
-   * @returns   A `Promise` that will produce a `ComputeTaskResponse`, containing
+   * @param  id Task ID. Can be obtained from a {@link ComputeTaskResponse}.
+   * @returns   A `Promise` that will produce a {@link ComputeTaskResponse}, containing
    *              the task's most recent status.
    */
   public getComputeTask(id: string) {
@@ -111,8 +111,8 @@ export default class SenseyeApiClient {
   /**
    * Stops a running compute task.
    *
-   * @param  id Task ID. Can be obtained from `ComputeTaskResponse.id`.
-   * @returns   A `Promise` that will produce a `ComputeTaskResponse`.
+   * @param  id Task ID. Can be obtained from a {@link ComputeTaskResponse}.
+   * @returns   A `Promise` that will produce a {@link ComputeTaskResponse}.
    */
   public cancelComputeTask(id: string) {
     return this.post<ComputeTaskResponse>('/CancelVideoTask', { id: id });
@@ -120,10 +120,10 @@ export default class SenseyeApiClient {
 
   /**
    * Fetches the results of a compute task. Note this may timeout if the task
-   * hasn't successfully completed yet. See {SenseyeApiClient.getComputeTask}.
+   * hasn't successfully completed yet. See {@link getComputeTask | getComputeTask()}.
    *
-   * @param  id Task ID. Can be obtained from `ComputeTaskResponse.id`.
-   * @returns   A `Promise` that will produce a `ComputeResultResponse`.
+   * @param  id Task ID. Can be obtained from a {@link ComputeTaskResponse}.
+   * @returns   A `Promise` that will produce a {@link ComputeResultResponse}.
    */
   public getComputeResult(id: string) {
     return this.get<ComputeResultResponse>('/GetVideoResult/' + id);

@@ -38,7 +38,7 @@ export default class Session {
   /**
    * @param  bufferLimit  The max number of {@link ExperimentData} that can be held
    *                        within any one group by the buffer. If the limit is reached,
-   *                        a data flush will be automatically triggered ({@link Session.flushData}).
+   *                        {@link flushData | flushData()} will be automatically triggered.
    */
   constructor(bufferLimit: number = 1000) {
     this.apiClient = undefined;
@@ -53,18 +53,18 @@ export default class Session {
   /**
    * Creates a session model with the specified parameters. Note this should only be
    * done once per instance. Ensure initialization is successful before executing
-   * certain functions within this class, otherwise errors may be encountered.
+   * certain functions within this class, otherwise errors may be thrown..
    *
    * @param  apiClient  Client configured to communicate with Senseye's API.
-   * @param  userId     Custom username or ID of the participant. Must be unique to the
-   *                      participant within the context of the API token/key of the client.
+   * @param  uniqueId   Custom username or ID of the participant. Must be unique to the
+   *                      participant within the context of the API token/key passed into the client.
    * @param  surveyId   ID of a {@link Survey} to associate to the session. Will ideally be
-   *                      the `demographic` survey pertaining to the partcipant.
+   *                      the demographic survey pertaining to the participant.
    * @returns           A `Promise` that will produce the created session's metadata.
    */
   public async init(
     apiClient: SenseyeApiClient,
-    userId: string,
+    uniqueId: string,
     surveyId?: string
   ) {
     if (this.id !== undefined) {
@@ -76,7 +76,7 @@ export default class Session {
     try {
       var user = (
         await this.apiClient.post<DataResponse>('/data/users', {
-          username: userId,
+          username: uniqueId,
           survey_ids: surveyId ? [surveyId] : [],
         })
       ).data.data;
@@ -86,7 +86,7 @@ export default class Session {
         const existingUser = (
           await this.apiClient.get<DataResponse>('/data/users', {
             params: {
-              username: userId,
+              username: uniqueId,
             },
           })
         ).data.data;
@@ -173,7 +173,6 @@ export default class Session {
    * Stops the current session and flushes all accumulated/remaining data.
    *
    * @param  condition  A condition describing the session upon stopping.
-   *                      See Constants.Condition for valid values.
    */
   public async stop(
     condition: SessionConditionType = Constants.SessionCondition.UNSPECIFIED
@@ -198,9 +197,9 @@ export default class Session {
   }
 
   /**
-   * Adds experiment data into a buffer and groups them according to the specified key.
-   * If any grouping reaches the {@link Session.bufferLimit}, a data flush will
-   * be automatically triggered ({@link Session.flushData})).
+   * Adds experiment data into a buffer and groups them according to the specified `key`.
+   * If any grouping reaches the {@link bufferLimit}, {@link flushData | flushData()}
+   * will be automatically triggered.
    *
    * @param  key  This should ideally be the name of the experiment the data originated from.
    * @param  data Data generated during an experiment.
@@ -244,10 +243,9 @@ export default class Session {
   }
 
   /**
-   * Initializes the provided survey ({@link Survey.init}), if not done so already,
-   * and associates it with the session.
+   * Initializes the provided survey if not done so already, and associates it with the session.
    *
-   * @param  survey  Instance of a {@link Survey}.
+   * @param  survey  Instance of a `Survey`.
    */
   public async pushSurvey(survey: Models.Survey) {
     if (!this.apiClient || !this.id) {
@@ -272,9 +270,10 @@ export default class Session {
   }
 
   /**
-   * Initializes the provided video ({@link Video.init}), which associates it with the session.
+   * Initializes the provided video, which associates it with the session.
+   * See {@link getVideos | getVideos()}.
    *
-   * @param  video  Instance of an uninitialized {@link Video}.
+   * @param  video  Instance of an uninitialized `Video`.
    */
   public async pushVideo(video: Models.Video) {
     if (!this.apiClient || !this.id) {
@@ -286,15 +285,14 @@ export default class Session {
   }
 
   /**
-   * @returns An array of {@link Video} tracked by the session.
+   * @returns An array of videos associated with the session.
    */
   public getVideos() {
     return this.videos;
   }
 
   /**
-   * @returns `Session.id`, or `undefined` if the instance hasn't been successfully
-   *            initialized yet ({@link Session.init}).
+   * @returns {@link id}, or `undefined` if the instance hasn't succesfully {@link init | initialized} yet.
    */
   public getId() {
     return this.id;
