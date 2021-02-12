@@ -70,44 +70,101 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Functions</h3>
+							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="components_experimentrunner.html#default" class="tsd-kind-icon">default</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="components_experimentrunner.html#experimentrunnerprops" class="tsd-kind-icon">Experiment<wbr>Runner<wbr>Props</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="components_experimentrunner.html#default" class="tsd-kind-icon">default</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="default" class="tsd-anchor"></a>
-					<h3>default</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">default<span class="tsd-signature-symbol">(</span>props<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ExperimentRunnerProps</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in components/ExperimentRunner.tsx:22</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Component that initializes a session and executes a given series of experiments.
-									Synchronizes experiment events with video recording.</p>
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="experimentrunnerprops" class="tsd-anchor"></a>
+					<h3>Experiment<wbr>Runner<wbr>Props</h3>
+					<div class="tsd-signature tsd-kind-icon">Experiment<wbr>Runner<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>sessionConfig<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>apiClient<span class="tsd-signature-symbol">: </span><a href="../classes/api_apiclient.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">; </span>demographicSurvey<span class="tsd-signature-symbol">: </span><a href="../classes/api_models_survey.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">; </span>uniqueId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">; </span>onEnd<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>onInitializationError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in components/ExperimentRunner.tsx:11</li>
+							<li>Defined in components/index.ts:11</li>
+							<li>Defined in components/index.ts:11</li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> session<wbr>Config<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>apiClient<span class="tsd-signature-symbol">: </span><a href="../classes/api_apiclient.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">; </span>demographicSurvey<span class="tsd-signature-symbol">: </span><a href="../classes/api_models_survey.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">; </span>uniqueId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Specifying this will prompt the runner to initialize a <a href="api_models.html#session">Session</a> and
+										perform data collection using Senseye&#39;s API (requires an internet connection).</p>
+									</div>
 								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>props: <span class="tsd-signature-type">ExperimentRunnerProps</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
-						</li>
-					</ul>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>api<wbr>Client<span class="tsd-signature-symbol">: </span><a href="../classes/api_apiclient.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>Client configured to communicate with Senseye&#39;s API.</p>
+											</div>
+										</div>
+									</li>
+									<li class="tsd-parameter">
+										<h5>demographic<wbr>Survey<span class="tsd-signature-symbol">: </span><a href="../classes/api_models_survey.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>Demographic survey of the particpant.</p>
+											</div>
+										</div>
+									</li>
+									<li class="tsd-parameter">
+										<h5>unique<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>Custom username or ID of the participant. Must be unique to the participant
+												within the context of the API token/key passed into the client.</p>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>End<span class="tsd-signature-symbol">?: </span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Initialization<wbr>Error<span class="tsd-signature-symbol">?: </span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="default" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> default</h3>
+					<div class="tsd-signature tsd-kind-icon">default<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">React.FunctionComponent</span><span class="tsd-signature-symbol">&lt;</span><a href="components_experimentrunner.html#experimentrunnerprops" class="tsd-signature-type" data-tsd-kind="Type alias">ExperimentRunnerProps</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in components/ExperimentRunner.tsx:45</li>
+							<li>Defined in components/index.ts:10</li>
+							<li>Defined in components/index.ts:10</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Component that executes a series of <a href="components.html#experiments">Experiments</a> passed in as children elements (<code>props.children</code>).
+							Orchestrates video recording and data collection throughout the experiments (one video per experiment).</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -169,6 +226,9 @@
 						<a href="components_experiments_plr.html">components/experiments/<wbr>Plr</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="components_experiments_smoothpursuit.html">components/experiments/<wbr>Smooth<wbr>Pursuit</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="components_surveys.html">components/surveys</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -190,7 +250,10 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-function tsd-parent-kind-module">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="components_experimentrunner.html#experimentrunnerprops" class="tsd-kind-icon">Experiment<wbr>Runner<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
 						<a href="components_experimentrunner.html#default" class="tsd-kind-icon">default</a>
 					</li>
 				</ul>

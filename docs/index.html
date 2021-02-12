@@ -61,7 +61,7 @@
 				<a href="#senseye-sdk" id="senseye-sdk" style="color: inherit; text-decoration: none;">
 					<h1>Senseye SDK</h1>
 				</a>
-				<p>The Senseye SDK provides direct integration into the Senseye API on both iOS and Android for React Native apps. The JavaScript API is simple and cross-platform. Ready to get started? Follow the instructions below.</p>
+				<p>The Senseye SDK provides direct integration into the Senseye API on both iOS and Android for React Native apps. The JavaScript API is simple and cross-platform. Ready to get started? Follow the instructions for either local installation or stand-alone package installation.</p>
 				<a href="#whats-in-this-repo" id="whats-in-this-repo" style="color: inherit; text-decoration: none;">
 					<h2>What’s in this repo</h2>
 				</a>
@@ -69,11 +69,11 @@
 <span style="color: #000000">+-- </span><span style="color: #001080">android</span><span style="color: #000000">/      # </span><span style="color: #001080">Android</span><span style="color: #000000">-</span><span style="color: #001080">specific</span><span style="color: #000000"> </span><span style="color: #001080">source</span><span style="color: #000000"> </span><span style="color: #001080">code</span>
 <span style="color: #000000">+-- </span><span style="color: #001080">ios</span><span style="color: #000000">/          # </span><span style="color: #001080">iOS</span><span style="color: #000000">-</span><span style="color: #001080">specific</span><span style="color: #000000"> </span><span style="color: #001080">source</span><span style="color: #000000"> </span><span style="color: #001080">code</span>
 <span style="color: #000000">+-- </span><span style="color: #001080">docs</span><span style="color: #000000">/         # </span><span style="color: #001080">See</span><span style="color: #000000"> </span><span style="color: #001080">Documentation</span><span style="color: #000000"> </span><span style="color: #001080">section</span><span style="color: #000000"> </span><span style="color: #0000FF">of</span><span style="color: #000000"> </span><span style="color: #0000FF">this</span><span style="color: #000000"> </span><span style="color: #0070C1">README</span><span style="color: #000000">  </span>
-<span style="color: #000000">+-- </span><span style="color: #001080">examples</span><span style="color: #000000">/     # </span><span style="color: #001080">Contains</span><span style="color: #000000"> </span><span style="color: #001080">example</span><span style="color: #000000"> </span><span style="color: #001080">apps</span><span style="color: #000000"> </span><span style="color: #001080">that</span><span style="color: #000000"> </span><span style="color: #001080">demo</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #001080">usage</span><span style="color: #000000"> </span><span style="color: #0000FF">of</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #0070C1">SDK</span>
+<span style="color: #000000">+-- </span><span style="color: #001080">example</span><span style="color: #000000">/      # </span><span style="color: #001080">Contains</span><span style="color: #000000"> </span><span style="color: #001080">an</span><span style="color: #000000"> </span><span style="color: #001080">example</span><span style="color: #000000"> </span><span style="color: #001080">app</span><span style="color: #000000"> </span><span style="color: #001080">that</span><span style="color: #000000"> </span><span style="color: #001080">demo</span><span style="color: #000000"> </span><span style="color: #001080">usage</span><span style="color: #000000"> </span><span style="color: #0000FF">of</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #0070C1">SDK</span>
 <span style="color: #000000">+-- </span><span style="color: #001080">src</span><span style="color: #000000">/</span>
 <span style="color: #000000">|   +-- </span><span style="color: #001080">api</span><span style="color: #000000">/        # </span><span style="color: #001080">Modules</span><span style="color: #000000"> </span><span style="color: #001080">for</span><span style="color: #000000"> </span><span style="color: #001080">interfacing</span><span style="color: #000000"> </span><span style="color: #AF00DB">with</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #001080">Senseye</span><span style="color: #000000"> </span><span style="color: #0070C1">API</span>
 <span style="color: #000000">|   +-- </span><span style="color: #001080">components</span><span style="color: #000000">/ # </span><span style="color: #001080">Modules</span><span style="color: #000000"> </span><span style="color: #001080">for</span><span style="color: #000000"> </span><span style="color: #001080">serving</span><span style="color: #000000"> </span><span style="color: #001080">Senseye</span><span style="color: #000000"> </span><span style="color: #001080">frontend</span><span style="color: #000000"> </span><span style="color: #001080">components</span>
-<span style="color: #000000">+-- </span><span style="color: #001080">package</span><span style="color: #000000">.</span><span style="color: #001080">json</span><span style="color: #000000">  #  </span><span style="color: #001080">Includes</span><span style="color: #000000"> </span><span style="color: #001080">application</span><span style="color: #000000"> </span><span style="color: #001080">dependencies</span><span style="color: #000000">, </span><span style="color: #001080">build</span><span style="color: #000000"> </span><span style="color: #001080">utilities</span><span style="color: #000000">, </span><span style="color: #001080">and</span><span style="color: #000000"> </span><span style="color: #001080">pre</span><span style="color: #000000">-</span><span style="color: #001080">commit</span><span style="color: #000000"> </span><span style="color: #001080">hook</span><span style="color: #000000"> </span><span style="color: #001080">directives</span><span style="color: #000000">. </span><span style="color: #001080">See</span><span style="color: #000000"> [</span><span style="color: #001080">contributing</span><span style="color: #000000"> </span><span style="color: #001080">guide</span><span style="color: #000000">](</span><span style="color: #0070C1">CONTRIBUTING</span><span style="color: #000000">.</span><span style="color: #001080">md</span><span style="color: #000000">) </span><span style="color: #001080">for</span><span style="color: #000000"> </span><span style="color: #001080">more</span><span style="color: #000000"> </span><span style="color: #001080">information</span><span style="color: #000000"> </span><span style="color: #001080">on</span><span style="color: #000000"> </span><span style="color: #001080">these</span><span style="color: #000000"> </span><span style="color: #001080">directives</span><span style="color: #000000">.</span>
+<span style="color: #000000">+-- </span><span style="color: #001080">package</span><span style="color: #000000">.</span><span style="color: #001080">json</span><span style="color: #000000">  #  </span><span style="color: #001080">Includes</span><span style="color: #000000"> </span><span style="color: #001080">application</span><span style="color: #000000"> </span><span style="color: #001080">dependencies</span><span style="color: #000000">, </span><span style="color: #001080">build</span><span style="color: #000000"> </span><span style="color: #001080">utilities</span><span style="color: #000000">, </span><span style="color: #001080">and</span><span style="color: #000000"> </span><span style="color: #001080">pre</span><span style="color: #000000">-</span><span style="color: #001080">commit</span><span style="color: #000000"> </span><span style="color: #001080">hook</span><span style="color: #000000"> </span><span style="color: #001080">directives</span><span style="color: #000000">. </span><span style="color: #001080">See</span><span style="color: #000000"> </span><span style="color: #001080">contributing</span><span style="color: #000000"> </span><span style="color: #001080">guide</span><span style="color: #000000"> </span><span style="color: #001080">for</span><span style="color: #000000"> </span><span style="color: #001080">more</span><span style="color: #000000"> </span><span style="color: #001080">information</span><span style="color: #000000"> </span><span style="color: #001080">on</span><span style="color: #000000"> </span><span style="color: #001080">these</span><span style="color: #000000"> </span><span style="color: #001080">directives</span>
 <span style="color: #000000">+-- .</span><span style="color: #001080">circleci</span><span style="color: #000000">/    # (</span><span style="color: #001080">Ignore</span><span style="color: #000000">. </span><span style="color: #001080">Reserved</span><span style="color: #000000"> </span><span style="color: #001080">for</span><span style="color: #000000"> </span><span style="color: #001080">future</span><span style="color: #000000"> </span><span style="color: #001080">development</span><span style="color: #000000">)</span>
 </code></pre>
 				<a href="#included-tasks" id="included-tasks" style="color: inherit; text-decoration: none;">
@@ -82,47 +82,52 @@
 				<ol>
 					<li>Calibration</li>
 					<li>Nystagmus</li>
-					<li>PLR - Pupillary Light Response</li>
+					<li>PLR (Pupillary Light Response)</li>
 				</ol>
 				<a href="#requirements" id="requirements" style="color: inherit; text-decoration: none;">
 					<h2>Requirements</h2>
 				</a>
 				<p>Apps using React Native Navigation may target iOS 12+ and Android 10+. You may use Windows, macOS or Linux as your development operating system.</p>
-				<p>For development, you&#39;ll need an IDE plugin that can detect <code>babel-plugin-module-resolver</code>.</p>
-				<a href="#atom" id="atom" style="color: inherit; text-decoration: none;">
-					<h4>Atom</h4>
-				</a>
-				<p>You can install <code>autocomplete-modules</code> and enable &quot;Babel Plugin Module Resolver&quot; in its settings.</p>
-				<a href="#vs-code" id="vs-code" style="color: inherit; text-decoration: none;">
-					<h4>VS Code</h4>
-				</a>
-				<p>You can <code>yarn add --dev babel-plugin-module-resolver</code>, then quit VS Code entirely and relaunch.</p>
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
 					<h2>Installation</h2>
 				</a>
+				<p>Installation of the stand-alone SDK package can be done using <a href="https://www.npmjs.com/">npm</a> or <a href="https://yarnpkg.com/">yarn</a>.</p>
 				<p>npm:</p>
 				<pre><code class="language-sh"><span style="color: #000000">npm install @senseyeinc/react-native-senseye-sdk</span>
 </code></pre>
 				<p>yarn:</p>
 				<pre><code class="language-sh"><span style="color: #000000">yarn add @senseyeinc/react-native-senseye-sdk</span>
 </code></pre>
+				<a href="#local" id="local" style="color: inherit; text-decoration: none;">
+					<h3>Local</h3>
+				</a>
+				<p>If you prefer to build the SDK locally, clone this repo and run <code>yarn install</code> then <code>yarn prepare</code> from the root directory to get started. Optional: running <code>yarn bootstrap</code> runs prior commands and additionally installs dependencies for running examples in <a href="/example/README.md">the demo section</a>.</p>
+				<p>For local development, one of the dependencies is <code>babel-plugin-module-resolver</code>, for which your IDE may require a plugin to detect the alias defined and used throughout the codebase. The alias defined in <code>babel.config.js</code> will resolve paths so that you can write <code>import { insert_SDK_components_here } from @senseyeinc/react-native-senseye-sdk</code> as if it were importing modules from the stand-alone package.</p>
+				<ul>
+					<li><a href="https://atom.io/">Atom</a>: You can install <code>autocomplete-modules</code> and enable &quot;Babel Plugin Module Resolver&quot; in its settings.</li>
+				</ul>
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
-				<p>You can then import task components into your React application. For example:</p>
+				<p>After you have the SDK built or installed, import task components into your React application. For example:</p>
 				<pre><code class="language-javascript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Experiments</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@senseyeinc/react-native-senseye-sdk&#039;</span>
 
 <span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #AF00DB">default</span><span style="color: #000000"> </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">App</span><span style="color: #000000">() {</span>
 <span style="color: #000000">  </span><span style="color: #AF00DB">return</span><span style="color: #000000"> (</span>
-<span style="color: #000000">    </span><span style="color: #800000">&lt;</span><span style="color: #267F99">Experiments.Calibration</span><span style="color: #800000">/&gt;</span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;</span><span style="color: #267F99">Experiments.Calibration</span><span style="color: #000000"> </span><span style="color: #800000">/&gt;</span>
 <span style="color: #000000">  );</span>
 <span style="color: #000000">}</span>
 </code></pre>
-				<p>If you prefer to build the SDK locally, clone this repo and run <code>yarn install</code> to get started.</p>
+				<a href="#example-app" id="example-app" style="color: inherit; text-decoration: none;">
+					<h2>Example App</h2>
+				</a>
+				<p>Example apps have been provided in the <a href="/example/">example/</a> directory.
+				There is a cross-platform example app (built using <a href="https://expo.io/">Expo</a>), and React Native apps for Android and iOS. You can run <code>yarn bootstrap</code> to install the example dependencies.</p>
+				<p>Instructions on how to start the example apps are available in the <a href="/example/README.md">example README</a>.</p>
 				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
 					<h2>Documentation</h2>
 				</a>
-				<p>Run <code>yarn docs</code> or open docs/index.html in a browser to view the documentation.</p>
+				<p>Run <code>yarn docs</code> to start a local server on port 9090 and automatically open a browser to the documentation, or simply open docs/index.html in a browser to view the same contents without running the server.</p>
 				<a href="#changelog" id="changelog" style="color: inherit; text-decoration: none;">
 					<h2>Changelog</h2>
 				</a>
@@ -193,6 +198,9 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/components_experiments_plr.html">components/experiments/<wbr>Plr</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/components_experiments_smoothpursuit.html">components/experiments/<wbr>Smooth<wbr>Pursuit</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/components_surveys.html">components/surveys</a>

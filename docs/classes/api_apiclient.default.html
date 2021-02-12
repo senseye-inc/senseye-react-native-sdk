@@ -94,10 +94,10 @@
 								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="api_apiclient.default.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section ">
+						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="api_apiclient.default.html#axios" class="tsd-kind-icon">axios</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="api_apiclient.default.html#axios" class="tsd-kind-icon">axios</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -160,11 +160,11 @@
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
+			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="axios" class="tsd-anchor"></a>
-					<h3>axios</h3>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> axios</h3>
 					<div class="tsd-signature tsd-kind-icon">axios<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AxiosInstance</span></div>
 					<aside class="tsd-sources">
 						<ul>
@@ -198,12 +198,12 @@
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Task ID. Can be obtained from <code>ComputeTaskResponse.id</code>.</p>
+										<p>Task ID. Can be obtained from a <a href="../modules/types.html#computetaskresponse">ComputeTaskResponse</a>.</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/types.html#computetaskresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ComputeTaskResponse</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A <code>Promise</code> that will produce a <code>ComputeTaskResponse</code>.</p>
+							<p>A <code>Promise</code> that will produce a <a href="../modules/types.html#computetaskresponse">ComputeTaskResponse</a>.</p>
 						</li>
 					</ul>
 				</section>
@@ -287,7 +287,7 @@
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Fetches the results of a compute task. Note this may timeout if the task
-									hasn&#39;t successfully completed yet. See {SenseyeApiClient.getComputeTask}.</p>
+									hasn&#39;t successfully completed yet. See <a href="api_apiclient.default.html#getcomputetask">getComputeTask()</a>.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -295,12 +295,12 @@
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Task ID. Can be obtained from <code>ComputeTaskResponse.id</code>.</p>
+										<p>Task ID. Can be obtained from a <a href="../modules/types.html#computetaskresponse">ComputeTaskResponse</a>.</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/types.html#computeresultresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ComputeResultResponse</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A <code>Promise</code> that will produce a <code>ComputeResultResponse</code>.</p>
+							<p>A <code>Promise</code> that will produce a <a href="../modules/types.html#computeresultresponse">ComputeResultResponse</a>.</p>
 						</li>
 					</ul>
 				</section>
@@ -320,7 +320,7 @@
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Fetches the latest status of a compute task. Use this to poll for <code>SUCCESS</code>
-									before calling {@link SenseyeApiClient.getComputeResult}.</p>
+									before calling <a href="api_apiclient.default.html#getcomputeresult">getComputeResult()</a>.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -328,12 +328,12 @@
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Task ID. Can be obtained from <code>ComputeTaskResponse.id</code>.</p>
+										<p>Task ID. Can be obtained from a <a href="../modules/types.html#computetaskresponse">ComputeTaskResponse</a>.</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/types.html#computetaskresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ComputeTaskResponse</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A <code>Promise</code> that will produce a <code>ComputeTaskResponse</code>, containing
+							<p>A <code>Promise</code> that will produce a <a href="../modules/types.html#computetaskresponse">ComputeTaskResponse</a>, containing
 							the task&#39;s most recent status.</p>
 						</li>
 					</ul>
@@ -401,7 +401,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/types.html#computetaskresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ComputeTaskResponse</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A <code>Promise</code> that will produce a <code>ComputeTaskResponse</code>.</p>
+							<p>A <code>Promise</code> that will produce a <a href="../modules/types.html#computetaskresponse">ComputeTaskResponse</a>.</p>
 						</li>
 					</ul>
 				</section>
@@ -433,7 +433,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/types.html#computetaskresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ComputeTaskResponse</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A <code>Promise</code> that will produce a <code>ComputeTaskResponse</code>.</p>
+							<p>A <code>Promise</code> that will produce a <a href="../modules/types.html#computetaskresponse">ComputeTaskResponse</a>.</p>
 						</li>
 					</ul>
 				</section>
@@ -465,7 +465,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/types.html#computetaskresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ComputeTaskResponse</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A <code>Promise</code> that will produce a <code>ComputeTaskResponse</code>.</p>
+							<p>A <code>Promise</code> that will produce a <a href="../modules/types.html#computetaskresponse">ComputeTaskResponse</a>.</p>
 						</li>
 					</ul>
 				</section>
@@ -593,6 +593,9 @@
 						<a href="../modules/components_experiments_plr.html">components/experiments/<wbr>Plr</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="../modules/components_experiments_smoothpursuit.html">components/experiments/<wbr>Smooth<wbr>Pursuit</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="../modules/components_surveys.html">components/surveys</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -622,7 +625,7 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="api_apiclient.default.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="api_apiclient.default.html#axios" class="tsd-kind-icon">axios</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -680,8 +683,10 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
 				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
 			</ul>
 		</div>
 	</div>
