@@ -66,6 +66,7 @@ export default function FullDemoScreen() {
             <Experiments.Calibration />
             <Experiments.Nystagmus />
             <Experiments.Plr />
+            <Experiments.SmoothPursuit />
           </ExperimentRunner>
         ) : null}
       </Modal>

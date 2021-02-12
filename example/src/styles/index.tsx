@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   },
   tabLabel: {
     padding: 7,
-    fontSize: 15,
+    fontSize: 10,
   },
   text: {
     fontSize: 15,

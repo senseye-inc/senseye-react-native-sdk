@@ -7,6 +7,7 @@ import {
   CalibrationScreen,
   NystagmusScreen,
   PlrScreen,
+  SmoothPursuitScreen,
   FullDemoScreen,
 } from './screens';
 
@@ -36,6 +37,7 @@ export default function App() {
         <Tab.Screen name="Calibration" component={CalibrationScreen} />
         <Tab.Screen name="Nystagmus" component={NystagmusScreen} />
         <Tab.Screen name="PLR" component={PlrScreen} />
+        <Tab.Screen name="Smooth Pursuit" component={SmoothPursuitScreen} />
         <Tab.Screen name="Full Demo" component={FullDemoScreen} />
       </Tab.Navigator>
     </NavigationContainer>

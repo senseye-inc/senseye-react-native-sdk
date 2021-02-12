@@ -9,9 +9,9 @@ const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
 export type CalibrationProps = ExperimentProps & {
-  /** How long a dot is displayed on-screen in milliseconds.  */
+  /** Amount of time (milliseconds) a dot is displayed on-screen. */
   duration: number;
-  /** Delay (ms) between render of old dot and new dot. */
+  /** Delay (milliseconds) between render of old dot and new dot. */
   delay: number;
   /** Defines the radius of the dots. */
   radius: number;
@@ -52,22 +52,28 @@ export default function Calibration(props: CalibrationProps) {
     transform: [{ translateX: targetXPos }, { translateY: targetYPos }],
   };
 
-  moveAnimationValue.addListener((value) => {
-    if (onUpdate) {
-      /*
-        Returns data containing a timestamp and the dot's updated (x,y) position relative to the canvas.
-          (0, 0) represents the top left of the canvas.
-          (1, 1) represents the bottom right of the canvas.
+  React.useEffect(() => {
+    const listenerId = moveAnimationValue.addListener((value) => {
+      if (onUpdate) {
+        /*
+          Returns data containing a timestamp and the dot's updated (x,y) position relative to the canvas.
+            (0, 0) represents the top left of the canvas.
+            (1, 1) represents the bottom right of the canvas.
         */
-      onUpdate({
-        timestamp: getCurrentTimestamp(),
-        data: {
-          x: dot_points[value.x][0],
-          y: dot_points[value.y][1],
-        },
-      });
-    }
-  });
+        onUpdate({
+          timestamp: getCurrentTimestamp(),
+          data: {
+            x: dot_points[value.x][0],
+            y: dot_points[value.y][1],
+          },
+        });
+      }
+    });
+    return () => {
+      // remove the previous listener
+      moveAnimationValue.removeListener(listenerId);
+    };
+  }, [moveAnimationValue, onUpdate, dot_points]);
 
   const _onStart = () => {
     if (onStart) {
@@ -95,7 +101,7 @@ export default function Calibration(props: CalibrationProps) {
         _onEnd();
       }
     });
-  }, [dotMoveCount, moveAnimationValue, duration, delay, dot_points, _onEnd]);
+  }, [moveAnimationValue, duration, delay, dot_points, dotMoveCount, _onEnd]);
 
   React.useEffect(() => {
     moveDot();

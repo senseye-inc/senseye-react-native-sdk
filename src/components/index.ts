@@ -24,6 +24,7 @@ export {
 export { CalibrationProps } from './experiments/Calibration';
 export { NystagmusProps } from './experiments/Nystagmus';
 export { PlrProps } from './experiments/Plr';
+export { SmoothPursuitProps } from './experiments/SmoothPursuit';
 
 export { DemographicSurveyProps } from './surveys/Demographic';
 export { ValidationSurveyProps } from './surveys/Validation';

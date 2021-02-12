@@ -19,7 +19,7 @@ export default function PlrScreen() {
         fatigue.
         {'\n\n'}
         This task seeks to stimulate and measure this condition by having the
-        participant fixate their gaze on the middle of the screen, while the
+        participant fixate their gaze on the center of the screen, while the
         background changes colors from gray to black to white and back to black.
       </Text>
       <SenseyeButton

@@ -5,19 +5,19 @@ import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
 import type { ExperimentProps } from '@senseyeinc/react-native-senseye-sdk';
 
 export type PlrProps = ExperimentProps & {
-  /** Dictates the color sequence of the background */
+  /** Dictates the color sequence of the background. */
   color_values: string[] | number[];
-  /** The centered cross width  */
+  /** The centered cross width. */
   fixation_width: number;
-  /** Defines the centered cross length  */
+  /** Defines the centered cross length. */
   fixation_length: number;
-  /** Defines how thick the outline on the centered cross, set to 0 to make outline disappear  */
+  /** Defines how thick the outline on the centered cross, set to 0 to make outline disappear. */
   fixation_outline_size: number;
-  /** Defines the time that passes until the next screen is displayed  */
+  /** Defines the amount of time (milliseconds) to display each background color. */
   duration: number;
 };
 
-/** Measures pupillary light reflex by manipulating the luminance of the screen  */
+/** Measures pupillary light reflex by manipulating the luminance of the screen. */
 export default function Plr(props: PlrProps) {
   const { duration, color_values, onStart, onEnd, onUpdate } = props;
   const [updateCount, setUpdateCount] = React.useState(0);
@@ -32,17 +32,23 @@ export default function Plr(props: PlrProps) {
     backgroundColor: color,
   };
 
-  screenColor.addListener((value) => {
-    if (onUpdate) {
-      // returns data containing a timestamp and the updated background color
-      onUpdate({
-        timestamp: getCurrentTimestamp(),
-        data: {
-          bg_color: color_values[value.value],
-        },
-      });
-    }
-  });
+  React.useEffect(() => {
+    const listenerId = screenColor.addListener((value) => {
+      if (onUpdate) {
+        // returns data containing a timestamp and the updated background color
+        onUpdate({
+          timestamp: getCurrentTimestamp(),
+          data: {
+            bg_color: color_values[value.value],
+          },
+        });
+      }
+    });
+    return () => {
+      // remove the previous listener
+      screenColor.removeListener(listenerId);
+    };
+  }, [screenColor, onUpdate, color_values]);
 
   const _onStart = () => {
     if (onStart) {
@@ -59,7 +65,7 @@ export default function Plr(props: PlrProps) {
   const handleScreenColor = React.useCallback(() => {
     Animated.timing(screenColor, {
       toValue: updateCount,
-      duration: duration * 1000,
+      duration: duration,
       easing: Easing.step0,
       useNativeDriver: false,
     }).start(() => {
@@ -69,7 +75,7 @@ export default function Plr(props: PlrProps) {
         _onEnd();
       }
     });
-  }, [updateCount, screenColor, duration, color_values, _onEnd]);
+  }, [screenColor, duration, color_values, updateCount, _onEnd]);
 
   React.useEffect(() => {
     handleScreenColor();
@@ -145,7 +151,7 @@ Plr.defaultProps = {
   fixation_width: 10,
   fixation_length: 40,
   fixation_outline_size: 2,
-  duration: 5,
+  duration: 5000,
   name: 'plr',
   instructions:
     '\
