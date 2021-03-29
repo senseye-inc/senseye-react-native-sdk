@@ -5,22 +5,21 @@ The Senseye SDK provides direct integration into the Senseye API on both iOS and
 ## What’s in this repo
 ```
 .  
-+-- android/      # Android-specific source code
-+-- ios/          # iOS-specific source code
 +-- docs/         # See Documentation section of this README  
-+-- example/      # Contains an example app that demo usage of the SDK
++-- example/      # Contains an example app that demos usage of the SDK
 +-- src/
-|   +-- api/        # Modules for interfacing with the Senseye API
-|   +-- components/ # Modules for serving Senseye frontend components
-+-- package.json  #  Includes application dependencies, build utilities, and pre-commit hook directives. See contributing guide for more information on these directives
-+-- .circleci/    # (Ignore. Reserved for future development)
+|   +-- api/         # Modules for interfacing with the Senseye API
+|   +-- components/  # Modules for serving Senseye frontend components
++-- package.json     # Includes application dependencies, build utilities, and pre-commit hook directives. See contributing guide for more information on these directives
 ```
 
 ## Included Tasks
 
-1. Calibration
-1. Nystagmus
-1. PLR (Pupillary Light Response)
+- Calibration
+- Nystagmus
+- PLR (Pupillary Light Response)
+- Smooth Pursuit
+
 
 ## Requirements
 
