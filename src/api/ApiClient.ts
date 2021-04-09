@@ -15,19 +15,19 @@ export default class SenseyeApiClient {
   private axios: AxiosInstance;
 
   /**
-   * @param host  Domain name or IP address of the API host. e.g. api.senseye.co[:80]
+   * @param host      Domain name or IP address of the API host. e.g. api.senseye.co[:80]
    * @param basePath  URL path prefix that'll be appended to `host`.
-   * @param token  Authentication token or API key.
+   * @param apiKey    API key.
    */
   constructor(
     host: string = Constants.API_HOST,
     basePath: string = Constants.API_BASE_PATH,
-    token?: string
+    apiKey?: string
   ) {
     let baseUrl = 'https://' + host + basePath;
     let headers: { [key: string]: string } = {};
 
-    if (token) headers.Authorization = 'Bearer ' + token;
+    if (apiKey) headers['x-api-key'] = apiKey;
 
     this.axios = axios.create({
       baseURL: baseUrl,

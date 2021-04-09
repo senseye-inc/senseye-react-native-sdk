@@ -30,7 +30,7 @@ const SurveyTypes: Record<string, SurveyType> = {
  */
 export const Constants = {
   API_HOST: 'api.senseye.co',
-  API_BASE_PATH: '/v1',
+  API_BASE_PATH: '',
   SessionCondition: SessionConditions,
   SurveyType: SurveyTypes,
   PredictedState: {
