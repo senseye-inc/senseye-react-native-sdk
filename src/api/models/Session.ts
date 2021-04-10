@@ -15,7 +15,7 @@ import {
 import type {
   SenseyeApiClient,
   DataResponse,
-  ExperimentData,
+  TaskData,
   SessionData,
   SessionConditionType,
   Models,
@@ -24,7 +24,7 @@ import type {
 /**
  * Class that models a session, facilitating the gathering and association of event
  * and video data generated during a participant's interaction with on-screen
- * stimuli, i.e. experiment or series of experiments.
+ * stimuli, i.e. task or series of tasks.
  */
 export default class Session {
   private apiClient: SenseyeApiClient | undefined;
@@ -36,7 +36,7 @@ export default class Session {
   private videos: Models.Video[];
 
   /**
-   * @param  bufferLimit  The max number of {@link ExperimentData} that can be held
+   * @param  bufferLimit  The max number of {@link TaskData} that can be held
    *                        within any one group by the buffer. If the limit is reached,
    *                        {@link flushData | flushData()} will be automatically triggered.
    */
@@ -197,14 +197,14 @@ export default class Session {
   }
 
   /**
-   * Adds experiment data into a buffer and groups them according to the specified `key`.
+   * Adds task data into a buffer and groups them according to the specified `key`.
    * If any grouping reaches the {@link bufferLimit}, {@link flushData | flushData()}
    * will be automatically triggered.
    *
-   * @param  key  This should ideally be the name of the experiment the data originated from.
-   * @param  data Data generated during an experiment.
+   * @param  key  This should ideally be the name of the task the data originated from.
+   * @param  data Data generated during an task.
    */
-  public addExperimentData(key: string, data: ExperimentData) {
+  public addTaskData(key: string, data: TaskData) {
     if (!this.data[key]) this.data[key] = [data];
     else this.data[key].push(data);
 

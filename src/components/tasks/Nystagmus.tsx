@@ -2,9 +2,9 @@ import * as React from 'react';
 import { Animated, Easing, View, StyleSheet } from 'react-native';
 
 import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
-import type { ExperimentProps } from '@senseyeinc/react-native-senseye-sdk';
+import type { TaskProps } from '@senseyeinc/react-native-senseye-sdk';
 
-export type NystagmusProps = ExperimentProps & {
+export type NystagmusProps = TaskProps & {
   /** The amount of time (milliseconds) the focal point pauses when at the far left and far right side of screen. */
   pause_time: number;
   /** The amount of time (milliseconds) to wait before the assessment starts. */
@@ -17,7 +17,7 @@ export type NystagmusProps = ExperimentProps & {
   targetSize: number;
   /** The color of the moving focal point. */
   targetColor: string;
-  /** initial x-position of the focal point in the experiment. */
+  /** initial x-position of the focal point in the task. */
   initialX: number;
 };
 

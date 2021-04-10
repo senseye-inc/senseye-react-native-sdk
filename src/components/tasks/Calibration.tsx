@@ -2,13 +2,13 @@ import * as React from 'react';
 import { Animated, Dimensions, Easing, View, StyleSheet } from 'react-native';
 
 import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
-import type { ExperimentProps } from '@senseyeinc/react-native-senseye-sdk';
+import type { TaskProps } from '@senseyeinc/react-native-senseye-sdk';
 
 // application window height and width
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
-export type CalibrationProps = ExperimentProps & {
+export type CalibrationProps = TaskProps & {
   /** Amount of time (milliseconds) a dot is displayed on-screen. */
   duration: number;
   /** Delay (milliseconds) between render of old dot and new dot. */
@@ -22,7 +22,7 @@ export type CalibrationProps = ExperimentProps & {
 };
 
 /**
- * This experiment is used to calibrate the gaze tracking system to provide accurate
+ * This task is used to calibrate the gaze tracking system to provide accurate
  * gaze information used to assess behavior in the other tasks.
  */
 export default function Calibration(props: CalibrationProps) {

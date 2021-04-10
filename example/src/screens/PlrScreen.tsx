@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Modal, Text, View } from 'react-native';
 import {
-  Experiments,
+  Tasks,
   SenseyeButton,
 } from '@senseyeinc/react-native-senseye-sdk';
 
@@ -28,7 +28,7 @@ export default function PlrScreen() {
         onPress={() => setIsShowModal(true)}
       />
       <Modal visible={isShowModal} onRequestClose={() => setIsShowModal(false)}>
-        <Experiments.Plr onEnd={() => setIsShowModal(false)} />
+        <Tasks.Plr onEnd={() => setIsShowModal(false)} />
       </Modal>
     </View>
   );

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Modal, Text, View } from 'react-native';
 import {
-  Experiments,
+  Tasks,
   SenseyeButton,
 } from '@senseyeinc/react-native-senseye-sdk';
 import { calibrationPatterns } from '@senseyeinc/react-native-senseye-sdk';
@@ -39,7 +39,7 @@ export default function CalibrationScreen() {
         onPress={() => setIsShowModal(true)}
       />
       <Modal visible={isShowModal} onRequestClose={() => setIsShowModal(false)}>
-        <Experiments.Calibration
+        <Tasks.Calibration
           onEnd={() => setIsShowModal(false)}
           dot_points={selectPattern()}
         />

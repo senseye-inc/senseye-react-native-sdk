@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Modal, Text, View } from 'react-native';
 import {
-  Experiments,
+  Tasks,
   SenseyeButton,
 } from '@senseyeinc/react-native-senseye-sdk';
 
@@ -24,7 +24,7 @@ export default function SmoothPursuitScreen() {
         onPress={() => setIsShowModal(true)}
       />
       <Modal visible={isShowModal} onRequestClose={() => setIsShowModal(false)}>
-        <Experiments.SmoothPursuit
+        <Tasks.SmoothPursuit
           cycles={3}
           iterations={3}
           onEnd={() => setIsShowModal(false)}
