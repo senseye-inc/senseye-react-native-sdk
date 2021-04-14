@@ -84,11 +84,11 @@ export type TaskStatus =
 
 export type Datum = boolean | number | string;
 
-export type ExperimentData = {
+export type TaskData = {
   timestamp: number;
   data: { [key: string]: any };
 };
-export type SessionData = { [key: string]: Array<ExperimentData> };
+export type SessionData = { [key: string]: Array<TaskData> };
 
 export type SessionConditionType =
   | 'GOOD'
@@ -142,21 +142,21 @@ export type VideoRecorderObject = {
   stopRecording(): void;
 };
 
-export type ExperimentProps = {
-  /** Name of the experiment. */
+export type TaskProps = {
+  /** Name of the task. */
   name: string;
-  /** Instructions to follow during the experiment. */
+  /** Instructions to follow during the task. */
   instructions: string;
-  /** Background color of experiment. */
+  /** Background color of task. */
   background: any;
   /** Use to adjust the width of canvas. */
   width: any;
   /** Use to adjust the height of canvas. */
   height: any;
-  /** Function called on experiment start. */
+  /** Function called on task start. */
   onStart?(): void;
-  /** Function called on experiment end. */
+  /** Function called on task end. */
   onEnd?(): void;
-  /** Function called on each animation update during the experiment. */
-  onUpdate?(data: ExperimentData): void;
+  /** Function called on each animation update during the task. */
+  onUpdate?(data: TaskData): void;
 };

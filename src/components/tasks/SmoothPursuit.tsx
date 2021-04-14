@@ -2,13 +2,13 @@ import * as React from 'react';
 import { Animated, Dimensions, View, StyleSheet } from 'react-native';
 
 import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
-import type { ExperimentProps } from '@senseyeinc/react-native-senseye-sdk';
+import type { TaskProps } from '@senseyeinc/react-native-senseye-sdk';
 
 // window screen height and width
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
-export type SmoothPursuitProps = ExperimentProps & {
+export type SmoothPursuitProps = TaskProps & {
   /** Defines the number of cycles in an iteration the moving target will circle around the stationary target. */
   cycles: number;
   /** Defines the number of times the moving target will appear and perform its cycles. */

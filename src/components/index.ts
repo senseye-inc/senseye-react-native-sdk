@@ -1,14 +1,14 @@
-import ExperimentRunner, { ExperimentRunnerProps } from './ExperimentRunner';
+import TaskRunner, { TaskRunnerProps } from './TaskRunner';
 import VideoRecorder, { VideoRecorderProps } from './VideoRecorder';
 import SenseyeButton, { SenseyeButtonProps } from './SenseyeButton';
 import SenseyePicker, { SenseyePickerProps } from './SenseyePicker';
 import SenseyeTextInput, { SenseyeTextInputProps } from './SenseyeTextInput';
-import * as Experiments from './experiments';
+import * as Tasks from './tasks';
 import * as Surveys from './surveys';
 
 export {
-  ExperimentRunner,
-  ExperimentRunnerProps,
+  TaskRunner,
+  TaskRunnerProps,
   VideoRecorder,
   VideoRecorderProps,
   SenseyeButton,
@@ -17,14 +17,14 @@ export {
   SenseyePickerProps,
   SenseyeTextInput,
   SenseyeTextInputProps,
-  Experiments,
+  Tasks,
   Surveys,
 };
 
-export { CalibrationProps } from './experiments/Calibration';
-export { NystagmusProps } from './experiments/Nystagmus';
-export { PlrProps } from './experiments/Plr';
-export { SmoothPursuitProps } from './experiments/SmoothPursuit';
+export { CalibrationProps } from './tasks/Calibration';
+export { NystagmusProps } from './tasks/Nystagmus';
+export { PlrProps } from './tasks/Plr';
+export { SmoothPursuitProps } from './tasks/SmoothPursuit';
 
 export { DemographicSurveyProps } from './surveys/Demographic';
 export { ValidationSurveyProps } from './surveys/Validation';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Modal, Text, View } from 'react-native';
 import {
-  Experiments,
+  Tasks,
   SenseyeButton,
 } from '@senseyeinc/react-native-senseye-sdk';
 
@@ -27,7 +27,7 @@ export default function NystagmusScreen() {
         onPress={() => setIsShowModal(true)}
       />
       <Modal visible={isShowModal} onRequestClose={() => setIsShowModal(false)}>
-        <Experiments.Nystagmus
+        <Tasks.Nystagmus
           iterations={3}
           onEnd={() => setIsShowModal(false)}
         />
