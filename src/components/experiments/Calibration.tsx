@@ -18,7 +18,7 @@ export type CalibrationProps = ExperimentProps & {
   /** Defines the color of the dots. */
   dot_color: string;
   /** Determines the x,y coordinates of the sequence of dots on the screen. */
-  dot_points: [number, number][];
+  dot_points: number[][];
 };
 
 /**

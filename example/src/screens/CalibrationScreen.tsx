@@ -4,12 +4,22 @@ import {
   Experiments,
   SenseyeButton,
 } from '@senseyeinc/react-native-senseye-sdk';
+import { calibrationPatterns } from '@senseyeinc/react-native-senseye-sdk';
 
 import { styles } from '../styles';
 
 export default function CalibrationScreen() {
   const [isShowModal, setIsShowModal] = React.useState<boolean>(false);
-
+  //a series of calibration patterns (x,y) to select from
+  const selectPattern = () => {
+    //length of array
+    let length = calibrationPatterns.length;
+    //randomly selects an index within array range
+    let i = Math.floor(length * Math.random());
+    //chosen pattern schema
+    let pattern = calibrationPatterns[i];
+    return pattern;
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.text}>
@@ -29,7 +39,10 @@ export default function CalibrationScreen() {
         onPress={() => setIsShowModal(true)}
       />
       <Modal visible={isShowModal} onRequestClose={() => setIsShowModal(false)}>
-        <Experiments.Calibration onEnd={() => setIsShowModal(false)} />
+        <Experiments.Calibration
+          onEnd={() => setIsShowModal(false)}
+          dot_points={selectPattern()}
+        />
       </Modal>
     </View>
   );
