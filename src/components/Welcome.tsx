@@ -15,12 +15,10 @@ export function Welcome() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.bodyContainer}>
-        <View style={styles.logoContainer}>
-          <Image
-            style={styles.logo}
-            source={require('../assets/senseye-orm-check.png')}
-          />
-        </View>
+        <Image
+          style={styles.logo}
+          source={require('../assets/senseye-orm-check.png')}
+        />
         <View style={styles.textContainer}>
           <Text style={styles.text}>
             {'This application uses the front facing camera'}
@@ -61,11 +59,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
   },
-  logoContainer: {
-    position: 'relative',
-    zIndex: 9,
-    marginBottom: 10,
-  },
   logo: {
     minHeight: 50,
     maxHeight: 190,
@@ -75,9 +68,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     resizeMode: 'contain',
     margin: 0,
-  },
-  warning: {
-    color: '#d7b357',
   },
   text: {
     color: '#9FB7C6',
