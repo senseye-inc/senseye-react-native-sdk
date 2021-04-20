@@ -14,14 +14,13 @@ const WINDOW_WIDTH = Dimensions.get('window').width;
 export function Welcome() {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.logoContainer}>
-        <Image
-          style={styles.logo}
-          source={require('../assets/senseye-white-logo.png')}
-        />
-        <Text style={[styles.text, styles.h3]}>{'ORM Check'}</Text>
-      </View>
       <View style={styles.bodyContainer}>
+        <View style={styles.logoContainer}>
+          <Image
+            style={styles.logo}
+            source={require('../assets/senseye-orm-check.png')}
+          />
+        </View>
         <View style={styles.textContainer}>
           <Text style={styles.text}>
             {'This application uses the front facing camera'}
@@ -73,15 +72,9 @@ const styles = StyleSheet.create({
     height: 10,
     minWidth: 90,
     maxWidth: 160,
-    alignSelf: 'flex-start',
-    resizeMode: 'cover',
-    margin: 10,
-  },
-  h3: {
-    color: '#00D8BB',
-    position: 'absolute',
-    top: 50,
-    left: 80,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+    margin: 0,
   },
   warning: {
     color: '#d7b357',
