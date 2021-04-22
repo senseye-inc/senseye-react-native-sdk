@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Alert, Modal, Text, View } from 'react-native';
+import { Alert, Modal, Text, View, ViewStyle, TextStyle } from 'react-native';
 import CameraRoll from '@react-native-community/cameraroll';
 import {
   TaskRunner,
@@ -8,7 +8,7 @@ import {
   SenseyeButton,
 } from '@senseyeinc/react-native-senseye-sdk';
 
-import { styles } from '../styles';
+import { Spacing, Typography } from '../styles';
 
 export default function FullDemoScreen() {
   const [isShowModal, setIsShowModal] = React.useState<boolean>(false);
@@ -36,8 +36,8 @@ export default function FullDemoScreen() {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>
+    <View style={Spacing.container as ViewStyle}>
+      <Text style={Typography.text as TextStyle}>
         A demonstration of the TaskRunner component, which is cabable of
         executing a series of tasks while orchestrating video recording and data
         collection during its session.
