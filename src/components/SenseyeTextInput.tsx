@@ -9,6 +9,9 @@ export type SenseyeTextInputProps = {
   value: string;
   height: string | number;
   width: string | number;
+  background: string;
+  borderBottomColor: string;
+  borderBottomWidth: number;
   onChangeText?(text: string): void;
 };
 
@@ -28,6 +31,8 @@ export default function SenseyeTextInput(props: SenseyeTextInputProps) {
         placeholder={props.placeholderText}
         placeholderTextColor={props.placeholderTextColor}
         value={props.value}
+        returnKeyType={'done'}
+        returnKeyLabel={'done'}
         onChangeText={(text) => _onChangeText(text)}
       />
     </View>
@@ -47,7 +52,9 @@ const styles = (props: SenseyeTextInputProps) =>
     inputContainer: {
       height: props.height,
       width: props.width,
-      backgroundColor: '#191C31',
+      backgroundColor: props.background,
+      borderBottomColor: props.borderBottomColor,
+      borderBottomWidth: props.borderBottomWidth,
       color: '#0FA697',
       marginBottom: 20,
     },
@@ -65,4 +72,7 @@ SenseyeTextInput.defaultProps = {
   placeholderTextColor: 'rgba(216,249,255, 0.2)',
   height: 70,
   width: 'auto',
+  background: '#191C31',
+  borderBottomColor: 'transparent',
+  borderBottomWidth: 0,
 };
