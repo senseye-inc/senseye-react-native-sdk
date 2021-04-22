@@ -41,14 +41,6 @@ export default function SenseyeTextInput(props: SenseyeTextInputProps) {
 
 const styles = (props: SenseyeTextInputProps) =>
   StyleSheet.create({
-    text: {
-      color: '#0FA697',
-      marginLeft: 10,
-      marginTop: 5,
-      padding: 5,
-      textTransform: 'uppercase',
-      fontWeight: '700',
-    },
     inputContainer: {
       height: props.height,
       width: props.width,
@@ -57,6 +49,14 @@ const styles = (props: SenseyeTextInputProps) =>
       borderBottomWidth: props.borderBottomWidth,
       color: '#0FA697',
       marginBottom: 20,
+    },
+    text: {
+      color: '#0FA697',
+      marginLeft: 10,
+      marginTop: 5,
+      padding: 5,
+      textTransform: 'uppercase',
+      fontWeight: '700',
     },
     inputField: {
       marginLeft: 10,
