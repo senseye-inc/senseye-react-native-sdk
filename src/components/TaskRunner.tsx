@@ -42,9 +42,7 @@ export type TaskRunnerProps = {
  * Component that executes a series of {@link Tasks} passed in as children elements (`props.children`).
  * Orchestrates video recording and data collection throughout the tasks (one video per task).
  */
-const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (
-  props
-) => {
+const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
   const { sessionConfig, onEnd, onInitializationError } = props;
   const [recorder, setRecorder] = React.useState<VideoRecorderObject>();
   const [taskIndex, setTaskIndex] = React.useState<number>(0);
@@ -73,9 +71,7 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (
     if (recorder) {
       setIsRecording(true);
       recorder
-        .startRecording(
-          taskIndex + '_' + children[taskIndex].props.name
-        )
+        .startRecording(taskIndex + '_' + children[taskIndex].props.name)
         .then((video) => {
           videos.push(video);
           if (session) {

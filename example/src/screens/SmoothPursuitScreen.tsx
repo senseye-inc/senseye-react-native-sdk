@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { Modal, Text, View } from 'react-native';
-import {
-  Tasks,
-  SenseyeButton,
-} from '@senseyeinc/react-native-senseye-sdk';
+import { Tasks, SenseyeButton } from '@senseyeinc/react-native-senseye-sdk';
 
 import { styles } from '../styles';
 

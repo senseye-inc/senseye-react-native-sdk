@@ -39,8 +39,8 @@ export default function FullDemoScreen() {
     <View style={styles.container}>
       <Text style={styles.text}>
         A demonstration of the TaskRunner component, which is cabable of
-        executing a series of tasks while orchestrating video recording
-        and data collection during its session.
+        executing a series of tasks while orchestrating video recording and data
+        collection during its session.
         {'\n\n'}
         This demo will execute the Calibration, Nystagmus, and Plr tasks. A
         video will be recorded for each task and stored in the the device's
