@@ -11,7 +11,10 @@ import {
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 
-export function Welcome() {
+export type WelcomeProps = {
+  welcomeMessage: string;
+};
+export function Welcome(props: WelcomeProps) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.bodyContainer}>
@@ -20,15 +23,7 @@ export function Welcome() {
           source={require('../assets/senseye-orm-check.png')}
         />
         <View style={styles.textContainer}>
-          <Text style={styles.text}>
-            {'This application uses the front facing camera'}
-          </Text>
-          <Text style={styles.text}>
-            {
-              'For optimal data collection the app will rotate on the next screen'
-            }
-          </Text>
-          <Text style={styles.text}>{'Please rotate phone accordingly'}</Text>
+          <Text style={styles.text}>{props.welcomeMessage}</Text>
         </View>
         <Image
           style={styles.arrow}
@@ -85,3 +80,11 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
 });
+
+Welcome.defaultProps = {
+  welcomeMessage:
+    '\
+  This application uses the front facing camera. \
+  \n\n For optimal data collection the app will rotate on the next screen.\
+  \n\n Please rotate phone accordingly. ',
+};
