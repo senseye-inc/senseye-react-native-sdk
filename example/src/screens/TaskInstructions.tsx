@@ -2,7 +2,7 @@
 import React from 'react';
 import { SafeAreaView, StyleSheet, Text, Modal, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { SenseyeButton } from '../../../src/components';
+import { SenseyeButton } from '@senseyeinc/react-native-senseye-sdk';
 import { Colors, Typography, Spacing, Sizing } from '../styles';
 
 type TaskInstructionsProps = {
