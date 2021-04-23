@@ -14,18 +14,19 @@ import {
   Models,
   Constants,
 } from '@senseyeinc/react-native-senseye-sdk';
-import type { ComputeResult } from '@senseyeinc/react-native-senseye-sdk';
+import type { PredictionResult } from '@senseyeinc/react-native-senseye-sdk';
 
 // gets application window height and width
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
 export type ValidationSurveyProps = {
-  results: ComputeResult[];
+  result: PredictionResult;
   onComplete?(survey: Models.Survey): void;
 };
 
 export default function ValidationSurvey(props: ValidationSurveyProps) {
+  const { result, onComplete } = props;
   const [resultIcon, setResultIcon] = React.useState<JSX.Element>(Xmark);
   const [resultMsg, setResultMsg] = React.useState(
     'Senseye models indicate the user is not fit for duty.'
@@ -33,42 +34,30 @@ export default function ValidationSurvey(props: ValidationSurveyProps) {
   const validationQuestion = 'Do you agree with this result?';
 
   function _onComplete(agreed: boolean) {
-    if (props.onComplete) {
+    if (onComplete) {
       // generate a survey model and pass it into the callback
       const survey = new Models.Survey(
         Constants.SurveyType.VALIDATION,
         { agreed: [validationQuestion, agreed] },
         result
       );
-      props.onComplete(survey);
+      onComplete(survey);
     }
   }
 
-  const result = props.results[0];
-
   React.useEffect(() => {
-    if (!result) {
-      throw Error("At least one entry is required in 'results'.");
-    } else if (
-      result.prediction.predicted_state === Constants.PredictedState.READY
-    ) {
+    if (result.prediction.state === Constants.PredictedState.SAFE) {
       setResultIcon(Checkmark);
-      setResultMsg('Senseye models indicate the user is fit for duty.');
-    } else if (
-      result.prediction.predicted_state ===
-      Constants.PredictedState.NOT_READY_FATIGUE
-    ) {
+      setResultMsg('Senseye models indicate the user is likely fit for duty.');
+    } else if (result.prediction.state === Constants.PredictedState.UNSAFE) {
       setResultIcon(Xmark);
       setResultMsg(
-        'Senseye models indicate the user is too fatigued for duty.'
+        'Senseye models indicate the user is likely too fatigued or intoxicated for duty.'
       );
-    } else if (
-      result.prediction.predicted_state ===
-      Constants.PredictedState.NOT_READY_BAC
-    ) {
+    } else if (result.prediction.state === Constants.PredictedState.UNKNOWN) {
       setResultIcon(Xmark);
       setResultMsg(
-        'Senseye models indicate the user is too intoxicated for duty.'
+        'Senseye models received invalid or not enough data to make a confident prediction.'
       );
     }
   }, [result]);

@@ -34,9 +34,9 @@ export const Constants = {
   SessionCondition: SessionConditions,
   SurveyType: SurveyTypes,
   PredictedState: {
-    READY: 'Ready',
-    NOT_READY_FATIGUE: 'Not Ready: Fatigued',
-    NOT_READY_BAC: 'Not Ready: Drunk',
+    SAFE: 0,
+    UNSAFE: 1,
+    UNKNOWN: -1,
   },
   JobStatus: {
     QUEUED: 'in_queue',

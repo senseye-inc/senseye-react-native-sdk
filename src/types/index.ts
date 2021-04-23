@@ -45,21 +45,27 @@ export type ComputeJobResponse = {
   timestamp?: string;
 };
 
-export type ComputeResult = {
-  eye_features: { [key: string]: number };
+export type PredictionResult = {
+  version: string;
   prediction: {
     /** [0-1] Value closer to 1 indicate higher probability of fatigue. */
-    fatigue_prediction?: number;
-    /** [0-1] Value closer to 1 indicate higher probability the participant is drunk. */
-    bac_prediction?: number;
-    /** [0-1] Value closer to 1 indicate higher probability of high cognitive load. */
-    cog_load_prediction?: number;
+    fatigue: number | null;
+    /** [0-1] Value closer to 1 indicate higher probability of intoxication. */
+    intoxication: number | null;
     /**
-     * Final predicted state of subject in analyzed video.
-     * Possible values: `Ready` | `Not Ready: Fatigued` | `Not Ready: Drunk`
+     * Can be specified during the initial predict request, and is compared against
+     * `fatigue` and `intoxication` to determine `state`. Defaults to 0.5
      */
-    predicted_state: string;
+    threshold: number;
+    /**
+     * Predicted state of the subject in the analyzed video(s).
+     * Possible values: 0 | 1 | -1
+     */
+    state: number;
+    /** Total processing time of the prediction job */
+    processing_time: number;
   };
+  error?: any;
 };
 
 export type Datum = boolean | number | string;
