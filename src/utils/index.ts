@@ -38,14 +38,11 @@ export const Constants = {
     NOT_READY_FATIGUE: 'Not Ready: Fatigued',
     NOT_READY_BAC: 'Not Ready: Drunk',
   },
-  TaskStatus: {
-    PENDING: 'PENDING',
-    RECEIVED: 'RECEIVED',
-    STARTED: 'STARTED',
-    SUCCESS: 'SUCCESS',
-    FAILURE: 'FAILURE',
-    REVOKED: 'REVOKED',
-    RETRY: 'RETRY',
+  JobStatus: {
+    QUEUED: 'in_queue',
+    STARTED: 'in_progress',
+    COMPLETED: 'completed',
+    FAILED: 'failed',
   },
   FormData: {
     GENDER: {
