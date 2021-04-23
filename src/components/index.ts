@@ -5,7 +5,7 @@ import SenseyePicker, { SenseyePickerProps } from './SenseyePicker';
 import SenseyeTextInput, { SenseyeTextInputProps } from './SenseyeTextInput';
 import * as Experiments from './experiments';
 import * as Surveys from './surveys';
-import * as Welcome from './Welcome';
+import { Welcome } from './Welcome';
 
 export {
   ExperimentRunner,
