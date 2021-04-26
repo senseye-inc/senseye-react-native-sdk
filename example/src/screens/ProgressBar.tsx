@@ -21,13 +21,14 @@ function useInterval(callback: (() => void) | undefined, delay: number | null) {
       let id = setInterval(tick, delay);
       return () => clearInterval(id);
     }
+    return;
   }, [delay]);
 }
 export type ProgressBarProps = {
   /** denotes how much of the video has been uploaded */
   uploadProgress: string | number;
 };
-const ProgressBar = (props: ProgressBarProps) => {
+const ProgressBar = (_props: ProgressBarProps) => {
   let animation = useRef(new Animated.Value(0));
   const [progress, setProgress] = useState(0);
   useInterval(() => {
