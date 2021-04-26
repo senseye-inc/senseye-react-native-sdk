@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
   childContainer: {
     ...Spacing.childContainer,
     ...Sizing.childContainer,
+    ...Colors.shadow,
     backgroundColor: Colors.secondary.light,
   },
   bodyContainer: {

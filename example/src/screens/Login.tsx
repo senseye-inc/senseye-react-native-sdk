@@ -75,6 +75,7 @@ const styles = StyleSheet.create<Styles>({
   childContainer: {
     ...Spacing.childContainer,
     ...Sizing.childContainer,
+    ...Colors.shadow,
     backgroundColor: Colors.secondary.light,
   },
   bodyContainer: {
