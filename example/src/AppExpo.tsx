@@ -2,7 +2,6 @@ import * as React from 'react';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { styles } from './styles';
 import {
   CalibrationScreen,
   NystagmusScreen,
@@ -30,7 +29,7 @@ export default function App() {
       <Tab.Navigator
         initialRouteName="Calibration"
         tabBarOptions={{
-          labelStyle: styles.tabLabel,
+          labelStyle: { padding: 7, fontSize: 10 },
         }}
       >
         <Tab.Screen name="Calibration" component={CalibrationScreen} />

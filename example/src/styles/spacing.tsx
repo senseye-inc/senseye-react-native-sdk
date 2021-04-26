@@ -1,9 +1,23 @@
-/* container for tabbed navigation menu */
+/* container for tabbed navigation menu and general containers */
 export const container = {
   flex: 1,
-  alignItems: 'center',
-  justifyContent: 'space-evenly',
+  alignItems: 'center' as 'center',
+  justifyContent: 'space-evenly' as 'space-evenly',
   padding: 20,
+};
+
+/* flexbox centered recipe */
+export const centeredFlexView = {
+  flex: 1,
+  justifyContent: 'center' as 'center',
+  alignItems: 'center' as 'center',
+};
+/* recipe for centering without flex */
+export const marginAuto = {
+  marginLeft: 'auto',
+  marginRight: 'auto',
+  marginBottom: 5,
+  marginTop: 5,
 };
 
 /* nestled child layer for parent container */
