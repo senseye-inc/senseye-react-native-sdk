@@ -3,12 +3,12 @@ import { Alert, Modal, StyleSheet, Text, View } from 'react-native';
 
 import { VideoRecorder, Models } from '@senseyeinc/react-native-senseye-sdk';
 import type {
-  ExperimentData,
+  TaskData,
   SenseyeApiClient,
   VideoRecorderObject,
 } from '@senseyeinc/react-native-senseye-sdk';
 
-export type ExperimentRunnerProps = {
+export type TaskRunnerProps = {
   /**
    * Specifying this will prompt the runner to initialize a {@link Session} and
    * perform data collection using Senseye's API (requires an internet connection).
@@ -25,7 +25,7 @@ export type ExperimentRunnerProps = {
     demographicSurvey: Models.Survey;
   };
   /**
-   * Function to be called once all experiments are complete. If a session was initialized,
+   * Function to be called once all tasks are complete. If a session was initialized,
    * `session` will be an initialized {@link Session} and `videos` a list of initialized
    * {@link Video | Videos} that are ready to upload. Otherwise, `session` will be undefined
    * and `videos` a list of uninitialized {@link Video | Videos}.
@@ -39,15 +39,13 @@ export type ExperimentRunnerProps = {
 };
 
 /**
- * Component that executes a series of {@link Experiments} passed in as children elements (`props.children`).
- * Orchestrates video recording and data collection throughout the experiments (one video per experiment).
+ * Component that executes a series of {@link Tasks} passed in as children elements (`props.children`).
+ * Orchestrates video recording and data collection throughout the tasks (one video per task).
  */
-const ExperimentRunner: React.FunctionComponent<ExperimentRunnerProps> = (
-  props
-) => {
+const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
   const { sessionConfig, onEnd, onInitializationError } = props;
   const [recorder, setRecorder] = React.useState<VideoRecorderObject>();
-  const [experimentIndex, setExperimentIndex] = React.useState<number>(0);
+  const [taskIndex, setTaskIndex] = React.useState<number>(0);
   const [isPreview, setIsPreview] = React.useState<boolean>(true);
   const [isInitialized, setIsInitialized] = React.useState<boolean>(false);
   const [isRecording, setIsRecording] = React.useState<boolean>(false);
@@ -73,9 +71,7 @@ const ExperimentRunner: React.FunctionComponent<ExperimentRunnerProps> = (
     if (recorder) {
       setIsRecording(true);
       recorder
-        .startRecording(
-          experimentIndex + '_' + children[experimentIndex].props.name
-        )
+        .startRecording(taskIndex + '_' + children[taskIndex].props.name)
         .then((video) => {
           videos.push(video);
           if (session) {
@@ -86,21 +82,21 @@ const ExperimentRunner: React.FunctionComponent<ExperimentRunnerProps> = (
           setIsRecording(false);
         });
     }
-  }, [recorder, session, videos, children, experimentIndex]);
+  }, [recorder, session, videos, children, taskIndex]);
 
-  const onExperimentUpdate = React.useCallback(
-    (data: ExperimentData) => {
+  const onTaskUpdate = React.useCallback(
+    (data: TaskData) => {
       if (session) {
-        session.addExperimentData(
-          experimentIndex + '_' + children[experimentIndex].props.name,
+        session.addTaskData(
+          taskIndex + '_' + children[taskIndex].props.name,
           data
         );
       }
     },
-    [session, children, experimentIndex]
+    [session, children, taskIndex]
   );
 
-  const onExperimentEnd = React.useCallback(() => {
+  const onTaskEnd = React.useCallback(() => {
     if (recorder) {
       recorder.stopRecording();
     }
@@ -119,7 +115,7 @@ const ExperimentRunner: React.FunctionComponent<ExperimentRunnerProps> = (
   }, [session, videos, onEnd]);
 
   const _onInitializationError = React.useCallback(() => {
-    // initialization failed, but unblock the runner to execute experiments w/o data collection
+    // initialization failed, but unblock the runner to execute tasks w/o data collection
     setIsInitialized(true);
 
     if (onInitializationError) {
@@ -161,23 +157,23 @@ const ExperimentRunner: React.FunctionComponent<ExperimentRunnerProps> = (
     }
   }, [session, sessionConfig, _onInitializationError]);
 
-  // display instructions dialog at preview screen before each experiment
+  // display instructions dialog at preview screen before each task
   React.useEffect(() => {
     if (
       isPreview &&
-      experimentIndex < children.length &&
+      taskIndex < children.length &&
       (isInitialized || !sessionConfig)
     ) {
-      Alert.alert('Instructions', children[experimentIndex].props.instructions);
+      Alert.alert('Instructions', children[taskIndex].props.instructions);
     }
-  }, [isPreview, children, experimentIndex, isInitialized, sessionConfig]);
+  }, [isPreview, children, taskIndex, isInitialized, sessionConfig]);
 
-  // execute onEnd callback once all experiments are complete
+  // execute onEnd callback once all tasks are complete
   React.useEffect(() => {
-    if (experimentIndex >= children.length && !isRecording) {
+    if (taskIndex >= children.length && !isRecording) {
       _onEnd();
     }
-  }, [experimentIndex, children.length, isRecording, _onEnd]);
+  }, [taskIndex, children.length, isRecording, _onEnd]);
 
   return (
     <View style={styles.container}>
@@ -200,15 +196,15 @@ const ExperimentRunner: React.FunctionComponent<ExperimentRunnerProps> = (
           setIsPreview(false);
         }}
         onRecordingEnd={() => {
-          setExperimentIndex((prevIndex) => prevIndex + 1);
+          setTaskIndex((prevIndex) => prevIndex + 1);
           setIsPreview(true);
         }}
       />
       {isPreview
         ? null
-        : React.cloneElement(children[experimentIndex], {
-            onUpdate: onExperimentUpdate,
-            onEnd: onExperimentEnd,
+        : React.cloneElement(children[taskIndex], {
+            onUpdate: onTaskUpdate,
+            onEnd: onTaskEnd,
           })}
     </View>
   );
@@ -241,4 +237,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ExperimentRunner;
+export default TaskRunner;

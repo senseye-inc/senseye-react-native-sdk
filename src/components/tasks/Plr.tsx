@@ -2,9 +2,9 @@ import * as React from 'react';
 import { Animated, Easing, View, StyleSheet } from 'react-native';
 
 import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
-import type { ExperimentProps } from '@senseyeinc/react-native-senseye-sdk';
+import type { TaskProps } from '@senseyeinc/react-native-senseye-sdk';
 
-export type PlrProps = ExperimentProps & {
+export type PlrProps = TaskProps & {
   /** Dictates the color sequence of the background. */
   color_values: string[] | number[];
   /** The centered cross width. */

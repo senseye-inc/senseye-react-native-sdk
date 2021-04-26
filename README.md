@@ -51,11 +51,11 @@ For local development, one of the dependencies is `babel-plugin-module-resolver`
 
 After you have the SDK built or installed, import task components into your React application. For example:
 ```javascript
-import { Experiments } from '@senseyeinc/react-native-senseye-sdk'
+import { Tasks } from '@senseyeinc/react-native-senseye-sdk'
 
 export default function App() {
   return (
-    <Experiments.Calibration />
+    <Tasks.Calibration />
   );
 }
 ```

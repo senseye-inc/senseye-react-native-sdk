@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { Alert, Modal, Text, View } from 'react-native';
+import { Alert, Modal, Text, View, ViewStyle, TextStyle } from 'react-native';
 import CameraRoll from '@react-native-community/cameraroll';
 import {
-  ExperimentRunner,
-  Experiments,
+  TaskRunner,
+  Tasks,
   Models,
   SenseyeButton,
 } from '@senseyeinc/react-native-senseye-sdk';
 
-import { styles } from '../styles';
+import { Spacing, Typography } from '../styles';
 
 export default function FullDemoScreen() {
   const [isShowModal, setIsShowModal] = React.useState<boolean>(false);
@@ -36,11 +36,11 @@ export default function FullDemoScreen() {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>
-        A demonstration of the ExperimentRunner component, which is cabable of
-        executing a series of experiments/tasks while orchestrating video
-        recording and data collection during its session.
+    <View style={Spacing.container as ViewStyle}>
+      <Text style={Typography.text as TextStyle}>
+        A demonstration of the TaskRunner component, which is cabable of
+        executing a series of tasks while orchestrating video recording and data
+        collection during its session.
         {'\n\n'}
         This demo will execute the Calibration, Nystagmus, and Plr tasks. A
         video will be recorded for each task and stored in the the device's
@@ -62,12 +62,12 @@ export default function FullDemoScreen() {
         }}
       >
         {isModalReady ? (
-          <ExperimentRunner onEnd={onEnd}>
-            <Experiments.Calibration />
-            <Experiments.Nystagmus />
-            <Experiments.Plr />
-            <Experiments.SmoothPursuit />
-          </ExperimentRunner>
+          <TaskRunner onEnd={onEnd}>
+            <Tasks.Calibration />
+            <Tasks.Nystagmus />
+            <Tasks.Plr />
+            <Tasks.SmoothPursuit />
+          </TaskRunner>
         ) : null}
       </Modal>
     </View>
