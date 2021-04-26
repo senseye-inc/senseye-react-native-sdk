@@ -3,6 +3,9 @@ import NystagmusScreen from './NystagmusScreen';
 import PlrScreen from './PlrScreen';
 import SmoothPursuitScreen from './SmoothPursuitScreen';
 import FullDemoScreen from './FullDemoScreen';
+import { Login } from './Login';
+import ProcessingScreen from './ProcessingScreen';
+import ProgressBar from './ProgressBar';
 
 export {
   CalibrationScreen,
@@ -10,4 +13,7 @@ export {
   PlrScreen,
   SmoothPursuitScreen,
   FullDemoScreen,
+  Login,
+  ProcessingScreen,
+  ProgressBar,
 };
