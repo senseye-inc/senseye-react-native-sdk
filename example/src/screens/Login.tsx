@@ -12,7 +12,7 @@ import {
 import { SenseyeTextInput } from '@senseyeinc/react-native-senseye-sdk';
 import { Spacing, Colors, Sizing } from '../styles';
 
-export function Login() {
+export default function Login() {
   const [uid, setUID] = React.useState<string>('');
   const [groupID, setGroupID] = React.useState<string>('');
   return (
