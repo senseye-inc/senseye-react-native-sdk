@@ -3,6 +3,7 @@ import NystagmusScreen from './NystagmusScreen';
 import PlrScreen from './PlrScreen';
 import SmoothPursuitScreen from './SmoothPursuitScreen';
 import FullDemoScreen from './FullDemoScreen';
+import Welcome from './Welcome';
 import Login from './Login';
 import TaskInstructions from './TaskInstructions';
 
@@ -12,6 +13,7 @@ export {
   PlrScreen,
   SmoothPursuitScreen,
   FullDemoScreen,
+  Welcome,
   Login,
   TaskInstructions,
 };
