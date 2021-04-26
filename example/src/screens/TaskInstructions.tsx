@@ -9,7 +9,7 @@ type TaskInstructionsProps = {
   taskName: string;
   instruction: string;
 };
-export function TaskInstructions(props: TaskInstructionsProps) {
+export default function TaskInstructions(props: TaskInstructionsProps) {
   const [modalVisible, setModalVisible] = React.useState<boolean>(true);
 
   return (

@@ -19,6 +19,7 @@ export const marginAuto = {
   marginBottom: 5,
   marginTop: 5,
 };
+
 /* nestled child layer for parent container */
 export const childContainer = {
   flex: 1,
