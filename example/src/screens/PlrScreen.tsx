@@ -1,18 +1,14 @@
 import * as React from 'react';
-import { Modal, Text, View } from 'react-native';
-import {
-  Tasks,
-  SenseyeButton,
-} from '@senseyeinc/react-native-senseye-sdk';
-
-import { styles } from '../styles';
+import { Modal, Text, View, ViewStyle, TextStyle } from 'react-native';
+import { SenseyeButton, Tasks } from '@senseyeinc/react-native-senseye-sdk';
+import { Spacing, Typography } from '../styles';
 
 export default function PlrScreen() {
   const [isShowModal, setIsShowModal] = React.useState<boolean>(false);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>
+    <View style={Spacing.container as ViewStyle}>
+      <Text style={Typography.text as TextStyle}>
         Pupillary light reflex (PLR) is a natural reflex in which the pupil
         constricts and expands in response to light. The timing and amplitude of
         this response will vary based on drug/alcohol intoxication and/or
