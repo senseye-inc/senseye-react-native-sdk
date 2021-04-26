@@ -14,20 +14,20 @@ const WINDOW_WIDTH = Dimensions.get('window').width;
 export type WelcomeProps = {
   welcomeMessage: string;
 };
-export function Welcome(props: WelcomeProps) {
+export default function Welcome(props: WelcomeProps) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.bodyContainer}>
         <Image
           style={styles.logo}
-          source={require('../assets/senseye-orm-check.png')}
+          source={require('../../../src/assets/senseye-orm-check.png')}
         />
         <View style={styles.textContainer}>
           <Text style={styles.text}>{props.welcomeMessage}</Text>
         </View>
         <Image
           style={styles.arrow}
-          source={require('../assets/forward-arrow.png')}
+          source={require('../../../src/assets/forward-arrow.png')}
         />
       </View>
     </SafeAreaView>
