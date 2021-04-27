@@ -74,7 +74,7 @@ export default class Session {
 
     this.id = getCurrentTimestamp().toString();
     if (uniqueId) {
-      this.id = uniqueId + '_' + this.id
+      this.id = uniqueId + '_' + this.id;
     }
 
     this.apiClient = apiClient;
@@ -283,13 +283,12 @@ export default class Session {
   // }
 
   /**
-  /**
-   * Initializes the provided video, which associates it with the session.
+   * Initializes the specified video and associates it with the session.
    * See {@link getVideos | getVideos()}.
    *
    * @param  video  Instance of an uninitialized `Video`.
    */
-  public async pushVideo(video: Models.Video) {
+  public async addVideo(video: Models.Video) {
     if (!this.apiClient || !this.id) {
       throw Error('Session must be initialized first.');
     }
@@ -305,10 +304,26 @@ export default class Session {
     return this.videos;
   }
 
-  /**
-   * @returns {@link id}, or `undefined` if the instance hasn't succesfully {@link init | initialized} yet.
-   */
-  public getId() {
-    return this.id;
+  public uploadVideos() {
+    this.videos.forEach((v) => {
+      if (v.getUploadProgress() === -1) v.uploadFile();
+    });
   }
+
+  public getUploadProgress() {
+    let totalProgress = 0;
+    this.videos.forEach((v) => {
+      const p = v.getUploadProgress();
+      totalProgress += p === -1 ? 0 : p;
+    });
+
+    return totalProgress / this.videos.length;
+  }
+
+  // /**
+  //  * @returns {@link id}, or `undefined` if the instance hasn't succesfully {@link init | initialized} yet.
+  //  */
+  // public getId() {
+  //   return this.id;
+  // }
 }

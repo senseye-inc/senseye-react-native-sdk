@@ -75,7 +75,7 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
         .then((video) => {
           videos.push(video);
           if (session) {
-            session.pushVideo(video);
+            session.addVideo(video);
           }
         })
         .finally(() => {

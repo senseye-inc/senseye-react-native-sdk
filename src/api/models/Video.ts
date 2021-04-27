@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { Platform } from 'react-native';
 import type { AxiosRequestConfig } from 'axios';
 
@@ -142,31 +143,33 @@ export default class Video {
   /**
    * Uploads a file and associates it with the video model.
    *
-   * @param  uri        Video file URI. (Android) Ensure it is prefixed with `file://`.
+   * @param  uri        Video file URI. (Android) Needs to be prefixed with `file://`.
    *                      Defaults to {@link uri} (see {@link setUri | setUri()}).
    * @param  codec      Specifies the codec of the video file.
-   * @param  overwrite  Specifies whether to overwrite a previously uploaded file.
-   * @returns           A `Promise` that will produce the video's updated metadata.
    */
-  public async uploadFile(
-    uri: string = this.uri,
-    codec: string = 'mp4',
-    overwrite: boolean = false
-  ) {
+  public async uploadFile(uri: string = this.uri, codec: string = 'mp4') {
     if (!this.apiClient || !this.id) {
       throw Error('Video must be initialized first.');
     }
 
-    const data = new FormData();
-    data.append('video', {
+    const { data } = await this.apiClient.post('/data/generate-upload-url', {
+      key: this.id,
+    });
+
+    const formData = new FormData();
+    Object.keys(data.fields).forEach((key) => {
+      formData.append(key, data.fields[key]);
+    });
+    formData.append('file', {
       name: uri.substring(uri.lastIndexOf('/') + 1, uri.length),
       type: 'video/' + codec,
       uri: Platform.OS === 'android' ? uri : uri.replace('file://', ''),
     });
-    const config: AxiosRequestConfig = {
-      url: '/data/videos/' + this.id + '/upload',
-      method: overwrite ? 'put' : 'post',
-      data: data,
+
+    const requestConfig: AxiosRequestConfig = {
+      url: data.url,
+      method: 'post',
+      data: formData,
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -177,9 +180,7 @@ export default class Video {
       },
     };
 
-    const video = (await this.apiClient.request(config)).data.data;
-
-    return video;
+    return axios.request(requestConfig);
   }
 
   /**
