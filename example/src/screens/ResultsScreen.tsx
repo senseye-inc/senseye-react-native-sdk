@@ -1,36 +1,34 @@
 import React from 'react';
 import { View, Image, StyleSheet, SafeAreaView, Text } from 'react-native';
 import { Spacing, Sizing, Colors, Typography } from '../styles';
-import type { PredictionResult } from '@senseyeinc/react-native-senseye-sdk';
+import * as Assets from '../../../src/assets';
 
 export type ResultsScreenProps = {
-  result: PredictionResult;
+  /** number to represent FFD */
+  result: number;
+  /** displays a custom message to user */
   message: string;
+  /** disclaimer message to user */
   disclaimer: string;
 };
 export default function ResultsScreen(props: ResultsScreenProps) {
-  const icon;
-  icon
+  const resultIcon =
+    props.result === 0
+      ? Assets.checkmarkIcon
+      : props.result === 1
+      ? Assets.xIcon
+      : Assets.insufficientIcon;
   return (
     <SafeAreaView style={styles.parentContainer}>
       <View style={styles.childContainer}>
-        <Image
-          style={styles.logo}
-          source={require('../../../src/assets/senseye-orm-check.png')}
-        />
+        <Image style={styles.logo} source={Assets.ormCheckLogo} />
         <View style={styles.bodyContainer}>
-          <Image
-            style={styles.icon}
-            source={require(`../../../src/assets/${icon}.png`)}
-          />
+          <Image style={styles.icon} source={resultIcon} />
           <Text style={styles.text}>{props.message}</Text>
         </View>
       </View>
       <View style={styles.footer}>
-        <Image
-          style={styles.logo}
-          source={require('../../../src/assets/warning.png')}
-        />
+        <Image style={styles.logo} source={Assets.warningIcon} />
         <Text style={styles.warning}>{props.disclaimer}</Text>
       </View>
     </SafeAreaView>
@@ -74,7 +72,7 @@ const styles = StyleSheet.create({
 });
 
 ResultsScreen.defaultProps = {
-  result: 'not ready',
+  result: -1,
   message: '',
   disclaimer:
     'RESULTS ARE CURRENTLY IN BETA AND SHOULD NOT BE INCORPORATED INTO WORKFLOW',
