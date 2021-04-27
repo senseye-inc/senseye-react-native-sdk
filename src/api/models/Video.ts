@@ -174,9 +174,7 @@ export default class Video {
         'Content-Type': 'multipart/form-data',
       },
       onUploadProgress: (progressEvent: ProgressEvent) => {
-        this.uploadProgress = Math.round(
-          (progressEvent.loaded * 100) / progressEvent.total
-        );
+        this.uploadProgress = progressEvent.loaded / progressEvent.total;
       },
     };
 
@@ -186,7 +184,7 @@ export default class Video {
   /**
    * Use this to track upload progress after calling {@link uploadFile | uploadFile()}.
    *
-   * @returns The upload percentage as a number from 0 to 100, and -1 if
+   * @returns The upload percentage as a number from 0.0 to 1.0, and -1 if
    *            {@link uploadFile | uploadFile()} has not been executed yet.
    */
   public getUploadProgress() {
