@@ -26,14 +26,6 @@ export const childContainer = {
   justifyContent: 'space-between' as 'space-between',
   margin: 30,
   padding: 30,
-  shadowColor: '#000',
-  shadowOffset: {
-    width: 0,
-    height: 2,
-  },
-  shadowOpacity: 0.25,
-  shadowRadius: 4,
-  elevation: 5,
 };
 /* contains main body of content */
 export const bodyContainer = {
@@ -55,4 +47,13 @@ export const logo = {
   alignSelf: 'center' as 'center',
   resizeMode: 'contain' as 'contain',
   margin: 0,
+};
+/* footer */
+export const footer = {
+  paddingLeft: 10,
+  paddingRight: 10,
+  flex: 3,
+  flexDirection: 'row' as 'row',
+  alignItems: 'center' as 'center',
+  justifyContent: 'space-evenly' as 'space-evenly',
 };
