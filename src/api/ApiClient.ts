@@ -35,16 +35,8 @@ export default class SenseyeApiClient {
     });
   }
 
-  public async request<T = any>(config: AxiosRequestConfig) {
-    try {
-      return this.axios.request<T>(config);
-    } catch (error) {
-      if (error.response && error.response.data.error) {
-        // extract Senseye's custom http error message
-        error.message = error.response.data.error.message;
-      }
-      throw error;
-    }
+  public request<T = any>(config: AxiosRequestConfig) {
+    return this.axios.request<T>(config);
   }
 
   public get<T = any>(url: string, config?: AxiosRequestConfig) {

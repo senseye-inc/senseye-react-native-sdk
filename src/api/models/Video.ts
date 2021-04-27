@@ -4,7 +4,7 @@ import type { AxiosRequestConfig } from 'axios';
 import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
 import type {
   SenseyeApiClient,
-  DataResponse,
+  // DataResponse,
 } from '@senseyeinc/react-native-senseye-sdk';
 
 /**
@@ -54,23 +54,31 @@ export default class Video {
     if (this.id !== undefined) {
       Error('Video is already initialized.');
     }
+    this.id =
+      sessionId +
+      '/' +
+      getCurrentTimestamp().toString() +
+      '_' +
+      this.metadata.name;
     this.apiClient = apiClient;
 
-    const video = (
-      await this.apiClient.post<DataResponse>('/data/videos', {
-        user_session_id: sessionId,
-        ...this.metadata,
-      })
-    ).data.data;
+    // const video = (
+    //   await this.apiClient.post<DataResponse>('/data/videos', {
+    //     user_session_id: sessionId,
+    //     ...this.metadata,
+    //   })
+    // ).data.data;
+    //
+    // if (!video) {
+    //   // this condition shouldn't be reached unless the API Client was configured incorrectly,
+    //   // i.e. the expected response from Senseye was not received.
+    //   throw Error('Failed to create Video. Unexpected response data.');
+    // }
+    // this.id = video._id;
+    //
+    // return video;
 
-    if (!video) {
-      // this condition shouldn't be reached unless the API Client was configured incorrectly,
-      // i.e. the expected response from Senseye was not received.
-      throw Error('Failed to create Video. Unexpected response data.');
-    }
-    this.id = video._id;
-
-    return video;
+    return { id: this.id };
   }
 
   /**
@@ -106,21 +114,21 @@ export default class Video {
     this.metadata.info = { ...this.metadata.info, ...info };
   }
 
-  /**
-   * Pushes the video's most recent metadata values to Senseye's API.
-   *
-   * @returns A `Promise` that will produce an `AxiosResponse`.
-   */
-  public pushUpdates() {
-    if (!this.apiClient || !this.id) {
-      throw Error('Video must be initialized first.');
-    }
-
-    return this.apiClient.put<DataResponse>(
-      '/data/videos/' + this.id,
-      this.metadata
-    );
-  }
+  // /**
+  //  * Pushes the video's most recent metadata values to Senseye's API.
+  //  *
+  //  * @returns A `Promise` that will produce an `AxiosResponse`.
+  //  */
+  // public pushUpdates() {
+  //   if (!this.apiClient || !this.id) {
+  //     throw Error('Video must be initialized first.');
+  //   }
+  //
+  //   return this.apiClient.put<DataResponse>(
+  //     '/data/videos/' + this.id,
+  //     this.metadata
+  //   );
+  // }
 
   /**
    * Sets the URI to a local file.
@@ -184,12 +192,12 @@ export default class Video {
     return this.uploadProgress;
   }
 
-  /**
-   * @returns {@link id}, or `undefined` if the instance hasn't succesfully {@link init | initialized} yet.
-   */
-  public getId() {
-    return this.id;
-  }
+  // /**
+  //  * @returns {@link id}, or `undefined` if the instance hasn't succesfully {@link init | initialized} yet.
+  //  */
+  // public getId() {
+  //   return this.id;
+  // }
 
   /**
    * @returns The video's assigned name.
