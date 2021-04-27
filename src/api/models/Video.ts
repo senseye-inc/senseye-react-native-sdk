@@ -141,20 +141,24 @@ export default class Video {
   }
 
   /**
-   * Uploads a file and associates it with the video model.
+   * Uploads a video file to Senseye's S3 bucket.
    *
    * @param  uri        Video file URI. (Android) Needs to be prefixed with `file://`.
    *                      Defaults to {@link uri} (see {@link setUri | setUri()}).
    * @param  codec      Specifies the codec of the video file.
    */
-  public async uploadFile(uri: string = this.uri, codec: string = 'mp4') {
+  public async upload(uri: string = this.uri, codec: string = 'mp4') {
     if (!this.apiClient || !this.id) {
       throw Error('Video must be initialized first.');
     }
 
-    const { data } = await this.apiClient.post('/data/generate-upload-url', {
-      key: this.id,
-    });
+    let data = (
+      await this.apiClient.post('/data/generate-upload-url', {
+        key: this.id + '.' + codec,
+      })
+    ).data;
+
+    const bucket = data.url.split('/').pop();
 
     const formData = new FormData();
     Object.keys(data.fields).forEach((key) => {
@@ -178,7 +182,9 @@ export default class Video {
       },
     };
 
-    return axios.request(requestConfig);
+    await axios.request(requestConfig);
+
+    return { s3_url: 's3://' + bucket + '/' + data.fields.key };
   }
 
   /**

@@ -63,12 +63,12 @@ export default class SenseyeApiClient {
    * @returns         A `Promise` that will produce a {@link ComputeJobInitResponse}.
    */
   public startPrediction(
-    videos: string[],
+    video_urls: string[],
     threshold: number = 0.5,
     uniqueId?: string
   ) {
     return this.post<ComputeJobInitResponse>('/predict', {
-      video_urls: videos,
+      video_urls: video_urls,
       threshold: threshold,
       unique_id: uniqueId,
     });

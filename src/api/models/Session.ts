@@ -305,9 +305,12 @@ export default class Session {
   }
 
   public uploadVideos() {
+    let uploads: Promise<any>[] = [];
     this.videos.forEach((v) => {
-      if (v.getUploadProgress() === -1) v.uploadFile();
+      uploads.push(v.upload());
     });
+
+    return Promise.all(uploads);
   }
 
   public getUploadProgress() {
