@@ -4,10 +4,10 @@ import type {
 } from '@senseyeinc/react-native-senseye-sdk';
 
 /**
- * @returns The number of seconds elapsed since January 1, 1970 00:00:00 UTC.
+ * @returns The number of milliseconds elapsed since January 1, 1970 00:00:00 UTC.
  */
 export function getCurrentTimestamp() {
-  return Date.now() / 1000;
+  return Date.now();
 }
 
 /** Valid session conditions. */
