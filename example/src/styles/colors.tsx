@@ -32,3 +32,14 @@ type Warning = 'brand';
 export const warning: Record<Warning, string> = {
   brand: '#d7b357',
 };
+/* adds shadow */
+export const shadow = {
+  shadowColor: '#000000',
+  shadowOffset: {
+    width: 0,
+    height: 2,
+  },
+  shadowOpacity: 0.25,
+  shadowRadius: 3.84,
+  elevation: 5,
+};

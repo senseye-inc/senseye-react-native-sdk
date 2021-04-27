@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
   },
   childContainer: {
     ...Spacing.childContainer,
+    ...Colors.shadow,
     flex: 0,
     backgroundColor: Colors.secondary.light,
   },
