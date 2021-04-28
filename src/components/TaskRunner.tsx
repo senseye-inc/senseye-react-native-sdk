@@ -11,7 +11,7 @@ import type {
 export type TaskRunnerProps = {
   /**
    * Specifying this will prompt the runner to initialize a {@link Session} and
-   * perform data collection using Senseye's API (requires an internet connection).
+   * associate it with {@link Video | Videos} created within the execution of the runner.
    */
   sessionConfig?: {
     /** Client configured to communicate with Senseye's API. */

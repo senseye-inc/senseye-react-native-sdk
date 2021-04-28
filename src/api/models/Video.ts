@@ -152,6 +152,7 @@ export default class Video {
       throw Error('Video must be initialized first.');
     }
 
+    // send request for a presigned url to upload video to Senseye
     let data = (
       await this.apiClient.post('/data/generate-upload-url', {
         key: this.id + '.' + codec,
@@ -160,6 +161,7 @@ export default class Video {
 
     const bucket = data.url.split('/').pop();
 
+    // use the response values to construct the required request body
     const formData = new FormData();
     Object.keys(data.fields).forEach((key) => {
       formData.append(key, data.fields[key]);

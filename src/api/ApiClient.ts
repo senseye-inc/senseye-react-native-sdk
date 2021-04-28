@@ -62,16 +62,18 @@ export default class SenseyeApiClient {
    * @param uniqueId  Username or ID of the participant.
    * @returns         A `Promise` that will produce a {@link ComputeJobInitResponse}.
    */
-  public startPrediction(
+  public async startPrediction(
     video_urls: string[],
     threshold: number = 0.5,
     uniqueId?: string
   ) {
-    return this.post<ComputeJobInitResponse>('/predict', {
+    const response = await this.post<ComputeJobInitResponse>('/predict', {
       video_urls: video_urls,
       threshold: threshold,
       unique_id: uniqueId,
     });
+
+    return response.data;
   }
 
   /**
@@ -82,7 +84,9 @@ export default class SenseyeApiClient {
    * @param id  Job ID produced after a successful call to {@link startPrediction | startPrediction()}.
    * @returns   A `Promise` that will produce a {@link ComputeJobResponse}.
    */
-  public getPrediction(id: string) {
-    return this.get<ComputeJobResponse>('/predict/' + id);
+  public async getPrediction(id: string) {
+    const response = await this.get<ComputeJobResponse>('/predict/' + id);
+
+    return response.data;
   }
 }

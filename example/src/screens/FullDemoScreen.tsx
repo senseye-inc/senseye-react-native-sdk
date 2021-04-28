@@ -63,27 +63,27 @@ export default function FullDemoScreen() {
       setUploadPercentage(-1);
       setProcessingMessage('senseye orm check results are processing');
       // submit compute job
-      const jobId = (await apiClient.startPrediction(video_urls)).data.id;
-      // poll job progress
+      const jobId = (await apiClient.startPrediction(video_urls)).id;
+      // poll job status
       const resultPollId = setInterval(() => {
         apiClient
           .getPrediction(jobId)
-          .then((resp) => {
-            const data = resp.data;
+          .then((job) => {
             if (
-              data.status === Constants.JobStatus.COMPLETED ||
-              data.status === Constants.JobStatus.FAILED
+              job.status === Constants.JobStatus.COMPLETED ||
+              job.status === Constants.JobStatus.FAILED
             ) {
               // processing complete
               clearInterval(resultPollId);
 
-              if (data.result !== undefined) {
-                console.log('result: ' + JSON.stringify(data.result));
-                setResult(data.result);
+              if (job.result !== undefined) {
+                console.log('result: ' + JSON.stringify(job.result));
+                // show ResultsScreen
+                setResult(job.result);
                 setIsProcessingComplete(true);
               } else {
                 console.log('server error!');
-                Alert.alert('Oh no...', ':()', [
+                Alert.alert('Oh no...', ':(', [
                   {
                     text: 'OK',
                     onPress: () => {
@@ -94,7 +94,7 @@ export default function FullDemoScreen() {
                 ]);
               }
             } else {
-              console.log(data.status);
+              console.log(job.status);
             }
           })
           .catch((error) => {
@@ -108,7 +108,7 @@ export default function FullDemoScreen() {
   return (
     <View style={Spacing.container as ViewStyle}>
       <Text style={Typography.text as TextStyle}>
-        A demonstration utilizing the various components from this SDK to
+        A demonstration utilizing the various components provided in this SDK to
         replicate Senseye's data collection and processing workflow.
         {'\n\n'}
         This demo will execute Calibration, Nystagmus, and PLR tasks. A video
