@@ -13,6 +13,9 @@ import {
   SenseyeButton,
   Models,
   Constants,
+  checkmarkIcon,
+  xIcon,
+  insufficientIcon,
 } from '@senseyeinc/react-native-senseye-sdk';
 import type { PredictionResult } from '@senseyeinc/react-native-senseye-sdk';
 
@@ -27,7 +30,7 @@ export type ValidationSurveyProps = {
 
 export default function ValidationSurvey(props: ValidationSurveyProps) {
   const { result, onComplete } = props;
-  const [resultIcon, setResultIcon] = React.useState<JSX.Element>(Xmark);
+  const [resultIcon, setResultIcon] = React.useState(insufficientIcon);
   const [resultMsg, setResultMsg] = React.useState(
     'Senseye models indicate the user is not fit for duty.'
   );
@@ -46,19 +49,24 @@ export default function ValidationSurvey(props: ValidationSurveyProps) {
   }
 
   React.useEffect(() => {
-    if (result.prediction.state === Constants.PredictedState.SAFE) {
-      setResultIcon(Checkmark);
-      setResultMsg('Senseye models indicate the user is likely fit for duty.');
-    } else if (result.prediction.state === Constants.PredictedState.UNSAFE) {
-      setResultIcon(Xmark);
-      setResultMsg(
-        'Senseye models indicate the user is likely too fatigued or intoxicated for duty.'
-      );
-    } else if (result.prediction.state === Constants.PredictedState.UNKNOWN) {
-      setResultIcon(Xmark);
-      setResultMsg(
-        'Senseye models received invalid or not enough data to make a confident prediction.'
-      );
+    switch (result.prediction.state) {
+      case Constants.PredictedState.SAFE:
+        setResultIcon(checkmarkIcon);
+        setResultMsg(
+          'Senseye models indicate the user is likely fit for duty.'
+        );
+        break;
+      case Constants.PredictedState.UNSAFE:
+        setResultIcon(xIcon);
+        setResultMsg(
+          'Senseye models indicate the user is likely too fatigued or intoxicated for duty.'
+        );
+        break;
+      default:
+        setResultIcon(insufficientIcon);
+        setResultMsg(
+          'Senseye models received invalid or not enough data to make a confident prediction.'
+        );
     }
   }, [result]);
 
@@ -72,7 +80,7 @@ export default function ValidationSurvey(props: ValidationSurveyProps) {
         style={styles.innerContainer}
         contentContainerStyle={styles.layout}
       >
-        {resultIcon}
+        <Image source={resultIcon} style={styles.clearanceIcon} />
         <Text style={styles.text}>{resultMsg}</Text>
         <Text style={[styles.text, styles.warning]}>
           Please note, you are currently in BETA mode and results should not be
@@ -95,23 +103,6 @@ export default function ValidationSurvey(props: ValidationSurveyProps) {
     </SafeAreaView>
   );
 }
-
-const Checkmark = () => {
-  return (
-    <Image
-      source={require('../../assets/checkmark-green.png')}
-      style={styles.clearanceIcon}
-    />
-  );
-};
-const Xmark = () => {
-  return (
-    <Image
-      source={require('../../assets/xmark-red.png')}
-      style={styles.clearanceIcon}
-    />
-  );
-};
 
 const styles = StyleSheet.create({
   container: {
