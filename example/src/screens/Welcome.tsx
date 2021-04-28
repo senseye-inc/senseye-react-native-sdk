@@ -1,15 +1,12 @@
 /** Welcome screen */
 import * as React from 'react';
+import { Image, StyleSheet, View, SafeAreaView, Text } from 'react-native';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 import {
-  Image,
-  StyleSheet,
-  Dimensions,
-  View,
-  SafeAreaView,
-  Text,
-} from 'react-native';
-
-const WINDOW_WIDTH = Dimensions.get('window').width;
+  ormCheckLogo,
+  forwardArrow,
+} from '@senseyeinc/react-native-senseye-sdk';
+import { Spacing, Colors, Sizing, Typography } from '../styles';
 
 export type WelcomeProps = {
   welcomeMessage: string;
@@ -18,17 +15,13 @@ export default function Welcome(props: WelcomeProps) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.bodyContainer}>
-        <Image
-          style={styles.logo}
-          source={require('../../../src/assets/senseye-orm-check.png')}
-        />
+        <Image style={styles.logo} source={ormCheckLogo} />
         <View style={styles.textContainer}>
           <Text style={styles.text}>{props.welcomeMessage}</Text>
         </View>
-        <Image
-          style={styles.arrow}
-          source={require('../../../src/assets/forward-arrow.png')}
-        />
+        <TouchableHighlight>
+          <Image style={styles.arrow} source={forwardArrow} />
+        </TouchableHighlight>
       </View>
     </SafeAreaView>
   );
@@ -36,47 +29,28 @@ export default function Welcome(props: WelcomeProps) {
 
 const styles = StyleSheet.create({
   container: {
-    width: WINDOW_WIDTH,
-    height: '100%',
-    backgroundColor: '#141726',
+    ...Sizing.parentContainer,
+    backgroundColor: Colors.secondary.dark,
   },
   bodyContainer: {
-    margin: 30,
-    padding: 30,
-    minHeight: '70%',
-    backgroundColor: '#21284E',
-    flex: 1,
-    justifyContent: 'space-between',
+    ...Spacing.childContainer,
+    ...Sizing.childContainer,
+    ...Colors.shadow,
+    backgroundColor: Colors.secondary.light,
   },
   textContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    marginTop: 10,
-    marginBottom: 10,
+    ...Spacing.bodyContainer,
   },
   logo: {
-    minHeight: 50,
-    maxHeight: 190,
-    height: 10,
-    minWidth: 90,
-    maxWidth: 160,
-    alignSelf: 'center',
-    resizeMode: 'contain',
-    margin: 0,
+    ...Sizing.logo,
+    ...Spacing.logo,
   },
   text: {
-    color: '#9FB7C6',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: 12,
-    lineHeight: 15,
-    textAlign: 'center',
-    textTransform: 'uppercase',
-    marginBottom: 10,
+    ...Typography.header,
+    color: Colors.tertiary.brand,
   },
   arrow: {
-    height: 60,
-    width: 60,
+    ...Sizing.arrow,
     alignSelf: 'flex-end',
   },
 });
