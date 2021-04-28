@@ -19,6 +19,8 @@ export type CalibrationProps = TaskProps & {
   dot_color: string;
   /** Determines the x,y coordinates of the sequence of dots on the screen. */
   dot_points: number[][];
+  /** set the navigational page */
+  navigation?: string[];
 };
 
 /**
@@ -82,9 +84,10 @@ export default function Calibration(props: CalibrationProps) {
   };
   const _onEnd = React.useCallback(() => {
     if (onEnd) {
-      onEnd();
+      // onEnd();
     }
-  }, [onEnd]);
+    if (props.navigation) props.navigation.push('Nystagmus Instructions');
+  }, [onEnd, props.navigation]);
 
   // updates dot position
   const moveDot = React.useCallback(() => {

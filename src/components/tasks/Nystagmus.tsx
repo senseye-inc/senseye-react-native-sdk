@@ -19,6 +19,8 @@ export type NystagmusProps = TaskProps & {
   targetColor: string;
   /** initial x-position of the focal point in the task. */
   initialX: number;
+  /** set the navigational page */
+  navigation?: string[];
 };
 
 export default function Nystagmus(props: NystagmusProps) {
@@ -71,9 +73,10 @@ export default function Nystagmus(props: NystagmusProps) {
   };
   const _onEnd = React.useCallback(() => {
     if (onEnd) {
-      onEnd();
+      // onEnd();
     }
-  }, [onEnd]);
+    if (props.navigation) props.navigation.push('PLR Instructions');
+  }, [onEnd, props.navigation]);
 
   /* controls how the target animates across
     the screen and the amount of times the animation iterates. */
