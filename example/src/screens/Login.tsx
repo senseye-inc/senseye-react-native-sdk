@@ -11,8 +11,9 @@ import {
 } from 'react-native';
 import { SenseyeTextInput } from '@senseyeinc/react-native-senseye-sdk';
 import { Spacing, Colors, Sizing } from '../styles';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 
-export default function Login() {
+export default function Login(props: { navigation: string[] }) {
   const [uid, setUID] = React.useState<string>('');
   const [groupID, setGroupID] = React.useState<string>('');
   return (
@@ -45,14 +46,20 @@ export default function Login() {
           />
         </View>
         <View style={styles.navContainer}>
-          <Image
-            style={styles.arrow as ImageStyle}
-            source={require('../../../src/assets/back-arrow.png')}
-          />
-          <Image
-            style={styles.arrow as ImageStyle}
-            source={require('../../../src/assets/forward-arrow.png')}
-          />
+          <TouchableHighlight onPress={() => props.navigation.push('Home')}>
+            <Image
+              style={styles.arrow as ImageStyle}
+              source={require('../../../src/assets/back-arrow.png')}
+            />
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={() => props.navigation.push('Instructions')}
+          >
+            <Image
+              style={styles.arrow as ImageStyle}
+              source={require('../../../src/assets/forward-arrow.png')}
+            />
+          </TouchableHighlight>
         </View>
       </View>
     </SafeAreaView>
