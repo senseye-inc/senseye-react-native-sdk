@@ -154,7 +154,7 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
       // } else {
       //   initializeSession(apiClient, uniqueId, surveyId);
       // }
-      initializeSession(sessionConfig.apiClient, undefined, undefined);
+      initializeSession(sessionConfig.apiClient, sessionConfig.uniqueId);
     }
   }, [session, sessionConfig, _onInitializationError]);
 

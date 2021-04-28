@@ -74,6 +74,7 @@ export default function FullDemoScreen() {
               data.status === Constants.JobStatus.COMPLETED ||
               data.status === Constants.JobStatus.FAILED
             ) {
+              // processing complete
               clearInterval(resultPollId);
 
               if (data.result !== undefined) {
