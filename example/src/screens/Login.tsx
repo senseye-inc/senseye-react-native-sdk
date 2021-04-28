@@ -8,30 +8,31 @@ import {
   StyleProp,
   ViewStyle,
   ImageStyle,
+  TouchableOpacity,
 } from 'react-native';
 import {
   SenseyeTextInput,
-  gradientLogo,
   backArrow,
   forwardArrow,
+  ormCheckLogo,
 } from '@senseyeinc/react-native-senseye-sdk';
-import { Spacing, Colors, Sizing } from '../styles';
-import { TouchableHighlight } from 'react-native-gesture-handler';
 
-export default function Login(props: { navigation: string[] }) {
+import { Spacing, Colors, Sizing } from '../styles';
+
+export default function Login(props: { navigation: any }) {
   const [uid, setUID] = React.useState<string>('');
   const [groupID, setGroupID] = React.useState<string>('');
   return (
     <SafeAreaView style={styles.parentContainer as StyleProp<ViewStyle>}>
       <View style={styles.childContainer as StyleProp<ViewStyle>}>
-        <Image style={styles.logo} source={gradientLogo} />
+        <Image style={styles.logo} source={ormCheckLogo} />
         <View style={styles.bodyContainer}>
           <SenseyeTextInput
             label=""
             placeholderText="GROUP ID"
-            keyboardType={'number-pad'}
+            keyboardType="number-pad"
             value={groupID}
-            background={'transparent'}
+            background="transparent"
             borderBottomColor={Colors.tertiary.brand}
             borderBottomWidth={1}
             onChangeText={(text) => setGroupID(text)}
@@ -39,23 +40,23 @@ export default function Login(props: { navigation: string[] }) {
           <SenseyeTextInput
             label=""
             placeholderText="UNIQUE ID"
-            keyboardType={'number-pad'}
+            keyboardType="number-pad"
             value={uid}
-            background={'transparent'}
+            background="transparent"
             borderBottomColor={Colors.tertiary.brand}
             borderBottomWidth={1}
             onChangeText={(text) => setUID(text)}
           />
         </View>
         <View style={styles.navContainer}>
-          <TouchableHighlight onPress={() => props.navigation.push('Home')}>
+          <TouchableOpacity onPress={() => props.navigation.popToTop()}>
             <Image style={styles.arrow as ImageStyle} source={backArrow} />
-          </TouchableHighlight>
-          <TouchableHighlight
-            onPress={() => props.navigation.push('Instructions')}
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => props.navigation.push('Calibration Instructions')}
           >
             <Image style={styles.arrow as ImageStyle} source={forwardArrow} />
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>

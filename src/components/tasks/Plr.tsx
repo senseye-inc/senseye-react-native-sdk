@@ -15,6 +15,8 @@ export type PlrProps = TaskProps & {
   fixation_outline_size: number;
   /** Defines the amount of time (milliseconds) to display each background color. */
   duration: number;
+  /** set the navigational page */
+  navigation?: string[];
 };
 
 /** Measures pupillary light reflex by manipulating the luminance of the screen. */
@@ -57,9 +59,10 @@ export default function Plr(props: PlrProps) {
   };
   const _onEnd = React.useCallback(() => {
     if (onEnd) {
-      onEnd();
+      // onEnd();
     }
-  }, [onEnd]);
+    if (props.navigation) props.navigation.push('Processing');
+  }, [onEnd, props.navigation]);
 
   // responsible for the pace that each screen updates
   const handleScreenColor = React.useCallback(() => {
