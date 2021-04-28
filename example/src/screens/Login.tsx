@@ -9,7 +9,12 @@ import {
   ViewStyle,
   ImageStyle,
 } from 'react-native';
-import { SenseyeTextInput } from '@senseyeinc/react-native-senseye-sdk';
+import {
+  SenseyeTextInput,
+  gradientLogo,
+  backArrow,
+  forwardArrow,
+} from '@senseyeinc/react-native-senseye-sdk';
 import { Spacing, Colors, Sizing } from '../styles';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 
@@ -19,10 +24,7 @@ export default function Login(props: { navigation: string[] }) {
   return (
     <SafeAreaView style={styles.parentContainer as StyleProp<ViewStyle>}>
       <View style={styles.childContainer as StyleProp<ViewStyle>}>
-        <Image
-          style={styles.logo}
-          source={require('../../../src/assets/senseye_pictorial_gradient_logo.png')}
-        />
+        <Image style={styles.logo} source={gradientLogo} />
         <View style={styles.bodyContainer}>
           <SenseyeTextInput
             label=""
@@ -47,18 +49,12 @@ export default function Login(props: { navigation: string[] }) {
         </View>
         <View style={styles.navContainer}>
           <TouchableHighlight onPress={() => props.navigation.push('Home')}>
-            <Image
-              style={styles.arrow as ImageStyle}
-              source={require('../../../src/assets/back-arrow.png')}
-            />
+            <Image style={styles.arrow as ImageStyle} source={backArrow} />
           </TouchableHighlight>
           <TouchableHighlight
             onPress={() => props.navigation.push('Instructions')}
           >
-            <Image
-              style={styles.arrow as ImageStyle}
-              source={require('../../../src/assets/forward-arrow.png')}
-            />
+            <Image style={styles.arrow as ImageStyle} source={forwardArrow} />
           </TouchableHighlight>
         </View>
       </View>
