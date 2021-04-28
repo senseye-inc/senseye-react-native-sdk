@@ -1,20 +1,30 @@
 /** Task Instruction Screen */
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, Modal, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  Modal,
+  View,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
+
 import { SenseyeButton } from '@senseyeinc/react-native-senseye-sdk';
 import { Colors, Typography, Spacing, Sizing } from '../styles';
 
 type TaskInstructionsProps = {
   taskName: string;
   instruction: string;
+  navigation?: string[];
+  page: string;
 };
 export default function TaskInstructions(props: TaskInstructionsProps) {
   const [modalVisible, setModalVisible] = React.useState<boolean>(true);
-
   return (
     <Modal
       visible={modalVisible}
+      onShow={() => setModalVisible(true)}
       animationType="slide"
       transparent={true}
       onRequestClose={() => {
@@ -29,14 +39,17 @@ export default function TaskInstructions(props: TaskInstructionsProps) {
               <Text style={styles.subheader}>{props.instruction}</Text>
             </ScrollView>
           </View>
-          <View style={styles.button}>
-            <SenseyeButton
-              title={'Start'}
-              type={'primaryCta'}
-              onPress={() => setModalVisible(!modalVisible)}
-            />
-          </View>
         </View>
+        <TouchableOpacity style={styles.button}>
+          <SenseyeButton
+            onPress={() => {
+              setModalVisible(!modalVisible);
+              if (props.navigation) props.navigation.push(props.page);
+            }}
+            title={'Start'}
+            type={'primaryCta'}
+          />
+        </TouchableOpacity>
       </SafeAreaView>
     </Modal>
   );
@@ -67,7 +80,6 @@ const styles = StyleSheet.create({
     color: Colors.tertiary.brand,
   },
   button: {
-    width: '100%',
     ...Spacing.marginAuto,
   },
 });
