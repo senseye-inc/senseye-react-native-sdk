@@ -25,9 +25,36 @@ const SurveyTypes: Record<string, SurveyType> = {
   VALIDATION: 'validation',
 };
 
-/**
- * Senseye constants.
- */
+/** A list of calibration patterns (x,y) to select from */
+const CalibrationPatterns = [
+  [
+    [0.2, 0.25],
+    [0.4, 0.25],
+    [0.6, 0.25],
+    [0.8, 0.25],
+    [0.25, 0.5],
+    [0.5, 0.5],
+    [0.75, 0.5],
+    [0.2, 0.75],
+    [0.4, 0.75],
+    [0.6, 0.75],
+    [0.8, 0.75],
+  ],
+  [
+    [0.8, 0.25],
+    [0.4, 0.75],
+    [0.5, 0.5],
+    [0.2, 0.25],
+    [0.8, 0.75],
+    [0.2, 0.75],
+    [0.4, 0.25],
+    [0.5, 0.5],
+    [0.6, 0.25],
+    [0.6, 0.75],
+  ],
+];
+
+/** Senseye constants. */
 export const Constants = {
   API_HOST: 'api.senseye.co',
   API_BASE_PATH: '',
@@ -62,32 +89,5 @@ export const Constants = {
       labels: ['AM', 'PM'],
     },
   },
+  CalibrationPatterns: CalibrationPatterns,
 };
-/** a series of calibration patterns (x,y) to select from */
-export const calibrationPatterns = [
-  [
-    [0.2, 0.25],
-    [0.4, 0.25],
-    [0.6, 0.25],
-    [0.8, 0.25],
-    [0.25, 0.5],
-    [0.5, 0.5],
-    [0.75, 0.5],
-    [0.2, 0.75],
-    [0.4, 0.75],
-    [0.6, 0.75],
-    [0.8, 0.75],
-  ],
-  [
-    [0.8, 0.25],
-    [0.4, 0.75],
-    [0.5, 0.5],
-    [0.2, 0.25],
-    [0.8, 0.75],
-    [0.2, 0.75],
-    [0.4, 0.25],
-    [0.5, 0.5],
-    [0.6, 0.25],
-    [0.6, 0.75],
-  ],
-];
