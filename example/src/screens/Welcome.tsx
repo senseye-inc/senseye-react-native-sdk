@@ -1,15 +1,22 @@
-/** Welcome screen */
 import * as React from 'react';
-import { Image, StyleSheet, View, SafeAreaView, Text } from 'react-native';
-import { TouchableHighlight } from 'react-native-gesture-handler';
 import {
-  ormCheckLogo,
+  Image,
+  StyleSheet,
+  View,
+  SafeAreaView,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
+import {
   forwardArrow,
+  ormCheckLogo,
 } from '@senseyeinc/react-native-senseye-sdk';
 import { Spacing, Colors, Sizing, Typography } from '../styles';
 
 export type WelcomeProps = {
   welcomeMessage: string;
+  onPress?: any;
+  navigation?: string[];
 };
 export default function Welcome(props: WelcomeProps) {
   return (
@@ -19,9 +26,13 @@ export default function Welcome(props: WelcomeProps) {
         <View style={styles.textContainer}>
           <Text style={styles.text}>{props.welcomeMessage}</Text>
         </View>
-        <TouchableHighlight>
+        <TouchableOpacity
+          onPress={() => {
+            if (props.navigation) props.navigation.push('Login');
+          }}
+        >
           <Image style={styles.arrow} source={forwardArrow} />
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
