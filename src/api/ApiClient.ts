@@ -35,16 +35,8 @@ export default class SenseyeApiClient {
     });
   }
 
-  public async request<T = any>(config: AxiosRequestConfig) {
-    try {
-      return this.axios.request<T>(config);
-    } catch (error) {
-      if (error.response && error.response.data.error) {
-        // extract Senseye's custom http error message
-        error.message = error.response.data.error.message;
-      }
-      throw error;
-    }
+  public request<T = any>(config: AxiosRequestConfig) {
+    return this.axios.request<T>(config);
   }
 
   public get<T = any>(url: string, config?: AxiosRequestConfig) {
@@ -70,16 +62,18 @@ export default class SenseyeApiClient {
    * @param uniqueId  Username or ID of the participant.
    * @returns         A `Promise` that will produce a {@link ComputeJobInitResponse}.
    */
-  public startPrediction(
-    videos: string[],
+  public async startPrediction(
+    video_urls: string[],
     threshold: number = 0.5,
     uniqueId?: string
   ) {
-    return this.post<ComputeJobInitResponse>('/predict', {
-      video_urls: videos,
+    const response = await this.post<ComputeJobInitResponse>('/predict', {
+      video_urls: video_urls,
       threshold: threshold,
       unique_id: uniqueId,
     });
+
+    return response.data;
   }
 
   /**
@@ -90,7 +84,9 @@ export default class SenseyeApiClient {
    * @param id  Job ID produced after a successful call to {@link startPrediction | startPrediction()}.
    * @returns   A `Promise` that will produce a {@link ComputeJobResponse}.
    */
-  public getPrediction(id: string) {
-    return this.get<ComputeJobResponse>('/predict/' + id);
+  public async getPrediction(id: string) {
+    const response = await this.get<ComputeJobResponse>('/predict/' + id);
+
+    return response.data;
   }
 }

@@ -9,7 +9,13 @@ import {
   ViewStyle,
   ImageStyle,
 } from 'react-native';
-import { SenseyeTextInput } from '@senseyeinc/react-native-senseye-sdk';
+import {
+  SenseyeTextInput,
+  backArrow,
+  forwardArrow,
+  pictorialGradientLogo,
+} from '@senseyeinc/react-native-senseye-sdk';
+
 import { Spacing, Colors, Sizing } from '../styles';
 
 export default function Login() {
@@ -18,17 +24,14 @@ export default function Login() {
   return (
     <SafeAreaView style={styles.parentContainer as StyleProp<ViewStyle>}>
       <View style={styles.childContainer as StyleProp<ViewStyle>}>
-        <Image
-          style={styles.logo}
-          source={require('../../../src/assets/senseye_pictorial_gradient_logo.png')}
-        />
+        <Image style={styles.logo} source={pictorialGradientLogo} />
         <View style={styles.bodyContainer}>
           <SenseyeTextInput
             label=""
             placeholderText="GROUP ID"
-            keyboardType={'number-pad'}
+            keyboardType="number-pad"
             value={groupID}
-            background={'transparent'}
+            background="transparent"
             borderBottomColor={Colors.tertiary.brand}
             borderBottomWidth={1}
             onChangeText={(text) => setGroupID(text)}
@@ -36,23 +39,17 @@ export default function Login() {
           <SenseyeTextInput
             label=""
             placeholderText="UNIQUE ID"
-            keyboardType={'number-pad'}
+            keyboardType="number-pad"
             value={uid}
-            background={'transparent'}
+            background="transparent"
             borderBottomColor={Colors.tertiary.brand}
             borderBottomWidth={1}
             onChangeText={(text) => setUID(text)}
           />
         </View>
         <View style={styles.navContainer}>
-          <Image
-            style={styles.arrow as ImageStyle}
-            source={require('../../../src/assets/back-arrow.png')}
-          />
-          <Image
-            style={styles.arrow as ImageStyle}
-            source={require('../../../src/assets/forward-arrow.png')}
-          />
+          <Image style={styles.arrow as ImageStyle} source={backArrow} />
+          <Image style={styles.arrow as ImageStyle} source={forwardArrow} />
         </View>
       </View>
     </SafeAreaView>

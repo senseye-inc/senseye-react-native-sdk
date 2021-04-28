@@ -3,7 +3,7 @@ import { Alert, Modal, StyleSheet, Text, View } from 'react-native';
 
 import { VideoRecorder, Models } from '@senseyeinc/react-native-senseye-sdk';
 import type {
-  TaskData,
+  // TaskData,
   SenseyeApiClient,
   VideoRecorderObject,
 } from '@senseyeinc/react-native-senseye-sdk';
@@ -11,24 +11,24 @@ import type {
 export type TaskRunnerProps = {
   /**
    * Specifying this will prompt the runner to initialize a {@link Session} and
-   * perform data collection using Senseye's API (requires an internet connection).
+   * associate it with {@link Video | Videos} created within the execution of the runner.
    */
   sessionConfig?: {
     /** Client configured to communicate with Senseye's API. */
     apiClient: SenseyeApiClient;
     /**
      * Custom username or ID of the participant. Must be unique to the participant
-     * within the context of the API token/key passed into the client.
+     * within the context of the API key passed into the client.
      */
-    uniqueId: string;
+    uniqueId?: string;
     /** Demographic survey of the particpant. */
-    demographicSurvey: Models.Survey;
+    demographicSurvey?: Models.Survey;
   };
   /**
-   * Function to be called once all tasks are complete. If a session was initialized,
-   * `session` will be an initialized {@link Session} and `videos` a list of initialized
-   * {@link Video | Videos} that are ready to upload. Otherwise, `session` will be undefined
-   * and `videos` a list of uninitialized {@link Video | Videos}.
+   * Function to be called once all tasks are complete. If `sessionConfig` was provided,
+   * `session` will be an initialized {@link Session} associated with a list of
+   * initialized {@link Video | Videos}. Otherwise, `session` will be undefined
+   * and `videos` will be a list of uninitialized {@link Video | Videos}.
    */
   onEnd?(session: Models.Session | undefined, videos: Models.Video[]): void;
   /**
@@ -75,7 +75,7 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
         .then((video) => {
           videos.push(video);
           if (session) {
-            session.pushVideo(video);
+            session.addVideo(video);
           }
         })
         .finally(() => {
@@ -84,31 +84,31 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
     }
   }, [recorder, session, videos, children, taskIndex]);
 
-  const onTaskUpdate = React.useCallback(
-    (data: TaskData) => {
-      if (session) {
-        session.addTaskData(
-          taskIndex + '_' + children[taskIndex].props.name,
-          data
-        );
-      }
-    },
-    [session, children, taskIndex]
-  );
+  // const onTaskUpdate = React.useCallback(
+  //   (data: TaskData) => {
+  //     if (session) {
+  //       session.addTaskData(
+  //         taskIndex + '_' + children[taskIndex].props.name,
+  //         data
+  //       );
+  //     }
+  //   },
+  //   [session, children, taskIndex]
+  // );
 
   const onTaskEnd = React.useCallback(() => {
     if (recorder) {
       recorder.stopRecording();
     }
-    if (session) {
-      session.flushData();
-    }
-  }, [recorder, session]);
+    // if (session) {
+    //   session.flushData();
+    // }
+  }, [recorder]);
 
   const _onEnd = React.useCallback(() => {
-    if (session) {
-      session.stop();
-    }
+    // if (session) {
+    //   session.stop();
+    // }
     if (onEnd) {
       onEnd(session, videos);
     }
@@ -127,33 +127,34 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
   React.useEffect(() => {
     const initializeSession = (
       apiClient: SenseyeApiClient,
-      uniqueId: string,
-      surveyId: string
+      uniqueId?: string,
+      surveyId?: string
     ) => {
       const s = new Models.Session();
       s.init(apiClient, uniqueId, surveyId)
         .then(() => {
           setSession(s);
           setIsInitialized(true);
-          s.start();
+          // s.start();
         })
         .catch(_onInitializationError);
     };
 
     if (!session && sessionConfig) {
-      const { apiClient, uniqueId, demographicSurvey } = sessionConfig;
-      const surveyId = demographicSurvey.getId();
-      if (!surveyId) {
-        // initialize survey if not done so already
-        demographicSurvey
-          .init(apiClient)
-          .then((survey) => {
-            initializeSession(apiClient, uniqueId, survey._id);
-          })
-          .catch(_onInitializationError);
-      } else {
-        initializeSession(apiClient, uniqueId, surveyId);
-      }
+      // const { apiClient, uniqueId, demographicSurvey } = sessionConfig;
+      // const surveyId = demographicSurvey.getId();
+      // if (!surveyId) {
+      //   // initialize survey if not done so already
+      //   demographicSurvey
+      //     .init(apiClient)
+      //     .then((survey) => {
+      //       initializeSession(apiClient, uniqueId, survey._id);
+      //     })
+      //     .catch(_onInitializationError);
+      // } else {
+      //   initializeSession(apiClient, uniqueId, surveyId);
+      // }
+      initializeSession(sessionConfig.apiClient, sessionConfig.uniqueId);
     }
   }, [session, sessionConfig, _onInitializationError]);
 
@@ -164,7 +165,13 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
       taskIndex < children.length &&
       (isInitialized || !sessionConfig)
     ) {
-      Alert.alert('Instructions', children[taskIndex].props.instructions);
+      Alert.alert(
+        'Task ' +
+          (taskIndex + 1) +
+          ' - ' +
+          children[taskIndex].props.name.toUpperCase(),
+        children[taskIndex].props.instructions
+      );
     }
   }, [isPreview, children, taskIndex, isInitialized, sessionConfig]);
 
@@ -203,7 +210,7 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
       {isPreview
         ? null
         : React.cloneElement(children[taskIndex], {
-            onUpdate: onTaskUpdate,
+            // onUpdate: onTaskUpdate,
             onEnd: onTaskEnd,
           })}
     </View>

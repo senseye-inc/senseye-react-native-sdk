@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Modal, Text, View, ViewStyle, TextStyle } from 'react-native';
 import {
-  calibrationPatterns,
+  Constants,
   SenseyeButton,
   Tasks,
 } from '@senseyeinc/react-native-senseye-sdk';
@@ -12,11 +12,11 @@ export default function CalibrationScreen() {
   //a series of calibration patterns (x,y) to select from
   const selectPattern = () => {
     //length of array
-    let length = calibrationPatterns.length;
+    let length = Constants.CalibrationPatterns.length;
     //randomly selects an index within array range
     let i = Math.floor(length * Math.random());
     //chosen pattern schema
-    let pattern = calibrationPatterns[i];
+    let pattern = Constants.CalibrationPatterns[i];
     return pattern;
   };
   return (

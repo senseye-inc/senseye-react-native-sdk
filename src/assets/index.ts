@@ -2,6 +2,7 @@ export const backArrow = require('./back-arrow.png');
 export const checkmarkIcon = require('./checkmark-green.png');
 export const forwardArrow = require('./forward-arrow.png');
 export const insufficientIcon = require('./insufficient.png');
+export const gearSpinner = require('./Gear-0.2s-200px.gif');
 export const pictorialGradientLogo = require('./senseye_pictorial_gradient_logo.png');
 export const gradientLogo = require('./senseye-gradient-logo.png');
 export const ormCheckLogo = require('./senseye-orm-check.png');

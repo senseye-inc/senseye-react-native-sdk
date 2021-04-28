@@ -1,49 +1,46 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Text, View, StyleSheet, Animated } from 'react-native';
 import { Colors, Typography } from '../styles';
 
-/* TODO: reformat to take in `uploadProgress` instead of mock progress data */
-/* custom hook by Dan Abramov
-https://overreacted.io/making-setinterval-declarative-with-react-hooks/ */
-function useInterval(callback: (() => void) | undefined, delay: number | null) {
-  const savedCallback = React.useRef<any>();
+// /* TODO: reformat to take in `uploadProgress` instead of mock progress data */
+// /* custom hook by Dan Abramov
+// https://overreacted.io/making-setinterval-declarative-with-react-hooks/ */
+// function useInterval(callback: (() => void) | undefined, delay: number | null) {
+//   const savedCallback = React.useRef<any>();
+//
+//   useEffect(() => {
+//     savedCallback.current = callback;
+//   }, [callback]);
+//
+//   // Set up the interval.
+//   useEffect(() => {
+//     function tick() {
+//       savedCallback.current();
+//     }
+//     if (delay !== null) {
+//       let id = setInterval(tick, delay);
+//       return () => clearInterval(id);
+//     }
+//     return;
+//   }, [delay]);
+// }
 
-  useEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
-
-  // Set up the interval.
-  useEffect(() => {
-    function tick() {
-      savedCallback.current();
-    }
-    if (delay !== null) {
-      let id = setInterval(tick, delay);
-      return () => clearInterval(id);
-    }
-    return;
-  }, [delay]);
-}
 export type ProgressBarProps = {
-  /** denotes how much of the video has been uploaded */
-  uploadProgress: string | number;
+  /** denotes how much of the bar to fill */
+  percentage: number;
 };
-const ProgressBar = (_props: ProgressBarProps) => {
+
+const ProgressBar = (props: ProgressBarProps) => {
+  const { percentage } = props;
   let animation = useRef(new Animated.Value(0));
-  const [progress, setProgress] = useState(0);
-  useInterval(() => {
-    if (progress < 100) {
-      setProgress(progress + 5);
-    }
-  }, 1000);
 
   useEffect(() => {
     Animated.timing(animation.current, {
-      toValue: progress,
+      toValue: percentage,
       duration: 100,
       useNativeDriver: true,
     }).start();
-  }, [progress]);
+  }, [percentage]);
 
   return (
     <View style={styles.container}>
@@ -52,12 +49,12 @@ const ProgressBar = (_props: ProgressBarProps) => {
           style={[
             styles.bar,
             {
-              width: `${progress}%`,
+              width: `${percentage}%`,
             },
           ]}
         />
       </View>
-      <Text style={styles.text}>{`${progress}%`}</Text>
+      <Text style={styles.text}>{`${percentage}%`}</Text>
     </View>
   );
 };
