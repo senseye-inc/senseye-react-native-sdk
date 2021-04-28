@@ -1,75 +1,63 @@
-import * as React from 'react';
-import { Alert, Modal, Text, View, ViewStyle, TextStyle } from 'react-native';
-import CameraRoll from '@react-native-community/cameraroll';
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
 import {
-  TaskRunner,
-  Tasks,
-  Models,
-  SenseyeButton,
-} from '@senseyeinc/react-native-senseye-sdk';
+  ProcessingScreen,
+  ResultsScreen,
+  TaskInstructions,
+  Welcome,
+  Login,
+} from './index';
+import { Tasks } from '@senseyeinc/react-native-senseye-sdk';
 
-import { Spacing, Typography } from '../styles';
+const Stack = createStackNavigator();
 
-export default function FullDemoScreen() {
-  const [isShowModal, setIsShowModal] = React.useState<boolean>(false);
-  const [isModalReady, setIsModalReady] = React.useState<boolean>(false);
-  const onEnd = React.useCallback((_, videos) => {
-    videos.forEach((video: Models.Video) => {
-      CameraRoll.save(video.getUri(), { type: 'video' }).then((newUri) => {
-        video.setUri(newUri);
-        console.log(video.getName() + ': ' + newUri);
-      });
-    });
-    Alert.alert(
-      'Complete!',
-      "Recorded videos have been transferred to your device's Camera Roll.",
-      [
-        {
-          text: 'OK',
-          onPress: () => {
-            setIsShowModal(false);
-            setIsModalReady(false);
-          },
-        },
-      ]
-    );
-  }, []);
-
+export default function App() {
   return (
-    <View style={Spacing.container as ViewStyle}>
-      <Text style={Typography.text as TextStyle}>
-        A demonstration of the TaskRunner component, which is cabable of
-        executing a series of tasks while orchestrating video recording and data
-        collection during its session.
-        {'\n\n'}
-        This demo will execute the Calibration, Nystagmus, and Plr tasks. A
-        video will be recorded for each task and stored in the the device's
-        photo library.
-        {'\n\n'}
-        Note: Camera and File/Media access is required for this demo.
-      </Text>
-      <SenseyeButton
-        title="Run full demo"
-        type="primaryCta"
-        onPress={() => setIsShowModal(true)}
-      />
-      <Modal
-        visible={isShowModal}
-        onShow={() => setIsModalReady(true)}
-        onRequestClose={() => {
-          setIsShowModal(false);
-          setIsModalReady(false);
-        }}
-      >
-        {isModalReady ? (
-          <TaskRunner onEnd={onEnd}>
-            <Tasks.Calibration />
-            <Tasks.Nystagmus />
-            <Tasks.Plr />
-            <Tasks.SmoothPursuit />
-          </TaskRunner>
-        ) : null}
-      </Modal>
-    </View>
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="Home" component={Welcome} />
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Calibration Instructions">
+        {(props) => (
+          <TaskInstructions
+            {...props}
+            taskName={Tasks.Calibration.name}
+            instruction={Tasks.Calibration.defaultProps.instructions}
+            page={Tasks.Calibration.name}
+          />
+        )}
+      </Stack.Screen>
+      <Stack.Screen name="Calibration" component={Tasks.Calibration} />
+      <Stack.Screen name="Nystagmus Instructions">
+        {(props) => (
+          <TaskInstructions
+            {...props}
+            taskName={Tasks.Nystagmus.name}
+            instruction={Tasks.Nystagmus.defaultProps.instructions}
+            page={Tasks.Nystagmus.name}
+          />
+        )}
+      </Stack.Screen>
+      <Stack.Screen name="Nystagmus" component={Tasks.Nystagmus} />
+      <Stack.Screen name="PLR Instructions">
+        {(props) => (
+          <TaskInstructions
+            {...props}
+            taskName={Tasks.Plr.name}
+            instruction={Tasks.Plr.defaultProps.instructions}
+            page={Tasks.Plr.name}
+          />
+        )}
+      </Stack.Screen>
+      <Stack.Screen name="Plr" component={Tasks.Plr} />
+      <Stack.Screen name="Processing">
+        {(props) => <ProcessingScreen {...props} />}
+      </Stack.Screen>
+      <Stack.Screen name="Results" component={ResultsScreen} />
+    </Stack.Navigator>
   );
 }
