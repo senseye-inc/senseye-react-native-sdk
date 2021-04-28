@@ -38,6 +38,16 @@ export default function FullDemoScreen() {
     []
   );
 
+  const resetState = () => {
+    // set state variables to initial values
+    setIsShowModal(false);
+    setIsModalReady(false);
+    setIsTasksComplete(false);
+    setIsProcessingComplete(false);
+    setUploadPercentage(0);
+    setProcessingMessage('uploading');
+  };
+
   const onEnd = React.useCallback(
     async (session, _) => {
       // show ProcessingScreen
@@ -86,10 +96,7 @@ export default function FullDemoScreen() {
                 Alert.alert('Oh no...', ':(', [
                   {
                     text: 'OK',
-                    onPress: () => {
-                      setIsShowModal(false);
-                      setIsModalReady(false);
-                    },
+                    onPress: resetState,
                   },
                 ]);
               }
@@ -127,15 +134,7 @@ export default function FullDemoScreen() {
       <Modal
         visible={isShowModal}
         onShow={() => setIsModalReady(true)}
-        onRequestClose={() => {
-          // reset state values
-          setIsShowModal(false);
-          setIsModalReady(false);
-          setIsTasksComplete(false);
-          setIsProcessingComplete(false);
-          setUploadPercentage(0);
-          setProcessingMessage('uploading');
-        }}
+        onRequestClose={resetState}
       >
         {isModalReady ? (
           !isTasksComplete ? (
