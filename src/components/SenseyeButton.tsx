@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { StyleSheet, TouchableOpacity, Text } from 'react-native';
-
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 export type SenseyeButtonProps = {
   title: string;
   type: string;
-  onPress?(): void;
+  onPress: any;
 };
 
 export default function SenseyeButton(props: SenseyeButtonProps) {
