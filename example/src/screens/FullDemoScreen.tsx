@@ -107,10 +107,10 @@ export default function FullDemoScreen() {
   return (
     <View style={Spacing.container as ViewStyle}>
       <Text style={Typography.text as TextStyle}>
-        A demonstration utilizing the various components provided in this SDK to
+        A demonstration utilizing the various components from this SDK to
         replicate Senseye's data collection and processing workflow.
         {'\n\n'}
-        This demo will execute Calibration, Nystagmus, and Plr tasks. A video
+        This demo will execute Calibration, Nystagmus, and PLR tasks. A video
         will be recorded for each task and uploaded to Senseye servers for
         processing. At the end, a result screen will display with an inference
         of the results.
@@ -144,7 +144,7 @@ export default function FullDemoScreen() {
                 radius={30}
               />
               <Tasks.Nystagmus />
-              <Tasks.Plr />
+              <Tasks.Plr fixation_width={14} fixation_outline_size={4} />
             </TaskRunner>
           ) : !isProcessingComplete ? (
             <ProcessingScreen
