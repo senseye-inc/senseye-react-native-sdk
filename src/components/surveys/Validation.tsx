@@ -13,63 +13,60 @@ import {
   SenseyeButton,
   Models,
   Constants,
+  checkmarkIcon,
+  xIcon,
+  insufficientIcon,
 } from '@senseyeinc/react-native-senseye-sdk';
-import type { ComputeResult } from '@senseyeinc/react-native-senseye-sdk';
+import type { PredictionResult } from '@senseyeinc/react-native-senseye-sdk';
 
 // gets application window height and width
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
 export type ValidationSurveyProps = {
-  results: ComputeResult[];
+  result: PredictionResult;
   onComplete?(survey: Models.Survey): void;
 };
 
 export default function ValidationSurvey(props: ValidationSurveyProps) {
-  const [resultIcon, setResultIcon] = React.useState<JSX.Element>(Xmark);
+  const { result, onComplete } = props;
+  const [resultIcon, setResultIcon] = React.useState(insufficientIcon);
   const [resultMsg, setResultMsg] = React.useState(
     'Senseye models indicate the user is not fit for duty.'
   );
   const validationQuestion = 'Do you agree with this result?';
 
   function _onComplete(agreed: boolean) {
-    if (props.onComplete) {
+    if (onComplete) {
       // generate a survey model and pass it into the callback
       const survey = new Models.Survey(
         Constants.SurveyType.VALIDATION,
         { agreed: [validationQuestion, agreed] },
         result
       );
-      props.onComplete(survey);
+      onComplete(survey);
     }
   }
 
-  const result = props.results[0];
-
   React.useEffect(() => {
-    if (!result) {
-      throw Error("At least one entry is required in 'results'.");
-    } else if (
-      result.prediction.predicted_state === Constants.PredictedState.READY
-    ) {
-      setResultIcon(Checkmark);
-      setResultMsg('Senseye models indicate the user is fit for duty.');
-    } else if (
-      result.prediction.predicted_state ===
-      Constants.PredictedState.NOT_READY_FATIGUE
-    ) {
-      setResultIcon(Xmark);
-      setResultMsg(
-        'Senseye models indicate the user is too fatigued for duty.'
-      );
-    } else if (
-      result.prediction.predicted_state ===
-      Constants.PredictedState.NOT_READY_BAC
-    ) {
-      setResultIcon(Xmark);
-      setResultMsg(
-        'Senseye models indicate the user is too intoxicated for duty.'
-      );
+    switch (result.prediction.state) {
+      case Constants.PredictedState.SAFE:
+        setResultIcon(checkmarkIcon);
+        setResultMsg(
+          'Senseye models indicate the user is likely fit for duty.'
+        );
+        break;
+      case Constants.PredictedState.UNSAFE:
+        setResultIcon(xIcon);
+        setResultMsg(
+          'Senseye models indicate the user is likely too fatigued or intoxicated for duty.'
+        );
+        break;
+      default:
+        setResultIcon(insufficientIcon);
+        setResultMsg(
+          'Senseye models received invalid or not enough data to make a confident prediction.'
+        );
     }
   }, [result]);
 
@@ -83,7 +80,7 @@ export default function ValidationSurvey(props: ValidationSurveyProps) {
         style={styles.innerContainer}
         contentContainerStyle={styles.layout}
       >
-        {resultIcon}
+        <Image source={resultIcon} style={styles.clearanceIcon} />
         <Text style={styles.text}>{resultMsg}</Text>
         <Text style={[styles.text, styles.warning]}>
           Please note, you are currently in BETA mode and results should not be
@@ -106,23 +103,6 @@ export default function ValidationSurvey(props: ValidationSurveyProps) {
     </SafeAreaView>
   );
 }
-
-const Checkmark = () => {
-  return (
-    <Image
-      source={require('../../assets/checkmark-green.png')}
-      style={styles.clearanceIcon}
-    />
-  );
-};
-const Xmark = () => {
-  return (
-    <Image
-      source={require('../../assets/xmark-red.png')}
-      style={styles.clearanceIcon}
-    />
-  );
-};
 
 const styles = StyleSheet.create({
   container: {
