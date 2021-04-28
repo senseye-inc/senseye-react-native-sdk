@@ -16,6 +16,7 @@ import {
   checkmarkIcon,
   xIcon,
   insufficientIcon,
+  whiteLogo,
 } from '@senseyeinc/react-native-senseye-sdk';
 import type { PredictionResult } from '@senseyeinc/react-native-senseye-sdk';
 
@@ -72,10 +73,7 @@ export default function ValidationSurvey(props: ValidationSurveyProps) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Image
-        style={styles.logo}
-        source={require('../../assets/senseye-white-logo.png')}
-      />
+      <Image style={styles.logo} source={whiteLogo} />
       <ScrollView
         style={styles.innerContainer}
         contentContainerStyle={styles.layout}

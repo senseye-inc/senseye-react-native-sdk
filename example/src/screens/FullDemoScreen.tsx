@@ -8,12 +8,26 @@ import {
   SenseyeApiClient,
   SenseyeButton,
 } from '@senseyeinc/react-native-senseye-sdk';
+import type { PredictionResult } from '@senseyeinc/react-native-senseye-sdk';
 
+import ProcessingScreen from './ProcessingScreen';
+import ResultsScreen from './ResultsScreen';
 import { Spacing, Typography } from '../styles';
 
 export default function FullDemoScreen() {
   const [isShowModal, setIsShowModal] = React.useState<boolean>(false);
   const [isModalReady, setIsModalReady] = React.useState<boolean>(false);
+  const [isTasksComplete, setIsTasksComplete] = React.useState<boolean>(false);
+  const [
+    isProcessingComplete,
+    setIsProcessingComplete,
+  ] = React.useState<boolean>(false);
+  const [processingMessage, setProcessingMessage] = React.useState<string>(
+    'uploading'
+  );
+  const [uploadPercentage, setUploadPercentage] = React.useState<number>(0);
+  const [result, setResult] = React.useState<PredictionResult>();
+
   const apiClient = React.useMemo(
     () =>
       new SenseyeApiClient(
@@ -26,13 +40,17 @@ export default function FullDemoScreen() {
 
   const onEnd = React.useCallback(
     async (session, _) => {
+      // show ProcessingScreen
+      setIsTasksComplete(true);
+      // poll upload progress
       const uploadPollId = setInterval(() => {
         let progress = session.getUploadProgress();
         console.log('progress: ' + progress);
+        setUploadPercentage(Math.round(progress * 100));
       }, 3000);
 
       const values = await session.uploadVideos();
-
+      // upload complete
       clearInterval(uploadPollId);
 
       let video_urls: string[] = [];
@@ -41,36 +59,46 @@ export default function FullDemoScreen() {
       });
       console.log('uploads: ' + video_urls);
 
+      // update ProcessingScreen state from uploading to processing
+      setUploadPercentage(-1);
+      setProcessingMessage('senseye orm check results are processing');
+      // submit compute job
       const jobId = (await apiClient.startPrediction(video_urls)).data.id;
-
+      // poll job progress
       const resultPollId = setInterval(() => {
-        apiClient.getPrediction(jobId).then((resp) => {
-          const data = resp.data;
-          if (
-            data.status === Constants.JobStatus.COMPLETED ||
-            data.status === Constants.JobStatus.FAILED
-          ) {
-            clearInterval(resultPollId);
+        apiClient
+          .getPrediction(jobId)
+          .then((resp) => {
+            const data = resp.data;
+            if (
+              data.status === Constants.JobStatus.COMPLETED ||
+              data.status === Constants.JobStatus.FAILED
+            ) {
+              clearInterval(resultPollId);
 
-            if (data.result !== undefined) {
-              console.log('result: ' + JSON.stringify(data.result));
+              if (data.result !== undefined) {
+                console.log('result: ' + JSON.stringify(data.result));
+                setResult(data.result);
+                setIsProcessingComplete(true);
+              } else {
+                console.log('server error!');
+                Alert.alert('Oh no...', ':()', [
+                  {
+                    text: 'OK',
+                    onPress: () => {
+                      setIsShowModal(false);
+                      setIsModalReady(false);
+                    },
+                  },
+                ]);
+              }
             } else {
-              console.log('api error!');
+              console.log(data.status);
             }
-
-            Alert.alert('Complete!', 'woohoo', [
-              {
-                text: 'OK',
-                onPress: () => {
-                  setIsShowModal(false);
-                  setIsModalReady(false);
-                },
-              },
-            ]);
-          } else {
-            console.log(data.status);
-          }
-        });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }, 3000);
     },
     [apiClient]
@@ -79,15 +107,16 @@ export default function FullDemoScreen() {
   return (
     <View style={Spacing.container as ViewStyle}>
       <Text style={Typography.text as TextStyle}>
-        A demonstration of the TaskRunner component, which is cabable of
-        executing a series of tasks while orchestrating video recording and data
-        collection during its session.
+        A demonstration utilizing the various components provided in this SDK to
+        replicate Senseye's data collection and processing workflow.
         {'\n\n'}
         This demo will execute Calibration, Nystagmus, and Plr tasks. A video
-        will be recorded for each task and saved to the the device's photo
-        library.
+        will be recorded for each task and uploaded to Senseye servers for
+        processing. At the end, a result screen will display with an inference
+        of the results.
         {'\n\n'}
-        Note: Camera and File/Media access is required for this demo.
+        Note: Camera access and an internet connection are required for this
+        demo.
       </Text>
       <SenseyeButton
         title="Run full demo"
@@ -98,15 +127,33 @@ export default function FullDemoScreen() {
         visible={isShowModal}
         onShow={() => setIsModalReady(true)}
         onRequestClose={() => {
+          // reset state values
           setIsShowModal(false);
           setIsModalReady(false);
+          setIsTasksComplete(false);
+          setIsProcessingComplete(false);
+          setUploadPercentage(0);
+          setProcessingMessage('uploading');
         }}
       >
         {isModalReady ? (
-          <TaskRunner onEnd={onEnd} sessionConfig={{ apiClient: apiClient }}>
-            <Tasks.Calibration />
-            <Tasks.Nystagmus />
-          </TaskRunner>
+          !isTasksComplete ? (
+            <TaskRunner onEnd={onEnd} sessionConfig={{ apiClient: apiClient }}>
+              <Tasks.Calibration
+                dot_points={Constants.CalibrationPatterns[1]}
+                radius={30}
+              />
+              <Tasks.Nystagmus />
+              <Tasks.Plr />
+            </TaskRunner>
+          ) : !isProcessingComplete ? (
+            <ProcessingScreen
+              message={processingMessage}
+              uploadPercentage={uploadPercentage}
+            />
+          ) : (
+            <ResultsScreen result={result} />
+          )
         ) : null}
       </Modal>
     </View>

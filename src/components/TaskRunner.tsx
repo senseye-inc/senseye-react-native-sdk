@@ -165,7 +165,13 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
       taskIndex < children.length &&
       (isInitialized || !sessionConfig)
     ) {
-      Alert.alert('Instructions', children[taskIndex].props.instructions);
+      Alert.alert(
+        'Task ' +
+          (taskIndex + 1) +
+          ' - ' +
+          children[taskIndex].props.name.toUpperCase(),
+        children[taskIndex].props.instructions
+      );
     }
   }, [isPreview, children, taskIndex, isInitialized, sessionConfig]);
 

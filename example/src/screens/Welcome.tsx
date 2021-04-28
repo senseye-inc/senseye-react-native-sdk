@@ -8,6 +8,10 @@ import {
   SafeAreaView,
   Text,
 } from 'react-native';
+import {
+  forwardArrow,
+  ormCheckLogo,
+} from '@senseyeinc/react-native-senseye-sdk';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 
@@ -18,17 +22,11 @@ export default function Welcome(props: WelcomeProps) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.bodyContainer}>
-        <Image
-          style={styles.logo}
-          source={require('../../../src/assets/senseye-orm-check.png')}
-        />
+        <Image style={styles.logo} source={ormCheckLogo} />
         <View style={styles.textContainer}>
           <Text style={styles.text}>{props.welcomeMessage}</Text>
         </View>
-        <Image
-          style={styles.arrow}
-          source={require('../../../src/assets/forward-arrow.png')}
-        />
+        <Image style={styles.arrow} source={forwardArrow} />
       </View>
     </SafeAreaView>
   );
