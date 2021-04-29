@@ -103,17 +103,13 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_apiclient.default.html#cancelcomputetask" class="tsd-kind-icon">cancel<wbr>Compute<wbr>Task</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="api_apiclient.default.html#delete" class="tsd-kind-icon">delete</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="api_apiclient.default.html#get" class="tsd-kind-icon">get</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_apiclient.default.html#getcomputeresult" class="tsd-kind-icon">get<wbr>Compute<wbr>Result</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_apiclient.default.html#getcomputetask" class="tsd-kind-icon">get<wbr>Compute<wbr>Task</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_apiclient.default.html#getprediction" class="tsd-kind-icon">get<wbr>Prediction</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="api_apiclient.default.html#post" class="tsd-kind-icon">post</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_apiclient.default.html#predictbac" class="tsd-kind-icon">predictBAC</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_apiclient.default.html#predictcognitiveload" class="tsd-kind-icon">predict<wbr>Cognitive<wbr>Load</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_apiclient.default.html#predictfatigue" class="tsd-kind-icon">predict<wbr>Fatigue</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="api_apiclient.default.html#put" class="tsd-kind-icon">put</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="api_apiclient.default.html#request" class="tsd-kind-icon">request</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_apiclient.default.html#startprediction" class="tsd-kind-icon">start<wbr>Prediction</a></li>
 							</ul>
 						</section>
 					</div>
@@ -125,13 +121,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new default<span class="tsd-signature-symbol">(</span>host<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, basePath<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, token<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="api_apiclient.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></li>
+						<li class="tsd-signature tsd-kind-icon">new default<span class="tsd-signature-symbol">(</span>host<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, basePath<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, apiKey<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="api_apiclient.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api/ApiClient.ts:15</li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/ApiClient.ts#L15">api/ApiClient.ts:15</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -149,9 +145,9 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> token: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> apiKey: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Authentication token or API key.</p>
+										<p>API key.</p>
 									</div>
 								</li>
 							</ul>
@@ -168,45 +164,13 @@
 					<div class="tsd-signature tsd-kind-icon">axios<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AxiosInstance</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in api/ApiClient.ts:15</li>
+							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/ApiClient.ts#L15">api/ApiClient.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="cancelcomputetask" class="tsd-anchor"></a>
-					<h3>cancel<wbr>Compute<wbr>Task</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">cancel<wbr>Compute<wbr>Task<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/types.html#computetaskresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ComputeTaskResponse</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in api/ApiClient.ts:117</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Stops a running compute task.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>id: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Task ID. Can be obtained from a <a href="../modules/types.html#computetaskresponse">ComputeTaskResponse</a>.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/types.html#computetaskresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ComputeTaskResponse</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A <code>Promise</code> that will produce a <a href="../modules/types.html#computetaskresponse">ComputeTaskResponse</a>.</p>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
 					<a name="delete" class="tsd-anchor"></a>
 					<h3>delete</h3>
@@ -217,7 +181,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api/ApiClient.ts:53</li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/ApiClient.ts#L45">api/ApiClient.ts:45</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -249,7 +213,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api/ApiClient.ts:50</li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/ApiClient.ts#L42">api/ApiClient.ts:42</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -272,69 +236,35 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getcomputeresult" class="tsd-anchor"></a>
-					<h3>get<wbr>Compute<wbr>Result</h3>
+					<a name="getprediction" class="tsd-anchor"></a>
+					<h3>get<wbr>Prediction</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Compute<wbr>Result<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/types.html#computeresultresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ComputeResultResponse</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Prediction<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/types.html#computejobresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ComputeJobResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api/ApiClient.ts:128</li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/ApiClient.ts#L87">api/ApiClient.ts:87</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Fetches the results of a compute task. Note this may timeout if the task
-									hasn&#39;t successfully completed yet. See <a href="api_apiclient.default.html#getcomputetask">getComputeTask()</a>.</p>
+									<p>Retrieves the status/result of a submitted predict job.</p>
 								</div>
+								<p><a href="https://app.swaggerhub.com/apis-docs/senseye-inc/senseye-api/0.0.1#/default/get_predict__id">https://app.swaggerhub.com/apis-docs/senseye-inc/senseye-api/0.0.1#/default/get_predict__id</a>_</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Task ID. Can be obtained from a <a href="../modules/types.html#computetaskresponse">ComputeTaskResponse</a>.</p>
+										<p>Job ID produced after a successful call to <a href="api_apiclient.default.html#startprediction">startPrediction()</a>.</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/types.html#computeresultresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ComputeResultResponse</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A <code>Promise</code> that will produce a <a href="../modules/types.html#computeresultresponse">ComputeResultResponse</a>.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getcomputetask" class="tsd-anchor"></a>
-					<h3>get<wbr>Compute<wbr>Task</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Compute<wbr>Task<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/types.html#computetaskresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ComputeTaskResponse</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in api/ApiClient.ts:107</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Fetches the latest status of a compute task. Use this to poll for <code>SUCCESS</code>
-									before calling <a href="api_apiclient.default.html#getcomputeresult">getComputeResult()</a>.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>id: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Task ID. Can be obtained from a <a href="../modules/types.html#computetaskresponse">ComputeTaskResponse</a>.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/types.html#computetaskresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ComputeTaskResponse</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A <code>Promise</code> that will produce a <a href="../modules/types.html#computetaskresponse">ComputeTaskResponse</a>, containing
-							the task&#39;s most recent status.</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/types.html#computejobresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ComputeJobResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A <code>Promise</code> that will produce a <a href="../modules/types.html#computejobresponse">ComputeJobResponse</a>.</p>
 						</li>
 					</ul>
 				</section>
@@ -348,7 +278,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api/ApiClient.ts:56</li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/ApiClient.ts#L48">api/ApiClient.ts:48</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -373,102 +303,6 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="predictbac" class="tsd-anchor"></a>
-					<h3>predictBAC</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">predictBAC<span class="tsd-signature-symbol">(</span>uri<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/types.html#computetaskresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ComputeTaskResponse</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in api/ApiClient.ts:81</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Initiates a compute task to predict intoxication probability of the participant in a given video.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>uri: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>URI to a video containing a participant.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/types.html#computetaskresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ComputeTaskResponse</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A <code>Promise</code> that will produce a <a href="../modules/types.html#computetaskresponse">ComputeTaskResponse</a>.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="predictcognitiveload" class="tsd-anchor"></a>
-					<h3>predict<wbr>Cognitive<wbr>Load</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">predict<wbr>Cognitive<wbr>Load<span class="tsd-signature-symbol">(</span>uri<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/types.html#computetaskresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ComputeTaskResponse</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in api/ApiClient.ts:93</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Initiates a compute task to predict cognitive load probability of the participant in a given video.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>uri: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>URI to a video containing a participant.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/types.html#computetaskresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ComputeTaskResponse</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A <code>Promise</code> that will produce a <a href="../modules/types.html#computetaskresponse">ComputeTaskResponse</a>.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="predictfatigue" class="tsd-anchor"></a>
-					<h3>predict<wbr>Fatigue</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">predict<wbr>Fatigue<span class="tsd-signature-symbol">(</span>uri<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/types.html#computetaskresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ComputeTaskResponse</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in api/ApiClient.ts:69</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Initiates a compute task to predict fatigue probability of the participant in a given video.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>uri: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>URI to a video containing a participant.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/types.html#computetaskresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ComputeTaskResponse</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A <code>Promise</code> that will produce a <a href="../modules/types.html#computetaskresponse">ComputeTaskResponse</a>.</p>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
 					<a name="put" class="tsd-anchor"></a>
 					<h3>put</h3>
@@ -479,7 +313,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api/ApiClient.ts:59</li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/ApiClient.ts#L51">api/ApiClient.ts:51</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -514,7 +348,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in api/ApiClient.ts:38</li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/ApiClient.ts#L38">api/ApiClient.ts:38</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -530,6 +364,48 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AxiosResponse</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="startprediction" class="tsd-anchor"></a>
+					<h3>start<wbr>Prediction</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">start<wbr>Prediction<span class="tsd-signature-symbol">(</span>video_urls<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, threshold<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, uniqueId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/types.html#computejobinitresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ComputeJobInitResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/ApiClient.ts#L65">api/ApiClient.ts:65</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Submits a job to perform predictive analysis on a specified list of videos.</p>
+								</div>
+								<p><a href="https://app.swaggerhub.com/apis-docs/senseye-inc/senseye-api/0.0.1#/default/post_predict">https://app.swaggerhub.com/apis-docs/senseye-inc/senseye-api/0.0.1#/default/post_predict</a></p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>video_urls: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+								<li>
+									<h5>threshold: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0.5</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Value between 0.0 and 1.0; determines <code>prediction.state</code> in the final result.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> uniqueId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Username or ID of the participant.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/types.html#computejobinitresponse" class="tsd-signature-type" data-tsd-kind="Type alias">ComputeJobInitResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A <code>Promise</code> that will produce a <a href="../modules/types.html#computejobinitresponse">ComputeJobInitResponse</a>.</p>
 						</li>
 					</ul>
 				</section>
@@ -563,10 +439,10 @@
 						<a href="../modules/api_models_video.html">api/models/<wbr>Video</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/components.html">components</a>
+						<a href="../modules/assets.html">assets</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="../modules/components_experimentrunner.html">components/<wbr>Experiment<wbr>Runner</a>
+						<a href="../modules/components.html">components</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/components_senseyebutton.html">components/<wbr>Senseye<wbr>Button</a>
@@ -578,22 +454,10 @@
 						<a href="../modules/components_senseyetextinput.html">components/<wbr>Senseye<wbr>Text<wbr>Input</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="../modules/components_taskrunner.html">components/<wbr>Task<wbr>Runner</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="../modules/components_videorecorder.html">components/<wbr>Video<wbr>Recorder</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_experiments.html">components/experiments</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_experiments_calibration.html">components/experiments/<wbr>Calibration</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_experiments_nystagmus.html">components/experiments/<wbr>Nystagmus</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_experiments_plr.html">components/experiments/<wbr>Plr</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_experiments_smoothpursuit.html">components/experiments/<wbr>Smooth<wbr>Pursuit</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/components_surveys.html">components/surveys</a>
@@ -603,6 +467,21 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/components_surveys_validation.html">components/surveys/<wbr>Validation</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/components_tasks.html">components/tasks</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/components_tasks_calibration.html">components/tasks/<wbr>Calibration</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/components_tasks_nystagmus.html">components/tasks/<wbr>Nystagmus</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/components_tasks_plr.html">components/tasks/<wbr>Plr</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/components_tasks_smoothpursuit.html">components/tasks/<wbr>Smooth<wbr>Pursuit</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="../modules/index.html">index</a>
@@ -628,9 +507,6 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="api_apiclient.default.html#axios" class="tsd-kind-icon">axios</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="api_apiclient.default.html#cancelcomputetask" class="tsd-kind-icon">cancel<wbr>Compute<wbr>Task</a>
-							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
 								<a href="api_apiclient.default.html#delete" class="tsd-kind-icon">delete</a>
 							</li>
@@ -638,28 +514,19 @@
 								<a href="api_apiclient.default.html#get" class="tsd-kind-icon">get</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="api_apiclient.default.html#getcomputeresult" class="tsd-kind-icon">get<wbr>Compute<wbr>Result</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="api_apiclient.default.html#getcomputetask" class="tsd-kind-icon">get<wbr>Compute<wbr>Task</a>
+								<a href="api_apiclient.default.html#getprediction" class="tsd-kind-icon">get<wbr>Prediction</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
 								<a href="api_apiclient.default.html#post" class="tsd-kind-icon">post</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="api_apiclient.default.html#predictbac" class="tsd-kind-icon">predictBAC</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="api_apiclient.default.html#predictcognitiveload" class="tsd-kind-icon">predict<wbr>Cognitive<wbr>Load</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="api_apiclient.default.html#predictfatigue" class="tsd-kind-icon">predict<wbr>Fatigue</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
 								<a href="api_apiclient.default.html#put" class="tsd-kind-icon">put</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
 								<a href="api_apiclient.default.html#request" class="tsd-kind-icon">request</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="api_apiclient.default.html#startprediction" class="tsd-kind-icon">start<wbr>Prediction</a>
 							</li>
 						</ul>
 					</li>

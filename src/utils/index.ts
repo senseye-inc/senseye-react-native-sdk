@@ -4,10 +4,10 @@ import type {
 } from '@senseyeinc/react-native-senseye-sdk';
 
 /**
- * @returns The number of seconds elapsed since January 1, 1970 00:00:00 UTC.
+ * @returns The number of milliseconds elapsed since January 1, 1970 00:00:00 UTC.
  */
 export function getCurrentTimestamp() {
-  return Date.now() / 1000;
+  return Date.now();
 }
 
 /** Valid session conditions. */
@@ -25,27 +25,51 @@ const SurveyTypes: Record<string, SurveyType> = {
   VALIDATION: 'validation',
 };
 
-/**
- * Senseye constants.
- */
+/** A list of calibration patterns (x,y) to select from */
+const CalibrationPatterns = [
+  [
+    [0.2, 0.25],
+    [0.4, 0.25],
+    [0.6, 0.25],
+    [0.8, 0.25],
+    [0.25, 0.5],
+    [0.5, 0.5],
+    [0.75, 0.5],
+    [0.2, 0.75],
+    [0.4, 0.75],
+    [0.6, 0.75],
+    [0.8, 0.75],
+  ],
+  [
+    [0.8, 0.25],
+    [0.4, 0.75],
+    [0.5, 0.5],
+    [0.2, 0.25],
+    [0.8, 0.75],
+    [0.2, 0.75],
+    [0.4, 0.25],
+    [0.5, 0.5],
+    [0.6, 0.25],
+    [0.6, 0.75],
+  ],
+];
+
+/** Senseye constants. */
 export const Constants = {
   API_HOST: 'api.senseye.co',
-  API_BASE_PATH: '/v1',
+  API_BASE_PATH: '',
   SessionCondition: SessionConditions,
   SurveyType: SurveyTypes,
   PredictedState: {
-    READY: 'Ready',
-    NOT_READY_FATIGUE: 'Not Ready: Fatigued',
-    NOT_READY_BAC: 'Not Ready: Drunk',
+    SAFE: 0,
+    UNSAFE: 1,
+    UNKNOWN: -1,
   },
-  TaskStatus: {
-    PENDING: 'PENDING',
-    RECEIVED: 'RECEIVED',
-    STARTED: 'STARTED',
-    SUCCESS: 'SUCCESS',
-    FAILURE: 'FAILURE',
-    REVOKED: 'REVOKED',
-    RETRY: 'RETRY',
+  JobStatus: {
+    QUEUED: 'in_queue',
+    STARTED: 'in_progress',
+    COMPLETED: 'completed',
+    FAILED: 'failed',
   },
   FormData: {
     GENDER: {
@@ -65,4 +89,5 @@ export const Constants = {
       labels: ['AM', 'PM'],
     },
   },
+  CalibrationPatterns: CalibrationPatterns,
 };

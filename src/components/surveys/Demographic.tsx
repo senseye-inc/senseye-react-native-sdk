@@ -15,6 +15,7 @@ import {
   SenseyeButton,
   Models,
   Constants,
+  whiteLogo,
 } from '@senseyeinc/react-native-senseye-sdk';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
@@ -78,10 +79,7 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Image
-        style={styles.logo}
-        source={require('../../assets/senseye-white-logo.png')}
-      />
+      <Image style={styles.logo} source={whiteLogo} />
       <ScrollView
         style={styles.innerContainer}
         contentContainerStyle={styles.layout}

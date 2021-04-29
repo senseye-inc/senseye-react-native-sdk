@@ -54,7 +54,9 @@
 	<false/>
 	<key>NSCameraUsageDescription</key>
 	<string>Access to the camera to record video.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Access to the photo library.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Access to the photo library to store recorded video files.</string>
+	<string>Access to the photo library to store recorded video.</string>
 </dict>
 </plist>

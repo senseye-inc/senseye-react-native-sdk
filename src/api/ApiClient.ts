@@ -3,8 +3,8 @@ import type { AxiosInstance, AxiosRequestConfig } from 'axios';
 
 import { Constants } from '@senseyeinc/react-native-senseye-sdk';
 import type {
-  ComputeResultResponse,
-  ComputeTaskResponse,
+  ComputeJobInitResponse,
+  ComputeJobResponse,
 } from '@senseyeinc/react-native-senseye-sdk';
 
 /**
@@ -15,19 +15,19 @@ export default class SenseyeApiClient {
   private axios: AxiosInstance;
 
   /**
-   * @param host  Domain name or IP address of the API host. e.g. api.senseye.co[:80]
+   * @param host      Domain name or IP address of the API host. e.g. api.senseye.co[:80]
    * @param basePath  URL path prefix that'll be appended to `host`.
-   * @param token  Authentication token or API key.
+   * @param apiKey    API key.
    */
   constructor(
     host: string = Constants.API_HOST,
     basePath: string = Constants.API_BASE_PATH,
-    token?: string
+    apiKey?: string
   ) {
     let baseUrl = 'https://' + host + basePath;
     let headers: { [key: string]: string } = {};
 
-    if (token) headers.Authorization = 'Bearer ' + token;
+    if (apiKey) headers['x-api-key'] = apiKey;
 
     this.axios = axios.create({
       baseURL: baseUrl,
@@ -35,16 +35,8 @@ export default class SenseyeApiClient {
     });
   }
 
-  public async request<T = any>(config: AxiosRequestConfig) {
-    try {
-      return this.axios.request<T>(config);
-    } catch (error) {
-      if (error.response && error.response.data.error) {
-        // extract Senseye's custom http error message
-        error.message = error.response.data.error.message;
-      }
-      throw error;
-    }
+  public request<T = any>(config: AxiosRequestConfig) {
+    return this.axios.request<T>(config);
   }
 
   public get<T = any>(url: string, config?: AxiosRequestConfig) {
@@ -61,71 +53,40 @@ export default class SenseyeApiClient {
   }
 
   /**
-   * Initiates a compute task to predict fatigue probability of the participant in a given video.
+   * Submits a job to perform predictive analysis on a specified list of videos.
    *
-   * @param  uri URI to a video containing a participant.
-   * @returns    A `Promise` that will produce a {@link ComputeTaskResponse}.
+   * https://app.swaggerhub.com/apis-docs/senseye-inc/senseye-api/0.0.1#/default/post_predict
+   *
+   * @param videos    List of S3 urls (i.e. `[s3://<bucket>/<key>, ...]`) pointing to video recordings of a participant performing `Tasks`.
+   * @param threshold Value between 0.0 and 1.0; determines `prediction.state` in the final result.
+   * @param uniqueId  Username or ID of the participant.
+   * @returns         A `Promise` that will produce a {@link ComputeJobInitResponse}.
    */
-  public predictFatigue(uri: string) {
-    return this.post<ComputeTaskResponse>('/PredictFatigue', {
-      video_uri: uri,
+  public async startPrediction(
+    video_urls: string[],
+    threshold: number = 0.5,
+    uniqueId?: string
+  ) {
+    const response = await this.post<ComputeJobInitResponse>('/predict', {
+      video_urls: video_urls,
+      threshold: threshold,
+      unique_id: uniqueId,
     });
+
+    return response.data;
   }
 
   /**
-   * Initiates a compute task to predict intoxication probability of the participant in a given video.
+   * Retrieves the status/result of a submitted predict job.
    *
-   * @param  uri URI to a video containing a participant.
-   * @returns    A `Promise` that will produce a {@link ComputeTaskResponse}.
+   * https://app.swaggerhub.com/apis-docs/senseye-inc/senseye-api/0.0.1#/default/get_predict__id_
+   *
+   * @param id  Job ID produced after a successful call to {@link startPrediction | startPrediction()}.
+   * @returns   A `Promise` that will produce a {@link ComputeJobResponse}.
    */
-  public predictBAC(uri: string) {
-    return this.post<ComputeTaskResponse>('/PredictBAC', {
-      video_uri: uri,
-    });
-  }
+  public async getPrediction(id: string) {
+    const response = await this.get<ComputeJobResponse>('/predict/' + id);
 
-  /**
-   * Initiates a compute task to predict cognitive load probability of the participant in a given video.
-   *
-   * @param  uri URI to a video containing a participant.
-   * @returns    A `Promise` that will produce a {@link ComputeTaskResponse}.
-   */
-  public predictCognitiveLoad(uri: string) {
-    return this.post<ComputeTaskResponse>('/PredictCognitiveLoad', {
-      video_uri: uri,
-    });
-  }
-
-  /**
-   * Fetches the latest status of a compute task. Use this to poll for `SUCCESS`
-   * before calling {@link getComputeResult | getComputeResult()}.
-   *
-   * @param  id Task ID. Can be obtained from a {@link ComputeTaskResponse}.
-   * @returns   A `Promise` that will produce a {@link ComputeTaskResponse}, containing
-   *              the task's most recent status.
-   */
-  public getComputeTask(id: string) {
-    return this.get<ComputeTaskResponse>('/GetVideoTask/' + id);
-  }
-
-  /**
-   * Stops a running compute task.
-   *
-   * @param  id Task ID. Can be obtained from a {@link ComputeTaskResponse}.
-   * @returns   A `Promise` that will produce a {@link ComputeTaskResponse}.
-   */
-  public cancelComputeTask(id: string) {
-    return this.post<ComputeTaskResponse>('/CancelVideoTask', { id: id });
-  }
-
-  /**
-   * Fetches the results of a compute task. Note this may timeout if the task
-   * hasn't successfully completed yet. See {@link getComputeTask | getComputeTask()}.
-   *
-   * @param  id Task ID. Can be obtained from a {@link ComputeTaskResponse}.
-   * @returns   A `Promise` that will produce a {@link ComputeResultResponse}.
-   */
-  public getComputeResult(id: string) {
-    return this.get<ComputeResultResponse>('/GetVideoResult/' + id);
+    return response.data;
   }
 }

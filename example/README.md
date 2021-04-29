@@ -56,4 +56,4 @@ iOS
 yarn ios
 ```
 
-The "Full Demo" can be modified to run a custom series of experiment tasks (Calibration, Nystagmus, PLR, etc.) by making changes inside `/example/src/screens/FullDemoScreen.tsx`.
+The "Full Demo" can be modified to run a custom series of tasks (Calibration, Nystagmus, PLR, etc.) by making changes inside `/example/src/screens/FullDemoScreen.tsx`.

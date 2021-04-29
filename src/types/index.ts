@@ -3,9 +3,9 @@ import type { RecordOptions } from 'react-native-camera';
 import type { Models } from '@senseyeinc/react-native-senseye-sdk';
 
 /**
- * Response body from Senseye Data API endpoints (`/data/*`).
- * Will contain either `data` or `error` depending on success. Note `data` may also
- * not be present for PUT requests.
+ * Response body from Senseye's Data API endpoints (i.e. `/data/*`).
+ * Will contain one of either `data` or `error` depending on success, except for
+ * PUT requests, which will never return `data` and will be empty on success.
  */
 export type DataResponse = {
   /** On success, will contain the requested response data. */
@@ -24,71 +24,57 @@ export type DataResponse = {
 };
 
 /**
- * Response body from Senseye Compute API endpoints that return a computed result,
- * e.g. `/GetVideoResult`.
- * Will contain either `results` or `error` depending on success.
+ * Response body from Senseye's Compute API when a compute job is submitted.
  */
-export type ComputeResultResponse = {
-  /** An array of results, though may typically contain only one entry. */
-  results?: ComputeResult[];
-  error?: {
-    code: number;
-    message: string;
-  };
+export type ComputeJobInitResponse = {
+  /** UUID of the queued job. */
+  id: string;
 };
 
 /**
- * Response body from Senseye Compute API endpoints that create or monitor tasks,
- * e.g. `/PredictFatigue`, `/GetVideoTask`
+ * Response body from Senseye's Compute API when polling for a job's status and/or result.
+ * `result` and `timestamp` are present only if `status = JobStatus.COMPLETED`.
  */
-export type ComputeTaskResponse = {
-  /** ID of the task. */
+export type ComputeJobResponse = {
+  /** UUID of the job. */
   id: string;
-  /**
-   * Current state of the task.
-   * Possible values: `PENDING` | `RECEIVED` | `STARTED` | `SUCCESS` | `FAILURE` | `REVOKED` | `RETRY`
-   */
+  /** Possible values: `in_queue` | `in_progress` | `completed` | `failed` */
   status: string;
+  result?: any;
+  /** Datetime of when the job completed. */
+  timestamp?: string;
 };
 
-export type ComputeResult = {
-  eye_features: { [key: string]: number };
+export type PredictionResult = {
+  version: string;
   prediction: {
     /** [0-1] Value closer to 1 indicate higher probability of fatigue. */
-    fatigue_prediction?: number;
-    /** [0-1] Value closer to 1 indicate higher probability the participant is drunk. */
-    bac_prediction?: number;
-    /** [0-1] Value closer to 1 indicate higher probability of high cognitive load. */
-    cog_load_prediction?: number;
+    fatigue: number | null;
+    /** [0-1] Value closer to 1 indicate higher probability of intoxication. */
+    intoxication: number | null;
     /**
-     * Final predicted state of subject in analyzed video.
-     * Possible values: `Ready` | `Not Ready: Fatigued` | `Not Ready: Drunk`
+     * Can be specified during the initial predict request, and is compared against
+     * `fatigue` and `intoxication` to determine `state`. Defaults to 0.5
      */
-    predicted_state: string;
+    threshold: number;
+    /**
+     * Predicted state of the subject in the analyzed video(s).
+     * Possible values: 0 | 1 | -1
+     */
+    state: number;
+    /** Total processing time of the prediction job */
+    processing_time: number;
   };
+  error?: any;
 };
-
-export type PredictedState =
-  | 'Ready'
-  | 'Not Ready: Fatigued'
-  | 'Not Ready: Drunk';
-
-export type TaskStatus =
-  | 'PENDING'
-  | 'RECEIVED'
-  | 'STARTED'
-  | 'SUCCESS'
-  | 'FAILURE'
-  | 'REVOKED'
-  | 'RETRY';
 
 export type Datum = boolean | number | string;
 
-export type ExperimentData = {
+export type TaskData = {
   timestamp: number;
   data: { [key: string]: any };
 };
-export type SessionData = { [key: string]: Array<ExperimentData> };
+export type SessionData = { [key: string]: Array<TaskData> };
 
 export type SessionConditionType =
   | 'GOOD'
@@ -128,9 +114,9 @@ export type VideoRecorderObject = {
    * Starts a video recording. Do not call this if another recording is already in progress
    * or until after `VideoRecorder.onRecordingEnd`.
    *
-   * @param  name           Name to assign to a {@link Video} that will be produced by this function.
-   * @param  recordOptions  https://react-native-camera.github.io/react-native-camera/docs/rncamera#recordasync-options-promise
-   * @returns               A `Promise` that will produce an uninitialized {@link Video} populated with metadata during the recording.
+   * @param name           Name to assign to a {@link Video} that will be produced by this function.
+   * @param recordOptions  https://react-native-camera.github.io/react-native-camera/docs/rncamera#recordasync-options-promise
+   * @returns              A `Promise` that will produce an uninitialized {@link Video} populated with metadata during the recording.
    */
   startRecording(
     name: string,
@@ -142,21 +128,21 @@ export type VideoRecorderObject = {
   stopRecording(): void;
 };
 
-export type ExperimentProps = {
-  /** Name of the experiment. */
+export type TaskProps = {
+  /** Name of the task. */
   name: string;
-  /** Instructions to follow during the experiment. */
+  /** Instructions to follow during the task. */
   instructions: string;
-  /** Background color of experiment. */
+  /** Background color of task. */
   background: any;
   /** Use to adjust the width of canvas. */
   width: any;
   /** Use to adjust the height of canvas. */
   height: any;
-  /** Function called on experiment start. */
+  /** Function called on task start. */
   onStart?(): void;
-  /** Function called on experiment end. */
+  /** Function called on task end. */
   onEnd?(): void;
-  /** Function called on each animation update during the experiment. */
-  onUpdate?(data: ExperimentData): void;
+  /** Function called on each animation update during the task. */
+  onUpdate?(data: TaskData): void;
 };
