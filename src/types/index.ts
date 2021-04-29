@@ -114,9 +114,9 @@ export type VideoRecorderObject = {
    * Starts a video recording. Do not call this if another recording is already in progress
    * or until after `VideoRecorder.onRecordingEnd`.
    *
-   * @param  name           Name to assign to a {@link Video} that will be produced by this function.
-   * @param  recordOptions  https://react-native-camera.github.io/react-native-camera/docs/rncamera#recordasync-options-promise
-   * @returns               A `Promise` that will produce an uninitialized {@link Video} populated with metadata during the recording.
+   * @param name           Name to assign to a {@link Video} that will be produced by this function.
+   * @param recordOptions  https://react-native-camera.github.io/react-native-camera/docs/rncamera#recordasync-options-promise
+   * @returns              A `Promise` that will produce an uninitialized {@link Video} populated with metadata during the recording.
    */
   startRecording(
     name: string,

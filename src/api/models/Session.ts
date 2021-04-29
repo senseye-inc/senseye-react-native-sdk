@@ -36,7 +36,7 @@ export default class Session {
   private videos: Models.Video[];
 
   // /**
-  //  * @param  bufferLimit  The max number of {@link TaskData} that can be held
+  //  * @param bufferLimit  The max number of {@link TaskData} that can be held
   //  *                        within any one group by the buffer. If the limit is reached,
   //  *                        {@link flushData | flushData()} will be automatically triggered.
   //  */
@@ -56,12 +56,12 @@ export default class Session {
    * done once per instance. Ensure initialization is successful before executing
    * certain functions within this class, otherwise errors may be thrown..
    *
-   * @param  apiClient  Client configured to communicate with Senseye's API.
-   * @param  uniqueId   Custom username or ID of the participant. Must be unique to the
+   * @param apiClient  Client configured to communicate with Senseye's API.
+   * @param uniqueId   Custom username or ID of the participant. Must be unique to the
    *                      participant within the context of the API key passed into the client.
-   * @param  surveyId   ID of a {@link Survey} to associate to the session. Will ideally be
+   * @param surveyId   ID of a {@link Survey} to associate to the session. Will ideally be
    *                      the demographic survey pertaining to the participant.
-   * @returns           A `Promise` that will produce the created session's metadata.
+   * @returns          A `Promise` that will produce the created session's metadata.
    */
   public async init(
     apiClient: SenseyeApiClient,
@@ -185,7 +185,7 @@ export default class Session {
   // /**
   //  * Stops the current session and flushes all accumulated/remaining data.
   //  *
-  //  * @param  condition  A condition describing the session upon stopping.
+  //  * @param condition  A condition describing the session upon stopping.
   //  */
   // public async stop(
   //   condition: SessionConditionType = Constants.SessionCondition.UNSPECIFIED
@@ -214,8 +214,8 @@ export default class Session {
   //  * If any grouping reaches the {@link bufferLimit}, {@link flushData | flushData()}
   //  * will be automatically triggered.
   //  *
-  //  * @param  key  This should ideally be the name of the task the data originated from.
-  //  * @param  data Data generated during an task.
+  //  * @param key  This should ideally be the name of the task the data originated from.
+  //  * @param data Data generated during an task.
   //  */
   // public addTaskData(key: string, data: TaskData) {
   //   if (!this.data[key]) this.data[key] = [data];
@@ -258,7 +258,7 @@ export default class Session {
   // /**
   //  * Initializes the specified survey if not done so already, and associates it with the session.
   //  *
-  //  * @param  survey  Instance of a `Survey`.
+  //  * @param survey  Instance of a `Survey`.
   //  */
   // public async pushSurvey(survey: Models.Survey) {
   //   if (!this.apiClient || !this.id) {
@@ -286,7 +286,7 @@ export default class Session {
    * Initializes the specified video and associates it with the session.
    * See {@link getVideos | getVideos()}.
    *
-   * @param  video  Instance of an uninitialized `Video`.
+   * @param video  Instance of an uninitialized `Video`.
    */
   public async addVideo(video: Models.Video) {
     if (!this.apiClient || !this.id) {

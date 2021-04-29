@@ -20,10 +20,10 @@ export default class Video {
   private uploadProgress: number;
 
   /**
-   * @param  name   Name of the video. Must be unique within the context of a {@link Session}.
-   * @param  config Camera and/or recording configurations.
-   * @param  info   Any extra information or metadata.
-   * @param  uri    Video file URI. (Android) Ensure it is prefixed with `file://`.
+   * @param name   Name of the video. Must be unique within the context of a {@link Session}.
+   * @param config Camera and/or recording configurations.
+   * @param info   Any extra information or metadata.
+   * @param uri    Video file URI. (Android) Ensure it is prefixed with `file://`.
    */
   constructor(
     name: string,
@@ -47,9 +47,9 @@ export default class Video {
    * done once per instance. Ensure initialization is successful before executing
    * certain functions within this class, otherwise errors may be thrown..
    *
-   * @param  apiClient  Client configured to communicate with Senseye's API.
-   * @param  sessionId  ID of a {@link Session} to associate with.
-   * @returns           A `Promise` that will produce the created video's metadata.
+   * @param apiClient  Client configured to communicate with Senseye's API.
+   * @param sessionId  ID of a {@link Session} to associate with.
+   * @returns          A `Promise` that will produce the created video's metadata.
    */
   public async init(apiClient: SenseyeApiClient, sessionId: string) {
     if (this.id !== undefined) {
@@ -85,7 +85,7 @@ export default class Video {
   /**
    * Records the video's start timestamp.
    *
-   * @param  timestamp  Start time of the video's recording. Should be in UTC seconds.
+   * @param timestamp  Start time of the video's recording. Should be in UTC seconds.
    *                      If left unspecified, current UTC will be used.
    */
   public recordStartTime(timestamp?: number) {
@@ -97,7 +97,7 @@ export default class Video {
   /**
    * Records the video's stop timestamp.
    *
-   * @param  timestamp  Stop time of the video's recording. Should be in UTC seconds.
+   * @param timestamp  Stop time of the video's recording. Should be in UTC seconds.
    *                      If left unspecified, current UTC will be used.
    */
   public recordStopTime(timestamp?: number) {
@@ -109,7 +109,7 @@ export default class Video {
   /**
    * Updates the video's {@link info} metadata.
    *
-   * @param  info  Metadata to be merged on top of any prior {@link info} metadata.
+   * @param info  Metadata to be merged on top of any prior {@link info} metadata.
    */
   public updateInfo(info: { [key: string]: any }) {
     this.metadata.info = { ...this.metadata.info, ...info };
@@ -134,7 +134,7 @@ export default class Video {
   /**
    * Sets the URI to a local file.
    *
-   * @param  uri Video file URI. (Android) Ensure it is prefixed with `file://`.
+   * @param uri Video file URI. (Android) Ensure it is prefixed with `file://`.
    */
   public setUri(uri: string) {
     this.uri = uri;
@@ -143,9 +143,9 @@ export default class Video {
   /**
    * Uploads a video file to Senseye's S3 bucket.
    *
-   * @param  uri        Video file URI. (Android) Needs to be prefixed with `file://`.
+   * @param uri        Video file URI. (Android) Needs to be prefixed with `file://`.
    *                      Defaults to {@link uri} (see {@link setUri | setUri()}).
-   * @param  codec      Specifies the codec of the video file.
+   * @param codec      Specifies the codec of the video file.
    */
   public async upload(uri: string = this.uri, codec: string = 'mp4') {
     if (!this.apiClient || !this.id) {
