@@ -15,11 +15,11 @@ export default class Survey {
   private metadata: { [key: string]: any };
 
   /**
-   * @param  apiClient
-   * @param  type       Survey type, e.g. `demographic`, `validation`.
-   * @param  entryMap   Map of keys to a tuple containing a corresponding question and response.
+   * @param apiClient
+   * @param type       Survey type, e.g. `demographic`, `validation`.
+   * @param entryMap   Map of keys to a tuple containing a corresponding question and response.
    *                      e.g. { 'eye_color': ['What color are you eyes?', 'Brown'] }
-   * @param  info       Any extra information or metadata.
+   * @param info       Any extra information or metadata.
    */
   constructor(
     type: SurveyType,
@@ -49,8 +49,8 @@ export default class Survey {
   //  * done once per instance. Ensure initialization is successful before executing
   //  * certain functions within this class, otherwise errors may be thrown..
   //  *
-  //  * @param  apiClient  Client configured to communicate with Senseye's API.
-  //  * @returns           A `Promise` that will produce the created survey's metadata.
+  //  * @param apiClient  Client configured to communicate with Senseye's API.
+  //  * @returns          A `Promise` that will produce the created survey's metadata.
   //  */
   // public async init(apiClient: SenseyeApiClient) {
   //   if (this.id !== undefined) {
@@ -76,9 +76,9 @@ export default class Survey {
    * Adds an entry for a question and its corresponding response. If `key` already
    * exists, the previous entry values will be overwritten.
    *
-   * @param  key      Key used to associate `question` and `response`.
-   * @param  question Question or prompt value.
-   * @param  response Response value to `question`.
+   * @param key      Key used to associate `question` and `response`.
+   * @param question Question or prompt value.
+   * @param response Response value to `question`.
    */
   public addEntry(key: string, question: Datum, response: Datum) {
     this.metadata.questions[key] = question;
@@ -88,7 +88,7 @@ export default class Survey {
   /**
    * Updates the survey's {@link info} metadata.
    *
-   * @param  info Metadata to be merged on top of any prior {@link info} metadata.
+   * @param info Metadata to be merged on top of any prior {@link info} metadata.
    */
   public updateInfo(info: { [key: string]: any }) {
     this.metadata.info = { ...this.metadata.info, ...info };
