@@ -9,6 +9,7 @@ import ProcessingScreen from './ProcessingScreen';
 import ProgressBar from './ProgressBar';
 import TaskInstructions from './TaskInstructions';
 import ResultsScreen from './ResultsScreen';
+import PreviewScreen from './PreviewScreen';
 
 export {
   CalibrationScreen,
@@ -22,4 +23,5 @@ export {
   ProgressBar,
   TaskInstructions,
   ResultsScreen,
+  PreviewScreen,
 };
