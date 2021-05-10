@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
 import { FaceOutline } from '@senseyeinc/react-native-senseye-sdk';
-import { Sizing } from '../styles';
+import { Sizing, Spacing, Colors, Typography } from '../styles';
 
 export type PreviewScreenProps = {
   welcomeMessage: string;
@@ -20,33 +20,20 @@ export default function PreviewScreen(props: PreviewScreenProps) {
 }
 const styles = StyleSheet.create({
   container: {
-    width: Sizing.screen.width,
-    height: Sizing.screen.height,
-    backgroundColor: '#141726',
+    ...Sizing.parentContainer,
   },
   bodyContainer: {
-    margin: 30,
-    padding: 30,
-    minHeight: '70%',
-    backgroundColor: '#21284E',
-    flex: 1,
-    justifyContent: 'space-between',
+    ...Spacing.childContainer,
+    ...Sizing.childContainer,
   },
   textContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    marginTop: 10,
-    marginBottom: 10,
+    width: Sizing.screen.width,
+    flexWrap: 'wrap',
+    backgroundColor: 'rgba(0,0,0,0.5)',
   },
   text: {
-    color: '#9FB7C6',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: 12,
-    lineHeight: 15,
-    textAlign: 'center',
-    textTransform: 'uppercase',
-    marginBottom: 10,
+    ...Typography.header,
+    color: Colors.tertiary.brand,
   },
 });
 
