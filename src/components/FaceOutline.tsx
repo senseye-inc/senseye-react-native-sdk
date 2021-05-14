@@ -2,6 +2,8 @@ import * as React from 'react';
 import Svg, { G, Path } from 'react-native-svg';
 export type FaceOutlineProps = {
   outlineColor?: string;
+  height?: number | string;
+  width?: number | string;
 };
 
 /** Dynamic face box outline for face alignment */
@@ -150,5 +152,7 @@ function FaceOutline(props: FaceOutlineProps) {
 }
 FaceOutline.defaultProps = {
   outlineColor: '#9FB7C6',
+  height: '100%',
+  width: '100%',
 };
 export default FaceOutline;
