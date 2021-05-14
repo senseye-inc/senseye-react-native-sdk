@@ -22,7 +22,6 @@ export {
 };
 
 export { CalibrationProps } from './tasks/Calibration';
-export { NystagmusProps } from './tasks/Nystagmus';
 export { PlrProps } from './tasks/Plr';
 export { SmoothPursuitProps } from './tasks/SmoothPursuit';
 
