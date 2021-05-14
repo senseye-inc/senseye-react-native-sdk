@@ -118,10 +118,10 @@ export default function FullDemoScreen() {
         A demonstration utilizing the various components provided in this SDK to
         replicate Senseye's data collection and processing workflow.
         {'\n\n'}
-        This demo will execute Calibration, Nystagmus, and PLR tasks. A video
-        will be recorded for each task and uploaded to Senseye servers for
-        processing. At the end, a result screen will display with an inference
-        of the results.
+        This demo will execute Calibration, and PLR tasks. A video will be
+        recorded for each task and uploaded to Senseye servers for processing.
+        At the end, a result screen will display with an inference of the
+        results.
         {'\n\n'}
         Note: Camera access and an internet connection are required for this
         demo.
@@ -143,7 +143,6 @@ export default function FullDemoScreen() {
                 dot_points={Constants.CalibrationPatterns[1]}
                 radius={30}
               />
-              <Tasks.Nystagmus />
               <Tasks.Plr fixation_width={14} fixation_outline_size={4} />
             </TaskRunner>
           ) : !isProcessingComplete ? (
