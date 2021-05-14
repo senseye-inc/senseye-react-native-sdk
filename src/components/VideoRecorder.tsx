@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, View, SafeAreaView } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import type {
   RNCameraProps,
@@ -17,6 +17,7 @@ import type {
   Point,
   VideoRecorderObject,
 } from '@senseyeinc/react-native-senseye-sdk';
+import FaceOutline from './FaceOutline';
 
 export type VideoRecorderProps = {
   /** Type of camera to use. Possible values: 'front' | 'back' */
@@ -175,13 +176,20 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
     );
 
     return (
-      <RNCamera
-        {...rncProps}
-        ref={setRef}
-        style={showPreview ? styles.preview : styles.hidden}
-        onRecordingStart={_onRecordingStart}
-        onRecordingEnd={_onRecordingEnd}
-      />
+      <SafeAreaView style={showPreview ? styles.preview : styles.hidden}>
+        <View style={styles.container}>
+          <RNCamera
+            {...rncProps}
+            ref={setRef}
+            style={showPreview ? styles.preview : styles.hidden}
+            onRecordingStart={_onRecordingStart}
+            onRecordingEnd={_onRecordingEnd}
+          />
+          <View style={showPreview ? styles.face : styles.hidden}>
+            <FaceOutline height={800} width={800} />
+          </View>
+        </View>
+      </SafeAreaView>
     );
   }
 );
@@ -214,6 +222,17 @@ const styles = StyleSheet.create({
   },
   hidden: {
     flex: 0,
+  },
+  container: {
+    flex: 1,
+    position: 'relative',
+  },
+  face: {
+    flex: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0)',
+    position: 'absolute',
+    top: '5%',
+    left: '-30%',
   },
 });
 
