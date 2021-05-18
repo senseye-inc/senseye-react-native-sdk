@@ -1,16 +1,9 @@
 import * as React from 'react';
 import { Platform, StyleSheet, View, SafeAreaView } from 'react-native';
 import { RNCamera } from 'react-native-camera';
-import type {
-  RNCameraProps,
-  RecordOptions,
-  RecordResponse,
-} from 'react-native-camera';
+import type { RNCameraProps, RecordOptions, RecordResponse } from 'react-native-camera';
 
-import {
-  Models,
-  getCurrentTimestamp,
-} from '@senseyeinc/react-native-senseye-sdk';
+import { Models, getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
 import type {
   RecorderStatusChangeEvent,
   RecordingStartEvent,
@@ -32,7 +25,7 @@ export type VideoRecorderProps = {
   androidRecordAudioPermissionOptions?: RNCameraProps['androidRecordAudioPermissionOptions'];
   /** Whether audio recording permissions should be requested. */
   captureAudio?: RNCameraProps['captureAudio'];
-  /** Whether to show camera preview. */
+  /** @deprecated since version >0.3.0 */
   showPreview?: boolean;
   /**
    * Function to be called when camera is ready. This event will also fire when
@@ -129,33 +122,27 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
               camera_id: props.cameraId,
             };
 
-            if (
-              Platform.OS === 'ios' &&
-              typeof recordOptions.codec === 'string'
-            ) {
-              recordOptions.codec =
-                RNCamera.Constants.VideoCodec[recordOptions.codec];
+            if (Platform.OS === 'ios' && typeof recordOptions.codec === 'string') {
+              recordOptions.codec = RNCamera.Constants.VideoCodec[recordOptions.codec];
               console.log(recordOptions.codec);
             }
 
             const v = new Models.Video(name, config, info);
             setVideo(v);
 
-            return camera
-              .recordAsync(recordOptions)
-              .then((result: RecordResponse) => {
-                v.setUri(result.uri);
-                v.updateInfo({
-                  // TODO: currently not implemented in RNCamera for Camera2Api (Android)
-                  // orientation: {
-                  //   video: result.videoOrientation,
-                  //   device: result.deviceOrientation,
-                  // },
-                  codec: result.codec,
-                  recording_interrupted: result.isRecordingInterrupted,
-                });
-                return v;
+            return camera.recordAsync(recordOptions).then((result: RecordResponse) => {
+              v.setUri(result.uri);
+              v.updateInfo({
+                // TODO: currently not implemented in RNCamera for Camera2Api (Android)
+                // orientation: {
+                //   video: result.videoOrientation,
+                //   device: result.deviceOrientation,
+                // },
+                codec: result.codec,
+                recording_interrupted: result.isRecordingInterrupted,
               });
+              return v;
+            });
           }
           throw Error('Camera is unmounted or unavailable.');
         },

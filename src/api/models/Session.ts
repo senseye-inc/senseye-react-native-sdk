@@ -63,11 +63,7 @@ export default class Session {
    *                      the demographic survey pertaining to the participant.
    * @returns          A `Promise` that will produce the created session's metadata.
    */
-  public async init(
-    apiClient: SenseyeApiClient,
-    uniqueId?: string,
-    surveyId?: string
-  ) {
+  public async init(apiClient: SenseyeApiClient, uniqueId?: string, surveyId?: string) {
     if (this.id !== undefined) {
       throw Error('Session is already initialized.');
     }

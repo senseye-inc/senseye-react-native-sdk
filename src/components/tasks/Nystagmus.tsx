@@ -33,8 +33,7 @@ export default function Nystagmus(props: NystagmusProps) {
   } = props;
   const [iterationCount, setIterationCount] = React.useState(0);
   // instaniates animation object with default starting value
-  const xAxisAnimation = React.useRef(new Animated.Value(props.initialX))
-    .current;
+  const xAxisAnimation = React.useRef(new Animated.Value(props.initialX)).current;
   // x-coordinates placements
   const targetXPos = xAxisAnimation.interpolate({
     inputRange: [0, 1, 2],
@@ -137,10 +136,7 @@ export default function Nystagmus(props: NystagmusProps) {
 
   return (
     <View style={styles(props).container}>
-      <Animated.View
-        onLayout={_onStart}
-        style={[styles(props).target, animatedStyles]}
-      />
+      <Animated.View onLayout={_onStart} style={[styles(props).target, animatedStyles]} />
     </View>
   );
 }

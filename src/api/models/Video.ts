@@ -56,11 +56,7 @@ export default class Video {
       Error('Video is already initialized.');
     }
     this.id =
-      sessionId +
-      '/' +
-      getCurrentTimestamp().toString() +
-      '_' +
-      this.metadata.name;
+      sessionId + '/' + getCurrentTimestamp().toString() + '_' + this.metadata.name;
     this.apiClient = apiClient;
 
     // const video = (
@@ -89,9 +85,7 @@ export default class Video {
    *                      If left unspecified, current UTC will be used.
    */
   public recordStartTime(timestamp?: number) {
-    this.metadata.start_timestamp = timestamp
-      ? timestamp
-      : getCurrentTimestamp();
+    this.metadata.start_timestamp = timestamp ? timestamp : getCurrentTimestamp();
   }
 
   /**
@@ -101,9 +95,7 @@ export default class Video {
    *                      If left unspecified, current UTC will be used.
    */
   public recordStopTime(timestamp?: number) {
-    this.metadata.stop_timestamp = timestamp
-      ? timestamp
-      : getCurrentTimestamp();
+    this.metadata.stop_timestamp = timestamp ? timestamp : getCurrentTimestamp();
   }
 
   /**

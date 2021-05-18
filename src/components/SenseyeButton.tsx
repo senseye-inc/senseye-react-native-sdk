@@ -10,9 +10,7 @@ export type SenseyeButtonProps = {
 export default function SenseyeButton(props: SenseyeButtonProps) {
   // adjust the style on the button depending on the type set for the button
   let typeStyling =
-    props.type === 'primaryCta'
-      ? styles.primaryCtaButton
-      : styles.secondaryCtaButton;
+    props.type === 'primaryCta' ? styles.primaryCtaButton : styles.secondaryCtaButton;
 
   return (
     <TouchableOpacity

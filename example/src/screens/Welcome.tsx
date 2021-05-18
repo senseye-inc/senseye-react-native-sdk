@@ -1,17 +1,7 @@
 /** Welcome screen */
 import * as React from 'react';
-import {
-  Image,
-  StyleSheet,
-  Dimensions,
-  View,
-  SafeAreaView,
-  Text,
-} from 'react-native';
-import {
-  forwardArrow,
-  ormCheckLogo,
-} from '@senseyeinc/react-native-senseye-sdk';
+import { Image, StyleSheet, Dimensions, View, SafeAreaView, Text } from 'react-native';
+import { forwardArrow, ormCheckLogo } from '@senseyeinc/react-native-senseye-sdk';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 
