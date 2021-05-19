@@ -12,11 +12,13 @@ import type { PredictionResult } from '@senseyeinc/react-native-senseye-sdk';
 
 import ProcessingScreen from './ProcessingScreen';
 import ResultsScreen from './ResultsScreen';
+import TaskInstructions from './TaskInstructions'
 import { Spacing, Typography } from '../styles';
 
 export default function FullDemoScreen() {
   const [isShowModal, setIsShowModal] = React.useState<boolean>(false);
   const [isModalReady, setIsModalReady] = React.useState<boolean>(false);
+  const [isShowTaskDialog, setIsShowTaskDialog] = React.useState<boolean>(false);
   const [isTasksComplete, setIsTasksComplete] = React.useState<boolean>(false);
   const [
     isProcessingComplete,
@@ -27,6 +29,8 @@ export default function FullDemoScreen() {
   );
   const [uploadPercentage, setUploadPercentage] = React.useState<number>(0);
   const [result, setResult] = React.useState<PredictionResult>();
+  const [taskDialogTitle, setTaskDialogTitle] = React.useState<string>('');
+  const [taskDialogMessage, setTaskDialogMessage] = React.useState<string>('');
 
   const apiClient = React.useMemo(
     () =>
@@ -112,6 +116,12 @@ export default function FullDemoScreen() {
     [apiClient]
   );
 
+  const onTaskPreview = React.useCallback((index, name, instructions) => {
+    setTaskDialogTitle('Task ' + (index + 1) + ': ' + name.toUpperCase())
+    setTaskDialogMessage(instructions)
+    setIsShowTaskDialog(true)
+  }, [])
+
   return (
     <View style={Spacing.container as ViewStyle}>
       <Text style={Typography.text as TextStyle}>
@@ -138,14 +148,22 @@ export default function FullDemoScreen() {
       >
         {isModalReady ? (
           !isTasksComplete ? (
-            <TaskRunner onEnd={onEnd} sessionConfig={{ apiClient: apiClient }}>
-              <Tasks.Calibration
-                dot_points={Constants.CalibrationPatterns[1]}
-                radius={30}
+            <View style={Spacing.centeredFlexView as ViewStyle}>
+              <TaskRunner sessionConfig={{ apiClient: apiClient }} onEnd={onEnd} onTaskPreview={onTaskPreview}>
+                <Tasks.Calibration
+                  dot_points={Constants.CalibrationPatterns[1]}
+                  radius={30}
+                />
+                <Tasks.Nystagmus />
+                <Tasks.Plr fixation_width={14} fixation_outline_size={4} />
+              </TaskRunner>
+              <TaskInstructions
+                title={taskDialogTitle}
+                instructions={taskDialogMessage}
+                visible={isShowTaskDialog}
+                onButtonPress={() => setIsShowTaskDialog(false)}
               />
-              <Tasks.Nystagmus />
-              <Tasks.Plr fixation_width={14} fixation_outline_size={4} />
-            </TaskRunner>
+            </View>
           ) : !isProcessingComplete ? (
             <ProcessingScreen
               message={processingMessage}
