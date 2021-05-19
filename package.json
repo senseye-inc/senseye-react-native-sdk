@@ -28,7 +28,8 @@
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
     "bootstrap": "yarn example && yarn",
-    "docs": "live-server --open=./docs --port=9090"
+    "docs": "live-server --open=./docs --port=9090",
+    "generate-docs": "yarn run typedoc --out docs --json docs/senseye_react_sdk_docs.json src --exclude '**/components/tasks/Nystagmus.tsx'"
   },
   "keywords": [
     "react-native",
