@@ -118,7 +118,7 @@ export default function FullDemoScreen() {
         A demonstration utilizing the various components provided in this SDK to
         replicate Senseye's data collection and processing workflow.
         {'\n\n'}
-        This demo will execute Calibration, and PLR tasks. A video will be
+        This demo will execute Calibration and PLR tasks. A video will be
         recorded for each task and uploaded to Senseye servers for processing.
         At the end, a result screen will display with an inference of the
         results.

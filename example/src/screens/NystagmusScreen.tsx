@@ -22,9 +22,10 @@ export default function NystagmusScreen() {
         type="primaryCta"
         onPress={() => setIsShowModal(true)}
       />
-      <Modal visible={isShowModal} onRequestClose={() => setIsShowModal(false)}>
-        {/* <Tasks.Nystagmus iterations={3} onEnd={() => setIsShowModal(false)} /> */}
-      </Modal>
+      <Modal
+        visible={isShowModal}
+        onRequestClose={() => setIsShowModal(false)}
+      />
     </View>
   );
 }
