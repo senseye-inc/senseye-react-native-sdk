@@ -156,7 +156,7 @@ Calibration.defaultProps = {
   instructions:
     '\
 Please keep your head still throughout the assessment.\n\n\
-As each dot appears, look at it immediately, and continue to stare at the dot until a new dot appears.\n\n\
+As each dot appears, immediately look at the dot and continue to stare at it until a new dot appears.\n\n\
 Double tap the screen to begin.',
   width: '100%',
   height: '100%',
