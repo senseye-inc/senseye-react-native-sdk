@@ -1,88 +1,42 @@
-import axios from 'axios';
-import { Platform } from 'react-native';
-import type { AxiosRequestConfig } from 'axios';
-
 import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
-import type {
-  SenseyeApiClient,
-  // DataResponse,
-} from '@senseyeinc/react-native-senseye-sdk';
+import type { SenseyeApiClient } from '@senseyeinc/react-native-senseye-sdk';
 
 /**
  * Class that models a session video, facilitating the logging of pertinent
  * metadata and provides the ability to upload recorded video.
  */
 export default class Video {
-  private apiClient: SenseyeApiClient | undefined;
-  private id: string | undefined;
   private metadata: { [key: string]: any };
-  private uri: string;
   private uploadProgress: number;
+  private name: string;
+  private uri: string | undefined;
 
   /**
-   * @param name   Name of the video. Must be unique within the context of a {@link Session}.
-   * @param config Camera and/or recording configurations.
-   * @param info   Any extra information or metadata.
-   * @param uri    Video file URI. (Android) Ensure it is prefixed with `file://`.
+   * @param name    Desired video name.
+   * @param config  Camera and/or recording configurations.
+   * @param info    Any extra information or metadata.
+   * @param uri     Video file URI. (Android) Ensure it is prefixed with `file://`.
    */
   constructor(
     name: string,
     config: { [key: string]: any } = {},
     info: { [key: string]: any } = {},
-    uri: string = ''
+    uri?: string
   ) {
-    this.apiClient = undefined;
-    this.id = undefined;
     this.metadata = {
-      name: name,
       config: config,
       info: info,
     };
+    this.name = getCurrentTimestamp().toString() + '_' + name;
     this.uri = uri;
     this.uploadProgress = -1;
   }
 
   /**
-   * Initializes a video model through Senseye's API. Note this should only be
-   * done once per instance. Ensure initialization is successful before executing
-   * certain functions within this class, otherwise errors may be thrown..
-   *
-   * @param apiClient  Client configured to communicate with Senseye's API.
-   * @param sessionId  ID of a {@link Session} to associate with.
-   * @returns          A `Promise` that will produce the created video's metadata.
-   */
-  public async init(apiClient: SenseyeApiClient, sessionId: string) {
-    if (this.id !== undefined) {
-      Error('Video is already initialized.');
-    }
-    this.id =
-      sessionId + '/' + getCurrentTimestamp().toString() + '_' + this.metadata.name;
-    this.apiClient = apiClient;
-
-    // const video = (
-    //   await this.apiClient.post<DataResponse>('/data/videos', {
-    //     user_session_id: sessionId,
-    //     ...this.metadata,
-    //   })
-    // ).data.data;
-    //
-    // if (!video) {
-    //   // this condition shouldn't be reached unless the API Client was configured incorrectly,
-    //   // i.e. the expected response from Senseye was not received.
-    //   throw Error('Failed to create Video. Unexpected response data.');
-    // }
-    // this.id = video._id;
-    //
-    // return video;
-
-    return { id: this.id };
-  }
-
-  /**
    * Records the video's start timestamp.
    *
-   * @param timestamp  Start time of the video's recording. Should be in UTC seconds.
-   *                      If left unspecified, current UTC will be used.
+   * @param timestamp Start time of the video's recording. Should be in UTC seconds.
+   *                    If left unspecified, current UTC will be used.
    */
   public recordStartTime(timestamp?: number) {
     this.metadata.start_timestamp = timestamp ? timestamp : getCurrentTimestamp();
@@ -91,8 +45,8 @@ export default class Video {
   /**
    * Records the video's stop timestamp.
    *
-   * @param timestamp  Stop time of the video's recording. Should be in UTC seconds.
-   *                      If left unspecified, current UTC will be used.
+   * @param timestamp Stop time of the video's recording. Should be in UTC seconds.
+   *                    If left unspecified, current UTC will be used.
    */
   public recordStopTime(timestamp?: number) {
     this.metadata.stop_timestamp = timestamp ? timestamp : getCurrentTimestamp();
@@ -107,24 +61,17 @@ export default class Video {
     this.metadata.info = { ...this.metadata.info, ...info };
   }
 
-  // /**
-  //  * Pushes the video's most recent metadata values to Senseye's API.
-  //  *
-  //  * @returns A `Promise` that will produce an `AxiosResponse`.
-  //  */
-  // public pushUpdates() {
-  //   if (!this.apiClient || !this.id) {
-  //     throw Error('Video must be initialized first.');
-  //   }
-  //
-  //   return this.apiClient.put<DataResponse>(
-  //     '/data/videos/' + this.id,
-  //     this.metadata
-  //   );
-  // }
+  /**
+   * Sets {@link name}.
+   *
+   * @param name  Desired video name.
+   */
+  public setName(name: string) {
+    this.name = name;
+  }
 
   /**
-   * Sets the URI to a local file.
+   * Sets {@link uri}.
    *
    * @param uri Video file URI. (Android) Ensure it is prefixed with `file://`.
    */
@@ -191,22 +138,16 @@ export default class Video {
     return this.uploadProgress;
   }
 
-  // /**
-  //  * @returns {@link id}, or `undefined` if the instance hasn't succesfully {@link init | initialized} yet.
-  //  */
-  // public getId() {
-  //   return this.id;
-  // }
 
   /**
-   * @returns The video's assigned name.
+   * @returns The video's {@link name}.
    */
   public getName() {
-    return this.metadata.name;
+    return this.name;
   }
 
   /**
-   * @returns The video's file uri.
+   * @returns The video's {@link uri}.
    */
   public getUri() {
     return this.uri;

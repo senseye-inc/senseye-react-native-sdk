@@ -74,7 +74,6 @@ export type TaskData = {
   timestamp: number;
   data: { [key: string]: any };
 };
-export type SessionData = { [key: string]: Array<TaskData> };
 
 export type SessionConditionType = 'GOOD' | 'BAD' | 'TEST' | 'UNENDED' | 'UNSPECIFIED';
 
