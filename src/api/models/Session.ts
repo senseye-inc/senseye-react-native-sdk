@@ -95,13 +95,16 @@ export default class Session {
     return Promise.all(uploads);
   }
 
-  public getUploadProgress() {
-    let totalProgress = 0;
+  /**
+   * @returns Integer value from `0` to `100`, representing the average progress of
+   *            all uploads associated with the session.
+   */
+  public getUploadPercentage() {
+    let total = 0;
     this.videos.forEach((v) => {
-      const p = v.getUploadProgress();
-      totalProgress += p === -1 ? 0 : p;
+      total += v.getUploadPercentage();
     });
 
-    return totalProgress / this.videos.length;
+    return Math.round(total / this.videos.length);
   }
 }

@@ -7,9 +7,9 @@ import type { SenseyeApiClient } from '@senseyeinc/react-native-senseye-sdk';
  */
 export default class Video {
   private metadata: { [key: string]: any };
-  private uploadProgress: number;
   private name: string;
   private uri: string | undefined;
+  private uploadPercentage: number;
 
   /**
    * @param name    Desired video name.
@@ -29,7 +29,7 @@ export default class Video {
     };
     this.name = getCurrentTimestamp().toString() + '_' + name;
     this.uri = uri;
-    this.uploadProgress = -1;
+    this.uploadPercentage = 0;
   }
 
   /**
@@ -100,18 +100,19 @@ export default class Video {
     }
 
     return apiClient.uploadFile(uri, key, (progressEvent: ProgressEvent) => {
-      this.uploadProgress = progressEvent.loaded / progressEvent.total
+      this.uploadPercentage = Math.round(
+        (progressEvent.loaded / progressEvent.total) * 100
+      );
     });
   }
 
   /**
    * Use this to track upload progress after calling {@link uploadFile | uploadFile()}.
    *
-   * @returns The upload percentage as a number from 0.0 to 1.0, and -1 if
-   *            {@link uploadFile | uploadFile()} has not been executed yet.
+   * @returns Integer value from `0` to `100`.
    */
-  public getUploadProgress() {
-    return this.uploadProgress;
+  public getUploadPercentage() {
+    return this.uploadPercentage;
   }
 
 
