@@ -28,7 +28,7 @@ export default function TaskInstructions(props: TaskInstructionsProps) {
   }, [visible]);
 
   return (
-    <Modal visible={modalVisible} animationType="slide" transparent={true}>
+    <Modal visible={modalVisible} animationType="fade" transparent={true}>
       <SafeAreaView style={styles.wrapper}>
         <View style={styles.parentContainer}>
           <ScrollView contentContainerStyle={styles.childContainer}>

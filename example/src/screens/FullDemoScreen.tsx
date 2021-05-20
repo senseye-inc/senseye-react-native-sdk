@@ -22,7 +22,7 @@ export default function FullDemoScreen() {
   const [isTasksComplete, setIsTasksComplete] = React.useState<boolean>(false);
   const [isProcessingComplete, setIsProcessingComplete] = React.useState<boolean>(false);
   const [processingMessage, setProcessingMessage] = React.useState<string>('uploading');
-  const [uploadPercentage, setUploadPercentage] = React.useState<number>(0);
+  const [uploadPercentage, setUploadPercentage] = React.useState<number | undefined>(0);
   const [result, setResult] = React.useState<PredictionResult>();
   const [taskDialogTitle, setTaskDialogTitle] = React.useState<string>('');
   const [taskDialogMessage, setTaskDialogMessage] = React.useState<string>('');
@@ -48,17 +48,17 @@ export default function FullDemoScreen() {
   };
 
   const onEnd = React.useCallback(
-    async (session, _) => {
+    async (session) => {
       // show ProcessingScreen
       setIsTasksComplete(true);
       // poll upload progress
       const uploadPollId = setInterval(() => {
-        let progress = session.getUploadProgress();
-        console.log('progress: ' + progress);
-        setUploadPercentage(Math.round(progress * 100));
+        let percent = session.getUploadPercentage();
+        console.log('progress: ' + percent + '%');
+        setUploadPercentage(percent);
       }, 3000);
 
-      const values = await session.uploadVideos();
+      const values = await session.uploadVideos(apiClient);
       // upload complete
       clearInterval(uploadPollId);
 
@@ -66,10 +66,10 @@ export default function FullDemoScreen() {
       values.forEach((v: any) => {
         video_urls.push(v.s3_url);
       });
-      console.log('uploads: ' + video_urls);
+      console.log('uploads: ' + JSON.stringify(video_urls));
 
       // update ProcessingScreen state from uploading to processing
-      setUploadPercentage(-1);
+      setUploadPercentage(undefined);
       setProcessingMessage('senseye orm check results are processing');
       // submit compute job
       const jobId = (await apiClient.startPrediction(video_urls)).id;
@@ -142,11 +142,7 @@ export default function FullDemoScreen() {
         {isModalReady ? (
           !isTasksComplete ? (
             <View style={Spacing.centeredFlexView as ViewStyle}>
-              <TaskRunner
-                sessionConfig={{ apiClient: apiClient }}
-                onEnd={onEnd}
-                onTaskPreview={onTaskPreview}
-              >
+              <TaskRunner uniqueId="0000" onEnd={onEnd} onTaskPreview={onTaskPreview}>
                 <Tasks.Calibration
                   dot_points={Constants.CalibrationPatterns[1]}
                   radius={30}

@@ -12,7 +12,7 @@ import ProgressBar from './ProgressBar';
 export type ProcessingScreenProps = {
   message: string;
   disclaimer: string;
-  uploadPercentage: number;
+  uploadPercentage?: number;
 };
 
 export default function ProcessingScreen(props: ProcessingScreenProps) {
@@ -25,7 +25,7 @@ export default function ProcessingScreen(props: ProcessingScreenProps) {
         <View style={styles.bodyContainer}>
           <Image style={styles.gear} source={gearSpinner} />
           <Text style={styles.text}>{message}</Text>
-          {uploadPercentage >= 0 ? (
+          {uploadPercentage !== undefined ? (
             <ProgressBar percentage={uploadPercentage} />
           ) : (
             <View />
