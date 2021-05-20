@@ -91,7 +91,7 @@ export default function FullDemoScreen() {
                 setResult(job.result);
                 setIsProcessingComplete(true);
               } else {
-                console.log('server error!');
+                console.error('server error!');
                 Alert.alert('Oh no...', ':(', [
                   {
                     text: 'OK',
@@ -104,7 +104,7 @@ export default function FullDemoScreen() {
             }
           })
           .catch((error) => {
-            console.log(error);
+            console.error(error);
           });
       }, 3000);
     },

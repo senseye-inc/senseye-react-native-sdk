@@ -2,10 +2,7 @@ import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { VideoRecorder, Models } from '@senseyeinc/react-native-senseye-sdk';
-import type {
-  // TaskData,
-  VideoRecorderObject,
-} from '@senseyeinc/react-native-senseye-sdk';
+import type { TaskData, VideoRecorderObject } from '@senseyeinc/react-native-senseye-sdk';
 
 export type TaskRunnerProps = {
   /** Username or ID of the participant. */
@@ -57,7 +54,7 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
     if (recorder) {
       setIsRecording(true);
       recorder
-        .startRecording(taskIndex + '_' + children[taskIndex].props.name)
+        .startRecording(children[taskIndex].props.name)
         .then((video) => {
           session.addVideo(video);
         })
@@ -67,17 +64,13 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
     }
   }, [recorder, session, children, taskIndex]);
 
-  // const onTaskUpdate = React.useCallback(
-  //   (data: TaskData) => {
-  //     if (session) {
-  //       session.addTaskData(
-  //         taskIndex + '_' + children[taskIndex].props.name,
-  //         data
-  //       );
-  //     }
-  //   },
-  //   [session, children, taskIndex]
-  // );
+  const onTaskUpdate = React.useCallback(
+    (data: TaskData) => {
+      // TODO: store data
+      console.debug(children[taskIndex].props.name + ': ' + JSON.stringify(data));
+    },
+    [children, taskIndex]
+  );
 
   const onTaskEnd = React.useCallback(() => {
     if (recorder) {
@@ -132,7 +125,7 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
       {isPreview
         ? null
         : React.cloneElement(children[taskIndex], {
-            // onUpdate: onTaskUpdate,
+            onUpdate: onTaskUpdate,
             onEnd: onTaskEnd,
           })}
     </View>
