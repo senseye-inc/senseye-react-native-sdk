@@ -53,9 +53,9 @@ export default class Video {
   }
 
   /**
-   * Updates the video's {@link info} metadata.
+   * Updates {@link metadata}.
    *
-   * @param info  Metadata to be merged on top of any prior {@link info} metadata.
+   * @param info  Metadata to be merged on top of the existing {@link metadata}.
    */
   public updateInfo(info: { [key: string]: any }) {
     this.metadata.info = { ...this.metadata.info, ...info };
@@ -82,50 +82,26 @@ export default class Video {
   /**
    * Uploads a video file to Senseye's S3 bucket.
    *
-   * @param uri        Video file URI. (Android) Needs to be prefixed with `file://`.
-   *                      Defaults to {@link uri} (see {@link setUri | setUri()}).
-   * @param codec      Specifies the codec of the video file.
+   * @param apiClient Client configured to communicate with Senseye's API.
+   * @param uri       Video file URI. (Android) Needs to be prefixed with `file://`.
+   *                    Defaults to {@link uri} (see {@link setUri | setUri()}).
+   * @param key       Desired S3 key for the file. Defaults to {@link name} (see {@link setName | setName()}).
    */
-  public async upload(uri: string = this.uri, codec: string = 'mp4') {
-    if (!this.apiClient || !this.id) {
-      throw Error('Video must be initialized first.');
+  public async upload(apiClient: SenseyeApiClient, uri?: string, key?: string) {
+    if (uri === undefined) {
+      if (this.uri === undefined) {
+        throw new Error("Unable to upload video: No 'uri' provided.");
+      } else {
+        uri = this.uri;
+      }
+    }
+    if (key === undefined) {
+      key = this.name;
     }
 
-    // send request for a presigned url to upload video to Senseye
-    let data = (
-      await this.apiClient.post('/data/generate-upload-url', {
-        key: this.id + '.' + codec,
-      })
-    ).data;
-
-    const bucket = data.url.split('/').pop();
-
-    // use the response values to construct the required request body
-    const formData = new FormData();
-    Object.keys(data.fields).forEach((key) => {
-      formData.append(key, data.fields[key]);
+    return apiClient.uploadFile(uri, key, (progressEvent: ProgressEvent) => {
+      this.uploadProgress = progressEvent.loaded / progressEvent.total
     });
-    formData.append('file', {
-      name: uri.substring(uri.lastIndexOf('/') + 1, uri.length),
-      type: 'video/' + codec,
-      uri: Platform.OS === 'android' ? uri : uri.replace('file://', ''),
-    });
-
-    const requestConfig: AxiosRequestConfig = {
-      url: data.url,
-      method: 'post',
-      data: formData,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-      onUploadProgress: (progressEvent: ProgressEvent) => {
-        this.uploadProgress = progressEvent.loaded / progressEvent.total;
-      },
-    };
-
-    await axios.request(requestConfig);
-
-    return { s3_url: 's3://' + bucket + '/' + data.fields.key };
   }
 
   /**

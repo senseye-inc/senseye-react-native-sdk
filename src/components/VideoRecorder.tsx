@@ -131,7 +131,11 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
             setVideo(v);
 
             return camera.recordAsync(recordOptions).then((result: RecordResponse) => {
-              v.setUri(result.uri);
+              const uri = result.uri;
+              const fileExt = uri.substring(uri.lastIndexOf('.') + 1, uri.length);
+
+              v.setName(v.getName() + '.' + fileExt);
+              v.setUri(uri);
               v.updateInfo({
                 // TODO: currently not implemented in RNCamera for Camera2Api (Android)
                 // orientation: {
@@ -141,6 +145,7 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
                 codec: result.codec,
                 recording_interrupted: result.isRecordingInterrupted,
               });
+
               return v;
             });
           }

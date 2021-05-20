@@ -78,10 +78,18 @@ export default class Session {
     return this.videos;
   }
 
-  public uploadVideos() {
+  /**
+   * Begins uploading all videos associated with the session.
+   *
+   * @param apiClient Client configured to communicate with Senseye's API.
+   * @returns         A `Promise` that will resolve when all of the session videos finish uploading.
+   */
+  public uploadVideos(apiClient: SenseyeApiClient) {
     let uploads: Promise<any>[] = [];
     this.videos.forEach((v) => {
-      uploads.push(v.upload());
+      uploads.push(
+        v.upload(apiClient, undefined, this.metadata.folderName + '/' + v.getName())
+      );
     });
 
     return Promise.all(uploads);
