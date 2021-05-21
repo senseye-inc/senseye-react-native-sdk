@@ -184,10 +184,14 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
             style={showPreview ? styles.preview : styles.hidden}
             onRecordingStart={_onRecordingStart}
             onRecordingEnd={_onRecordingEnd}
-          />
-          <View style={showPreview ? styles.face : styles.hidden}>
-            <FaceOutline height={800} width={800} />
-          </View>
+          >
+            <View
+              style={showPreview ? styles.face : styles.hidden}
+              pointerEvents={'none'}
+            >
+              <FaceOutline height={800} width={800} />
+            </View>
+          </RNCamera>
         </View>
       </SafeAreaView>
     );
@@ -222,6 +226,7 @@ const styles = StyleSheet.create({
   },
   hidden: {
     flex: 0,
+    opacity: 0,
   },
   container: {
     flex: 1,
