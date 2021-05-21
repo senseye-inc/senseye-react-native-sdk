@@ -10,7 +10,7 @@ export default class Survey {
   /**
    * @param type    Survey type, e.g. `demographic`, `validation`.
    * @param entries Map of keys to a tuple containing a corresponding question and response.
-   *                  e.g. { 'eye_color': ['What color are you eyes?', 'Brown'] }
+   *                  e.g. { 'eye_color': ['What color are your eyes?', 'Brown'] }
    * @param info    Any extra information or metadata.
    */
   constructor(

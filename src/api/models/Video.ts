@@ -115,7 +115,6 @@ export default class Video {
     return this.uploadPercentage;
   }
 
-
   /**
    * @returns The video's {@link name}.
    */
