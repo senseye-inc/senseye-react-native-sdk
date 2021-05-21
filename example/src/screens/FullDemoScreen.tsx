@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Alert, Modal, Text, View, ViewStyle, TextStyle } from 'react-native';
-// import CameraRoll from '@react-native-community/cameraroll';
 import {
   Constants,
   TaskRunner,
