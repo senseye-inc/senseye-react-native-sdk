@@ -165,7 +165,7 @@ export default function SmoothPursuit(props: SmoothPursuitProps) {
 const styles = (props: SmoothPursuitProps) =>
   StyleSheet.create({
     container: {
-      flex: 1,
+      flex: 0,
       height: props.height,
       width: props.width,
       backgroundColor: props.background,

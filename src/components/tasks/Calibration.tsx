@@ -120,7 +120,7 @@ export default function Calibration(props: CalibrationProps) {
 const styles = (props: CalibrationProps) =>
   StyleSheet.create({
     container: {
-      flex: 1,
+      flex: 0,
       height: props.height,
       width: props.width,
       backgroundColor: props.background,
