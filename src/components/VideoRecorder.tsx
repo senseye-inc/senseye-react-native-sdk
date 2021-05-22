@@ -75,12 +75,7 @@ export type VideoRecorderProps = {
  */
 const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
   (props, ref) => {
-    const {
-      showPreview,
-      onRecordingStart,
-      onRecordingEnd,
-      ...rncProps
-    } = props;
+    const { onRecordingStart, onRecordingEnd, ...rncProps } = props;
     const [video, setVideo] = React.useState<Models.Video>();
     const [camera, setCamera] = React.useState<RNCamera>();
 
@@ -176,19 +171,16 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
     );
 
     return (
-      <SafeAreaView style={showPreview ? styles.preview : styles.hidden}>
+      <SafeAreaView style={styles.preview}>
         <View style={styles.container}>
           <RNCamera
             {...rncProps}
             ref={setRef}
-            style={showPreview ? styles.preview : styles.hidden}
+            style={styles.preview}
             onRecordingStart={_onRecordingStart}
             onRecordingEnd={_onRecordingEnd}
           >
-            <View
-              style={showPreview ? styles.face : styles.hidden}
-              pointerEvents={'none'}
-            >
+            <View style={styles.face} pointerEvents={'none'}>
               <FaceOutline height={800} width={800} />
             </View>
           </RNCamera>
@@ -223,10 +215,6 @@ const defaultRecordOptions: RecordOptions = {
 const styles = StyleSheet.create({
   preview: {
     flex: 1,
-  },
-  hidden: {
-    flex: 0,
-    opacity: 0,
   },
   container: {
     flex: 1,
