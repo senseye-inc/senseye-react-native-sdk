@@ -86,7 +86,8 @@ export default class Session {
    * Begins uploading all videos associated with the session.
    *
    * @param apiClient Client configured to communicate with Senseye's API.
-   * @returns         A `Promise` that will resolve when all of the session videos finish uploading.
+   * @returns         A `Promise` that will resolve into an array once all session videos finish uploading.
+   *                    See {@link SenseyeApiClient.uploadfile} for the produced value of each item.
    */
   public uploadVideos(apiClient: SenseyeApiClient) {
     let uploads: Promise<any>[] = [];
@@ -113,29 +114,43 @@ export default class Session {
       fileName = this.metadata.uniqueId + '_' + fileName;
     }
 
-    let data = this.metadata
-    data.tasks = []
+    let data = this.metadata;
+    data.tasks = [];
     this.videos.forEach((v) => {
-      data.tasks.push(v.getMetadata())
+      data.tasks.push(v.getMetadata());
     });
 
-    let tmpFilePath = TemporaryDirectoryPath + fileName
+    let tmpFilePath = TemporaryDirectoryPath + fileName;
     if (Platform.OS === 'android') {
-      tmpFilePath = 'file://' + tmpFilePath
+      tmpFilePath = 'file://' + tmpFilePath;
     }
-    try{
-      await writeFile(tmpFilePath, JSON.stringify(this.metadata), 'utf8')
-    }
-    catch(e) {
-      console.error(e)
-    }
-    console.log(tmpFilePath)
+    await writeFile(tmpFilePath, JSON.stringify(this.metadata), 'utf8');
 
-    return apiClient.uploadFile(tmpFilePath, this.metadata.folderName + '/' + fileName, (progressEvent: ProgressEvent) => {
-      this.jsonUploadPercentage = Math.round(
-        (progressEvent.loaded / progressEvent.total) * 100
-      );
-    });
+    return apiClient.uploadFile(
+      tmpFilePath,
+      this.metadata.folderName + '/' + fileName,
+      (progressEvent: ProgressEvent) => {
+        this.jsonUploadPercentage = Math.round(
+          (progressEvent.loaded / progressEvent.total) * 100
+        );
+      }
+    );
+  }
+
+  /**
+   * Calls {@link uploadVideos | uploadVideos()} and {@link uploadJsonData | uploadJsonData()}.
+   *
+   * @param apiClient Client configured to communicate with Senseye's API.
+   * @returns         A `Promise` that will resolve into an array once both upload functions complete.
+   *                    Respectively, the first and second index will contain the resolved values
+   *                    produced by {@link uploadVideos | uploadVideos()} and {@link uploadJsonData | uploadJsonData()}.
+   */
+  public uploadAll(apiClient: SenseyeApiClient) {
+    let uploads: Promise<any>[] = [];
+    uploads.push(this.uploadVideos(apiClient));
+    uploads.push(this.uploadJsonData(apiClient));
+
+    return Promise.all(uploads);
   }
 
   /**
