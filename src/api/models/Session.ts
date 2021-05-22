@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import {
   getApplicationName,
   getBrand,
@@ -8,6 +9,7 @@ import {
   getSystemName,
   getSystemVersion,
 } from 'react-native-device-info';
+import { TemporaryDirectoryPath, writeFile } from 'react-native-fs';
 
 import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
 import type { SenseyeApiClient, Models } from '@senseyeinc/react-native-senseye-sdk';
@@ -20,6 +22,7 @@ import type { SenseyeApiClient, Models } from '@senseyeinc/react-native-senseye-
 export default class Session {
   private metadata: { [key: string]: any };
   private videos: Models.Video[];
+  private jsonUploadPercentage: number;
 
   /**
    * @param uniqueId  Username or ID of the participant.
@@ -28,7 +31,6 @@ export default class Session {
   constructor(uniqueId?: string, survey?: Models.Survey) {
     const timestamp = getCurrentTimestamp();
 
-    this.videos = [];
     this.metadata = {
       app: {
         name: getApplicationName(),
@@ -47,6 +49,8 @@ export default class Session {
       folderName: timestamp,
       uniqueId: uniqueId,
     };
+    this.videos = [];
+    this.jsonUploadPercentage = 0;
 
     if (survey) {
       // merge survey response entries into session metadata
@@ -96,15 +100,57 @@ export default class Session {
   }
 
   /**
-   * @returns Integer value from `0` to `100`, representing the average progress of
-   *            all uploads associated with the session.
+   * Writes {@link metadata} to a temporary JSON file and uploads it to Senseye's S3 bucket.
+   *
+   * @param apiClient Client configured to communicate with Senseye's API.
+   * @returns         A `Promise` that will resolve once the JSON file finishes uploading.
+   *                    See {@link SenseyeApiClient.uploadFile} for the resolved value.
+   */
+  public async uploadJsonData(apiClient: SenseyeApiClient) {
+    let fileName = getCurrentTimestamp() + '_input.json';
+    if (typeof this.metadata.uniqueId === 'string' && this.metadata.uniqueId !== '') {
+      // if `uniqueId` is present, prefix it to the file name
+      fileName = this.metadata.uniqueId + '_' + fileName;
+    }
+
+    let data = this.metadata
+    data.tasks = []
+    this.videos.forEach((v) => {
+      data.tasks.push(v.getMetadata())
+    });
+
+    let tmpFilePath = TemporaryDirectoryPath + fileName
+    if (Platform.OS === 'android') {
+      tmpFilePath = 'file://' + tmpFilePath
+    }
+    try{
+      await writeFile(tmpFilePath, JSON.stringify(this.metadata), 'utf8')
+    }
+    catch(e) {
+      console.error(e)
+    }
+    console.log(tmpFilePath)
+
+    return apiClient.uploadFile(tmpFilePath, this.metadata.folderName + '/' + fileName, (progressEvent: ProgressEvent) => {
+      this.jsonUploadPercentage = Math.round(
+        (progressEvent.loaded / progressEvent.total) * 100
+      );
+    });
+  }
+
+  /**
+   * Use this to track the average progress of all uploads associated with the session.
+   * See {@link uploadAll | uploadAll()}.
+   *
+   * @returns Integer value from `0` to `100`.
    */
   public getUploadPercentage() {
-    let total = 0;
+    let total = this.jsonUploadPercentage;
+
     this.videos.forEach((v) => {
       total += v.getUploadPercentage();
     });
 
-    return Math.round(total / this.videos.length);
+    return Math.round(total / (this.videos.length + 1));
   }
 }
