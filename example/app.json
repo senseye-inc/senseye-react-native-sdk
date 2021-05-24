@@ -4,6 +4,10 @@
   "expo": {
     "entryPoint": "./index-expo.ts",
     "name": "SenseyeSdkExample",
-    "slug": "senseyesdk-example"
+    "slug": "senseyesdk-example",
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": ["js", "jsx", "ts", "tsx", "svg"]
+    }
   }
 }

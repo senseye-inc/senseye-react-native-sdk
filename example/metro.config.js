@@ -2,12 +2,29 @@ const path = require('path');
 const blacklist = require('metro-config/src/defaults/blacklist');
 const escape = require('escape-string-regexp');
 const pak = require('../package.json');
+const { getDefaultConfig } = require('metro-config');
 
 const root = path.resolve(__dirname, '..');
 
 const modules = Object.keys({
   ...pak.peerDependencies,
 });
+
+module.exports = (async () => {
+  const {
+    resolver: { sourceExts, assetExts },
+  } = await getDefaultConfig();
+
+  return {
+    transformer: {
+      babelTransformerPath: require.resolve('react-native-svg-transformer'),
+    },
+    resolver: {
+      assetExts: assetExts.filter((ext) => ext !== 'svg'),
+      sourceExts: [...sourceExts, 'svg'],
+    },
+  };
+})();
 
 module.exports = {
   projectRoot: __dirname,
@@ -30,6 +47,7 @@ module.exports = {
   },
 
   transformer: {
+    babelTransformerPath: require.resolve('react-native-svg-transformer'),
     getTransformOptions: async () => ({
       transform: {
         experimentalImportSupport: false,

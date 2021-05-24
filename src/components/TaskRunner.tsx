@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Alert, Modal, StyleSheet, Text, View } from 'react-native';
+import { Modal, StyleSheet, Text, View } from 'react-native';
 
 import { VideoRecorder, Models } from '@senseyeinc/react-native-senseye-sdk';
 import type {
@@ -25,6 +25,11 @@ export type TaskRunnerProps = {
     demographicSurvey?: Models.Survey;
   };
   /**
+   * Function to be called immediately at camera preview, before every task.
+   * Its params will contain values associated with the upcoming task.
+   */
+  onTaskPreview?(index: number, name: string, instructions: string): void;
+  /**
    * Function to be called once all tasks are complete. If `sessionConfig` was provided,
    * `session` will be an initialized {@link Session} associated with a list of
    * initialized {@link Video | Videos}. Otherwise, `session` will be undefined
@@ -43,7 +48,7 @@ export type TaskRunnerProps = {
  * Orchestrates video recording and data collection throughout the tasks (one video per task).
  */
 const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
-  const { sessionConfig, onEnd, onInitializationError } = props;
+  const { sessionConfig, onEnd, onInitializationError, onTaskPreview } = props;
   const [recorder, setRecorder] = React.useState<VideoRecorderObject>();
   const [taskIndex, setTaskIndex] = React.useState<number>(0);
   const [isPreview, setIsPreview] = React.useState<boolean>(true);
@@ -123,6 +128,15 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
     }
   }, [onInitializationError]);
 
+  const _onTaskPreview = React.useCallback(
+    (index, name, instructions) => {
+      if (onTaskPreview) {
+        onTaskPreview(index, name, instructions);
+      }
+    },
+    [onTaskPreview]
+  );
+
   // initialize a session if specified
   React.useEffect(() => {
     const initializeSession = (
@@ -158,22 +172,13 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
     }
   }, [session, sessionConfig, _onInitializationError]);
 
-  // display instructions dialog at preview screen before each task
+  // execute onTaskPreview at the preview screen before each task
   React.useEffect(() => {
-    if (
-      isPreview &&
-      taskIndex < children.length &&
-      (isInitialized || !sessionConfig)
-    ) {
-      Alert.alert(
-        'Task ' +
-          (taskIndex + 1) +
-          ' - ' +
-          children[taskIndex].props.name.toUpperCase(),
-        children[taskIndex].props.instructions
-      );
+    if (isPreview && taskIndex < children.length) {
+      const taskProps = children[taskIndex].props;
+      _onTaskPreview(taskIndex, taskProps.name, taskProps.instructions);
     }
-  }, [isPreview, children, taskIndex, isInitialized, sessionConfig]);
+  }, [isPreview, children, taskIndex, isInitialized, _onTaskPreview]);
 
   // execute onEnd callback once all tasks are complete
   React.useEffect(() => {
