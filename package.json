@@ -65,6 +65,7 @@
     "react-native-builder-bob": "^0.17.1",
     "react-native-camera": "^3.42.2",
     "react-native-device-info": "^8.0.0",
+    "react-native-svg-transformer": "^0.14.3",
     "release-it": "^13.5.8",
     "typedoc": "^0.20.14",
     "typescript": "^3.8.3"
@@ -144,5 +145,8 @@
       "module",
       "typescript"
     ]
+  },
+  "dependencies": {
+    "react-native-svg": "^12.1.1"
   }
 }

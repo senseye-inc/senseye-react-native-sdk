@@ -98,7 +98,7 @@ export default function Plr(props: PlrProps) {
 const styles = (props: PlrProps) =>
   StyleSheet.create({
     container: {
-      flex: 1,
+      flex: 0,
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: props.background,

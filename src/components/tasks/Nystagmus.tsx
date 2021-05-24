@@ -148,7 +148,7 @@ export default function Nystagmus(props: NystagmusProps) {
 const styles = (props: NystagmusProps) =>
   StyleSheet.create({
     container: {
-      flex: 1,
+      flex: 0,
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: props.background,

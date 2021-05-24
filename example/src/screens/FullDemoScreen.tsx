@@ -12,13 +12,15 @@ import type { PredictionResult } from '@senseyeinc/react-native-senseye-sdk';
 
 import ProcessingScreen from './ProcessingScreen';
 import ResultsScreen from './ResultsScreen';
-import TaskInstructions from './TaskInstructions'
+import TaskInstructions from './TaskInstructions';
 import { Spacing, Typography } from '../styles';
 
 export default function FullDemoScreen() {
   const [isShowModal, setIsShowModal] = React.useState<boolean>(false);
   const [isModalReady, setIsModalReady] = React.useState<boolean>(false);
-  const [isShowTaskDialog, setIsShowTaskDialog] = React.useState<boolean>(false);
+  const [isShowTaskDialog, setIsShowTaskDialog] = React.useState<boolean>(
+    false
+  );
   const [isTasksComplete, setIsTasksComplete] = React.useState<boolean>(false);
   const [
     isProcessingComplete,
@@ -117,10 +119,10 @@ export default function FullDemoScreen() {
   );
 
   const onTaskPreview = React.useCallback((index, name, instructions) => {
-    setTaskDialogTitle('Task ' + (index + 1) + ': ' + name.toUpperCase())
-    setTaskDialogMessage(instructions)
-    setIsShowTaskDialog(true)
-  }, [])
+    setTaskDialogTitle('Task ' + (index + 1) + ': ' + name.toUpperCase());
+    setTaskDialogMessage(instructions);
+    setIsShowTaskDialog(true);
+  }, []);
 
   return (
     <View style={Spacing.container as ViewStyle}>
@@ -149,7 +151,11 @@ export default function FullDemoScreen() {
         {isModalReady ? (
           !isTasksComplete ? (
             <View style={Spacing.centeredFlexView as ViewStyle}>
-              <TaskRunner sessionConfig={{ apiClient: apiClient }} onEnd={onEnd} onTaskPreview={onTaskPreview}>
+              <TaskRunner
+                sessionConfig={{ apiClient: apiClient }}
+                onEnd={onEnd}
+                onTaskPreview={onTaskPreview}
+              >
                 <Tasks.Calibration
                   dot_points={Constants.CalibrationPatterns[1]}
                   radius={30}

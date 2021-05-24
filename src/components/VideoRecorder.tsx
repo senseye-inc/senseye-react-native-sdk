@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, View, SafeAreaView } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import type {
   RNCameraProps,
@@ -17,6 +17,7 @@ import type {
   Point,
   VideoRecorderObject,
 } from '@senseyeinc/react-native-senseye-sdk';
+import FaceOutline from './FaceOutline';
 
 export type VideoRecorderProps = {
   /** Type of camera to use. Possible values: 'front' | 'back' */
@@ -74,12 +75,7 @@ export type VideoRecorderProps = {
  */
 const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
   (props, ref) => {
-    const {
-      showPreview,
-      onRecordingStart,
-      onRecordingEnd,
-      ...rncProps
-    } = props;
+    const { onRecordingStart, onRecordingEnd, ...rncProps } = props;
     const [video, setVideo] = React.useState<Models.Video>();
     const [camera, setCamera] = React.useState<RNCamera>();
 
@@ -175,13 +171,21 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
     );
 
     return (
-      <RNCamera
-        {...rncProps}
-        ref={setRef}
-        style={showPreview ? styles.preview : styles.hidden}
-        onRecordingStart={_onRecordingStart}
-        onRecordingEnd={_onRecordingEnd}
-      />
+      <SafeAreaView style={styles.preview}>
+        <View style={styles.container}>
+          <RNCamera
+            {...rncProps}
+            ref={setRef}
+            style={styles.preview}
+            onRecordingStart={_onRecordingStart}
+            onRecordingEnd={_onRecordingEnd}
+          >
+            <View style={styles.face} pointerEvents={'none'}>
+              <FaceOutline height={800} width={800} />
+            </View>
+          </RNCamera>
+        </View>
+      </SafeAreaView>
     );
   }
 );
@@ -212,8 +216,16 @@ const styles = StyleSheet.create({
   preview: {
     flex: 1,
   },
-  hidden: {
+  container: {
+    flex: 1,
+    position: 'relative',
+  },
+  face: {
     flex: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0)',
+    position: 'absolute',
+    top: '5%',
+    left: '-30%',
   },
 });
 
