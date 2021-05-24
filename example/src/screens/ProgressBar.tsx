@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { Text, View, StyleSheet, Animated } from 'react-native';
 import { Colors, Typography } from '../styles';
 
-// /* TODO: reformat to take in `uploadProgress` instead of mock progress data */
+// /* mock progress data */
 // /* custom hook by Dan Abramov
 // https://overreacted.io/making-setinterval-declarative-with-react-hooks/ */
 // function useInterval(callback: (() => void) | undefined, delay: number | null) {

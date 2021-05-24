@@ -4,7 +4,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import {
   CalibrationScreen,
-  NystagmusScreen,
   PlrScreen,
   SmoothPursuitScreen,
   FullDemoScreen,
@@ -34,7 +33,6 @@ export default function App() {
         }}
       >
         <Tab.Screen name="Calibration" component={CalibrationScreen} />
-        <Tab.Screen name="Nystagmus" component={NystagmusScreen} />
         <Tab.Screen name="PLR" component={PlrScreen} />
         <Tab.Screen name="Smooth Pursuit" component={SmoothPursuitScreen} />
         <Tab.Screen name="Full Demo" component={FullDemoScreen} />

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Modal, Text, View, ViewStyle, TextStyle } from 'react-native';
-import { SenseyeButton, Tasks } from '@senseyeinc/react-native-senseye-sdk';
+import { SenseyeButton } from '@senseyeinc/react-native-senseye-sdk';
 import { Spacing, Typography } from '../styles';
 
 export default function NystagmusScreen() {
@@ -22,9 +22,10 @@ export default function NystagmusScreen() {
         type="primaryCta"
         onPress={() => setIsShowModal(true)}
       />
-      <Modal visible={isShowModal} onRequestClose={() => setIsShowModal(false)}>
-        <Tasks.Nystagmus iterations={3} onEnd={() => setIsShowModal(false)} />
-      </Modal>
+      <Modal
+        visible={isShowModal}
+        onRequestClose={() => setIsShowModal(false)}
+      />
     </View>
   );
 }
