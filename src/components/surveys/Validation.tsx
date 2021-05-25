@@ -42,7 +42,7 @@ export default function ValidationSurvey(props: ValidationSurveyProps) {
       // generate a survey model and pass it into the callback
       const survey = new Models.Survey(
         Constants.SurveyType.VALIDATION,
-        { agreed: [validationQuestion, agreed] },
+        { isResultAgreed: [validationQuestion, agreed] },
         result
       );
       onComplete(survey);
