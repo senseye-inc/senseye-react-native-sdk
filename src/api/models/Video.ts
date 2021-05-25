@@ -23,11 +23,12 @@ export default class Video {
     info: { [key: string]: any } = {},
     uri?: string
   ) {
+    this.name = getCurrentTimestamp().toString() + '_' + name;
     this.metadata = {
+      name: this.name,
       config: config,
       info: info,
     };
-    this.name = getCurrentTimestamp().toString() + '_' + name;
     this.uri = uri;
     this.uploadPercentage = 0;
   }
@@ -39,7 +40,7 @@ export default class Video {
    *                    If left unspecified, current UTC will be used.
    */
   public recordStartTime(timestamp?: number) {
-    this.metadata.start_timestamp = timestamp ? timestamp : getCurrentTimestamp();
+    this.metadata.startTime = timestamp ? timestamp : getCurrentTimestamp();
   }
 
   /**
@@ -49,7 +50,7 @@ export default class Video {
    *                    If left unspecified, current UTC will be used.
    */
   public recordStopTime(timestamp?: number) {
-    this.metadata.stop_timestamp = timestamp ? timestamp : getCurrentTimestamp();
+    this.metadata.endTime = timestamp ? timestamp : getCurrentTimestamp();
   }
 
   /**
@@ -114,6 +115,15 @@ export default class Video {
    */
   public getUploadPercentage() {
     return this.uploadPercentage;
+  }
+
+  /**
+   * @returns The video's {@link metadata}.
+   */
+  public getMetadata() {
+    this.metadata.name = this.name;
+
+    return this.metadata;
   }
 
   /**

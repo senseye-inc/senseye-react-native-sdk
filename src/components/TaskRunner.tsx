@@ -54,7 +54,7 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
     if (recorder) {
       setIsRecording(true);
       recorder
-        .startRecording(children[taskIndex].props.name.replaceAll(' ', '_').toLowerCase())
+        .startRecording(children[taskIndex].props.name.replace(/ /g, '_').toLowerCase())
         .then((video) => {
           session.addVideo(video);
         })
@@ -67,7 +67,7 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
   const onTaskUpdate = React.useCallback(
     (data: TaskData) => {
       // TODO: store data
-      console.debug(children[taskIndex].props.name + ': ' + JSON.stringify(data));
+      console.log(children[taskIndex].props.name + ': ' + JSON.stringify(data));
     },
     [children, taskIndex]
   );

@@ -12,6 +12,9 @@ import type {
 } from '@senseyeinc/react-native-senseye-sdk';
 import FaceOutline from './FaceOutline';
 
+const qualityStrings = Object.keys(RNCamera.Constants.VideoQuality);
+const orientationStrings = Object.keys(RNCamera.Constants.Orientation);
+
 export type VideoRecorderProps = {
   /** Type of camera to use. Possible values: 'front' | 'back' */
   type?: RNCameraProps['type'];
@@ -110,16 +113,20 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
               ...(recordOptions || {}),
             };
 
-            const config = {
-              quality: recordOptions.quality,
-              bitrate: recordOptions.videoBitrate,
-              orientation: recordOptions.orientation,
-              codec: recordOptions.codec,
-              horizontal_flip: recordOptions.mirrorVideo,
-            };
+            const config: { [key: string]: any } = {};
+            Object.entries(recordOptions).forEach(
+              ([key, value]) => (config[key] = value)
+            );
+            if (typeof config.quality === 'number') {
+              config.quality = qualityStrings[config.quality];
+            }
+            if (typeof config.orientation === 'number') {
+              config.orientation = orientationStrings[config.orientation];
+            }
+
             const info = {
-              camera_type: props.type,
-              camera_id: props.cameraId,
+              cameraType: props.type,
+              cameraId: props.cameraId,
             };
 
             if (Platform.OS === 'ios' && typeof recordOptions.codec === 'string') {
@@ -143,7 +150,7 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
                 //   device: result.deviceOrientation,
                 // },
                 codec: result.codec,
-                recording_interrupted: result.isRecordingInterrupted,
+                isRecordingInterrupted: result.isRecordingInterrupted,
               });
 
               return v;
