@@ -6,8 +6,30 @@ import type {
 /**
  * @returns The number of milliseconds elapsed since January 1, 1970 00:00:00 UTC.
  */
-export function getCurrentTimestamp() {
+function getCurrentTimestamp() {
   return Date.now();
+}
+
+/**
+ * @param ext File extension.
+ * @returns   The corresponding MIME type. Defaults to `application/octet-stream`
+ *              if the extension is not recognized.
+ */
+function getMimeFromExtension(ext: string) {
+  switch (ext) {
+    case 'avi':
+      return 'video/x-msvideo';
+    case 'mkv':
+      return 'video/x-matroska';
+    case 'mp4':
+      return 'video/mp4';
+    case 'mov':
+      return 'video/quicktime';
+    case 'json':
+      return 'application/json';
+    default:
+      return 'application/octet-stream';
+  }
 }
 
 /** Valid session conditions. */
@@ -55,7 +77,7 @@ const CalibrationPatterns = [
 ];
 
 /** Senseye constants. */
-export const Constants = {
+const Constants = {
   API_HOST: 'api.senseye.co',
   API_BASE_PATH: '',
   SessionCondition: SessionConditions,
@@ -91,3 +113,5 @@ export const Constants = {
   },
   CalibrationPatterns: CalibrationPatterns,
 };
+
+export { Constants, getCurrentTimestamp, getMimeFromExtension };

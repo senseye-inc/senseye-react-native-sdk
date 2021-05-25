@@ -57,10 +57,8 @@ export default function SmoothPursuit(props: SmoothPursuitProps) {
   const moveAnimationValue = React.useRef(new Animated.ValueXY()).current;
 
   React.useEffect(() => {
-    const xPos =
-      WINDOW_WIDTH / 2 + Math.cos(theta) * offset - targetOutlineRadius;
-    const yPos =
-      WINDOW_HEIGHT / 2 + Math.sin(theta) * offset - targetOutlineRadius;
+    const xPos = WINDOW_WIDTH / 2 + Math.cos(theta) * offset - targetOutlineRadius;
+    const yPos = WINDOW_HEIGHT / 2 + Math.sin(theta) * offset - targetOutlineRadius;
     // iterates through x-coordinates values
     const targetXPos = moveAnimationValue.x.interpolate({
       inputRange: [0, theta],
@@ -130,15 +128,7 @@ export default function SmoothPursuit(props: SmoothPursuitProps) {
         _onEnd();
       }
     });
-  }, [
-    moveAnimationValue,
-    theta,
-    cycles,
-    speed,
-    iterations,
-    iterationCount,
-    _onEnd,
-  ]);
+  }, [moveAnimationValue, theta, cycles, speed, iterations, iterationCount, _onEnd]);
 
   React.useEffect(() => {
     if (!isTargetMoving) {

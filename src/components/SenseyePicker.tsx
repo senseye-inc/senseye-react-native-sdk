@@ -19,11 +19,7 @@ export default function SenseyePicker(props: SenseyePickerProps) {
     let items: any[] = [];
     options.values.forEach((el: React.ReactText, i: number) => {
       items.push(
-        <Picker.Item
-          label={options.labels[i]}
-          value={el}
-          key={`pickerItem${i}`}
-        />
+        <Picker.Item label={options.labels[i]} value={el} key={`pickerItem${i}`} />
       );
     });
     return items;

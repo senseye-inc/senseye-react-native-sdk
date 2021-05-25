@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { Platform } from 'react-native';
 import type { AxiosInstance, AxiosRequestConfig } from 'axios';
 
-import { Constants } from '@senseyeinc/react-native-senseye-sdk';
+import { Constants, getMimeFromExtension } from '@senseyeinc/react-native-senseye-sdk';
 import type {
   ComputeJobInitResponse,
   ComputeJobResponse,
@@ -88,5 +89,47 @@ export default class SenseyeApiClient {
     const response = await this.get<ComputeJobResponse>('/predict/' + id);
 
     return response.data;
+  }
+
+  /**
+   * Uploads a file to Senseye's S3.
+   *
+   * @param uri       File URI. (Android) Needs to be prefixed with `file://`.
+   * @param key       Desired S3 key for the file.
+   * @returns         A dictionary containing the destination S3 url.
+   */
+  public async uploadFile(
+    uri: string,
+    key: string,
+    onUploadProgress?: (progressEvent: ProgressEvent) => void
+  ) {
+    // send request for a presigned url to upload a file to Senseye
+    const data = (await this.axios.post('/data/generate-upload-url', { key: key })).data;
+
+    // use the response values to construct the required request body
+    const formData = new FormData();
+    Object.keys(data.fields).forEach((fieldName) => {
+      formData.append(fieldName, data.fields[fieldName]);
+    });
+    formData.append('file', {
+      name: uri.substring(uri.lastIndexOf('/') + 1, uri.length),
+      type: getMimeFromExtension(uri.substring(uri.lastIndexOf('.') + 1, uri.length)),
+      uri: Platform.OS === 'android' ? uri : uri.replace('file://', ''),
+    });
+
+    const requestConfig: AxiosRequestConfig = {
+      url: data.url,
+      method: 'post',
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      onUploadProgress: onUploadProgress,
+    };
+
+    await axios.request(requestConfig);
+    const bucket = data.url.split('/').pop();
+
+    return { s3_url: 's3://' + bucket + '/' + data.fields.key };
   }
 }

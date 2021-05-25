@@ -80,10 +80,7 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
   return (
     <SafeAreaView style={styles.container}>
       <Image style={styles.logo} source={whiteLogo} />
-      <ScrollView
-        style={styles.innerContainer}
-        contentContainerStyle={styles.layout}
-      >
+      <ScrollView style={styles.innerContainer} contentContainerStyle={styles.layout}>
         <Text style={styles.warning}>{warningMsg}</Text>
         <SenseyeTextInput
           label="Age"
@@ -171,11 +168,7 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
           value={uniqueId}
           onChangeText={(text) => setUniqueId(text)}
         />
-        <SenseyeButton
-          title="Submit"
-          onPress={_onComplete}
-          type={'primaryCta'}
-        />
+        <SenseyeButton title="Submit" onPress={_onComplete} type={'primaryCta'} />
       </ScrollView>
     </SafeAreaView>
   );
