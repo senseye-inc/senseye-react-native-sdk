@@ -28,6 +28,7 @@ export type TaskRunnerProps = {
 const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
   const { uniqueId, demographicSurvey, onEnd, onTaskPreview } = props;
   const [recorder, setRecorder] = React.useState<VideoRecorderObject>();
+  const [task, setTask] = React.useState<Models.Task>();
   const [taskIndex, setTaskIndex] = React.useState<number>(0);
   const [isPreview, setIsPreview] = React.useState<boolean>(true);
   const [isRecording, setIsRecording] = React.useState<boolean>(false);
@@ -52,9 +53,13 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
 
   const onDoubleTap = React.useCallback(() => {
     if (recorder) {
+      const taskName = children[taskIndex].props.name;
+      const t = new Models.Task(taskName);
+      setTask(t);
+      session.addTask(t);
       setIsRecording(true);
       recorder
-        .startRecording(children[taskIndex].props.name.replace(/ /g, '_').toLowerCase())
+        .startRecording(taskName.replace(/ /g, '_').toLowerCase())
         .then((video) => {
           session.addVideo(video);
         })
@@ -64,19 +69,28 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
     }
   }, [recorder, session, children, taskIndex]);
 
+  const onTaskStart = React.useCallback(() => {
+    if (task) {
+      task.recordStartTime();
+    }
+  }, [task]);
+
   const onTaskUpdate = React.useCallback(
     (data: TaskData) => {
-      // TODO: store data
+      // TODO: record task event data
       console.log(children[taskIndex].props.name + ': ' + JSON.stringify(data));
     },
     [children, taskIndex]
   );
 
   const onTaskEnd = React.useCallback(() => {
+    if (task) {
+      task.recordStopTime();
+    }
     if (recorder) {
       recorder.stopRecording();
     }
-  }, [recorder]);
+  }, [recorder, task]);
 
   const _onEnd = React.useCallback(() => {
     if (onEnd) {
@@ -125,6 +139,7 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
       {isPreview
         ? null
         : React.cloneElement(children[taskIndex], {
+            onStart: onTaskStart,
             onUpdate: onTaskUpdate,
             onEnd: onTaskEnd,
           })}

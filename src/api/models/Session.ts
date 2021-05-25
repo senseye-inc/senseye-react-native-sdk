@@ -15,13 +15,13 @@ import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
 import type { SenseyeApiClient, Models } from '@senseyeinc/react-native-senseye-sdk';
 
 /**
- * Class that models a session, facilitating the gathering and association of task
+ * Data model for a session. Facilitates the gathering and association of task
  * and video data generated during a participant's interaction with on-screen
- * stimuli, i.e. task or series of tasks.
+ * stimuli (i.e. task or series of tasks).
  */
 export default class Session {
   private metadata: { [key: string]: any };
-  private videos: Models.Video[];
+  private tasks: Models.Task[];
   private jsonUploadPercentage: number;
 
   /**
@@ -49,7 +49,7 @@ export default class Session {
       folderName: timestamp,
       uniqueId: uniqueId,
     };
-    this.videos = [];
+    this.tasks = [];
     this.jsonUploadPercentage = 0;
 
     if (survey) {
@@ -63,23 +63,49 @@ export default class Session {
   }
 
   /**
-   * Associates the specified video with the session.
+   * Adds the specified task to the session.
+   *
+   * @param task A `Task` instance.
+   */
+  public addTask(task: Models.Task) {
+    this.tasks.push(task);
+  }
+
+  /**
+   * @returns A list of {@link Task | Tasks} associated with the session (see {@link addTask | addTask()}).
+   */
+  public getTasks() {
+    return this.tasks;
+  }
+
+  /**
+   * Associates the specified video with the session and the session's latest task
+   * (see {@link addTask | addTask()}).
    *
    * @param video A `Video` instance.
    */
-  public async addVideo(video: Models.Video) {
+  public addVideo(video: Models.Video) {
+    if (this.tasks.length === 0) {
+      throw new Error('A Task must be added to the Session before adding any Videos.');
+    }
+
     if (typeof this.metadata.uniqueId === 'string' && this.metadata.uniqueId !== '') {
       // if `uniqueId` is present, prefix it to the video's name
       video.setName(this.metadata.uniqueId + '_' + video.getName());
     }
-    this.videos.push(video);
+    this.tasks[this.tasks.length - 1].addVideo(video);
   }
 
   /**
    * @returns A list of {@link Video | Videos} associated with the session (see {@link addVideo | addVideo()}).
    */
   public getVideos() {
-    return this.videos;
+    let videos: Models.Video[] = [];
+    this.tasks.forEach((task) => {
+      videos.push(...task.getVideos());
+    });
+
+    return videos;
   }
 
   /**
@@ -91,7 +117,7 @@ export default class Session {
    */
   public uploadVideos(apiClient: SenseyeApiClient) {
     let uploads: Promise<any>[] = [];
-    this.videos.forEach((v) => {
+    this.getVideos().forEach((v) => {
       uploads.push(
         v.upload(apiClient, undefined, this.metadata.folderName + '/' + v.getName())
       );
@@ -114,15 +140,15 @@ export default class Session {
       fileName = this.metadata.uniqueId + '_' + fileName;
     }
 
-    let data = this.metadata;
-    data.tasks = [];
-    this.videos.forEach((v) => {
-      let videoData = v.getMetadata();
-      videoData = { ...videoData.info, ...videoData };
-      videoData.info = undefined;
-      const taskData = { cameraRecording: videoData };
-      data.tasks.push(taskData);
+    this.metadata.tasks = [];
+    this.tasks.forEach((t) => {
+      let taskData = t.getMetadata();
+      taskData = { ...taskData.info, ...taskData };
+      taskData.info = undefined;
+      this.metadata.tasks.push(taskData);
     });
+
+    console.debug('\n' + JSON.stringify(this.metadata, undefined, '  '));
 
     let tmpFilePath = TemporaryDirectoryPath + fileName;
     if (Platform.OS === 'android') {
@@ -164,12 +190,13 @@ export default class Session {
    * @returns Integer value from `0` to `100`.
    */
   public getUploadPercentage() {
+    const videos = this.getVideos();
     let total = this.jsonUploadPercentage;
 
-    this.videos.forEach((v) => {
+    videos.forEach((v) => {
       total += v.getUploadPercentage();
     });
 
-    return Math.round(total / (this.videos.length + 1));
+    return Math.round(total / (videos.length + 1));
   }
 }

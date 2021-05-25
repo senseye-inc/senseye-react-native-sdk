@@ -2,8 +2,8 @@ import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
 import type { SenseyeApiClient } from '@senseyeinc/react-native-senseye-sdk';
 
 /**
- * Class that models a session video, facilitating the logging of pertinent
- * metadata and provides the ability to upload recorded video.
+ * Data model for a video recording. Facilitates the gathering of related metadata
+ * and provides the ability to upload a video file.
  */
 export default class Video {
   private metadata: { [key: string]: any };
