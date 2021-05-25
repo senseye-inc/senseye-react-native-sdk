@@ -154,7 +154,7 @@ Calibration.defaultProps = {
     [0.6, 0.75],
     [0.8, 0.75],
   ],
-  name: 'calibration',
+  name: 'Calibration',
   instructions:
     '\
 Please keep your head still throughout the assessment.\n\n\

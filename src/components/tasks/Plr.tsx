@@ -154,7 +154,7 @@ Plr.defaultProps = {
   fixation_length: 40,
   fixation_outline_size: 2,
   duration: 5000,
-  name: 'plr',
+  name: 'PLR',
   instructions:
     '\
 Please keep your head still throughout the assessment.\n\n\

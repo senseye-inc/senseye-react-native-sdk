@@ -210,5 +210,5 @@ Stare at the dot at the center of the screen. When a target appears, follow the 
 Double tap the screen to begin.',
   width: '100%',
   height: '100%',
-  name: 'smooth_pursuit',
+  name: 'Smooth Pursuit',
 };

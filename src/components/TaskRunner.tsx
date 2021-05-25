@@ -54,7 +54,7 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
     if (recorder) {
       setIsRecording(true);
       recorder
-        .startRecording(children[taskIndex].props.name)
+        .startRecording(children[taskIndex].props.name.replaceAll(' ', '_').toLowerCase())
         .then((video) => {
           session.addVideo(video);
         })
