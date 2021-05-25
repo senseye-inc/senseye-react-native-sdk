@@ -116,9 +116,9 @@ export default class Session {
 
     let data = this.metadata;
     data.tasks = [];
-    this.videos.forEach((v) => {
-      data.tasks.push(v.getMetadata());
-    });
+    // this.videos.forEach((v) => {
+    //   data.tasks.push(v.getMetadata());
+    // });
 
     let tmpFilePath = TemporaryDirectoryPath + fileName;
     if (Platform.OS === 'android') {
