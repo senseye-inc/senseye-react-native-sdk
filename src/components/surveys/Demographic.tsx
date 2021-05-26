@@ -20,9 +20,10 @@ import {
 import SenseyeCal from '../SenseyeCal';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
-const TODAY = new Date();
-TODAY.setDate(new Date().getDate() - 1);
-const YESTERDAY = TODAY.toISOString().slice(0, 10);
+const NOW = new Date();
+const TODAY = NOW.toISOString().slice(0, 10);
+NOW.setDate(new Date().getDate() - 1);
+const YESTERDAY = NOW.toISOString().slice(0, 10);
 
 export type DemographicSurveyProps = {
   onComplete?(survey: Models.Survey, userId: string): void;
@@ -38,10 +39,10 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
   const [bedHour, setBedHour] = React.useState('');
   const [bedMin, setBedMin] = React.useState('');
   const [bedMeridiem, setBedMeridiem] = React.useState<React.ReactText>('AM');
-  const [bedDate, setBedDate] = React.useState('');
+  const [bedDate, setBedDate] = React.useState(YESTERDAY);
   const [wakeHour, setWakeHour] = React.useState('');
   const [wakeMin, setWakeMin] = React.useState('');
-  const [wakeDate, setWakeDate] = React.useState('');
+  const [wakeDate, setWakeDate] = React.useState(TODAY);
   const [wakeMeridiem, setWakeMeridiem] = React.useState<React.ReactText>('AM');
 
   function _onComplete() {
@@ -63,7 +64,6 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
       return;
     }
     setWarningMsg('');
-
     if (props.onComplete) {
       // generate a survey model and pass it into the callback
       const survey = new Models.Survey(Constants.SurveyType.DEMOGRAPHIC, {
