@@ -32,6 +32,14 @@ function getMimeFromExtension(ext: string) {
   }
 }
 
+/**
+ * @param value Value to check.
+ * @returns     `true` if the value is a non-empty string. Otherwise, `false`.
+ */
+function isNonEmptyString(value: any) {
+  return typeof value === 'string' && value !== '';
+}
+
 /** Valid session conditions. */
 const SessionConditions: Record<string, SessionConditionType> = {
   GOOD: 'GOOD',
@@ -114,4 +122,4 @@ const Constants = {
   CalibrationPatterns: CalibrationPatterns,
 };
 
-export { Constants, getCurrentTimestamp, getMimeFromExtension };
+export { Constants, getCurrentTimestamp, getMimeFromExtension, isNonEmptyString };
