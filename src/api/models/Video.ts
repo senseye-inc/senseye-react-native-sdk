@@ -86,6 +86,7 @@ export default class Video {
    * @param uri       Video file URI. (Android) Needs to be prefixed with `file://`.
    *                    Defaults to {@link uri} (see {@link setUri | setUri()}).
    * @param key       Desired S3 key for the file. Defaults to {@link name} (see {@link setName | setName()}).
+   * @returns         A `Promise` that will resolve into a dictionary containing the destination S3 url (`s3_url`).
    */
   public async upload(apiClient: SenseyeApiClient, uri?: string, key?: string) {
     if (uri === undefined) {

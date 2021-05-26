@@ -96,7 +96,7 @@ export default class SenseyeApiClient {
    *
    * @param uri       File URI. (Android) Needs to be prefixed with `file://`.
    * @param key       Desired S3 key for the file.
-   * @returns         A dictionary containing the destination S3 url.
+   * @returns         A `Promise` that will resolve into a dictionary containing the destination S3 url (`s3_url`).
    */
   public async uploadFile(
     uri: string,

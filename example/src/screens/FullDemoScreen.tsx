@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Alert, Modal, Text, View, ViewStyle, TextStyle } from 'react-native';
-// import CameraRoll from '@react-native-community/cameraroll';
 import {
   Constants,
   TaskRunner,
@@ -58,15 +57,16 @@ export default function FullDemoScreen() {
         setUploadPercentage(percent);
       }, 3000);
 
-      const values = await session.uploadVideos(apiClient);
+      const values = await session.uploadAll(apiClient);
       // upload complete
       clearInterval(uploadPollId);
 
       let video_urls: string[] = [];
-      values.forEach((v: any) => {
+      values[0].forEach((v: any) => {
         video_urls.push(v.s3_url);
       });
-      console.log('uploads: ' + JSON.stringify(video_urls));
+      console.log('uploaded videos: ' + JSON.stringify(video_urls));
+      console.log('uploaded json: ' + JSON.stringify(values[1]));
 
       // update ProcessingScreen state from uploading to processing
       setUploadPercentage(undefined);
