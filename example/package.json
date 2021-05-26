@@ -10,7 +10,6 @@
     "start": "react-native start"
   },
   "dependencies": {
-    "@react-native-community/cameraroll": "^4.0.2",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-picker/picker": "^1.9.10",
     "@react-navigation/bottom-tabs": "^5.11.7",
@@ -22,6 +21,7 @@
     "react-native-calendars": "^1.1262.0",
     "react-native-camera": "^3.42.2",
     "react-native-device-info": "^8.0.0",
+    "react-native-fs": "^2.16.0",
     "react-native-gesture-handler": "^1.10.0",
     "react-native-reanimated": "^1.13.2",
     "react-native-safe-area-context": "^3.1.9",

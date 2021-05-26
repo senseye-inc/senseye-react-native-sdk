@@ -117,10 +117,7 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
           onChangeValue={(value) => setFatigueLevel(value)}
         />
         <Text style={styles.text}>Select the day you last slept:</Text>
-        <SenseyeCal
-          onUpdate={(day) => setBedDate(day)}
-          initialDate={YESTERDAY}
-        />
+        <SenseyeCal onUpdate={(day) => setBedDate(day)} initialDate={YESTERDAY} />
         <Text style={styles.text}>Log your most recent bed time:</Text>
         <View style={styles.clockStyles}>
           <SenseyeTextInput
@@ -184,11 +181,7 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
           value={uniqueId}
           onChangeText={(text) => setUniqueId(text)}
         />
-        <SenseyeButton
-          title="Submit"
-          onPress={_onComplete}
-          type={'primaryCta'}
-        />
+        <SenseyeButton title="Submit" onPress={_onComplete} type={'primaryCta'} />
       </ScrollView>
     </SafeAreaView>
   );

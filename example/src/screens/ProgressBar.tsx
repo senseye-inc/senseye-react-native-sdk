@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { Text, View, StyleSheet, Animated } from 'react-native';
+
 import { Colors, Typography } from '../styles';
 
 // /* mock progress data */

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Alert, Modal, Text, View, ViewStyle, TextStyle } from 'react-native';
-// import CameraRoll from '@react-native-community/cameraroll';
 import {
   Constants,
   TaskRunner,
@@ -18,18 +17,11 @@ import { Spacing, Typography } from '../styles';
 export default function FullDemoScreen() {
   const [isShowModal, setIsShowModal] = React.useState<boolean>(false);
   const [isModalReady, setIsModalReady] = React.useState<boolean>(false);
-  const [isShowTaskDialog, setIsShowTaskDialog] = React.useState<boolean>(
-    false
-  );
+  const [isShowTaskDialog, setIsShowTaskDialog] = React.useState<boolean>(false);
   const [isTasksComplete, setIsTasksComplete] = React.useState<boolean>(false);
-  const [
-    isProcessingComplete,
-    setIsProcessingComplete,
-  ] = React.useState<boolean>(false);
-  const [processingMessage, setProcessingMessage] = React.useState<string>(
-    'uploading'
-  );
-  const [uploadPercentage, setUploadPercentage] = React.useState<number>(0);
+  const [isProcessingComplete, setIsProcessingComplete] = React.useState<boolean>(false);
+  const [processingMessage, setProcessingMessage] = React.useState<string>('uploading');
+  const [uploadPercentage, setUploadPercentage] = React.useState<number | undefined>(0);
   const [result, setResult] = React.useState<PredictionResult>();
   const [taskDialogTitle, setTaskDialogTitle] = React.useState<string>('');
   const [taskDialogMessage, setTaskDialogMessage] = React.useState<string>('');
@@ -55,28 +47,29 @@ export default function FullDemoScreen() {
   };
 
   const onEnd = React.useCallback(
-    async (session, _) => {
+    async (session) => {
       // show ProcessingScreen
       setIsTasksComplete(true);
       // poll upload progress
       const uploadPollId = setInterval(() => {
-        let progress = session.getUploadProgress();
-        console.log('progress: ' + progress);
-        setUploadPercentage(Math.round(progress * 100));
+        let percent = session.getUploadPercentage();
+        console.log('progress: ' + percent + '%');
+        setUploadPercentage(percent);
       }, 3000);
 
-      const values = await session.uploadVideos();
+      const values = await session.uploadAll(apiClient);
       // upload complete
       clearInterval(uploadPollId);
 
       let video_urls: string[] = [];
-      values.forEach((v: any) => {
+      values[0].forEach((v: any) => {
         video_urls.push(v.s3_url);
       });
-      console.log('uploads: ' + video_urls);
+      console.log('uploaded videos: ' + JSON.stringify(video_urls));
+      console.log('uploaded json: ' + JSON.stringify(values[1]));
 
       // update ProcessingScreen state from uploading to processing
-      setUploadPercentage(-1);
+      setUploadPercentage(undefined);
       setProcessingMessage('senseye orm check results are processing');
       // submit compute job
       const jobId = (await apiClient.startPrediction(video_urls)).id;
@@ -98,7 +91,7 @@ export default function FullDemoScreen() {
                 setResult(job.result);
                 setIsProcessingComplete(true);
               } else {
-                console.log('server error!');
+                console.error('server error!');
                 Alert.alert('Oh no...', ':(', [
                   {
                     text: 'OK',
@@ -111,7 +104,7 @@ export default function FullDemoScreen() {
             }
           })
           .catch((error) => {
-            console.log(error);
+            console.error(error);
           });
       }, 3000);
     },
@@ -127,16 +120,14 @@ export default function FullDemoScreen() {
   return (
     <View style={Spacing.container as ViewStyle}>
       <Text style={Typography.text as TextStyle}>
-        A demonstration utilizing the various components provided in this SDK to
-        replicate Senseye's data collection and processing workflow.
+        A demonstration utilizing the various components provided in this SDK to replicate
+        Senseye's data collection and processing workflow.
         {'\n\n'}
-        This demo will execute Calibration and PLR tasks. A video will be
-        recorded for each task and uploaded to Senseye servers for processing.
-        At the end, a result screen will display with an inference of the
-        results.
+        This demo will execute Calibration and PLR tasks. A video will be recorded for
+        each task and uploaded to Senseye servers for processing. At the end, a result
+        screen will display with an inference of the results.
         {'\n\n'}
-        Note: Camera access and an internet connection are required for this
-        demo.
+        Note: Camera access and an internet connection are required for this demo.
       </Text>
       <SenseyeButton
         title="Run full demo"
@@ -151,11 +142,7 @@ export default function FullDemoScreen() {
         {isModalReady ? (
           !isTasksComplete ? (
             <View style={Spacing.centeredFlexView as ViewStyle}>
-              <TaskRunner
-                sessionConfig={{ apiClient: apiClient }}
-                onEnd={onEnd}
-                onTaskPreview={onTaskPreview}
-              >
+              <TaskRunner uniqueId="0000" onEnd={onEnd} onTaskPreview={onTaskPreview}>
                 <Tasks.Calibration
                   dot_points={Constants.CalibrationPatterns[1]}
                   radius={30}
