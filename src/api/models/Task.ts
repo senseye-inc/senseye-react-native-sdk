@@ -16,6 +16,7 @@ export default class Task {
     this.metadata = {
       name: name,
       info: info,
+      taskTimestamps: {},
       events: {},
     };
     this.videos = [];
@@ -73,7 +74,9 @@ export default class Task {
    *                    If left unspecified, current UTC will be used.
    */
   public recordStartTime(timestamp?: number) {
-    this.metadata.startTime = timestamp ? timestamp : getCurrentTimestamp();
+    this.metadata.taskTimestamps.startTime = timestamp
+      ? timestamp
+      : getCurrentTimestamp();
   }
 
   /**
@@ -83,7 +86,7 @@ export default class Task {
    *                    If left unspecified, current UTC will be used.
    */
   public recordStopTime(timestamp?: number) {
-    this.metadata.endTime = timestamp ? timestamp : getCurrentTimestamp();
+    this.metadata.taskTimestamps.endTime = timestamp ? timestamp : getCurrentTimestamp();
   }
 
   /**
