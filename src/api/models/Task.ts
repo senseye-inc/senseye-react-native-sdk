@@ -1,5 +1,5 @@
 import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
-import type { Models } from '@senseyeinc/react-native-senseye-sdk';
+import type { EventData, Models } from '@senseyeinc/react-native-senseye-sdk';
 
 /**
  * Model representing a task entity. Facilitates the gathering of relevant metadata and event data.
@@ -16,8 +16,38 @@ export default class Task {
     this.metadata = {
       name: name,
       info: info,
+      events: {},
     };
     this.videos = [];
+  }
+
+  /**
+   * Records the sepcified data entry under {@link metadata | metadata.events}.
+   *
+   * @param data  Data entry produced during a task.
+   */
+  public addEventData(data: EventData) {
+    const events = this.metadata.events;
+
+    if (!('timestamps' in events)) {
+      events.timestamps = [];
+    }
+
+    Object.keys(data.data).forEach((key) => {
+      if (!(key in events)) {
+        events[key] = new Array(events.timestamps.length).fill(undefined);
+      }
+    });
+
+    Object.keys(events).forEach((key) => {
+      if (key in data.data) {
+        events[key].push(data.data[key]);
+      } else if (key === 'timestamps') {
+        events.timestamps.push(data.timestamp);
+      } else {
+        events[key].push(undefined);
+      }
+    });
   }
 
   /**

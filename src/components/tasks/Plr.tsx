@@ -40,7 +40,7 @@ export default function Plr(props: PlrProps) {
         onUpdate({
           timestamp: getCurrentTimestamp(),
           data: {
-            bg_color: color_values[value.value],
+            bgColor: color_values[value.value],
           },
         });
         prevIndex = value.value;

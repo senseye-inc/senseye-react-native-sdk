@@ -60,7 +60,6 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
       const t = new Models.Task(taskName);
       setTaskEntity(t);
       session.addTask(t);
-      setIsRecording(true);
       recorder
         .startRecording(taskName.replace(/ /g, '_').toLowerCase())
         .then((videoEntity) => {
@@ -80,9 +79,11 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
 
   const onTaskUpdate = React.useCallback(
     (data: EventData) => {
-      taskEntity.addEventData(data);
+      if (taskEntity) {
+        taskEntity.addEventData(data);
+      }
     },
-    [children, taskIndex]
+    [taskEntity]
   );
 
   const onTaskEnd = React.useCallback(() => {
@@ -132,6 +133,7 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
         onDoubleTap={onDoubleTap}
         onRecordingStart={() => {
           setIsPreview(false);
+          setIsRecording(true);
         }}
         onRecordingEnd={() => {
           setTaskIndex((prevIndex) => prevIndex + 1);
