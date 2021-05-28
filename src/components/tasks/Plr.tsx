@@ -33,15 +33,17 @@ export default function Plr(props: PlrProps) {
   };
 
   React.useEffect(() => {
+    let prevIndex = -1;
     const listenerId = screenColor.addListener((value) => {
-      if (onUpdate) {
+      if (onUpdate && prevIndex !== value.value) {
         // returns data containing a timestamp and the updated background color
         onUpdate({
           timestamp: getCurrentTimestamp(),
           data: {
-            bg_color: color_values[value.value],
+            bgColor: color_values[value.value],
           },
         });
+        prevIndex = value.value;
       }
     });
     return () => {
@@ -152,7 +154,7 @@ Plr.defaultProps = {
   fixation_length: 40,
   fixation_outline_size: 2,
   duration: 5000,
-  name: 'plr',
+  name: 'PLR',
   instructions:
     '\
 Please keep your head still throughout the assessment.\n\n\

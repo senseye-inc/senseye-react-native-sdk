@@ -11,8 +11,8 @@ const WINDOW_HEIGHT = Dimensions.get('window').height;
 export type CalibrationProps = TaskProps & {
   /** Amount of time (milliseconds) a dot is displayed on-screen. */
   duration: number;
-  /** Delay (milliseconds) between render of old dot and new dot. */
-  delay: number;
+  /** @deprecated since version >0.3.0 */
+  delay?: number;
   /** Defines the radius of the dots. */
   radius: number;
   /** Defines the color of the dots. */
@@ -26,7 +26,7 @@ export type CalibrationProps = TaskProps & {
  * gaze information used to assess behavior in the other tasks.
  */
 export default function Calibration(props: CalibrationProps) {
-  const { duration, delay, dot_points, onStart, onEnd, onUpdate } = props;
+  const { duration, dot_points, onStart, onEnd, onUpdate } = props;
   const [dotMoveCount, setDotMoveCount] = React.useState(0);
   // instantiates animation object
   const moveAnimationValue = React.useRef(new Animated.ValueXY()).current;
@@ -53,8 +53,10 @@ export default function Calibration(props: CalibrationProps) {
   };
 
   React.useEffect(() => {
+    let [prevXIndex, prevYIndex] = [-1, -1];
     const listenerId = moveAnimationValue.addListener((value) => {
-      if (onUpdate) {
+      const { x, y } = value;
+      if (onUpdate && (prevXIndex !== x || prevYIndex !== y) && x === y) {
         /*
           Returns data containing a timestamp and the dot's updated (x,y) position relative to the canvas.
             (0, 0) represents the top left of the canvas.
@@ -63,10 +65,12 @@ export default function Calibration(props: CalibrationProps) {
         onUpdate({
           timestamp: getCurrentTimestamp(),
           data: {
-            x: dot_points[value.x][0],
-            y: dot_points[value.y][1],
+            x: dot_points[x][0],
+            y: dot_points[y][1],
           },
         });
+        prevXIndex = x;
+        prevYIndex = y;
       }
     });
     return () => {
@@ -92,7 +96,6 @@ export default function Calibration(props: CalibrationProps) {
       toValue: { x: dotMoveCount, y: dotMoveCount },
       duration: duration,
       easing: Easing.step0,
-      delay: delay,
       useNativeDriver: true,
     }).start(() => {
       if (dotMoveCount < dot_points.length - 1) {
@@ -101,7 +104,7 @@ export default function Calibration(props: CalibrationProps) {
         _onEnd();
       }
     });
-  }, [moveAnimationValue, duration, delay, dot_points, dotMoveCount, _onEnd]);
+  }, [moveAnimationValue, duration, dot_points, dotMoveCount, _onEnd]);
 
   React.useEffect(() => {
     moveDot();
@@ -135,8 +138,7 @@ const styles = (props: CalibrationProps) =>
 
 Calibration.defaultProps = {
   background: '#000000',
-  duration: 1000,
-  delay: 1000,
+  duration: 2000,
   radius: 15,
   dot_color: '#FFFFFF',
   dot_points: [
@@ -152,7 +154,7 @@ Calibration.defaultProps = {
     [0.6, 0.75],
     [0.8, 0.75],
   ],
-  name: 'calibration',
+  name: 'Calibration',
   instructions:
     '\
 Please keep your head still throughout the assessment.\n\n\

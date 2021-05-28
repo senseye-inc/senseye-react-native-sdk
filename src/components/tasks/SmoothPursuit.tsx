@@ -77,7 +77,7 @@ export default function SmoothPursuit(props: SmoothPursuitProps) {
 
   React.useEffect(() => {
     const listenerId = moveAnimationValue.addListener((value) => {
-      if (onUpdate) {
+      if (onUpdate && value.x === value.y) {
         // returns data containing a timestamp and the target's updated (x,y) position, theta, speed and current iteration
         onUpdate({
           timestamp: getCurrentTimestamp(),
@@ -206,9 +206,9 @@ SmoothPursuit.defaultProps = {
   instructions:
     '\
 Please keep your head still throughout the assessment.\n\n\
-Stare at the dot in the center of the screen. When a target appears, follow the target with your eyes as it moves around in a circle. When the target disappears, stare at the center dot again.\n\n\
+Stare at the dot at the center of the screen. When a target appears, follow the target with your eyes as it moves around in a circle. When the target disappears, stare at the center dot again.\n\n\
 Double tap the screen to begin.',
   width: '100%',
   height: '100%',
-  name: 'smooth_pursuit',
+  name: 'Smooth Pursuit',
 };

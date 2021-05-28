@@ -2,8 +2,8 @@ import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
 import type { SenseyeApiClient } from '@senseyeinc/react-native-senseye-sdk';
 
 /**
- * Class that models a session video, facilitating the logging of pertinent
- * metadata and provides the ability to upload recorded video.
+ * Model representing a video entity. Facilitates the gathering of relevant metadata
+ * and provides the ability to upload a video file.
  */
 export default class Video {
   private metadata: { [key: string]: any };
@@ -23,11 +23,13 @@ export default class Video {
     info: { [key: string]: any } = {},
     uri?: string
   ) {
+    this.name = getCurrentTimestamp().toString() + '_' + name;
     this.metadata = {
+      name: this.name,
       config: config,
       info: info,
+      videoTimestamps: {},
     };
-    this.name = getCurrentTimestamp().toString() + '_' + name;
     this.uri = uri;
     this.uploadPercentage = 0;
   }
@@ -39,7 +41,9 @@ export default class Video {
    *                    If left unspecified, current UTC will be used.
    */
   public recordStartTime(timestamp?: number) {
-    this.metadata.start_timestamp = timestamp ? timestamp : getCurrentTimestamp();
+    this.metadata.videoTimestamps.startTime = timestamp
+      ? timestamp
+      : getCurrentTimestamp();
   }
 
   /**
@@ -49,7 +53,7 @@ export default class Video {
    *                    If left unspecified, current UTC will be used.
    */
   public recordStopTime(timestamp?: number) {
-    this.metadata.stop_timestamp = timestamp ? timestamp : getCurrentTimestamp();
+    this.metadata.videoTimestamps.endTime = timestamp ? timestamp : getCurrentTimestamp();
   }
 
   /**
@@ -114,6 +118,15 @@ export default class Video {
    */
   public getUploadPercentage() {
     return this.uploadPercentage;
+  }
+
+  /**
+   * @returns The video's {@link metadata}.
+   */
+  public getMetadata() {
+    this.metadata.name = this.name;
+
+    return this.metadata;
   }
 
   /**

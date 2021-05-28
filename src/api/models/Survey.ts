@@ -1,7 +1,7 @@
 import type { Datum, SurveyType } from '@senseyeinc/react-native-senseye-sdk';
 
 /**
- * Class that models a survey, facilitating the collection of a participant's responses
+ * Model representing a survey entity. Facilitates the gathering of a participant's responses
  * to survey questions.
  */
 export default class Survey {

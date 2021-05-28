@@ -66,7 +66,7 @@ export default function FullDemoScreen() {
         video_urls.push(v.s3_url);
       });
       console.log('uploaded videos: ' + JSON.stringify(video_urls));
-      console.log('uploaded json: ' + JSON.stringify(values[1]));
+      console.log('uploaded json: ' + values[1].s3_url);
 
       // update ProcessingScreen state from uploading to processing
       setUploadPercentage(undefined);

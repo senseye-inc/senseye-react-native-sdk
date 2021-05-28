@@ -2,7 +2,10 @@ import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { VideoRecorder, Models } from '@senseyeinc/react-native-senseye-sdk';
-import type { TaskData, VideoRecorderObject } from '@senseyeinc/react-native-senseye-sdk';
+import type {
+  EventData,
+  VideoRecorderObject,
+} from '@senseyeinc/react-native-senseye-sdk';
 
 export type TaskRunnerProps = {
   /** Username or ID of the participant. */
@@ -28,6 +31,7 @@ export type TaskRunnerProps = {
 const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
   const { uniqueId, demographicSurvey, onEnd, onTaskPreview } = props;
   const [recorder, setRecorder] = React.useState<VideoRecorderObject>();
+  const [taskEntity, setTaskEntity] = React.useState<Models.Task>();
   const [taskIndex, setTaskIndex] = React.useState<number>(0);
   const [isPreview, setIsPreview] = React.useState<boolean>(true);
   const [isRecording, setIsRecording] = React.useState<boolean>(false);
@@ -52,11 +56,14 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
 
   const onDoubleTap = React.useCallback(() => {
     if (recorder) {
-      setIsRecording(true);
+      const taskName = children[taskIndex].props.name;
+      const t = new Models.Task(taskName);
+      setTaskEntity(t);
+      session.addTask(t);
       recorder
-        .startRecording(children[taskIndex].props.name)
-        .then((video) => {
-          session.addVideo(video);
+        .startRecording(taskName.replace(/ /g, '_').toLowerCase())
+        .then((videoEntity) => {
+          session.addVideo(videoEntity);
         })
         .finally(() => {
           setIsRecording(false);
@@ -64,19 +71,29 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
     }
   }, [recorder, session, children, taskIndex]);
 
+  const onTaskStart = React.useCallback(() => {
+    if (taskEntity) {
+      taskEntity.recordStartTime();
+    }
+  }, [taskEntity]);
+
   const onTaskUpdate = React.useCallback(
-    (data: TaskData) => {
-      // TODO: store data
-      console.debug(children[taskIndex].props.name + ': ' + JSON.stringify(data));
+    (data: EventData) => {
+      if (taskEntity) {
+        taskEntity.addEventData(data);
+      }
     },
-    [children, taskIndex]
+    [taskEntity]
   );
 
   const onTaskEnd = React.useCallback(() => {
+    if (taskEntity) {
+      taskEntity.recordStopTime();
+    }
     if (recorder) {
       recorder.stopRecording();
     }
-  }, [recorder]);
+  }, [recorder, taskEntity]);
 
   const _onEnd = React.useCallback(() => {
     if (onEnd) {
@@ -116,6 +133,7 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
         onDoubleTap={onDoubleTap}
         onRecordingStart={() => {
           setIsPreview(false);
+          setIsRecording(true);
         }}
         onRecordingEnd={() => {
           setTaskIndex((prevIndex) => prevIndex + 1);
@@ -125,6 +143,7 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
       {isPreview
         ? null
         : React.cloneElement(children[taskIndex], {
+            onStart: onTaskStart,
             onUpdate: onTaskUpdate,
             onEnd: onTaskEnd,
           })}

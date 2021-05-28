@@ -10,7 +10,7 @@ export default function SmoothPursuitScreen() {
   return (
     <View style={Spacing.container as ViewStyle}>
       <Text style={Typography.text as TextStyle}>
-        In this task, the participant is asked to stare at a dot in the center of the
+        In this task, the participant is asked to stare at a dot at the center of the
         screen. When a target appears, the participant should follow the target with their
         eyes as it moves around in a circle, and then stare at the center dot again when
         the target disappears.

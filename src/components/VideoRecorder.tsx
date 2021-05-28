@@ -12,6 +12,9 @@ import type {
 } from '@senseyeinc/react-native-senseye-sdk';
 import FaceOutline from './FaceOutline';
 
+const qualityStrings = Object.keys(RNCamera.Constants.VideoQuality);
+const orientationStrings = Object.keys(RNCamera.Constants.Orientation);
+
 export type VideoRecorderProps = {
   /** Type of camera to use. Possible values: 'front' | 'back' */
   type?: RNCameraProps['type'];
@@ -69,7 +72,7 @@ export type VideoRecorderProps = {
 const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
   (props, ref) => {
     const { onRecordingStart, onRecordingEnd, ...rncProps } = props;
-    const [video, setVideo] = React.useState<Models.Video>();
+    const [videoEntity, setVideoEntity] = React.useState<Models.Video>();
     const [camera, setCamera] = React.useState<RNCamera>();
 
     const setRef = React.useCallback((node) => {
@@ -80,24 +83,24 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
 
     const _onRecordingStart = React.useCallback(
       (event: RecordingStartEvent) => {
-        if (video) {
-          video.recordStartTime(getCurrentTimestamp());
+        if (videoEntity) {
+          videoEntity.recordStartTime(getCurrentTimestamp());
         }
         if (onRecordingStart) {
           onRecordingStart(event);
         }
       },
-      [video, onRecordingStart]
+      [videoEntity, onRecordingStart]
     );
 
     const _onRecordingEnd = React.useCallback(() => {
-      if (video) {
-        video.recordStopTime(getCurrentTimestamp());
+      if (videoEntity) {
+        videoEntity.recordStopTime(getCurrentTimestamp());
       }
       if (onRecordingEnd) {
         onRecordingEnd();
       }
-    }, [video, onRecordingEnd]);
+    }, [videoEntity, onRecordingEnd]);
 
     // expose recording functions to the ref
     React.useImperativeHandle(
@@ -110,16 +113,20 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
               ...(recordOptions || {}),
             };
 
-            const config = {
-              quality: recordOptions.quality,
-              bitrate: recordOptions.videoBitrate,
-              orientation: recordOptions.orientation,
-              codec: recordOptions.codec,
-              horizontal_flip: recordOptions.mirrorVideo,
-            };
+            const config: { [key: string]: any } = {};
+            Object.entries(recordOptions).forEach(
+              ([key, value]) => (config[key] = value)
+            );
+            if (typeof config.quality === 'number') {
+              config.quality = qualityStrings[config.quality];
+            }
+            if (typeof config.orientation === 'number') {
+              config.orientation = orientationStrings[config.orientation];
+            }
+
             const info = {
-              camera_type: props.type,
-              camera_id: props.cameraId,
+              cameraType: props.type,
+              cameraId: props.cameraId,
             };
 
             if (Platform.OS === 'ios' && typeof recordOptions.codec === 'string') {
@@ -128,7 +135,7 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
             }
 
             const v = new Models.Video(name, config, info);
-            setVideo(v);
+            setVideoEntity(v);
 
             return camera.recordAsync(recordOptions).then((result: RecordResponse) => {
               const uri = result.uri;
@@ -143,7 +150,7 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
                 //   device: result.deviceOrientation,
                 // },
                 codec: result.codec,
-                recording_interrupted: result.isRecordingInterrupted,
+                isRecordingInterrupted: result.isRecordingInterrupted,
               });
 
               return v;

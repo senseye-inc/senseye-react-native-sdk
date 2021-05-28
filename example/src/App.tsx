@@ -27,15 +27,15 @@ export default function App() {
   return (
     <NavigationContainer theme={SenseyeTheme}>
       <Tab.Navigator
-        initialRouteName="Calibration"
+        initialRouteName="Full Demo"
         tabBarOptions={{
           labelStyle: { padding: 7, fontSize: 10 },
         }}
       >
+        <Tab.Screen name="Full Demo" component={FullDemoScreen} />
         <Tab.Screen name="Calibration" component={CalibrationScreen} />
         <Tab.Screen name="PLR" component={PlrScreen} />
         <Tab.Screen name="Smooth Pursuit" component={SmoothPursuitScreen} />
-        <Tab.Screen name="Full Demo" component={FullDemoScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
