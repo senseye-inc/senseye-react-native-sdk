@@ -72,7 +72,7 @@ export type VideoRecorderProps = {
 const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
   (props, ref) => {
     const { onRecordingStart, onRecordingEnd, ...rncProps } = props;
-    const [video, setVideo] = React.useState<Models.Video>();
+    const [videoEntity, setVideoEntity] = React.useState<Models.Video>();
     const [camera, setCamera] = React.useState<RNCamera>();
 
     const setRef = React.useCallback((node) => {
@@ -83,24 +83,24 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
 
     const _onRecordingStart = React.useCallback(
       (event: RecordingStartEvent) => {
-        if (video) {
-          video.recordStartTime(getCurrentTimestamp());
+        if (videoEntity) {
+          videoEntity.recordStartTime(getCurrentTimestamp());
         }
         if (onRecordingStart) {
           onRecordingStart(event);
         }
       },
-      [video, onRecordingStart]
+      [videoEntity, onRecordingStart]
     );
 
     const _onRecordingEnd = React.useCallback(() => {
-      if (video) {
-        video.recordStopTime(getCurrentTimestamp());
+      if (videoEntity) {
+        videoEntity.recordStopTime(getCurrentTimestamp());
       }
       if (onRecordingEnd) {
         onRecordingEnd();
       }
-    }, [video, onRecordingEnd]);
+    }, [videoEntity, onRecordingEnd]);
 
     // expose recording functions to the ref
     React.useImperativeHandle(
@@ -135,7 +135,7 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
             }
 
             const v = new Models.Video(name, config, info);
-            setVideo(v);
+            setVideoEntity(v);
 
             return camera.recordAsync(recordOptions).then((result: RecordResponse) => {
               const uri = result.uri;

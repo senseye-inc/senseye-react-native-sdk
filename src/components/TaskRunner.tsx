@@ -2,7 +2,10 @@ import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { VideoRecorder, Models } from '@senseyeinc/react-native-senseye-sdk';
-import type { TaskData, VideoRecorderObject } from '@senseyeinc/react-native-senseye-sdk';
+import type {
+  EventData,
+  VideoRecorderObject,
+} from '@senseyeinc/react-native-senseye-sdk';
 
 export type TaskRunnerProps = {
   /** Username or ID of the participant. */
@@ -28,7 +31,7 @@ export type TaskRunnerProps = {
 const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
   const { uniqueId, demographicSurvey, onEnd, onTaskPreview } = props;
   const [recorder, setRecorder] = React.useState<VideoRecorderObject>();
-  const [task, setTask] = React.useState<Models.Task>();
+  const [taskEntity, setTaskEntity] = React.useState<Models.Task>();
   const [taskIndex, setTaskIndex] = React.useState<number>(0);
   const [isPreview, setIsPreview] = React.useState<boolean>(true);
   const [isRecording, setIsRecording] = React.useState<boolean>(false);
@@ -55,13 +58,13 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
     if (recorder) {
       const taskName = children[taskIndex].props.name;
       const t = new Models.Task(taskName);
-      setTask(t);
+      setTaskEntity(t);
       session.addTask(t);
       setIsRecording(true);
       recorder
         .startRecording(taskName.replace(/ /g, '_').toLowerCase())
-        .then((video) => {
-          session.addVideo(video);
+        .then((videoEntity) => {
+          session.addVideo(videoEntity);
         })
         .finally(() => {
           setIsRecording(false);
@@ -70,27 +73,26 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
   }, [recorder, session, children, taskIndex]);
 
   const onTaskStart = React.useCallback(() => {
-    if (task) {
-      task.recordStartTime();
+    if (taskEntity) {
+      taskEntity.recordStartTime();
     }
-  }, [task]);
+  }, [taskEntity]);
 
   const onTaskUpdate = React.useCallback(
-    (data: TaskData) => {
-      // TODO: record task event data
-      console.log(children[taskIndex].props.name + ': ' + JSON.stringify(data));
+    (data: EventData) => {
+      taskEntity.addEventData(data);
     },
     [children, taskIndex]
   );
 
   const onTaskEnd = React.useCallback(() => {
-    if (task) {
-      task.recordStopTime();
+    if (taskEntity) {
+      taskEntity.recordStopTime();
     }
     if (recorder) {
       recorder.stopRecording();
     }
-  }, [recorder, task]);
+  }, [recorder, taskEntity]);
 
   const _onEnd = React.useCallback(() => {
     if (onEnd) {

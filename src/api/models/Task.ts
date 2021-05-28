@@ -2,7 +2,7 @@ import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
 import type { Models } from '@senseyeinc/react-native-senseye-sdk';
 
 /**
- * Data model for a task. Facilitates the gathering of related metadata.
+ * Model representing a task entity. Facilitates the gathering of relevant metadata and event data.
  */
 export default class Task {
   private metadata: { [key: string]: any };

@@ -18,7 +18,7 @@ import {
 import type { SenseyeApiClient, Models } from '@senseyeinc/react-native-senseye-sdk';
 
 /**
- * Data model for a session. Facilitates the gathering and association of task
+ * Model representing a session. Facilitates the gathering and association of task
  * and video data generated during a participant's interaction with on-screen
  * stimuli (i.e. task or series of tasks).
  */

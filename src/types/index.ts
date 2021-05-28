@@ -70,7 +70,7 @@ export type PredictionResult = {
 
 export type Datum = boolean | number | string;
 
-export type TaskData = {
+export type EventData = {
   timestamp: number;
   data: { [key: string]: any };
 };
@@ -131,6 +131,6 @@ export type TaskProps = {
   onStart?(): void;
   /** Function called on task end. */
   onEnd?(): void;
-  /** Function called on each animation update during the task. */
-  onUpdate?(data: TaskData): void;
+  /** Function called on an animation update or event during the task. */
+  onUpdate?(data: EventData): void;
 };
