@@ -18,7 +18,7 @@ export type SmoothPursuitProps = TaskProps & {
   /** Defines how far away the moving target will be from the stationary target. */
   offset: number;
   /** Defines the amount of time (milliseconds) the moving target will disappear and pause between each iteration. */
-  targetDelay: number;
+  delay: number;
   /** Defines the size of the moving target. */
   targetRadius: number;
   /**
@@ -30,17 +30,17 @@ export type SmoothPursuitProps = TaskProps & {
   targetColor: string;
   /** Defines the color of the moving target's outline. */
   targetOutlineColor: string;
-  /** Defines the radius on the stationary target. */
-  bullseyeRadius: number;
+  /** Defines the radius of the stationary target. */
+  fixationRadius: number;
   /** Defines the color of the stationary target. */
-  bullseyeColor: string;
+  fixationColor: string;
 };
 
 /**  Smooth pursuit assessment. Displays a target that the participant follows with their eyes. */
 export default function SmoothPursuit(props: SmoothPursuitProps) {
   const {
     offset,
-    targetDelay,
+    delay,
     targetOutlineRadius,
     cycles,
     iterations,
@@ -134,15 +134,15 @@ export default function SmoothPursuit(props: SmoothPursuitProps) {
     if (!isTargetMoving) {
       setTimeout(() => {
         setIsTargetMoving(true);
-      }, targetDelay);
+      }, delay);
     } else {
       moveDot();
     }
-  }, [moveDot, isTargetMoving, targetDelay]);
+  }, [moveDot, isTargetMoving, delay]);
 
   return (
     <View style={styles(props).container}>
-      <View onLayout={_onStart} style={styles(props).bullseye} />
+      <View onLayout={_onStart} style={styles(props).fixation} />
       {isTargetMoving ? (
         <Animated.View style={[styles(props).targetOutline, animatedStyles]}>
           <View style={[styles(props).target]} />
@@ -179,30 +179,30 @@ const styles = (props: SmoothPursuitProps) =>
       borderRadius: 100,
       backgroundColor: props.targetColor,
     },
-    bullseye: {
-      width: props.bullseyeRadius * 2,
-      height: props.bullseyeRadius * 2,
-      borderRadius: props.bullseyeRadius,
-      backgroundColor: props.bullseyeColor,
-      top: WINDOW_HEIGHT / 2 - props.bullseyeRadius,
-      left: WINDOW_WIDTH / 2 - props.bullseyeRadius,
+    fixation: {
+      width: props.fixationRadius * 2,
+      height: props.fixationRadius * 2,
+      borderRadius: props.fixationRadius,
+      backgroundColor: props.fixationColor,
+      top: WINDOW_HEIGHT / 2 - props.fixationRadius,
+      left: WINDOW_WIDTH / 2 - props.fixationRadius,
     },
   });
 
 SmoothPursuit.defaultProps = {
   background: '#000000',
   duration: 3000,
-  cycles: 2,
-  iterations: 2,
+  cycles: 3,
+  iterations: 3,
   speed: 0.05,
-  offset: 120,
-  targetDelay: 3000,
+  offset: 150,
+  delay: 3000,
   targetRadius: 7,
   targetColor: '#FF0000',
   targetOutlineRadius: 14,
   targetOutlineColor: '#FFFFFF',
-  bullseyeRadius: 10,
-  bullseyeColor: '#FFFFFF',
+  fixationRadius: 10,
+  fixationColor: '#FFFFFF',
   instructions:
     '\
 Please keep your head still throughout the assessment.\n\n\
