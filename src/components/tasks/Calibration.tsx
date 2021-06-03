@@ -33,9 +33,9 @@ export default function Calibration(props: CalibrationProps) {
   // returns an array of index values from dotSequence
   const dotIndexes = dotSequence.map((_, i) => i);
   // grabs first index: [x,y] grabs x-coordinate within the bounds of WINDOW_HEIGHT
-  const xOutput = dotSequence.map((point) => point.x * WINDOW_WIDTH).flat(2);
+  const xOutput = dotSequence.map((point) => point.x * WINDOW_WIDTH - radius).flat(2);
   // grabs second index: [x,y] grabs y-coordinate within the bounds of WINDOW_HEIGHT
-  const yOutput = dotSequence.map((point) => point.y * WINDOW_HEIGHT).flat(2);
+  const yOutput = dotSequence.map((point) => point.y * WINDOW_HEIGHT - radius).flat(2);
   // iterates through x-coordinates values
   const targetXPos = moveAnimationValue.x.interpolate({
     inputRange: dotIndexes,
@@ -128,9 +128,9 @@ const styles = (props: CalibrationProps) =>
       backgroundColor: props.background,
     },
     dot: {
-      height: props.radius,
-      width: props.radius,
       backgroundColor: props.dotColor,
+      height: props.radius * 2,
+      width: props.radius * 2,
       borderRadius: 100,
     },
   });
