@@ -12,7 +12,7 @@ You can also run `yarn bootstrap` from the root directory to install the require
 
 Install CocoaPods dependencies by running `npx pod-install` in this directory.
 
-During early test deployment onto a device, you may need to go into Settings > Device Management to trust the developer app.
+If this is the first time the app is being deployed onto a particular device, you may need to go into the device's Settings > General > Device Management to trust the developer app.
 
 Allow the device to search for services on the same network so that the Metro bundler can actively load JavaScript code changes onto your device.
 
