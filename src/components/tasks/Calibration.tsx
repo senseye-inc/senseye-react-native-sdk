@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Animated, Dimensions, Easing, View, StyleSheet } from 'react-native';
 
 import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
-import type { TaskProps } from '@senseyeinc/react-native-senseye-sdk';
+import type { Point, TaskProps } from '@senseyeinc/react-native-senseye-sdk';
 
 // application window height and width
 const WINDOW_WIDTH = Dimensions.get('window').width;
@@ -18,7 +18,7 @@ export type CalibrationProps = TaskProps & {
   /** Defines the color of the dots. */
   dotColor: string;
   /** Determines the sequence of xy coordinates of the dots. */
-  dotSequence: number[][];
+  dotSequence: Point[];
 };
 
 /**
@@ -26,16 +26,16 @@ export type CalibrationProps = TaskProps & {
  * gaze information used to assess behavior in the other tasks.
  */
 export default function Calibration(props: CalibrationProps) {
-  const { duration, dotSequence, onStart, onEnd, onUpdate } = props;
+  const { duration, dotSequence, radius, onStart, onEnd, onUpdate } = props;
   const [dotMoveCount, setDotMoveCount] = React.useState(0);
   // instantiates animation object
   const moveAnimationValue = React.useRef(new Animated.ValueXY()).current;
   // returns an array of index values from dotSequence
   const dotIndexes = dotSequence.map((_, i) => i);
   // grabs first index: [x,y] grabs x-coordinate within the bounds of WINDOW_HEIGHT
-  const xOutput = dotSequence.map((xy) => xy[0] * WINDOW_WIDTH).flat(2);
+  const xOutput = dotSequence.map((point) => point.x * WINDOW_WIDTH).flat(2);
   // grabs second index: [x,y] grabs y-coordinate within the bounds of WINDOW_HEIGHT
-  const yOutput = dotSequence.map((xy) => xy[1] * WINDOW_HEIGHT).flat(2);
+  const yOutput = dotSequence.map((point) => point.y * WINDOW_HEIGHT).flat(2);
   // iterates through x-coordinates values
   const targetXPos = moveAnimationValue.x.interpolate({
     inputRange: dotIndexes,
@@ -65,8 +65,8 @@ export default function Calibration(props: CalibrationProps) {
         onUpdate({
           timestamp: getCurrentTimestamp(),
           data: {
-            x: dotSequence[curIndex][0],
-            y: dotSequence[curIndex][1],
+            x: dotSequence[curIndex].x,
+            y: dotSequence[curIndex].y,
           },
         });
         prevXIndex = x;
@@ -140,19 +140,19 @@ Calibration.defaultProps = {
   background: '#000000',
   duration: 2000,
   radius: 15,
-    [0.2, 0.25],
-    [0.4, 0.25],
-    [0.6, 0.25],
-    [0.8, 0.25],
-    [0.25, 0.5],
-    [0.5, 0.5],
-    [0.75, 0.5],
-    [0.2, 0.75],
-    [0.4, 0.75],
-    [0.6, 0.75],
-    [0.8, 0.75],
   dotColor: '#FFFFFF',
   dotSequence: [
+    { x: 0.2, y: 0.25 },
+    { x: 0.4, y: 0.25 },
+    { x: 0.6, y: 0.25 },
+    { x: 0.8, y: 0.25 },
+    { x: 0.25, y: 0.5 },
+    { x: 0.5, y: 0.5 },
+    { x: 0.75, y: 0.5 },
+    { x: 0.2, y: 0.75 },
+    { x: 0.4, y: 0.75 },
+    { x: 0.6, y: 0.75 },
+    { x: 0.8, y: 0.75 },
   ],
   name: 'Calibration',
   instructions:
