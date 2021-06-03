@@ -25,7 +25,7 @@ export default function SmoothPursuitScreen() {
           cycles={3}
           iterations={3}
           speed={0.05}
-          startTheta={Math.PI / 2}
+          startAngle={Math.PI / 2}
           onEnd={() => setIsShowModal(false)}
         />
       </Modal>

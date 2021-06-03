@@ -1,7 +1,4 @@
-import type {
-  SessionConditionType,
-  SurveyType,
-} from '@senseyeinc/react-native-senseye-sdk';
+import type { SessionCondition, SurveyType } from '@senseyeinc/react-native-senseye-sdk';
 
 /**
  * @returns The number of milliseconds elapsed since January 1, 1970 00:00:00 UTC.
@@ -41,7 +38,7 @@ function isNonEmptyString(value: any) {
 }
 
 /** Valid session conditions. */
-const SessionConditions: Record<string, SessionConditionType> = {
+const SessionConditions: Record<string, SessionCondition> = {
   GOOD: 'GOOD',
   BAD: 'BAD',
   TEST: 'TEST',
@@ -55,7 +52,7 @@ const SurveyTypes: Record<string, SurveyType> = {
   VALIDATION: 'validation',
 };
 
-/** A list of calibration patterns (x,y) to select from */
+/** A list of calibration patterns (x,y) to select from. */
 const CalibrationPatterns = [
   [
     { x: 0.2, y: 0.25 },

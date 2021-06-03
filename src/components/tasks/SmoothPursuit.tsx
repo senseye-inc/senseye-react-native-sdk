@@ -19,8 +19,12 @@ export type SmoothPursuitProps = TaskProps & {
   offset: number;
   /** Defines the amount of time (milliseconds) the moving target will disappear and pause between each iteration. */
   delay: number;
-  /** Defines the starting theta of the target for each cycle/iteration. */
-  startTheta: number;
+  /**
+   * Defines the starting angle, measured in radians, of the target for each cycle/iteration.
+   * At `0`, the target's starting position will lie on the positive x-axis. As the value increases,
+   * the position will shift in a counterclockwise direction.
+   */
+  startAngle: number;
   /** Defines the size of the moving target. */
   targetRadius: number;
   /**
@@ -47,47 +51,50 @@ export default function SmoothPursuit(props: SmoothPursuitProps) {
     cycles,
     iterations,
     speed,
-    startTheta,
+    startAngle,
     onStart,
     onEnd,
     onUpdate,
   } = props;
   const [iterationCount, setIterationCount] = React.useState(0);
   const [isTargetMoving, setIsTargetMoving] = React.useState(false);
-  const [theta, setTheta] = React.useState(startTheta);
+  const [angle, setAngle] = React.useState(startAngle);
   const [animatedStyles, setAnimatedStyles] = React.useState({});
   // instantiates animation object
   const moveAnimationValue = React.useRef(new Animated.ValueXY()).current;
 
   React.useEffect(() => {
-    const xPos = WINDOW_WIDTH / 2 + Math.cos(theta) * offset - targetOutlineRadius;
-    const yPos = WINDOW_HEIGHT / 2 + Math.sin(theta) * offset - targetOutlineRadius;
+    const xPos = WINDOW_WIDTH / 2 + Math.cos(angle) * offset - targetOutlineRadius;
+    const yPos = WINDOW_HEIGHT / 2 + Math.sin(angle) * offset - targetOutlineRadius;
     // iterates through x-coordinates values
     const targetXPos = moveAnimationValue.x.interpolate({
-      inputRange: [0, theta],
+      inputRange: [angle, angle],
       outputRange: [xPos, xPos],
     });
     // iterates through y-coordinates valuess
     const targetYPos = moveAnimationValue.y.interpolate({
-      inputRange: [0, theta],
+      inputRange: [angle, angle],
       outputRange: [yPos, yPos],
     });
     // updates the target's xy position values
     setAnimatedStyles({
       transform: [{ translateX: targetXPos }, { translateY: targetYPos }],
     });
-  }, [moveAnimationValue, theta, offset, targetOutlineRadius]);
+  }, [moveAnimationValue, angle, offset, targetOutlineRadius]);
 
   React.useEffect(() => {
+    let curAngle: number | undefined = undefined;
     const listenerId = moveAnimationValue.addListener((value) => {
-      if (onUpdate && value.x === value.y) {
-        // returns data containing a timestamp and the target's updated (x,y) position, theta, speed and current iteration
+      const { x, y } = value;
+      if (onUpdate && curAngle !== x && x === y) {
+        curAngle = x;
+        // returns data containing a timestamp and the target's updated (x,y) position, angle, speed and current iteration
         onUpdate({
           timestamp: getCurrentTimestamp(),
           data: {
-            x: WINDOW_WIDTH / 2 + Math.cos(value.x) * offset,
-            y: WINDOW_HEIGHT / 2 + Math.sin(value.y) * offset,
-            theta: value.x,
+            x: WINDOW_WIDTH / 2 + Math.cos(curAngle) * offset,
+            y: WINDOW_HEIGHT / 2 + Math.sin(curAngle) * offset,
+            angle: curAngle,
             speed: speed,
             iteration: iterationCount,
           },
@@ -114,18 +121,18 @@ export default function SmoothPursuit(props: SmoothPursuitProps) {
   // manages the dot position animation
   const moveDot = React.useCallback(() => {
     Animated.timing(moveAnimationValue, {
-      toValue: { x: theta, y: theta },
+      toValue: { x: angle, y: angle },
       duration: 0,
       useNativeDriver: true,
     }).start(() => {
       // 1 radian = 360 degrees / (2 * pi) => 1 cycle (360 degrees) = (2 * pi) radians
-      if (theta < cycles * 2 * Math.PI + startTheta) {
+      if (angle < cycles * 2 * Math.PI + startAngle) {
         // if the target hasn't completed all cycles within the iteration yet, continue moving
-        setTheta(theta + speed);
+        setAngle(angle + speed);
       } else if (iterationCount < iterations - 1) {
         // otherwise, if not all iterations are complete yet, initiate another one
         setIsTargetMoving(false);
-        setTheta(startTheta);
+        setTheta(startAngle);
         setIterationCount(iterationCount + 1);
       } else {
         _onEnd();
@@ -133,8 +140,8 @@ export default function SmoothPursuit(props: SmoothPursuitProps) {
     });
   }, [
     moveAnimationValue,
-    theta,
-    startTheta,
+    startAngle,
+    angle,
     cycles,
     speed,
     iterations,
@@ -209,7 +216,7 @@ SmoothPursuit.defaultProps = {
   speed: 0.05,
   offset: 150,
   delay: 3000,
-  startTheta: Math.PI / 2,
+  startAngle: Math.PI / 2,
   targetRadius: 7,
   targetColor: '#FF0000',
   targetOutlineRadius: 14,
