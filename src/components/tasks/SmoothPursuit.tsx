@@ -9,13 +9,16 @@ const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
 export type SmoothPursuitProps = TaskProps & {
-  /** Defines the number of cycles in an iteration the moving target will circle around the stationary target. */
+  /** Defines the number of times in an iteration the target will circle around the fixation point. */
   cycles: number;
-  /** Defines the number of times the moving target will appear and perform its cycles. */
+  /** Defines the number of times the target will appear and perform its cycles. */
   iterations: number;
-  /** Defines how fast the moving target circles around the centered focal point. */
+  /**
+   * Defines how fast the target will circle around the fixation point. A positive value will
+   * move the target in a counterclockwise direction, whereas a negative value will move it clockwise.
+   */
   speed: number;
-  /** Defines how far away the moving target will be from the stationary target. */
+  /** Defines the radial distance between the target and the fixation point. */
   offset: number;
   /** Defines the amount of time (milliseconds) the moving target will disappear and pause between each iteration. */
   delay: number;
@@ -36,9 +39,9 @@ export type SmoothPursuitProps = TaskProps & {
   targetColor: string;
   /** Defines the color of the moving target's outline. */
   targetOutlineColor: string;
-  /** Defines the radius of the stationary target. */
+  /** Defines the radius of the fixed center point. */
   fixationRadius: number;
-  /** Defines the color of the stationary target. */
+  /** Defines the color of the fixed center point. */
   fixationColor: string;
 };
 
@@ -58,8 +61,13 @@ export default function SmoothPursuit(props: SmoothPursuitProps) {
   } = props;
   const [iterationCount, setIterationCount] = React.useState(0);
   const [isTargetMoving, setIsTargetMoving] = React.useState(false);
+  const [startAngleMod] = React.useState(startAngle % (2 * Math.PI));
   const [angle, setAngle] = React.useState(startAngle);
   const [animatedStyles, setAnimatedStyles] = React.useState({});
+  // 1 radian = 360 degrees / (2 * pi) => 1 cycle = 360 degrees = (2 * pi) radians
+  const [maxAngle] = React.useState(
+    cycles * 2 * Math.PI + (speed > 0 ? startAngleMod : -startAngleMod)
+  );
   // instantiates animation object
   const moveAnimationValue = React.useRef(new Animated.ValueXY()).current;
 
@@ -83,7 +91,7 @@ export default function SmoothPursuit(props: SmoothPursuitProps) {
   }, [moveAnimationValue, angle, offset, targetOutlineRadius]);
 
   React.useEffect(() => {
-    let curAngle: number | undefined = undefined;
+    let curAngle: number | undefined;
     const listenerId = moveAnimationValue.addListener((value) => {
       const { x, y } = value;
       if (onUpdate && curAngle !== x && x === y) {
@@ -125,14 +133,13 @@ export default function SmoothPursuit(props: SmoothPursuitProps) {
       duration: 0,
       useNativeDriver: true,
     }).start(() => {
-      // 1 radian = 360 degrees / (2 * pi) => 1 cycle (360 degrees) = (2 * pi) radians
-      if (angle < cycles * 2 * Math.PI + startAngle) {
+      if (Math.abs(angle) < maxAngle) {
         // if the target hasn't completed all cycles within the iteration yet, continue moving
         setAngle(angle + speed);
       } else if (iterationCount < iterations - 1) {
         // otherwise, if not all iterations are complete yet, initiate another one
         setIsTargetMoving(false);
-        setTheta(startAngle);
+        setAngle(startAngleMod);
         setIterationCount(iterationCount + 1);
       } else {
         _onEnd();
@@ -140,9 +147,9 @@ export default function SmoothPursuit(props: SmoothPursuitProps) {
     });
   }, [
     moveAnimationValue,
-    startAngle,
     angle,
-    cycles,
+    startAngleMod,
+    maxAngle,
     speed,
     iterations,
     iterationCount,
