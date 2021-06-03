@@ -19,6 +19,8 @@ export type SmoothPursuitProps = TaskProps & {
   offset: number;
   /** Defines the amount of time (milliseconds) the moving target will disappear and pause between each iteration. */
   delay: number;
+  /** Defines the starting theta of the target for each cycle/iteration. */
+  startTheta: number;
   /** Defines the size of the moving target. */
   targetRadius: number;
   /**
@@ -45,13 +47,14 @@ export default function SmoothPursuit(props: SmoothPursuitProps) {
     cycles,
     iterations,
     speed,
+    startTheta,
     onStart,
     onEnd,
     onUpdate,
   } = props;
   const [iterationCount, setIterationCount] = React.useState(0);
   const [isTargetMoving, setIsTargetMoving] = React.useState(false);
-  const [theta, setTheta] = React.useState(0);
+  const [theta, setTheta] = React.useState(startTheta);
   const [animatedStyles, setAnimatedStyles] = React.useState({});
   // instantiates animation object
   const moveAnimationValue = React.useRef(new Animated.ValueXY()).current;
@@ -115,20 +118,29 @@ export default function SmoothPursuit(props: SmoothPursuitProps) {
       duration: 0,
       useNativeDriver: true,
     }).start(() => {
-      // radians = degrees * pi / 180 => 1 cycle (360 degrees) = 2 * pi
-      if (theta < cycles * 2 * Math.PI) {
+      // 1 radian = 360 degrees / (2 * pi) => 1 cycle (360 degrees) = (2 * pi) radians
+      if (theta < cycles * 2 * Math.PI + startTheta) {
         // if the target hasn't completed all cycles within the iteration yet, continue moving
         setTheta(theta + speed);
       } else if (iterationCount < iterations - 1) {
         // otherwise, if not all iterations are complete yet, initiate another one
         setIsTargetMoving(false);
-        setTheta(0);
+        setTheta(startTheta);
         setIterationCount(iterationCount + 1);
       } else {
         _onEnd();
       }
     });
-  }, [moveAnimationValue, theta, cycles, speed, iterations, iterationCount, _onEnd]);
+  }, [
+    moveAnimationValue,
+    theta,
+    startTheta,
+    cycles,
+    speed,
+    iterations,
+    iterationCount,
+    _onEnd,
+  ]);
 
   React.useEffect(() => {
     if (!isTargetMoving) {
@@ -197,6 +209,7 @@ SmoothPursuit.defaultProps = {
   speed: 0.05,
   offset: 150,
   delay: 3000,
+  startTheta: Math.PI / 2,
   targetRadius: 7,
   targetColor: '#FF0000',
   targetOutlineRadius: 14,
