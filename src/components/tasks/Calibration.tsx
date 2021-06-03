@@ -53,10 +53,11 @@ export default function Calibration(props: CalibrationProps) {
   };
 
   React.useEffect(() => {
-    let [prevXIndex, prevYIndex] = [-1, -1];
+    let curIndex = -1;
     const listenerId = moveAnimationValue.addListener((value) => {
       const { x, y } = value;
-      if (onUpdate && (prevXIndex !== x || prevYIndex !== y) && x === y) {
+      if (onUpdate && curIndex !== x && x === y) {
+        curIndex = x;
         /*
           Returns data containing a timestamp and the dot's updated (x,y) position relative to the canvas.
             (0, 0) represents the top left of the canvas.
@@ -69,8 +70,6 @@ export default function Calibration(props: CalibrationProps) {
             y: dotSequence[curIndex].y,
           },
         });
-        prevXIndex = x;
-        prevYIndex = y;
       }
     });
     return () => {

@@ -33,9 +33,10 @@ export default function Plr(props: PlrProps) {
   };
 
   React.useEffect(() => {
-    let prevIndex = -1;
+    let curIndex = -1;
     const listenerId = screenColor.addListener((value) => {
-      if (onUpdate && prevIndex !== value.value) {
+      if (onUpdate && curIndex !== value.value) {
+        curIndex = value.value;
         // returns data containing a timestamp and the updated background color
         onUpdate({
           timestamp: getCurrentTimestamp(),
@@ -43,7 +44,6 @@ export default function Plr(props: PlrProps) {
             bgColor: colorSequence[curIndex],
           },
         });
-        prevIndex = value.value;
       }
     });
     return () => {
