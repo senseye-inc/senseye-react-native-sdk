@@ -94,9 +94,10 @@ export default class SenseyeApiClient {
   /**
    * Uploads a file to Senseye's S3.
    *
-   * @param uri       File URI. (Android) Needs to be prefixed with `file://`.
-   * @param key       Desired S3 key for the file.
-   * @returns         A `Promise` that will resolve into a dictionary containing the destination S3 url (`s3_url`).
+   * @param uri               File URI. (Android) Needs to be prefixed with `file://`.
+   * @param key               Desired S3 key for the file.
+   * @param onUploadProgress  Callback function that will be called on updates to the upload progress.
+   * @returns                 A `Promise` that will resolve into a dictionary containing the destination S3 url (`s3_url`).
    */
   public async uploadFile(
     uri: string,
@@ -128,7 +129,15 @@ export default class SenseyeApiClient {
     };
 
     await axios.request(requestConfig);
-    const bucket = data.url.split('/').pop();
+
+    // extract bucket name from url, which can be in either format:
+    //  - https://s3.amazonaws.com/mybucket
+    //  - https://mybucket.s3.amazonaws.com/
+    const urlSplit = data.url.split('/');
+    let bucket = urlSplit.pop();
+    if (!bucket) {
+      bucket = urlSplit[2].split('.')[0];
+    }
 
     return { s3_url: 's3://' + bucket + '/' + data.fields.key };
   }
