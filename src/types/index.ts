@@ -75,7 +75,7 @@ export type EventData = {
   data: { [key: string]: any };
 };
 
-export type SessionConditionType = 'GOOD' | 'BAD' | 'TEST' | 'UNENDED' | 'UNSPECIFIED';
+export type SessionCondition = 'GOOD' | 'BAD' | 'TEST' | 'UNENDED' | 'UNSPECIFIED';
 
 export type SurveyType = 'demographic' | 'validation';
 

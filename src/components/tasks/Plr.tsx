@@ -5,27 +5,27 @@ import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
 import type { TaskProps } from '@senseyeinc/react-native-senseye-sdk';
 
 export type PlrProps = TaskProps & {
-  /** Dictates the color sequence of the background. */
-  color_values: string[] | number[];
-  /** The centered cross width. */
-  fixation_width: number;
-  /** Defines the centered cross length. */
-  fixation_length: number;
-  /** Defines how thick the outline on the centered cross, set to 0 to make outline disappear. */
-  fixation_outline_size: number;
-  /** Defines the amount of time (milliseconds) to display each background color. */
+  /** The color sequence of the background. */
+  colorSequence: string[] | number[];
+  /** The center cross width. */
+  fixationWidth: number;
+  /** The center cross length. */
+  fixationLength: number;
+  /** The thickness of the center cross outline. Set to 0 to make the outline disappear. */
+  fixationOutlineSize: number;
+  /** The amount of time (milliseconds) to display each background color. */
   duration: number;
 };
 
 /** Measures pupillary light reflex by manipulating the luminance of the screen. */
 export default function Plr(props: PlrProps) {
-  const { duration, color_values, onStart, onEnd, onUpdate } = props;
+  const { duration, colorSequence, onStart, onEnd, onUpdate } = props;
   const [updateCount, setUpdateCount] = React.useState(0);
   // instantiates animation object with default starting value
   const screenColor = React.useRef(new Animated.Value(0)).current;
   const color = screenColor.interpolate({
-    inputRange: [...Array(color_values.length).keys()],
-    outputRange: color_values,
+    inputRange: [...Array(colorSequence.length).keys()],
+    outputRange: colorSequence,
   });
   // consumes outputRange value and updates the screen color
   const animatedStyles = {
@@ -33,24 +33,24 @@ export default function Plr(props: PlrProps) {
   };
 
   React.useEffect(() => {
-    let prevIndex = -1;
+    let curIndex = -1;
     const listenerId = screenColor.addListener((value) => {
-      if (onUpdate && prevIndex !== value.value) {
+      if (onUpdate && curIndex !== value.value) {
+        curIndex = value.value;
         // returns data containing a timestamp and the updated background color
         onUpdate({
           timestamp: getCurrentTimestamp(),
           data: {
-            bgColor: color_values[value.value],
+            bgColor: colorSequence[curIndex],
           },
         });
-        prevIndex = value.value;
       }
     });
     return () => {
       // remove the previous listener
       screenColor.removeListener(listenerId);
     };
-  }, [screenColor, onUpdate, color_values]);
+  }, [screenColor, onUpdate, colorSequence]);
 
   const _onStart = () => {
     if (onStart) {
@@ -71,13 +71,13 @@ export default function Plr(props: PlrProps) {
       easing: Easing.step0,
       useNativeDriver: false,
     }).start(() => {
-      if (updateCount < color_values.length - 1) {
+      if (updateCount < colorSequence.length - 1) {
         setUpdateCount(updateCount + 1);
       } else {
         _onEnd();
       }
     });
-  }, [screenColor, duration, color_values, updateCount, _onEnd]);
+  }, [screenColor, duration, colorSequence, updateCount, _onEnd]);
 
   React.useEffect(() => {
     handleScreenColor();
@@ -113,29 +113,29 @@ const styles = (props: PlrProps) =>
       position: 'relative',
     },
     crossVertical: {
-      height: props.fixation_length - props.fixation_outline_size * 2,
-      width: props.fixation_width - props.fixation_outline_size * 2,
+      height: props.fixationLength - props.fixationOutlineSize * 2,
+      width: props.fixationWidth - props.fixationOutlineSize * 2,
       position: 'absolute',
       backgroundColor: '#888888',
       zIndex: 5,
     },
     crossHorizontal: {
-      height: props.fixation_width - props.fixation_outline_size * 2,
-      width: props.fixation_length - props.fixation_outline_size * 2,
+      height: props.fixationWidth - props.fixationOutlineSize * 2,
+      width: props.fixationLength - props.fixationOutlineSize * 2,
       position: 'absolute',
       backgroundColor: '#888888',
       zIndex: 5,
     },
     crossOutlineVertical: {
-      height: props.fixation_length,
-      width: props.fixation_width,
+      height: props.fixationLength,
+      width: props.fixationWidth,
       position: 'absolute',
       backgroundColor: '#555555',
       zIndex: 4,
     },
     crossOutlineHorizontal: {
-      height: props.fixation_width,
-      width: props.fixation_length,
+      height: props.fixationWidth,
+      width: props.fixationLength,
       position: 'absolute',
       backgroundColor: '#555555',
       zIndex: 4,
@@ -144,15 +144,15 @@ const styles = (props: PlrProps) =>
 
 Plr.defaultProps = {
   background: '#000000',
-  color_values: [
+  colorSequence: [
     'rgb(127, 127, 127)',
     'rgb(0, 0, 0)',
     'rgb(255, 255, 255)',
     'rgb(0, 0, 0)',
   ],
-  fixation_width: 10,
-  fixation_length: 40,
-  fixation_outline_size: 2,
+  fixationWidth: 16,
+  fixationLength: 40,
+  fixationOutlineSize: 4,
   duration: 5000,
   name: 'PLR',
   instructions:

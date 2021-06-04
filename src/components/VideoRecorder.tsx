@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Platform, StyleSheet, View, SafeAreaView } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import type { RNCameraProps, RecordOptions, RecordResponse } from 'react-native-camera';
+import { getModel } from 'react-native-device-info';
 
 import { Models, getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
 import type {
@@ -12,13 +13,18 @@ import type {
 } from '@senseyeinc/react-native-senseye-sdk';
 import FaceOutline from './FaceOutline';
 
-const qualityStrings = Object.keys(RNCamera.Constants.VideoQuality);
-const orientationStrings = Object.keys(RNCamera.Constants.Orientation);
+enum orientationEnum {
+  auto = 0,
+  portrait = 1,
+  portraitUpsidedown = 2,
+  landscapeLeft = 3,
+  landscapeRight = 4,
+}
 
 export type VideoRecorderProps = {
   /** Type of camera to use. Possible values: 'front' | 'back' */
   type?: RNCameraProps['type'];
-  /** (Android) Overrides the `type` property and uses the camera specified by its id. */
+  /** Overrides the `type` property and uses the camera specified by its id. */
   cameraId?: string;
   /** (Android) Whether to use Android's Camera2 API. */
   useCamera2Api?: RNCameraProps['useCamera2Api'];
@@ -117,21 +123,25 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
             Object.entries(recordOptions).forEach(
               ([key, value]) => (config[key] = value)
             );
-            if (typeof config.quality === 'number') {
-              config.quality = qualityStrings[config.quality];
-            }
             if (typeof config.orientation === 'number') {
-              config.orientation = orientationStrings[config.orientation];
+              config.orientation = orientationEnum[config.orientation];
             }
 
             const info = {
-              cameraType: props.type,
+              cameraType: 'UNKNOWN',
               cameraId: props.cameraId,
             };
+            if (Platform.OS === 'ios' || Platform.OS === 'android') {
+              if (info.cameraId === undefined) {
+                info.cameraType = 'RGB';
+              } else if (info.cameraId === '2' && getModel() === 'Pixel 4') {
+                info.cameraType = 'NIR';
+              }
+            }
 
             if (Platform.OS === 'ios' && typeof recordOptions.codec === 'string') {
               recordOptions.codec = RNCamera.Constants.VideoCodec[recordOptions.codec];
-              console.log(recordOptions.codec);
+              console.debug('identified codec: ' + recordOptions.codec.toString());
             }
 
             const v = new Models.Video(name, config, info);
@@ -144,12 +154,9 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
               v.setName(v.getName() + '.' + fileExt);
               v.setUri(uri);
               v.updateInfo({
-                // TODO: currently not implemented in RNCamera for Camera2Api (Android)
-                // orientation: {
-                //   video: result.videoOrientation,
-                //   device: result.deviceOrientation,
-                // },
-                codec: result.codec,
+                // TODO: videoOrientation and deviceOrientaton are currently unimplemented for Camera2Api (Android)
+                videoOrientation: orientationEnum[result.videoOrientation],
+                deviceOrientation: orientationEnum[result.deviceOrientation],
                 isRecordingInterrupted: result.isRecordingInterrupted,
               });
 
@@ -166,7 +173,7 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
           }
         },
       }),
-      [camera, props.type, props.cameraId]
+      [camera, props.cameraId]
     );
 
     return (
@@ -191,7 +198,7 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
 
 VideoRecorder.defaultProps = {
   type: 'front',
-  cameraId: undefined, // TODO: detect 'Pixel 4' device model and default to 2 (nIR camera)
+  cameraId: undefined,
   useCamera2Api: true,
   androidCameraPermissionOptions: {
     title: 'Camera permissions',
@@ -209,6 +216,8 @@ const defaultRecordOptions: RecordOptions = {
   orientation: 'auto',
   codec: 'H264',
   mirrorVideo: false,
+  // TODO: currently unimplemented for Android
+  fps: 60,
 };
 
 const styles = StyleSheet.create({

@@ -143,11 +143,8 @@ export default function FullDemoScreen() {
           !isTasksComplete ? (
             <View style={Spacing.centeredFlexView as ViewStyle}>
               <TaskRunner uniqueId="0000" onEnd={onEnd} onTaskPreview={onTaskPreview}>
-                <Tasks.Calibration
-                  dot_points={Constants.CalibrationPatterns[1]}
-                  radius={30}
-                />
-                <Tasks.Plr fixation_width={14} fixation_outline_size={4} />
+                <Tasks.Calibration dotSequence={Constants.CalibrationPatterns[1]} />
+                <Tasks.Plr />
               </TaskRunner>
               <TaskInstructions
                 title={taskDialogTitle}

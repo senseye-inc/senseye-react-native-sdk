@@ -9,16 +9,25 @@ const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
 export type SmoothPursuitProps = TaskProps & {
-  /** Defines the number of cycles in an iteration the moving target will circle around the stationary target. */
+  /** Defines the number of times in an iteration the target will circle around the fixation point. */
   cycles: number;
-  /** Defines the number of times the moving target will appear and perform its cycles. */
+  /** Defines the number of times the target will appear and perform its cycles. */
   iterations: number;
-  /** Defines how fast the moving target circles around the centered focal point. */
+  /**
+   * Defines how fast the target will circle around the fixation point. A positive value will
+   * move the target in a counterclockwise direction, whereas a negative value will move it clockwise.
+   */
   speed: number;
-  /** Defines how far away the moving target will be from the stationary target. */
+  /** Defines the radial distance between the target and the fixation point. */
   offset: number;
   /** Defines the amount of time (milliseconds) the moving target will disappear and pause between each iteration. */
-  targetDelay: number;
+  delay: number;
+  /**
+   * Defines the starting angle, measured in radians, of the target for each cycle/iteration.
+   * At `0`, the target's starting position will lie on the positive x-axis. As the value increases,
+   * the position will shift in a counterclockwise direction.
+   */
+  startAngle: number;
   /** Defines the size of the moving target. */
   targetRadius: number;
   /**
@@ -30,61 +39,70 @@ export type SmoothPursuitProps = TaskProps & {
   targetColor: string;
   /** Defines the color of the moving target's outline. */
   targetOutlineColor: string;
-  /** Defines the radius on the stationary target. */
-  bullseyeRadius: number;
-  /** Defines the color of the stationary target. */
-  bullseyeColor: string;
+  /** Defines the radius of the fixed center point. */
+  fixationRadius: number;
+  /** Defines the color of the fixed center point. */
+  fixationColor: string;
 };
 
 /**  Smooth pursuit assessment. Displays a target that the participant follows with their eyes. */
 export default function SmoothPursuit(props: SmoothPursuitProps) {
   const {
     offset,
-    targetDelay,
+    delay,
     targetOutlineRadius,
     cycles,
     iterations,
     speed,
+    startAngle,
     onStart,
     onEnd,
     onUpdate,
   } = props;
   const [iterationCount, setIterationCount] = React.useState(0);
   const [isTargetMoving, setIsTargetMoving] = React.useState(false);
-  const [theta, setTheta] = React.useState(0);
+  const [startAngleMod] = React.useState(startAngle % (2 * Math.PI));
+  const [angle, setAngle] = React.useState(startAngle);
   const [animatedStyles, setAnimatedStyles] = React.useState({});
+  // 1 radian = 360 degrees / (2 * pi) => 1 cycle = 360 degrees = (2 * pi) radians
+  const [maxAngle] = React.useState(
+    cycles * 2 * Math.PI + (speed > 0 ? startAngleMod : -startAngleMod)
+  );
   // instantiates animation object
   const moveAnimationValue = React.useRef(new Animated.ValueXY()).current;
 
   React.useEffect(() => {
-    const xPos = WINDOW_WIDTH / 2 + Math.cos(theta) * offset - targetOutlineRadius;
-    const yPos = WINDOW_HEIGHT / 2 + Math.sin(theta) * offset - targetOutlineRadius;
+    const xPos = WINDOW_WIDTH / 2 + Math.cos(angle) * offset - targetOutlineRadius;
+    const yPos = WINDOW_HEIGHT / 2 + Math.sin(angle) * offset - targetOutlineRadius;
     // iterates through x-coordinates values
     const targetXPos = moveAnimationValue.x.interpolate({
-      inputRange: [0, theta],
+      inputRange: [angle, angle],
       outputRange: [xPos, xPos],
     });
     // iterates through y-coordinates valuess
     const targetYPos = moveAnimationValue.y.interpolate({
-      inputRange: [0, theta],
+      inputRange: [angle, angle],
       outputRange: [yPos, yPos],
     });
     // updates the target's xy position values
     setAnimatedStyles({
       transform: [{ translateX: targetXPos }, { translateY: targetYPos }],
     });
-  }, [moveAnimationValue, theta, offset, targetOutlineRadius]);
+  }, [moveAnimationValue, angle, offset, targetOutlineRadius]);
 
   React.useEffect(() => {
+    let curAngle: number | undefined;
     const listenerId = moveAnimationValue.addListener((value) => {
-      if (onUpdate && value.x === value.y) {
-        // returns data containing a timestamp and the target's updated (x,y) position, theta, speed and current iteration
+      const { x, y } = value;
+      if (onUpdate && curAngle !== x && x === y) {
+        curAngle = x;
+        // returns data containing a timestamp and the target's updated (x,y) position, angle, speed and current iteration
         onUpdate({
           timestamp: getCurrentTimestamp(),
           data: {
-            x: WINDOW_WIDTH / 2 + Math.cos(value.x) * offset,
-            y: WINDOW_HEIGHT / 2 + Math.sin(value.y) * offset,
-            theta: value.x,
+            x: WINDOW_WIDTH / 2 + Math.cos(curAngle) * offset,
+            y: WINDOW_HEIGHT / 2 + Math.sin(curAngle) * offset,
+            angle: curAngle,
             speed: speed,
             iteration: iterationCount,
           },
@@ -111,38 +129,46 @@ export default function SmoothPursuit(props: SmoothPursuitProps) {
   // manages the dot position animation
   const moveDot = React.useCallback(() => {
     Animated.timing(moveAnimationValue, {
-      toValue: { x: theta, y: theta },
+      toValue: { x: angle, y: angle },
       duration: 0,
       useNativeDriver: true,
     }).start(() => {
-      // radians = degrees * pi / 180 => 1 cycle (360 degrees) = 2 * pi
-      if (theta < cycles * 2 * Math.PI) {
+      if (Math.abs(angle) < maxAngle) {
         // if the target hasn't completed all cycles within the iteration yet, continue moving
-        setTheta(theta + speed);
+        setAngle(angle + speed);
       } else if (iterationCount < iterations - 1) {
         // otherwise, if not all iterations are complete yet, initiate another one
         setIsTargetMoving(false);
-        setTheta(0);
+        setAngle(startAngleMod);
         setIterationCount(iterationCount + 1);
       } else {
         _onEnd();
       }
     });
-  }, [moveAnimationValue, theta, cycles, speed, iterations, iterationCount, _onEnd]);
+  }, [
+    moveAnimationValue,
+    angle,
+    startAngleMod,
+    maxAngle,
+    speed,
+    iterations,
+    iterationCount,
+    _onEnd,
+  ]);
 
   React.useEffect(() => {
     if (!isTargetMoving) {
       setTimeout(() => {
         setIsTargetMoving(true);
-      }, targetDelay);
+      }, delay);
     } else {
       moveDot();
     }
-  }, [moveDot, isTargetMoving, targetDelay]);
+  }, [moveDot, isTargetMoving, delay]);
 
   return (
     <View style={styles(props).container}>
-      <View onLayout={_onStart} style={styles(props).bullseye} />
+      <View onLayout={_onStart} style={styles(props).fixation} />
       {isTargetMoving ? (
         <Animated.View style={[styles(props).targetOutline, animatedStyles]}>
           <View style={[styles(props).target]} />
@@ -179,30 +205,31 @@ const styles = (props: SmoothPursuitProps) =>
       borderRadius: 100,
       backgroundColor: props.targetColor,
     },
-    bullseye: {
-      width: props.bullseyeRadius * 2,
-      height: props.bullseyeRadius * 2,
-      borderRadius: props.bullseyeRadius,
-      backgroundColor: props.bullseyeColor,
-      top: WINDOW_HEIGHT / 2 - props.bullseyeRadius,
-      left: WINDOW_WIDTH / 2 - props.bullseyeRadius,
+    fixation: {
+      width: props.fixationRadius * 2,
+      height: props.fixationRadius * 2,
+      borderRadius: props.fixationRadius,
+      backgroundColor: props.fixationColor,
+      top: WINDOW_HEIGHT / 2 - props.fixationRadius,
+      left: WINDOW_WIDTH / 2 - props.fixationRadius,
     },
   });
 
 SmoothPursuit.defaultProps = {
   background: '#000000',
   duration: 3000,
-  cycles: 2,
-  iterations: 2,
+  cycles: 3,
+  iterations: 3,
   speed: 0.05,
-  offset: 120,
-  targetDelay: 3000,
+  offset: 150,
+  delay: 3000,
+  startAngle: Math.PI / 2,
   targetRadius: 7,
   targetColor: '#FF0000',
   targetOutlineRadius: 14,
   targetOutlineColor: '#FFFFFF',
-  bullseyeRadius: 10,
-  bullseyeColor: '#FFFFFF',
+  fixationRadius: 10,
+  fixationColor: '#FFFFFF',
   instructions:
     '\
 Please keep your head still throughout the assessment.\n\n\

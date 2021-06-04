@@ -1,7 +1,4 @@
-import type {
-  SessionConditionType,
-  SurveyType,
-} from '@senseyeinc/react-native-senseye-sdk';
+import type { SessionCondition, SurveyType } from '@senseyeinc/react-native-senseye-sdk';
 
 /**
  * @returns The number of milliseconds elapsed since January 1, 1970 00:00:00 UTC.
@@ -41,7 +38,7 @@ function isNonEmptyString(value: any) {
 }
 
 /** Valid session conditions. */
-const SessionConditions: Record<string, SessionConditionType> = {
+const SessionConditions: Record<string, SessionCondition> = {
   GOOD: 'GOOD',
   BAD: 'BAD',
   TEST: 'TEST',
@@ -55,32 +52,32 @@ const SurveyTypes: Record<string, SurveyType> = {
   VALIDATION: 'validation',
 };
 
-/** A list of calibration patterns (x,y) to select from */
+/** A list of calibration patterns (x,y) to select from. */
 const CalibrationPatterns = [
   [
-    [0.2, 0.25],
-    [0.4, 0.25],
-    [0.6, 0.25],
-    [0.8, 0.25],
-    [0.25, 0.5],
-    [0.5, 0.5],
-    [0.75, 0.5],
-    [0.2, 0.75],
-    [0.4, 0.75],
-    [0.6, 0.75],
-    [0.8, 0.75],
+    { x: 0.2, y: 0.25 },
+    { x: 0.4, y: 0.25 },
+    { x: 0.6, y: 0.25 },
+    { x: 0.8, y: 0.25 },
+    { x: 0.25, y: 0.5 },
+    { x: 0.5, y: 0.5 },
+    { x: 0.75, y: 0.5 },
+    { x: 0.2, y: 0.75 },
+    { x: 0.4, y: 0.75 },
+    { x: 0.6, y: 0.75 },
+    { x: 0.8, y: 0.75 },
   ],
   [
-    [0.8, 0.25],
-    [0.4, 0.75],
-    [0.5, 0.5],
-    [0.2, 0.25],
-    [0.8, 0.75],
-    [0.2, 0.75],
-    [0.4, 0.25],
-    [0.5, 0.5],
-    [0.6, 0.25],
-    [0.6, 0.75],
+    { x: 0.8, y: 0.25 },
+    { x: 0.4, y: 0.75 },
+    { x: 0.5, y: 0.5 },
+    { x: 0.2, y: 0.25 },
+    { x: 0.8, y: 0.75 },
+    { x: 0.2, y: 0.75 },
+    { x: 0.4, y: 0.25 },
+    { x: 0.5, y: 0.5 },
+    { x: 0.6, y: 0.25 },
+    { x: 0.6, y: 0.75 },
   ],
 ];
 

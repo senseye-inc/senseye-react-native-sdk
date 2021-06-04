@@ -102,13 +102,12 @@ export default class Task {
    * @returns The task's {@link metadata}.
    */
   public getMetadata() {
-    this.metadata.cameraRecordings = [];
-    this.videos.forEach((v) => {
-      let videoData = v.getMetadata();
+    if (this.videos.length > 0) {
+      let videoData = this.videos[0].getMetadata();
       videoData = { ...videoData.info, ...videoData };
-      videoData.info = undefined;
-      this.metadata.cameraRecordings.push(videoData);
-    });
+      delete videoData.info;
+      this.metadata.cameraRecording = videoData;
+    }
 
     return this.metadata;
   }

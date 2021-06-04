@@ -24,7 +24,11 @@ export default function PlrScreen() {
         onPress={() => setIsShowModal(true)}
       />
       <Modal visible={isShowModal} onRequestClose={() => setIsShowModal(false)}>
-        <Tasks.Plr onEnd={() => setIsShowModal(false)} />
+        <Tasks.Plr
+          fixationWidth={16}
+          fixationOutlineSize={4}
+          onEnd={() => setIsShowModal(false)}
+        />
       </Modal>
     </View>
   );
