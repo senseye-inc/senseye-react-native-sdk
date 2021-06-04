@@ -105,7 +105,7 @@ export default class Task {
     if (this.videos.length > 0) {
       let videoData = this.videos[0].getMetadata();
       videoData = { ...videoData.info, ...videoData };
-      videoData.info = undefined;
+      delete videoData.info;
       this.metadata.cameraRecording = videoData;
     }
 

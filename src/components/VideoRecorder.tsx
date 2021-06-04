@@ -13,8 +13,13 @@ import type {
 } from '@senseyeinc/react-native-senseye-sdk';
 import FaceOutline from './FaceOutline';
 
-const qualityStrings = Object.keys(RNCamera.Constants.VideoQuality);
-const orientationStrings = Object.keys(RNCamera.Constants.Orientation);
+enum orientationEnum {
+  auto = 0,
+  portrait = 1,
+  portraitUpsidedown = 2,
+  landscapeLeft = 3,
+  landscapeRight = 4,
+}
 
 export type VideoRecorderProps = {
   /** Type of camera to use. Possible values: 'front' | 'back' */
@@ -118,11 +123,8 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
             Object.entries(recordOptions).forEach(
               ([key, value]) => (config[key] = value)
             );
-            if (typeof config.quality === 'number') {
-              config.quality = qualityStrings[config.quality];
-            }
             if (typeof config.orientation === 'number') {
-              config.orientation = orientationStrings[config.orientation];
+              config.orientation = orientationEnum[config.orientation];
             }
 
             const info = {
@@ -139,7 +141,7 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
 
             if (Platform.OS === 'ios' && typeof recordOptions.codec === 'string') {
               recordOptions.codec = RNCamera.Constants.VideoCodec[recordOptions.codec];
-              console.debug('codec used: ' + recordOptions.codec.toString());
+              console.debug('identified codec: ' + recordOptions.codec.toString());
             }
 
             const v = new Models.Video(name, config, info);
@@ -152,13 +154,9 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
               v.setName(v.getName() + '.' + fileExt);
               v.setUri(uri);
               v.updateInfo({
-                // // TODO: currently not implemented in RNCamera for Camera2Api (Android)
-                // orientation: {
-                //   video: result.videoOrientation,
-                //   device: result.deviceOrientation,
-                // },
-                // // TODO: consider removing
-                // codec: result.codec,
+                // TODO: videoOrientation and deviceOrientaton are currently unimplemented for Camera2Api (Android)
+                videoOrientation: orientationEnum[result.videoOrientation],
+                deviceOrientation: orientationEnum[result.deviceOrientation],
                 isRecordingInterrupted: result.isRecordingInterrupted,
               });
 
@@ -218,6 +216,8 @@ const defaultRecordOptions: RecordOptions = {
   orientation: 'auto',
   codec: 'H264',
   mirrorVideo: false,
+  // TODO: currently unimplemented for Android
+  fps: 60,
 };
 
 const styles = StyleSheet.create({

@@ -147,7 +147,7 @@ export default class Session {
     this.tasks.forEach((t) => {
       let taskData = t.getMetadata();
       taskData = { ...taskData.info, ...taskData };
-      taskData.info = undefined;
+      delete taskData.info;
       this.metadata.tasks.push(taskData);
     });
 
