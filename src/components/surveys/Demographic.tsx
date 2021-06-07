@@ -73,7 +73,7 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
         fatigue: ['Fatigue rating (1 = alert, 7 = very tired)', fatigueLevel],
         unique_id: ['Unique ID', uniqueId],
         bed_time: [
-          'Log your most recent bed time:',
+          'Log your most recent bedtime:',
           bedHour + ':' + bedMin + ' ' + bedMeridiem,
         ],
         wake_time: [
@@ -118,7 +118,7 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
         />
         <Text style={styles.text}>Select the day you last slept:</Text>
         <SenseyeCal onUpdate={(day) => setBedDate(day)} initialDate={YESTERDAY} />
-        <Text style={styles.text}>Log your most recent bed time:</Text>
+        <Text style={styles.text}>Log your most recent bedtime:</Text>
         <View style={styles.clockStyles}>
           <SenseyeTextInput
             label="Hour"
