@@ -15,10 +15,15 @@ import {
   SenseyeButton,
   Models,
   Constants,
-  whiteLogo,
+  pictorialGradientLogo,
 } from '@senseyeinc/react-native-senseye-sdk';
+import SenseyeCal from '../SenseyeCal';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
+const NOW = new Date();
+const TODAY = NOW.toISOString().slice(0, 10);
+NOW.setDate(new Date().getDate() - 1);
+const YESTERDAY = NOW.toISOString().slice(0, 10);
 
 export type DemographicSurveyProps = {
   onComplete?(survey: Models.Survey, userId: string): void;
@@ -34,8 +39,10 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
   const [bedHour, setBedHour] = React.useState('');
   const [bedMin, setBedMin] = React.useState('');
   const [bedMeridiem, setBedMeridiem] = React.useState<React.ReactText>('AM');
+  const [bedDate, setBedDate] = React.useState(YESTERDAY);
   const [wakeHour, setWakeHour] = React.useState('');
   const [wakeMin, setWakeMin] = React.useState('');
+  const [wakeDate, setWakeDate] = React.useState(TODAY);
   const [wakeMeridiem, setWakeMeridiem] = React.useState<React.ReactText>('AM');
 
   function _onComplete() {
@@ -49,13 +56,14 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
       !wakeHour.trim() ||
       !bedHour.trim() ||
       !wakeMin.trim() ||
-      !bedMin.trim()
+      !bedMin.trim() ||
+      wakeDate === '' ||
+      bedDate === ''
     ) {
       setWarningMsg('Please enter in all fields');
       return;
     }
     setWarningMsg('');
-
     if (props.onComplete) {
       // generate a survey model and pass it into the callback
       const survey = new Models.Survey(Constants.SurveyType.DEMOGRAPHIC, {
@@ -65,23 +73,24 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
         fatigue: ['Fatigue rating (1 = alert, 7 = very tired)', fatigueLevel],
         unique_id: ['Unique ID', uniqueId],
         bed_time: [
-          'Log your most recent bed time:',
+          'Log your most recent bedtime:',
           bedHour + ':' + bedMin + ' ' + bedMeridiem,
         ],
         wake_time: [
           'Log your most recent wake time:',
           wakeHour + ':' + wakeMin + ' ' + wakeMeridiem,
         ],
+        wake_day: ['Select the day you last awoke', wakeDate],
+        bed_day: ['Select the day you last slept', bedDate],
       });
       props.onComplete(survey, uniqueId);
     }
   }
-
   return (
     <SafeAreaView style={styles.container}>
-      <Image style={styles.logo} source={whiteLogo} />
-      <ScrollView style={styles.innerContainer} contentContainerStyle={styles.layout}>
-        <Text style={styles.warning}>{warningMsg}</Text>
+      <Image style={styles.logo} source={pictorialGradientLogo} />
+      <Text style={styles.warning}>{warningMsg}</Text>
+      <ScrollView style={styles.innerContainer}>
         <SenseyeTextInput
           label="Age"
           placeholderText="Type your age here"
@@ -107,7 +116,9 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
           selectedValue={fatigueLevel}
           onChangeValue={(value) => setFatigueLevel(value)}
         />
-        <Text style={styles.text}>Log your most recent bed time:</Text>
+        <Text style={styles.text}>Select the day you last slept:</Text>
+        <SenseyeCal onUpdate={(day) => setBedDate(day)} initialDate={YESTERDAY} />
+        <Text style={styles.text}>Log your most recent bedtime:</Text>
         <View style={styles.clockStyles}>
           <SenseyeTextInput
             label="Hour"
@@ -134,6 +145,8 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
             marginBottom={0}
           />
         </View>
+        <Text style={styles.text}>Select the day you last awoke:</Text>
+        <SenseyeCal onUpdate={(day) => setWakeDate(day)} />
         <Text style={styles.text}>Log your most recent wake time:</Text>
         <View style={styles.clockStyles}>
           <SenseyeTextInput
@@ -180,13 +193,10 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: '#141726',
   },
-  layout: {
-    //TODO: https://developer.android.com/training/keyboard-input/visibility
-    height: '400%',
-  },
   innerContainer: {
+    paddingLeft: 30,
+    paddingRight: 30,
     margin: 30,
-    padding: 30,
     backgroundColor: '#21284E',
   },
   text: {
@@ -201,9 +211,10 @@ const styles = StyleSheet.create({
     height: 10,
     minWidth: 90,
     maxWidth: 160,
-    alignSelf: 'flex-start',
-    resizeMode: 'cover',
-    margin: 10,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    resizeMode: 'contain',
+    margin: 0,
   },
   clockStyles: {
     height: 70,
@@ -212,5 +223,6 @@ const styles = StyleSheet.create({
   },
   warning: {
     color: '#d7b357',
+    alignSelf: 'center',
   },
 });

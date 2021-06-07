@@ -51,6 +51,7 @@
     "@types/jest": "^26.0.0",
     "@types/react": "^16.9.19",
     "@types/react-native": "0.62.13",
+    "@types/react-native-calendars": "^1.505.3",
     "axios": "^0.21.0",
     "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "^7.2.0",
@@ -152,5 +153,9 @@
       "module",
       "typescript"
     ]
+  },
+  "dependencies": {
+    "react-native-calendars": "^1.1262.0",
+    "react-native-svg": "^12.1.1"
   }
 }
