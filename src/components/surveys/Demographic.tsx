@@ -8,6 +8,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import * as yup from 'yup';
 
 import {
   SenseyePicker,
@@ -42,28 +43,53 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
   const [bedDate, setBedDate] = React.useState(YESTERDAY);
   const [wakeHour, setWakeHour] = React.useState('');
   const [wakeMin, setWakeMin] = React.useState('');
-  const [wakeDate, setWakeDate] = React.useState(TODAY);
   const [wakeMeridiem, setWakeMeridiem] = React.useState<React.ReactText>('AM');
-
+  const [wakeDate, setWakeDate] = React.useState(TODAY);
+  let fieldValues = [
+    age,
+    gender,
+    eyeColor,
+    fatigueLevel,
+    bedHour,
+    bedMin,
+    bedMeridiem,
+    bedDate,
+    wakeHour,
+    wakeMin,
+    wakeMeridiem,
+    wakeDate,
+    uniqueId,
+  ];
   function _onComplete() {
-    // validate form fields
-    if (
-      gender === 'na' ||
-      eyeColor === 'na' ||
-      fatigueLevel === 'na' ||
-      !age.trim() ||
-      !uniqueId.trim() ||
-      !wakeHour.trim() ||
-      !bedHour.trim() ||
-      !wakeMin.trim() ||
-      !bedMin.trim() ||
-      wakeDate === '' ||
-      bedDate === ''
-    ) {
-      setWarningMsg('Please enter in all fields');
-      return;
-    }
-    setWarningMsg('');
+    // describes acceptible form responses
+    let schema = yup.object().shape({
+      age: yup.number().positive().integer().min(13).max(99),
+      gender: yup.string(),
+      eyeColor: yup.string(),
+      fatigueLevel: yup.number().positive().integer(),
+      uniqueId: yup.string(),
+      bedHour: yup.number().integer().max(12),
+      bedMin: yup.number().integer().max(59),
+      bedDate: yup.date(),
+      wakeHour: yup.number().integer().max(12),
+      wakeMin: yup.number().integer().max(59),
+      wakeDate: yup.date(),
+    });
+
+    // check all responses to ensure validity
+    schema
+      .validate({ ...fieldValues }, { abortEarly: false })
+      .then(function (value) {
+        console.log(value);
+        setWarningMsg('');
+      })
+      .catch(function (err) {
+        console.log(err.name);
+        console.log(err.errors);
+        setWarningMsg('Please enter in all fields');
+        return;
+      });
+
     if (props.onComplete) {
       // generate a survey model and pass it into the callback
       const survey = new Models.Survey(Constants.SurveyType.DEMOGRAPHIC, {
