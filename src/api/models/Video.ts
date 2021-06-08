@@ -1,5 +1,9 @@
+import { RNFFmpegConfig, RNFFprobe } from 'react-native-ffmpeg';
+
 import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
 import type { SenseyeApiClient } from '@senseyeinc/react-native-senseye-sdk';
+
+RNFFmpegConfig.disableLogs();
 
 /**
  * Model representing a video entity. Facilitates the gathering of relevant metadata
@@ -141,5 +145,29 @@ export default class Video {
    */
   public getUri() {
     return this.uri;
+  }
+
+  /**
+   * Fills {@link metadata} with information extracted from the video file at {@link uri}.
+   * Throws an error if there is no specified uri (see {@link setUri | setUri()}).
+   */
+  private async fillMetadataFromFile() {
+    if (this.uri === undefined) {
+      throw new Error("Property 'uri' must be set.");
+    }
+
+    const info = await RNFFprobe.getMediaInformation(this.uri);
+    const streams = info.getStreams();
+
+    if (streams !== undefined && streams.length > 0) {
+      const properties = streams[0].getAllProperties();
+
+      this.metadata.size = parseInt(info.getMediaProperties().size, 10);
+      this.metadata.bitrate = parseInt(properties.bit_rate, 10);
+      this.metadata.codec = properties.codec_name;
+      this.metadata.duration = parseFloat(properties.duration);
+      this.metadata.frames = parseInt(properties.nb_frames, 10);
+      this.metadata.fps = this.metadata.frames / this.metadata.duration;
+    }
   }
 }
