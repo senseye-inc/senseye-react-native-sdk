@@ -121,9 +121,7 @@ export default class Session {
   public uploadVideos(apiClient: SenseyeApiClient) {
     let uploads: Promise<any>[] = [];
     this.getVideos().forEach((v) => {
-      uploads.push(
-        v.upload(apiClient, undefined, this.metadata.folderName + '/' + v.getName())
-      );
+      uploads.push(v.upload(apiClient, this.metadata.folderName + '/' + v.getName()));
     });
 
     return Promise.all(uploads);

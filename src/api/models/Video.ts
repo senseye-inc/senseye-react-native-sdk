@@ -88,27 +88,22 @@ export default class Video {
   }
 
   /**
-   * Uploads a video file to Senseye's S3 bucket.
+   * Uploads the video file at {@link uri} to Senseye's S3 bucket. Throws an error
+   * if there is no specified uri (see {@link setUri | setUri()}).
    *
    * @param apiClient Client configured to communicate with Senseye's API.
-   * @param uri       Video file URI. (Android) Needs to be prefixed with `file://`.
-   *                    Defaults to {@link uri} (see {@link setUri | setUri()}).
    * @param key       Desired S3 key for the file. Defaults to {@link name} (see {@link setName | setName()}).
    * @returns         A `Promise` that will resolve into a dictionary containing the destination S3 url (`s3_url`).
    */
-  public async upload(apiClient: SenseyeApiClient, uri?: string, key?: string) {
-    if (uri === undefined) {
-      if (this.uri === undefined) {
-        throw new Error("Unable to upload video: No 'uri' provided.");
-      } else {
-        uri = this.uri;
-      }
+  public async upload(apiClient: SenseyeApiClient, key?: string) {
+    if (this.uri === undefined) {
+      throw new Error("Property 'uri' must be set.");
     }
     if (key === undefined) {
       key = this.name;
     }
 
-    return apiClient.uploadFile(uri, key, (progressEvent: ProgressEvent) => {
+    return apiClient.uploadFile(this.uri, key, (progressEvent: ProgressEvent) => {
       this.uploadPercentage = Math.round(
         (progressEvent.loaded / progressEvent.total) * 100
       );
