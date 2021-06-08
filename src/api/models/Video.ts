@@ -158,14 +158,13 @@ export default class Video {
     const streams = info.getStreams();
 
     if (streams !== undefined && streams.length > 0) {
-      const properties = streams[0].getAllProperties();
+      const streamInfo = streams[0].getAllProperties();
 
-      this.metadata.size = parseInt(info.getMediaProperties().size, 10);
-      this.metadata.bitrate = parseInt(properties.bit_rate, 10);
-      this.metadata.codec = properties.codec_name;
-      this.metadata.duration = parseFloat(properties.duration);
-      this.metadata.frames = parseInt(properties.nb_frames, 10);
-      this.metadata.fps = this.metadata.frames / this.metadata.duration;
+      this.metadata.codec = streamInfo.codec_name;
+      this.metadata.frames = parseInt(streamInfo.nb_frames, 10);
+      this.metadata.fps = this.metadata.frames / parseFloat(streamInfo.duration);
+      this.metadata.bitrate = parseInt(streamInfo.bit_rate, 10);
+      this.metadata.fileSize = parseInt(info.getMediaProperties().size, 10);
     }
   }
 }

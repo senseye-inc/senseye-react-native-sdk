@@ -141,18 +141,15 @@ export default class Session {
       fileName = this.metadata.uniqueId + '_' + fileName;
     }
 
-    let promises: Promise<any>[] = [];
     this.metadata.tasks = [];
-    this.tasks.forEach((t) => {
-      promises.push(
-        t.getMetadata().then((taskData) => {
-          taskData = { ...taskData.info, ...taskData };
-          delete taskData.info;
-          this.metadata.tasks.push(taskData);
-        })
-      );
-    });
-    await Promise.all(promises);
+    for (let i = 0; i < this.tasks.length; i++) {
+      // TODO: can't leverage Promise.all() because an underlying module (ffprobe) can only
+      // call one command at a time -- https://github.com/tanersener/react-native-ffmpeg/issues/21
+      let taskData = await this.tasks[i].getMetadata();
+      taskData = { ...taskData.info, ...taskData };
+      delete taskData.info;
+      this.metadata.tasks.push(taskData);
+    }
 
     console.debug('\n' + JSON.stringify(this.metadata, undefined, '  '));
 
