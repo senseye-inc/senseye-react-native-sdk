@@ -17,7 +17,7 @@ import {
   Constants,
   pictorialGradientLogo,
 } from '@senseyeinc/react-native-senseye-sdk';
-import SenseyeCal from '../SenseyeCal';
+import SenseyeCalendar from '../SenseyeCalendar';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const NOW = new Date();
@@ -117,7 +117,7 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
           onChangeValue={(value) => setFatigueLevel(value)}
         />
         <Text style={styles.text}>Select the day you last slept:</Text>
-        <SenseyeCal onUpdate={(day) => setBedDate(day)} initialDate={YESTERDAY} />
+        <SenseyeCalendar onUpdate={(day) => setBedDate(day)} initialDate={YESTERDAY} />
         <Text style={styles.text}>Log your most recent bedtime:</Text>
         <View style={styles.clockStyles}>
           <SenseyeTextInput
@@ -146,7 +146,7 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
           />
         </View>
         <Text style={styles.text}>Select the day you last awoke:</Text>
-        <SenseyeCal onUpdate={(day) => setWakeDate(day)} />
+        <SenseyeCalendar onUpdate={(day) => setWakeDate(day)} />
         <Text style={styles.text}>Log your most recent wake time:</Text>
         <View style={styles.clockStyles}>
           <SenseyeTextInput
