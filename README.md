@@ -84,28 +84,28 @@ For local development, one of the dependencies is `babel-plugin-module-resolver`
     ```
 
 4. Execute prediction on uploaded videos and poll for results.
-  ```javascript
-  const jobId = (await apiClient.startPrediction(videoUrls)).id;
+    ```javascript
+    const jobId = (await apiClient.startPrediction(videoUrls)).id;
 
-  setInterval(() => {
-    apiClient
-      .getPrediction(jobId)
-      .then((job) => {
-        if (
-          job.status === Constants.JobStatus.COMPLETED ||
-          job.status === Constants.JobStatus.FAILED
-        ) {
-          clearInterval(resultPollId);
-          if (job.result !== undefined) {
-            console.log('result: ' + JSON.stringify(job.result));
+    setInterval(() => {
+      apiClient
+        .getPrediction(jobId)
+        .then((job) => {
+          if (
+            job.status === Constants.JobStatus.COMPLETED ||
+            job.status === Constants.JobStatus.FAILED
+          ) {
+            clearInterval(resultPollId);
+            if (job.result !== undefined) {
+              console.log('result: ' + JSON.stringify(job.result));
+            }
           }
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, 3000);
-  ```
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }, 3000);
+    ```
 
 ## Example App
 
