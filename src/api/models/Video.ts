@@ -120,10 +120,13 @@ export default class Video {
   }
 
   /**
-   * @returns The video's {@link metadata}.
+   * Compiles and returns metadata related to the video.
+   *
+   * @returns A `Promise` that will produce the compiled {@link metadata}.
    */
-  public getMetadata() {
+  public async getMetadata() {
     this.metadata.name = this.name;
+    await this.fillMetadataFromFile();
 
     return this.metadata;
   }

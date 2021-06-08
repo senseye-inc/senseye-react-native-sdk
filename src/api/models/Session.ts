@@ -141,13 +141,18 @@ export default class Session {
       fileName = this.metadata.uniqueId + '_' + fileName;
     }
 
+    let promises: Promise<any>[] = [];
     this.metadata.tasks = [];
     this.tasks.forEach((t) => {
-      let taskData = t.getMetadata();
-      taskData = { ...taskData.info, ...taskData };
-      delete taskData.info;
-      this.metadata.tasks.push(taskData);
+      promises.push(
+        t.getMetadata().then((taskData) => {
+          taskData = { ...taskData.info, ...taskData };
+          delete taskData.info;
+          this.metadata.tasks.push(taskData);
+        })
+      );
     });
+    await Promise.all(promises);
 
     console.debug('\n' + JSON.stringify(this.metadata, undefined, '  '));
 

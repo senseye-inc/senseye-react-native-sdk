@@ -99,13 +99,15 @@ export default class Task {
   }
 
   /**
-   * @returns The task's {@link metadata}.
+   * Compiles and returns metadata related to the task.
+   *
+   * @returns A `Promise` that will produce the compiled {@link metadata}.
    */
-  public getMetadata() {
+  public async getMetadata() {
     if (this.videos.length > 0) {
-      let videoData = this.videos[0].getMetadata();
+      let videoData = await this.videos[0].getMetadata();
       videoData = { ...videoData.info, ...videoData };
-      delete videoData.info;
+      videoData.info = undefined;
       this.metadata.cameraRecording = videoData;
     }
 
