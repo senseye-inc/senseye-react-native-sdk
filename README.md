@@ -22,7 +22,7 @@ The Senseye SDK provides direct integration into the Senseye API on both iOS and
 
 ## Requirements
 
-Apps using React Native Navigation may target iOS 12+ and Android 10+. You may use Windows, macOS or Linux as your development operating system.
+Minimum `iOS 12.0` or `Android API Level 24`. You may use Windows, macOS or Linux as your development operating system.
 
 ## Installation
 
