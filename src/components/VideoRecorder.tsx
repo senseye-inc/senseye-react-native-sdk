@@ -119,13 +119,13 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
               ...(recordOptions || {}),
             };
 
-            const config: { [key: string]: any } = {};
-            Object.entries(recordOptions).forEach(
-              ([key, value]) => (config[key] = value)
-            );
-            if (typeof config.orientation === 'number') {
-              config.orientation = orientationEnum[config.orientation];
-            }
+            const config: { [key: string]: any } = {
+              quality: recordOptions.quality,
+              maxDuration: recordOptions.maxDuration,
+              maxFileSize: recordOptions.maxFileSize,
+              mute: recordOptions.mute,
+              flipHorizontal: recordOptions.mirrorVideo,
+            };
 
             const info = {
               cameraType: 'UNKNOWN',
@@ -141,7 +141,6 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
 
             if (Platform.OS === 'ios' && typeof recordOptions.codec === 'string') {
               recordOptions.codec = RNCamera.Constants.VideoCodec[recordOptions.codec];
-              console.debug('identified codec: ' + recordOptions.codec.toString());
             }
 
             const v = new Models.Video(name, config, info);
@@ -154,7 +153,7 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
               v.setName(v.getName() + '.' + fileExt);
               v.setUri(uri);
               v.updateInfo({
-                // TODO: videoOrientation and deviceOrientaton are currently unimplemented for Camera2Api (Android)
+                // TODO: (Android) videoOrientation and deviceOrientaton are currently unimplemented for Camera2Api
                 videoOrientation: orientationEnum[result.videoOrientation],
                 deviceOrientation: orientationEnum[result.deviceOrientation],
                 isRecordingInterrupted: result.isRecordingInterrupted,
@@ -216,7 +215,7 @@ const defaultRecordOptions: RecordOptions = {
   orientation: 'auto',
   codec: 'H264',
   mirrorVideo: false,
-  // TODO: currently unimplemented for Android
+  // TODO: (Android) currently unimplemented
   fps: 60,
 };
 

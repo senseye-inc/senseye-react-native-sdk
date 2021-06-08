@@ -61,18 +61,18 @@ export default function FullDemoScreen() {
       // upload complete
       clearInterval(uploadPollId);
 
-      let video_urls: string[] = [];
-      values[0].forEach((v: any) => {
-        video_urls.push(v.s3_url);
+      let videoUrls: string[] = [];
+      values[0].forEach((v: { [key: string]: any }) => {
+        videoUrls.push(v.s3_url);
       });
-      console.log('uploaded videos: ' + JSON.stringify(video_urls));
+      console.log('uploaded videos: ' + JSON.stringify(videoUrls));
       console.log('uploaded json: ' + values[1].s3_url);
 
       // update ProcessingScreen state from uploading to processing
       setUploadPercentage(undefined);
       setProcessingMessage('senseye orm check results are processing');
       // submit compute job
-      const jobId = (await apiClient.startPrediction(video_urls)).id;
+      const jobId = (await apiClient.startPrediction(videoUrls)).id;
       // poll job status
       const resultPollId = setInterval(() => {
         apiClient

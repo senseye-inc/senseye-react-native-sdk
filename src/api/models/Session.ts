@@ -116,7 +116,7 @@ export default class Session {
    *
    * @param apiClient Client configured to communicate with Senseye's API.
    * @returns         A `Promise` that will resolve into an array once all session videos finish uploading.
-   *                    See {@link SenseyeApiClient.uploadfile} for the produced value of each item.
+   *                    See {@link SenseyeApiClient.uploadFile} for the produced value of each item.
    */
   public uploadVideos(apiClient: SenseyeApiClient) {
     let uploads: Promise<any>[] = [];

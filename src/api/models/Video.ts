@@ -19,7 +19,7 @@ export default class Video {
    * @param name    Desired video name.
    * @param config  Camera and/or recording configurations.
    * @param info    Any extra information or metadata.
-   * @param uri     Video file URI. (Android) Ensure it is prefixed with `file://`.
+   * @param uri     Video file URI. For Android environments, ensure it is prefixed with `file://`.
    */
   constructor(
     name: string,
@@ -81,7 +81,7 @@ export default class Video {
   /**
    * Sets {@link uri}.
    *
-   * @param uri Video file URI. (Android) Ensure it is prefixed with `file://`.
+   * @param uri Video file URI. For Android environments, ensure it is prefixed with `file://`.
    */
   public setUri(uri: string) {
     this.uri = uri;
