@@ -62,17 +62,45 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
   ];
   function _onComplete() {
     // describes acceptible form responses
+    // @TODO update error message for better UX, have warning message display for each form field
+    // {fieldValues[name]: value}
     let schema = yup.object().shape({
-      age: yup.number().positive().integer().min(13).max(99),
-      gender: yup.string(),
-      eyeColor: yup.string(),
-      fatigueLevel: yup.number().positive().integer(),
-      uniqueId: yup.string(),
-      bedHour: yup.number().integer().max(12),
-      bedMin: yup.number().integer().max(59),
+      age: yup
+        .number()
+        .positive()
+        .required('Enter a valid numeric age.')
+        .integer()
+        .min(13)
+        .max(99),
+      gender: yup.string().required('Select your gender from the dropdown.'),
+      eyeColor: yup.string().required('Select your eye color from the dropdown.'),
+      fatigueLevel: yup
+        .number()
+        .required('Select a rating for your fatigue level')
+        .positive()
+        .integer(),
+      uniqueId: yup.string().required('Unique ID is required.'),
+      bedHour: yup
+        .number()
+        .required('This entry can only contain numbers.')
+        .integer()
+        .max(12),
+      bedMin: yup
+        .number()
+        .required('This entry can only contain numbers.')
+        .integer()
+        .max(59),
       bedDate: yup.date(),
-      wakeHour: yup.number().integer().max(12),
-      wakeMin: yup.number().integer().max(59),
+      wakeHour: yup
+        .number()
+        .required('This entry can only contain numbers.')
+        .integer()
+        .max(12),
+      wakeMin: yup
+        .number()
+        .required('This entry can only contain numbers.')
+        .integer()
+        .max(59),
       wakeDate: yup.date(),
     });
 
@@ -81,12 +109,12 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
       .validate({ ...fieldValues }, { abortEarly: false })
       .then(function (value) {
         console.log(value);
-        setWarningMsg('');
+        setWarningMsg('good');
       })
       .catch(function (err) {
-        console.log(err.name);
-        console.log(err.errors);
-        setWarningMsg('Please enter in all fields');
+        console.log(fieldValues);
+        console.log(err.inner);
+        setWarningMsg(err.inner.toString());
         return;
       });
 
