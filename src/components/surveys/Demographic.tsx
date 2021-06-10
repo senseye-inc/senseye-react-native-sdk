@@ -206,7 +206,7 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
           value={uniqueId}
           onChangeText={(text) => setUniqueId(text)}
         />
-        <SenseyeButton title="Submit" onPress={_onComplete} type={'primaryCta'} />
+        <SenseyeButton title="Submit" onPress={_onComplete} theme={'primaryCta'} />
       </ScrollView>
     </SafeAreaView>
   );

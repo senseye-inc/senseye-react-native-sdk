@@ -84,12 +84,12 @@ export default function ValidationSurvey(props: ValidationSurveyProps) {
           <SenseyeButton
             title="Yes"
             onPress={() => _onComplete(true)}
-            type={'primaryCta'}
+            theme={'primaryCta'}
           />
           <SenseyeButton
             title="No"
             onPress={() => _onComplete(false)}
-            type={'secondaryCta'}
+            theme={'secondaryCta'}
           />
         </View>
       </ScrollView>

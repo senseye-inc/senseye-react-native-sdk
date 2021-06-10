@@ -29,7 +29,7 @@ export default function CalibrationScreen() {
       </Text>
       <SenseyeButton
         title="Run Calibration Task"
-        type="primaryCta"
+        theme="primaryCta"
         onPress={() => setIsShowModal(true)}
       />
       <Modal visible={isShowModal} onRequestClose={() => setIsShowModal(false)}>

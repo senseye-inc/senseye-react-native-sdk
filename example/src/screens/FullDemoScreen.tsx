@@ -131,7 +131,7 @@ export default function FullDemoScreen() {
       </Text>
       <SenseyeButton
         title="Run full demo"
-        type="primaryCta"
+        theme="primaryCta"
         onPress={() => setIsShowModal(true)}
       />
       <Modal

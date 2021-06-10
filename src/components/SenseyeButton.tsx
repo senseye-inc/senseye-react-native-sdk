@@ -2,21 +2,23 @@ import * as React from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
 export type SenseyeButtonProps = {
+  /** Title message to be displayed on the button */
   title: string;
-  type: string;
+  /** Describes which UI appearance to use for button */
+  theme: 'primaryCta' | 'secondaryCta';
   onPress?(): void;
 };
 
 export default function SenseyeButton(props: SenseyeButtonProps) {
-  // adjust the style on the button depending on the type set for the button
-  let typeStyling =
-    props.type === 'primaryCta' ? styles.primaryCtaButton : styles.secondaryCtaButton;
+  // adjust the style on the button depending on the theme set for the button
+  let themeStyling =
+    props.theme === 'primaryCta' ? styles.primaryCtaButton : styles.secondaryCtaButton;
 
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       onPress={props.onPress}
-      style={[styles.buttonContainer, typeStyling]}
+      style={[styles.buttonContainer, themeStyling]}
     >
       <Text style={styles.buttonText}>{props.title}</Text>
     </TouchableOpacity>
