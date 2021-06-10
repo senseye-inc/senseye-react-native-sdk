@@ -3,6 +3,7 @@ import VideoRecorder, { VideoRecorderProps } from './VideoRecorder';
 import SenseyeButton, { SenseyeButtonProps } from './SenseyeButton';
 import SenseyePicker, { SenseyePickerProps } from './SenseyePicker';
 import SenseyeTextInput, { SenseyeTextInputProps } from './SenseyeTextInput';
+import SenseyeAlertMessage, { SenseyeAlertMessageProps } from './SenseyeAlertMessage';
 import FaceOutline, { FaceOutlineProps } from './FaceOutline';
 import * as Tasks from './tasks';
 import * as Surveys from './surveys';
@@ -18,6 +19,8 @@ export {
   SenseyePickerProps,
   SenseyeTextInput,
   SenseyeTextInputProps,
+  SenseyeAlertMessage,
+  SenseyeAlertMessageProps,
   FaceOutline,
   FaceOutlineProps,
   Tasks,
