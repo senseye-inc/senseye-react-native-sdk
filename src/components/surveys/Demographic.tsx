@@ -11,12 +11,14 @@ import {
 import * as yup from 'yup';
 
 import {
+  SenseyeAlertMessage,
   SenseyePicker,
   SenseyeTextInput,
   SenseyeButton,
   Models,
   Constants,
   pictorialGradientLogo,
+  validationSchema,
 } from '@senseyeinc/react-native-senseye-sdk';
 import SenseyeCalendar from '../SenseyeCalendar';
 
@@ -31,7 +33,6 @@ export type DemographicSurveyProps = {
 };
 
 export default function DemographicSurvey(props: DemographicSurveyProps) {
-  const [warningMsg, setWarningMsg] = React.useState('');
   const [age, setAge] = React.useState('');
   const [gender, setGender] = React.useState<React.ReactText>('na');
   const [eyeColor, setEyeColor] = React.useState<React.ReactText>('na');
@@ -45,105 +46,75 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
   const [wakeMin, setWakeMin] = React.useState('');
   const [wakeMeridiem, setWakeMeridiem] = React.useState<React.ReactText>('AM');
   const [wakeDate, setWakeDate] = React.useState(TODAY);
-  let fieldValues = [
-    age,
-    gender,
-    eyeColor,
-    fatigueLevel,
-    bedHour,
-    bedMin,
-    bedMeridiem,
-    bedDate,
-    wakeHour,
-    wakeMin,
-    wakeMeridiem,
-    wakeDate,
-    uniqueId,
-  ];
-  function _onComplete() {
-    // describes acceptible form responses
-    // @TODO update error message for better UX, have warning message display for each form field
-    // {fieldValues[name]: value}
-    let schema = yup.object().shape({
-      age: yup
-        .number()
-        .positive()
-        .required('Enter a valid numeric age.')
-        .integer()
-        .min(13)
-        .max(99),
-      gender: yup.string().required('Select your gender from the dropdown.'),
-      eyeColor: yup.string().required('Select your eye color from the dropdown.'),
-      fatigueLevel: yup
-        .number()
-        .required('Select a rating for your fatigue level')
-        .positive()
-        .integer(),
-      uniqueId: yup.string().required('Unique ID is required.'),
-      bedHour: yup
-        .number()
-        .required('This entry can only contain numbers.')
-        .integer()
-        .max(12),
-      bedMin: yup
-        .number()
-        .required('This entry can only contain numbers.')
-        .integer()
-        .max(59),
-      bedDate: yup.date(),
-      wakeHour: yup
-        .number()
-        .required('This entry can only contain numbers.')
-        .integer()
-        .max(12),
-      wakeMin: yup
-        .number()
-        .required('This entry can only contain numbers.')
-        .integer()
-        .max(59),
-      wakeDate: yup.date(),
-    });
 
-    // check all responses to ensure validity
-    schema
-      .validate({ ...fieldValues }, { abortEarly: false })
+  const [errors, setErrors] = React.useState(<></>);
+
+  /** checks form responses, if valid then submits responses to survey  */
+  function _onComplete() {
+    /** reset and clear error messages */
+    setErrors(<></>);
+    /**  validate all responses  */
+    validationSchema
+      .validate(
+        {
+          age,
+          gender,
+          eyeColor,
+          fatigueLevel,
+          bedHour,
+          bedMin,
+          bedMeridiem,
+          bedDate,
+          wakeHour,
+          wakeMin,
+          wakeMeridiem,
+          wakeDate,
+          uniqueId,
+        },
+        { abortEarly: false }
+      )
       .then(function (value) {
-        console.log(value);
-        setWarningMsg('good');
+        value;
+        if (props.onComplete) {
+          /** generate a survey model and pass it into the @callback */
+          const survey = new Models.Survey(Constants.SurveyType.DEMOGRAPHIC, {
+            age: ['Age', age],
+            gender: ['Gender', gender],
+            eye_color: ['Eye Color', eyeColor],
+            fatigue: ['Fatigue rating (1 = alert, 7 = very tired)', fatigueLevel],
+            unique_id: ['Unique ID', uniqueId],
+            bed_time: [
+              'Log your most recent bedtime:',
+              `${bedHour} : ${bedMin} ${bedMeridiem}`,
+            ],
+            wake_time: [
+              'Log your most recent wake time:',
+              `${wakeHour} : ${wakeMin} ${wakeMeridiem}`,
+            ],
+            wake_day: ['Select the day you last awoke', wakeDate],
+            bed_day: ['Select the day you last slept', bedDate],
+          });
+          props.onComplete(survey, uniqueId);
+        }
       })
       .catch(function (err) {
-        console.log(fieldValues);
-        console.log(err.inner);
-        setWarningMsg(err.inner.toString());
+        /** @returns a collection of JSX.Element to alert users of invalid responses */
+        let elements = err.errors.map(
+          (
+            el: { toString: () => string | undefined },
+            i: React.Key | null | undefined
+          ) => {
+            return <SenseyeAlertMessage key={i} message={el.toString()} />;
+          }
+        );
+        setErrors(elements);
         return;
       });
-
-    if (props.onComplete) {
-      // generate a survey model and pass it into the callback
-      const survey = new Models.Survey(Constants.SurveyType.DEMOGRAPHIC, {
-        age: ['Age', age],
-        gender: ['Gender', gender],
-        eye_color: ['Eye Color', eyeColor],
-        fatigue: ['Fatigue rating (1 = alert, 7 = very tired)', fatigueLevel],
-        unique_id: ['Unique ID', uniqueId],
-        bed_time: [
-          'Log your most recent bedtime:',
-          bedHour + ':' + bedMin + ' ' + bedMeridiem,
-        ],
-        wake_time: [
-          'Log your most recent wake time:',
-          wakeHour + ':' + wakeMin + ' ' + wakeMeridiem,
-        ],
-        wake_day: ['Select the day you last awoke', wakeDate],
-        bed_day: ['Select the day you last slept', bedDate],
-      });
-      props.onComplete(survey, uniqueId);
-    }
   }
   return (
     <SafeAreaView style={styles.container}>
       <Image style={styles.logo} source={pictorialGradientLogo} />
-      <Text style={styles.warning}>{warningMsg}</Text>
+      {errors}
       <ScrollView style={styles.innerContainer}>
         <SenseyeTextInput
           label="Age"
@@ -274,9 +245,5 @@ const styles = StyleSheet.create({
     height: 70,
     flexDirection: 'row',
     marginBottom: 30,
-  },
-  warning: {
-    color: '#d7b357',
-    alignSelf: 'center',
   },
 });
