@@ -53,6 +53,15 @@ To edit the Objective-C files, open `/example/ios/SenseyeSdkExample.xcworkspace`
 
 To edit the Kotlin files, open `/example/android` in Android studio and find the source files at `senseyesdk` under `Android`.
 
+To add a dependency whose library requires linking native code, perform the following:
+1. From the root directory, run `yarn add <some-package> --dev`.
+2. Manually add the package under `peerDependencies` inside `package.json`. Unless the SDK requires a certain version of the package, use `*` as the version range.
+3. From the example directory, run `yarn add <some-package> & npx pod-install`.
+
+To add a dependency whose library does **_not_** require linking native code, perform the following:
+1. From the root directory, run `yarn add <some-package>`
+2. From the example directory, run `yarn add <some-package>`
+
 ### Commit message convention
 
 We follow the [conventional commits specification](https://www.conventionalcommits.org/en) for our commit messages:
