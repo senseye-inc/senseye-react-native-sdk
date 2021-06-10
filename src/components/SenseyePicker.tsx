@@ -3,14 +3,22 @@ import { View, StyleSheet, Text } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 export type SenseyePickerProps = {
+  /** A collection of options a user can select from */
   options: {
+    /** A list of displayed values of the collection */
     labels: string[];
+    /** A list of the actual values of the collection */
     values: React.ReactText[];
   };
+  /** Displayed value on the Picker Item  */
   label: string;
+  /** Sets the width of the picker container  */
   width: string | number;
+  /** Sets the bottom margin of the picker container */
   marginBottom: string | number;
+  /** Stores which value is selected */
   selectedValue: any;
+  /** @callback returns which value is selected */
   onChangeValue?(itemValue: React.ReactText, itemPosition: number): void;
 };
 
