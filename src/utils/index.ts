@@ -132,12 +132,12 @@ const validationSchema = yup.object().shape({
     .label('Age'),
   gender: yup
     .string()
-    .typeError('Select your gender from the dropdown.')
+    .typeError('Select your gender from the dropdown')
     .required()
     .label(''),
   eyeColor: yup
     .string()
-    .typeError('Select your eye color from the dropdown.')
+    .typeError('Select your eye color from the dropdown')
     .required()
     .label(''),
   fatigueLevel: yup
@@ -149,19 +149,19 @@ const validationSchema = yup.object().shape({
     .label('Fatigue Level'),
   uniqueId: yup
     .string()
-    .typeError('Unique ID is typeError.')
+    .typeError('Unique ID is typeError')
     .required()
     .label('Unique ID'),
   bedHour: yup
     .number()
-    .typeError('The hour for bedtime can only contain numbers.')
+    .typeError('The hour for bedtime can only contain numbers')
     .integer()
     .label('Bed Hour')
     .max(12)
     .required(),
   bedMin: yup
     .number()
-    .typeError('The minutes for bedtime can only contain numbers.')
+    .typeError('The minutes for bedtime can only contain numbers')
     .integer()
     .max(59)
     .required()
@@ -169,14 +169,14 @@ const validationSchema = yup.object().shape({
   bedDate: yup.date().label('Date of Bedtime'),
   wakeHour: yup
     .number()
-    .typeError('The hour for wake time can only contain numbers.')
+    .typeError('The hour for wake time can only contain numbers')
     .integer()
     .max(12)
     .required()
     .label('Wake Hour'),
   wakeMin: yup
     .number()
-    .typeError('The minutes for wake time can only contain numbers.')
+    .typeError('The minutes for wake time can only contain numbers')
     .integer()
     .max(59)
     .required()
