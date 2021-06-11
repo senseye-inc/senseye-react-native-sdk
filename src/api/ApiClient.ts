@@ -94,7 +94,7 @@ export default class SenseyeApiClient {
   /**
    * Uploads a file to Senseye's S3.
    *
-   * @param uri               File URI. (Android) Needs to be prefixed with `file://`.
+   * @param uri               File URI. For Android environments, ensure it prefixed with `file://`.
    * @param key               Desired S3 key for the file.
    * @param onUploadProgress  Callback function that will be called on updates to the upload progress.
    * @returns                 A `Promise` that will resolve into a dictionary containing the destination S3 url (`s3_url`).

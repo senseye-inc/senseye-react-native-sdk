@@ -1,5 +1,9 @@
+import { RNFFmpegConfig, RNFFprobe } from 'react-native-ffmpeg';
+
 import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
 import type { SenseyeApiClient } from '@senseyeinc/react-native-senseye-sdk';
+
+RNFFmpegConfig.disableLogs();
 
 /**
  * Model representing a video entity. Facilitates the gathering of relevant metadata
@@ -15,7 +19,7 @@ export default class Video {
    * @param name    Desired video name.
    * @param config  Camera and/or recording configurations.
    * @param info    Any extra information or metadata.
-   * @param uri     Video file URI. (Android) Ensure it is prefixed with `file://`.
+   * @param uri     Video file URI. For Android environments, ensure it is prefixed with `file://`.
    */
   constructor(
     name: string,
@@ -77,34 +81,29 @@ export default class Video {
   /**
    * Sets {@link uri}.
    *
-   * @param uri Video file URI. (Android) Ensure it is prefixed with `file://`.
+   * @param uri Video file URI. For Android environments, ensure it is prefixed with `file://`.
    */
   public setUri(uri: string) {
     this.uri = uri;
   }
 
   /**
-   * Uploads a video file to Senseye's S3 bucket.
+   * Uploads the video file at {@link uri} to Senseye's S3 bucket. Throws an error
+   * if there is no specified uri (see {@link setUri | setUri()}).
    *
    * @param apiClient Client configured to communicate with Senseye's API.
-   * @param uri       Video file URI. (Android) Needs to be prefixed with `file://`.
-   *                    Defaults to {@link uri} (see {@link setUri | setUri()}).
    * @param key       Desired S3 key for the file. Defaults to {@link name} (see {@link setName | setName()}).
    * @returns         A `Promise` that will resolve into a dictionary containing the destination S3 url (`s3_url`).
    */
-  public async upload(apiClient: SenseyeApiClient, uri?: string, key?: string) {
-    if (uri === undefined) {
-      if (this.uri === undefined) {
-        throw new Error("Unable to upload video: No 'uri' provided.");
-      } else {
-        uri = this.uri;
-      }
+  public async upload(apiClient: SenseyeApiClient, key?: string) {
+    if (this.uri === undefined) {
+      throw new Error("Property 'uri' must be set.");
     }
     if (key === undefined) {
       key = this.name;
     }
 
-    return apiClient.uploadFile(uri, key, (progressEvent: ProgressEvent) => {
+    return apiClient.uploadFile(this.uri, key, (progressEvent: ProgressEvent) => {
       this.uploadPercentage = Math.round(
         (progressEvent.loaded / progressEvent.total) * 100
       );
@@ -121,10 +120,13 @@ export default class Video {
   }
 
   /**
-   * @returns The video's {@link metadata}.
+   * Compiles and returns metadata related to the video.
+   *
+   * @returns A `Promise` that will produce the compiled {@link metadata}.
    */
-  public getMetadata() {
+  public async getMetadata() {
     this.metadata.name = this.name;
+    await this.fillMetadataFromFile();
 
     return this.metadata;
   }
@@ -141,5 +143,28 @@ export default class Video {
    */
   public getUri() {
     return this.uri;
+  }
+
+  /**
+   * Fills {@link metadata} with information extracted from the video file at {@link uri}.
+   * Throws an error if there is no specified uri (see {@link setUri | setUri()}).
+   */
+  private async fillMetadataFromFile() {
+    if (this.uri === undefined) {
+      throw new Error("Property 'uri' must be set.");
+    }
+
+    const info = await RNFFprobe.getMediaInformation(this.uri);
+    const streams = info.getStreams();
+
+    if (streams !== undefined && streams.length > 0) {
+      const streamInfo = streams[0].getAllProperties();
+
+      this.metadata.codec = streamInfo.codec_name;
+      this.metadata.frames = parseInt(streamInfo.nb_frames, 10);
+      this.metadata.fps = this.metadata.frames / parseFloat(streamInfo.duration);
+      this.metadata.bitrate = parseInt(streamInfo.bit_rate, 10);
+      this.metadata.fileSize = parseInt(info.getMediaProperties().size, 10);
+    }
   }
 }

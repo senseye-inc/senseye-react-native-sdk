@@ -22,7 +22,7 @@ The Senseye SDK provides direct integration into the Senseye API on both iOS and
 
 ## Requirements
 
-Apps using React Native Navigation may target iOS 12+ and Android 10+. You may use Windows, macOS or Linux as your development operating system.
+Minimum `iOS 12.0` or `Android API Level 24`. You may use Windows, macOS or Linux as your development operating system.
 
 ## Installation
 
@@ -50,15 +50,62 @@ For local development, one of the dependencies is `babel-plugin-module-resolver`
 
 ## Usage
 
-After you have the SDK built or installed, import task components into your React application. For example:
+1. Execute Tasks and record Session data by utilizing TaskRunner.
+    ```javascript
+    import { TaskRunner, Tasks, Models } from '@senseyeinc/react-native-senseye-sdk';
 
-```javascript
-import { Tasks } from '@senseyeinc/react-native-senseye-sdk';
+    export default function App() {
+      return (
+        <TaskRunner onEnd={myCallback(session: Models.Session)}>
+          <Tasks.Calibration />
+          <Tasks.Plr />
+        </TaskRunner>
+      );
+    }
+    ```
 
-export default function App() {
-  return <Tasks.Calibration />;
-}
-```
+2. Instantiate a SenseyeApiClient.
+      ```javascript
+      import { SenseyeApiClient, Constants } from '@senseyeinc/react-native-senseye-sdk';
+
+      const apiClient = new SenseyeApiClient(Constants.API_HOST, Constants.API_BASE_PATH, <my_api_key>);
+      ```
+
+3. Upload Session data.
+    ```javascript
+    const res = await session.uploadAll(apiClient)
+
+    let videoUrls: string[] = [];
+    res[0].forEach((v) => {
+      videoUrls.push(v.s3_url);
+    });
+    console.log('uploaded videos: ' + videoUrls);
+    console.log('uploaded json: ' + res[1].s3_url);
+    ```
+
+4. Execute prediction on uploaded videos and poll for results.
+    ```javascript
+    const jobId = (await apiClient.startPrediction(videoUrls)).id;
+
+    setInterval(() => {
+      apiClient
+        .getPrediction(jobId)
+        .then((job) => {
+          if (
+            job.status === Constants.JobStatus.COMPLETED ||
+            job.status === Constants.JobStatus.FAILED
+          ) {
+            clearInterval(resultPollId);
+            if (job.result !== undefined) {
+              console.log('result: ' + JSON.stringify(job.result));
+            }
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }, 3000);
+    ```
 
 ## Example App
 

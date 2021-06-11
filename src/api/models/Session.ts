@@ -116,14 +116,12 @@ export default class Session {
    *
    * @param apiClient Client configured to communicate with Senseye's API.
    * @returns         A `Promise` that will resolve into an array once all session videos finish uploading.
-   *                    See {@link SenseyeApiClient.uploadfile} for the produced value of each item.
+   *                    See {@link SenseyeApiClient.uploadFile} for the produced value of each item.
    */
   public uploadVideos(apiClient: SenseyeApiClient) {
     let uploads: Promise<any>[] = [];
     this.getVideos().forEach((v) => {
-      uploads.push(
-        v.upload(apiClient, undefined, this.metadata.folderName + '/' + v.getName())
-      );
+      uploads.push(v.upload(apiClient, this.metadata.folderName + '/' + v.getName()));
     });
 
     return Promise.all(uploads);
@@ -144,12 +142,14 @@ export default class Session {
     }
 
     this.metadata.tasks = [];
-    this.tasks.forEach((t) => {
-      let taskData = t.getMetadata();
+    for (let i = 0; i < this.tasks.length; i++) {
+      // TODO: can't leverage Promise.all() because an underlying module (ffprobe) can only
+      // call one command at a time -- https://github.com/tanersener/react-native-ffmpeg/issues/21
+      let taskData = await this.tasks[i].getMetadata();
       taskData = { ...taskData.info, ...taskData };
       delete taskData.info;
       this.metadata.tasks.push(taskData);
-    });
+    }
 
     console.debug('\n' + JSON.stringify(this.metadata, undefined, '  '));
 
