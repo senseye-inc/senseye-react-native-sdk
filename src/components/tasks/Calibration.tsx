@@ -57,7 +57,8 @@ export default function Calibration(props: CalibrationProps) {
     const listenerId = moveAnimationValue.addListener((value) => {
       const { x, y } = value;
       if (onUpdate && curIndex !== x && x === y) {
-        curIndex = x;
+        // round to nearest integer because x may evaluate to imprecise float in some devices
+        curIndex = Math.round(x);
         /*
           Returns data containing a timestamp and the dot's updated (x,y) position relative to the canvas.
             (0, 0) represents the top left of the canvas.
