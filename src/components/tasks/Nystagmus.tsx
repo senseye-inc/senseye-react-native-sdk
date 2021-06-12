@@ -22,15 +22,8 @@ export type NystagmusProps = TaskProps & {
 };
 
 export default function Nystagmus(props: NystagmusProps) {
-  const {
-    startPauseTime,
-    speed,
-    pauseTime,
-    iterations,
-    onStart,
-    onEnd,
-    onUpdate,
-  } = props;
+  const { startPauseTime, speed, pauseTime, iterations, onStart, onEnd, onUpdate } =
+    props;
   const [iterationCount, setIterationCount] = React.useState(0);
   // instaniates animation object with default starting value
   const xAxisAnimation = React.useRef(new Animated.Value(props.initialX)).current;

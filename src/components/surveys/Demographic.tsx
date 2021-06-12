@@ -8,7 +8,6 @@ import {
   Text,
   View,
 } from 'react-native';
-import * as yup from 'yup';
 
 import {
   SenseyeAlertMessage,
