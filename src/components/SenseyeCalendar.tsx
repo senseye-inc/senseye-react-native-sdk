@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Calendar } from 'react-native-calendars';
 
-export type SenseyeCalProps = {
+export type SenseyeCalendarProps = {
   initialDate: string | (() => string);
   onUpdate?(day: React.SetStateAction<string>): void;
 };
@@ -10,7 +10,7 @@ const TODAY = new Date();
 const INITIAL_DATE = TODAY.toISOString().slice(0, 10);
 
 //left off at making reusable senseye cal
-export default function SenseyeCal(props: SenseyeCalProps) {
+export default function SenseyeCalendar(props: SenseyeCalendarProps) {
   const [selectedDate, setSelectedDate] = useState(props.initialDate);
 
   let styles = {
@@ -29,9 +29,6 @@ export default function SenseyeCal(props: SenseyeCalProps) {
     disabledArrowColor: '#0ea8a4',
     monthTextColor: '#DBEEF1',
     indicatorColor: '#DBEEF1',
-    textDayFontFamily: 'monospace',
-    textMonthFontFamily: 'monospace',
-    textDayHeaderFontFamily: 'monospace',
     textDayFontWeight: '300',
     textMonthFontWeight: 'bold',
     textDayHeaderFontWeight: '300',
@@ -69,7 +66,7 @@ export default function SenseyeCal(props: SenseyeCalProps) {
   );
 }
 
-SenseyeCal.defaultProps = {
+SenseyeCalendar.defaultProps = {
   initialDate: INITIAL_DATE,
   onUpdate: null,
 };
