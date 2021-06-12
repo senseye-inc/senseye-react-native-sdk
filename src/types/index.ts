@@ -70,18 +70,12 @@ export type PredictionResult = {
 
 export type Datum = boolean | number | string;
 
-export type TaskData = {
+export type EventData = {
   timestamp: number;
   data: { [key: string]: any };
 };
-export type SessionData = { [key: string]: Array<TaskData> };
 
-export type SessionConditionType =
-  | 'GOOD'
-  | 'BAD'
-  | 'TEST'
-  | 'UNENDED'
-  | 'UNSPECIFIED';
+export type SessionCondition = 'GOOD' | 'BAD' | 'TEST' | 'UNENDED' | 'UNSPECIFIED';
 
 export type SurveyType = 'demographic' | 'validation';
 
@@ -95,10 +89,7 @@ export type RecordingStartEvent = {
 
 export type RecorderStatusChangeEvent = {
   cameraStatus: 'READY' | 'PENDING_AUTHORIZATION' | 'NOT_AUTHORIZED';
-  recordAudioPermissionStatus:
-    | 'AUTHORIZED'
-    | 'PENDING_AUTHORIZATION'
-    | 'NOT_AUTHORIZED';
+  recordAudioPermissionStatus: 'AUTHORIZED' | 'PENDING_AUTHORIZATION' | 'NOT_AUTHORIZED';
 };
 
 export type Point = {
@@ -118,10 +109,7 @@ export type VideoRecorderObject = {
    * @param recordOptions  https://react-native-camera.github.io/react-native-camera/docs/rncamera#recordasync-options-promise
    * @returns              A `Promise` that will produce an uninitialized {@link Video} populated with metadata during the recording.
    */
-  startRecording(
-    name: string,
-    recordOptions?: RecordOptions
-  ): Promise<Models.Video>;
+  startRecording(name: string, recordOptions?: RecordOptions): Promise<Models.Video>;
   /**
    * Stops the video recording.
    */
@@ -143,6 +131,6 @@ export type TaskProps = {
   onStart?(): void;
   /** Function called on task end. */
   onEnd?(): void;
-  /** Function called on each animation update during the task. */
-  onUpdate?(data: TaskData): void;
+  /** Function called on an animation update or event during the task. */
+  onUpdate?(data: EventData): void;
 };

@@ -1,27 +1,30 @@
 import * as React from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, View, SafeAreaView } from 'react-native';
 import { RNCamera } from 'react-native-camera';
-import type {
-  RNCameraProps,
-  RecordOptions,
-  RecordResponse,
-} from 'react-native-camera';
+import type { RNCameraProps, RecordOptions, RecordResponse } from 'react-native-camera';
+import { getModel } from 'react-native-device-info';
 
-import {
-  Models,
-  getCurrentTimestamp,
-} from '@senseyeinc/react-native-senseye-sdk';
+import { Models, getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
 import type {
   RecorderStatusChangeEvent,
   RecordingStartEvent,
   Point,
   VideoRecorderObject,
 } from '@senseyeinc/react-native-senseye-sdk';
+import FaceOutline from './FaceOutline';
+
+enum orientationEnum {
+  auto = 0,
+  portrait = 1,
+  portraitUpsidedown = 2,
+  landscapeLeft = 3,
+  landscapeRight = 4,
+}
 
 export type VideoRecorderProps = {
   /** Type of camera to use. Possible values: 'front' | 'back' */
   type?: RNCameraProps['type'];
-  /** (Android) Overrides the `type` property and uses the camera specified by its id. */
+  /** Overrides the `type` property and uses the camera specified by its id. */
   cameraId?: string;
   /** (Android) Whether to use Android's Camera2 API. */
   useCamera2Api?: RNCameraProps['useCamera2Api'];
@@ -31,7 +34,7 @@ export type VideoRecorderProps = {
   androidRecordAudioPermissionOptions?: RNCameraProps['androidRecordAudioPermissionOptions'];
   /** Whether audio recording permissions should be requested. */
   captureAudio?: RNCameraProps['captureAudio'];
-  /** Whether to show camera preview. */
+  /** @deprecated since version 0.4.0 */
   showPreview?: boolean;
   /**
    * Function to be called when camera is ready. This event will also fire when
@@ -74,13 +77,8 @@ export type VideoRecorderProps = {
  */
 const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
   (props, ref) => {
-    const {
-      showPreview,
-      onRecordingStart,
-      onRecordingEnd,
-      ...rncProps
-    } = props;
-    const [video, setVideo] = React.useState<Models.Video>();
+    const { onRecordingStart, onRecordingEnd, ...rncProps } = props;
+    const [videoEntity, setVideoEntity] = React.useState<Models.Video>();
     const [camera, setCamera] = React.useState<RNCamera>();
 
     const setRef = React.useCallback((node) => {
@@ -91,24 +89,24 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
 
     const _onRecordingStart = React.useCallback(
       (event: RecordingStartEvent) => {
-        if (video) {
-          video.recordStartTime(getCurrentTimestamp());
+        if (videoEntity) {
+          videoEntity.recordStartTime(getCurrentTimestamp());
         }
         if (onRecordingStart) {
           onRecordingStart(event);
         }
       },
-      [video, onRecordingStart]
+      [videoEntity, onRecordingStart]
     );
 
     const _onRecordingEnd = React.useCallback(() => {
-      if (video) {
-        video.recordStopTime(getCurrentTimestamp());
+      if (videoEntity) {
+        videoEntity.recordStopTime(getCurrentTimestamp());
       }
       if (onRecordingEnd) {
         onRecordingEnd();
       }
-    }, [video, onRecordingEnd]);
+    }, [videoEntity, onRecordingEnd]);
 
     // expose recording functions to the ref
     React.useImperativeHandle(
@@ -121,45 +119,48 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
               ...(recordOptions || {}),
             };
 
-            const config = {
+            const config: { [key: string]: any } = {
               quality: recordOptions.quality,
-              bitrate: recordOptions.videoBitrate,
-              orientation: recordOptions.orientation,
-              codec: recordOptions.codec,
-              horizontal_flip: recordOptions.mirrorVideo,
-            };
-            const info = {
-              camera_type: props.type,
-              camera_id: props.cameraId,
+              maxDuration: recordOptions.maxDuration,
+              maxFileSize: recordOptions.maxFileSize,
+              mute: recordOptions.mute,
+              flipHorizontal: recordOptions.mirrorVideo,
             };
 
-            if (
-              Platform.OS === 'ios' &&
-              typeof recordOptions.codec === 'string'
-            ) {
-              recordOptions.codec =
-                RNCamera.Constants.VideoCodec[recordOptions.codec];
-              console.log(recordOptions.codec);
+            const info = {
+              cameraType: 'UNKNOWN',
+              cameraId: props.cameraId,
+            };
+            if (Platform.OS === 'ios' || Platform.OS === 'android') {
+              if (info.cameraId === undefined) {
+                info.cameraType = 'RGB';
+              } else if (info.cameraId === '2' && getModel() === 'Pixel 4') {
+                info.cameraType = 'NIR';
+              }
+            }
+
+            if (Platform.OS === 'ios' && typeof recordOptions.codec === 'string') {
+              recordOptions.codec = RNCamera.Constants.VideoCodec[recordOptions.codec];
             }
 
             const v = new Models.Video(name, config, info);
-            setVideo(v);
+            setVideoEntity(v);
 
-            return camera
-              .recordAsync(recordOptions)
-              .then((result: RecordResponse) => {
-                v.setUri(result.uri);
-                v.updateInfo({
-                  // TODO: currently not implemented in RNCamera for Camera2Api (Android)
-                  // orientation: {
-                  //   video: result.videoOrientation,
-                  //   device: result.deviceOrientation,
-                  // },
-                  codec: result.codec,
-                  recording_interrupted: result.isRecordingInterrupted,
-                });
-                return v;
+            return camera.recordAsync(recordOptions).then((result: RecordResponse) => {
+              const uri = result.uri;
+              const fileExt = uri.substring(uri.lastIndexOf('.') + 1, uri.length);
+
+              v.setName(v.getName() + '.' + fileExt);
+              v.setUri(uri);
+              v.updateInfo({
+                // TODO: (Android) videoOrientation and deviceOrientaton are currently unimplemented for Camera2Api
+                videoOrientation: orientationEnum[result.videoOrientation],
+                deviceOrientation: orientationEnum[result.deviceOrientation],
+                isRecordingInterrupted: result.isRecordingInterrupted,
               });
+
+              return v;
+            });
           }
           throw Error('Camera is unmounted or unavailable.');
         },
@@ -171,24 +172,32 @@ const VideoRecorder = React.forwardRef<VideoRecorderObject, VideoRecorderProps>(
           }
         },
       }),
-      [camera, props.type, props.cameraId]
+      [camera, props.cameraId]
     );
 
     return (
-      <RNCamera
-        {...rncProps}
-        ref={setRef}
-        style={showPreview ? styles.preview : styles.hidden}
-        onRecordingStart={_onRecordingStart}
-        onRecordingEnd={_onRecordingEnd}
-      />
+      <SafeAreaView style={styles.preview}>
+        <View style={styles.container}>
+          <RNCamera
+            {...rncProps}
+            ref={setRef}
+            style={styles.preview}
+            onRecordingStart={_onRecordingStart}
+            onRecordingEnd={_onRecordingEnd}
+          >
+            <View style={styles.face} pointerEvents={'none'}>
+              <FaceOutline height={800} width={800} />
+            </View>
+          </RNCamera>
+        </View>
+      </SafeAreaView>
     );
   }
 );
 
 VideoRecorder.defaultProps = {
   type: 'front',
-  cameraId: undefined, // TODO: detect 'Pixel 4' device model and default to 2 (nIR camera)
+  cameraId: undefined,
   useCamera2Api: true,
   androidCameraPermissionOptions: {
     title: 'Camera permissions',
@@ -206,14 +215,24 @@ const defaultRecordOptions: RecordOptions = {
   orientation: 'auto',
   codec: 'H264',
   mirrorVideo: false,
+  // TODO: (Android) currently unimplemented
+  fps: 60,
 };
 
 const styles = StyleSheet.create({
   preview: {
     flex: 1,
   },
-  hidden: {
+  container: {
+    flex: 1,
+    position: 'relative',
+  },
+  face: {
     flex: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0)',
+    position: 'absolute',
+    top: '5%',
+    left: '-30%',
   },
 });
 

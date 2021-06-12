@@ -42,7 +42,7 @@ export default function ValidationSurvey(props: ValidationSurveyProps) {
       // generate a survey model and pass it into the callback
       const survey = new Models.Survey(
         Constants.SurveyType.VALIDATION,
-        { agreed: [validationQuestion, agreed] },
+        { isResultAgreed: [validationQuestion, agreed] },
         result
       );
       onComplete(survey);
@@ -53,9 +53,7 @@ export default function ValidationSurvey(props: ValidationSurveyProps) {
     switch (result.prediction.state) {
       case Constants.PredictedState.SAFE:
         setResultIcon(checkmarkIcon);
-        setResultMsg(
-          'Senseye models indicate the user is likely fit for duty.'
-        );
+        setResultMsg('Senseye models indicate the user is likely fit for duty.');
         break;
       case Constants.PredictedState.UNSAFE:
         setResultIcon(xIcon);
@@ -74,10 +72,7 @@ export default function ValidationSurvey(props: ValidationSurveyProps) {
   return (
     <SafeAreaView style={styles.container}>
       <Image style={styles.logo} source={whiteLogo} />
-      <ScrollView
-        style={styles.innerContainer}
-        contentContainerStyle={styles.layout}
-      >
+      <ScrollView style={styles.innerContainer} contentContainerStyle={styles.layout}>
         <Image source={resultIcon} style={styles.clearanceIcon} />
         <Text style={styles.text}>{resultMsg}</Text>
         <Text style={[styles.text, styles.warning]}>
@@ -89,12 +84,12 @@ export default function ValidationSurvey(props: ValidationSurveyProps) {
           <SenseyeButton
             title="Yes"
             onPress={() => _onComplete(true)}
-            type={'primaryCta'}
+            theme={'primaryCta'}
           />
           <SenseyeButton
             title="No"
             onPress={() => _onComplete(false)}
-            type={'secondaryCta'}
+            theme={'secondaryCta'}
           />
         </View>
       </ScrollView>

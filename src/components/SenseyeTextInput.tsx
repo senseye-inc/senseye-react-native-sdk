@@ -2,16 +2,27 @@ import * as React from 'react';
 import { View, StyleSheet, Text, TextInput, KeyboardType } from 'react-native';
 
 export type SenseyeTextInputProps = {
+  /** Label message to be displayed for field */
   label: string;
+  /** Determines which keyboard to use, e.g.numeric */
   keyboardType: KeyboardType;
+  /** The string that will be rendered before text input has been entered */
   placeholderText: string;
+  /** The color that will determine placeholder text */
   placeholderTextColor: string;
+  /** The value to show for the text input */
   value: string;
+  /** Sets height of the field container */
   height: string | number;
+  /** Sets width of the field container */
   width: string | number;
+  /** Sets background color of the field container */
   background: string;
+  /** Sets border color for the field container */
   borderBottomColor: string;
+  /** The numeric width to use for field container border */
   borderBottomWidth: number;
+  /** A string that displays an alert message */
   onChangeText?(text: string): void;
 };
 

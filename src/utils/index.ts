@@ -1,17 +1,45 @@
-import type {
-  SessionConditionType,
-  SurveyType,
-} from '@senseyeinc/react-native-senseye-sdk';
+import type { SessionCondition, SurveyType } from '@senseyeinc/react-native-senseye-sdk';
+import * as yup from 'yup';
 
 /**
  * @returns The number of milliseconds elapsed since January 1, 1970 00:00:00 UTC.
  */
-export function getCurrentTimestamp() {
+function getCurrentTimestamp() {
   return Date.now();
 }
 
+/**
+ * @param ext File extension.
+ * @returns   The corresponding MIME type. Defaults to `application/octet-stream`
+ *              if the extension is not recognized.
+ */
+function getMimeFromExtension(ext: string) {
+  switch (ext) {
+    case 'avi':
+      return 'video/x-msvideo';
+    case 'mkv':
+      return 'video/x-matroska';
+    case 'mp4':
+      return 'video/mp4';
+    case 'mov':
+      return 'video/quicktime';
+    case 'json':
+      return 'application/json';
+    default:
+      return 'application/octet-stream';
+  }
+}
+
+/**
+ * @param value Value to check.
+ * @returns     `true` if the value is a non-empty string. Otherwise, `false`.
+ */
+function isNonEmptyString(value: any) {
+  return typeof value === 'string' && value !== '';
+}
+
 /** Valid session conditions. */
-const SessionConditions: Record<string, SessionConditionType> = {
+const SessionConditions: Record<string, SessionCondition> = {
   GOOD: 'GOOD',
   BAD: 'BAD',
   TEST: 'TEST',
@@ -25,37 +53,37 @@ const SurveyTypes: Record<string, SurveyType> = {
   VALIDATION: 'validation',
 };
 
-/** A list of calibration patterns (x,y) to select from */
+/** A list of calibration patterns (x,y) to select from. */
 const CalibrationPatterns = [
   [
-    [0.2, 0.25],
-    [0.4, 0.25],
-    [0.6, 0.25],
-    [0.8, 0.25],
-    [0.25, 0.5],
-    [0.5, 0.5],
-    [0.75, 0.5],
-    [0.2, 0.75],
-    [0.4, 0.75],
-    [0.6, 0.75],
-    [0.8, 0.75],
+    { x: 0.2, y: 0.25 },
+    { x: 0.4, y: 0.25 },
+    { x: 0.6, y: 0.25 },
+    { x: 0.8, y: 0.25 },
+    { x: 0.25, y: 0.5 },
+    { x: 0.5, y: 0.5 },
+    { x: 0.75, y: 0.5 },
+    { x: 0.2, y: 0.75 },
+    { x: 0.4, y: 0.75 },
+    { x: 0.6, y: 0.75 },
+    { x: 0.8, y: 0.75 },
   ],
   [
-    [0.8, 0.25],
-    [0.4, 0.75],
-    [0.5, 0.5],
-    [0.2, 0.25],
-    [0.8, 0.75],
-    [0.2, 0.75],
-    [0.4, 0.25],
-    [0.5, 0.5],
-    [0.6, 0.25],
-    [0.6, 0.75],
+    { x: 0.8, y: 0.25 },
+    { x: 0.4, y: 0.75 },
+    { x: 0.5, y: 0.5 },
+    { x: 0.2, y: 0.25 },
+    { x: 0.8, y: 0.75 },
+    { x: 0.2, y: 0.75 },
+    { x: 0.4, y: 0.25 },
+    { x: 0.5, y: 0.5 },
+    { x: 0.6, y: 0.25 },
+    { x: 0.6, y: 0.75 },
   ],
 ];
 
 /** Senseye constants. */
-export const Constants = {
+const Constants = {
   API_HOST: 'api.senseye.co',
   API_BASE_PATH: '',
   SessionCondition: SessionConditions,
@@ -90,4 +118,76 @@ export const Constants = {
     },
   },
   CalibrationPatterns: CalibrationPatterns,
+};
+
+const validationSchema = yup.object().shape({
+  age: yup
+    .number()
+    .positive()
+    .typeError('Enter a valid number for age')
+    .integer()
+    .min(13)
+    .max(99)
+    .required()
+    .label('Age'),
+  gender: yup
+    .string()
+    .typeError('Select your gender from the dropdown')
+    .required()
+    .label(''),
+  eyeColor: yup
+    .string()
+    .typeError('Select your eye color from the dropdown')
+    .required()
+    .label(''),
+  fatigueLevel: yup
+    .number()
+    .typeError('Select a rating for your fatigue level')
+    .positive()
+    .integer()
+    .required()
+    .label('Fatigue Level'),
+  uniqueId: yup
+    .string()
+    .typeError('A valid Unique ID is required')
+    .required()
+    .label('Unique ID'),
+  bedHour: yup
+    .number()
+    .typeError('The hour for bedtime can only contain numbers')
+    .integer()
+    .label('Bed Hour')
+    .max(12)
+    .required(),
+  bedMin: yup
+    .number()
+    .typeError('The minutes for bedtime can only contain numbers')
+    .integer()
+    .max(59)
+    .required()
+    .label('Bed Minutes'),
+  bedDate: yup.date().label('Date of Bedtime'),
+  wakeHour: yup
+    .number()
+    .typeError('The hour for wake time can only contain numbers')
+    .integer()
+    .max(12)
+    .required()
+    .label('Wake Hour'),
+  wakeMin: yup
+    .number()
+    .typeError('The minutes for wake time can only contain numbers')
+    .integer()
+    .max(59)
+    .required()
+    .label('Wake Minute'),
+  wakeDate: yup.date().label('Date of wake'),
+});
+
+export {
+  Constants,
+  getCurrentTimestamp,
+  getMimeFromExtension,
+  isNonEmptyString,
+  validationSchema,
 };

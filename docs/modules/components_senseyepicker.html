@@ -98,9 +98,7 @@
 					<div class="tsd-signature tsd-kind-icon">Senseye<wbr>Picker<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>label<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>marginBottom<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>labels<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>values<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">React.ReactText</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">; </span>selectedValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>width<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>onChangeValue<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/components/SenseyePicker.tsx#L5">components/SenseyePicker.tsx:5</a></li>
-							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/components/index.ts#L17">components/index.ts:17</a></li>
-							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/components/index.ts#L17">components/index.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/components/SenseyePicker.tsx#L5">components/SenseyePicker.tsx:5</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -108,29 +106,91 @@
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter">
 								<h5>label<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Displayed value on the Picker Item</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5>margin<wbr>Bottom<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Sets the bottom margin of the picker container</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5>options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>labels<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>values<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">React.ReactText</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>A collection of options a user can select from</p>
+									</div>
+								</div>
 								<ul class="tsd-parameters">
 									<li class="tsd-parameter">
 										<h5>labels<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>A list of displayed values of the collection</p>
+											</div>
+										</div>
 									</li>
 									<li class="tsd-parameter">
 										<h5>values<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">React.ReactText</span><span class="tsd-signature-symbol">[]</span></h5>
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>A list of the actual values of the collection</p>
+											</div>
+										</div>
 									</li>
 								</ul>
 							</li>
 							<li class="tsd-parameter">
 								<h5>selected<wbr>Value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Stores which value is selected</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
 								<h5>width<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Sets the width of the picker container</p>
+									</div>
+								</div>
 							</li>
 							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Change<wbr>Value<span class="tsd-signature-symbol">?: </span></h5>
+								<h5>on<wbr>Change<wbr>Value<span class="tsd-signature-symbol">: </span>function</h5>
+								<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
+									<li class="tsd-signature tsd-kind-icon">on<wbr>Change<wbr>Value<span class="tsd-signature-symbol">(</span>itemValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ReactText</span>, itemPosition<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<aside class="tsd-sources">
+											<ul>
+												<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/components/SenseyePicker.tsx#L22">components/SenseyePicker.tsx:22</a></li>
+											</ul>
+										</aside>
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>Function to be called when an item is selected</p>
+											</div>
+										</div>
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>itemValue: <span class="tsd-signature-type">ReactText</span></h5>
+											</li>
+											<li>
+												<h5>itemPosition: <span class="tsd-signature-type">number</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
 							</li>
 						</ul>
 					</div>
@@ -148,7 +208,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/components/SenseyePicker.tsx#L17">components/SenseyePicker.tsx:17</a></li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/components/SenseyePicker.tsx#L25">components/SenseyePicker.tsx:25</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>

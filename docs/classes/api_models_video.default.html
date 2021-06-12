@@ -71,8 +71,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Class that models a session video, facilitating the logging of pertinent
-						metadata and provides the ability to upload recorded video.</p>
+						<p>Model representing a video entity. Facilitates the gathering of relevant metadata
+						and provides the ability to upload a video file.</p>
 					</div>
 				</div>
 			</section>
@@ -97,22 +97,23 @@
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="api_models_video.default.html#apiclient" class="tsd-kind-icon">api<wbr>Client</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="api_models_video.default.html#id" class="tsd-kind-icon">id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="api_models_video.default.html#metadata" class="tsd-kind-icon">metadata</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="api_models_video.default.html#uploadprogress" class="tsd-kind-icon">upload<wbr>Progress</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="api_models_video.default.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="api_models_video.default.html#uploadpercentage" class="tsd-kind-icon">upload<wbr>Percentage</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="api_models_video.default.html#uri" class="tsd-kind-icon">uri</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="api_models_video.default.html#fillmetadatafromfile" class="tsd-kind-icon">fill<wbr>Metadata<wbr>From<wbr>File</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_models_video.default.html#getmetadata" class="tsd-kind-icon">get<wbr>Metadata</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_models_video.default.html#getname" class="tsd-kind-icon">get<wbr>Name</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_models_video.default.html#getuploadprogress" class="tsd-kind-icon">get<wbr>Upload<wbr>Progress</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_models_video.default.html#getuploadpercentage" class="tsd-kind-icon">get<wbr>Upload<wbr>Percentage</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_models_video.default.html#geturi" class="tsd-kind-icon">get<wbr>Uri</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_models_video.default.html#init" class="tsd-kind-icon">init</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_models_video.default.html#recordstarttime" class="tsd-kind-icon">record<wbr>Start<wbr>Time</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_models_video.default.html#recordstoptime" class="tsd-kind-icon">record<wbr>Stop<wbr>Time</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_models_video.default.html#setname" class="tsd-kind-icon">set<wbr>Name</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_models_video.default.html#seturi" class="tsd-kind-icon">set<wbr>Uri</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_models_video.default.html#updateinfo" class="tsd-kind-icon">update<wbr>Info</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_models_video.default.html#upload" class="tsd-kind-icon">upload</a></li>
@@ -133,7 +134,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Video.ts#L20">api/models/Video.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Video.ts#L16">api/models/Video.ts:16</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -141,11 +142,11 @@
 								<li>
 									<h5>name: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Name of the video. Must be unique within the context of a <a href="../modules/api_models.html#session">Session</a>.</p>
+										<p>Desired video name.</p>
 									</div>
 								</li>
 								<li>
-									<h5>config: <span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol"> = ...</span></h5>
+									<h5>config: <span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol"> = {}</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Camera and/or recording configurations.</p>
 									</div>
@@ -156,7 +157,7 @@
 									</ul>
 								</li>
 								<li>
-									<h5>info: <span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol"> = ...</span></h5>
+									<h5>info: <span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol"> = {}</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Any extra information or metadata.</p>
 									</div>
@@ -167,9 +168,9 @@
 									</ul>
 								</li>
 								<li>
-									<h5>uri: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &#x27;&#x27;</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> uri: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Video file URI. (Android) Ensure it is prefixed with <code>file://</code>.</p>
+										<p>Video file URI. For Android environments, ensure it is prefixed with <code>file://</code>.</p>
 									</div>
 								</li>
 							</ul>
@@ -181,32 +182,12 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="apiclient" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> api<wbr>Client</h3>
-					<div class="tsd-signature tsd-kind-icon">api<wbr>Client<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="api_apiclient.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Video.ts#L16">api/models/Video.ts:16</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="id" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> id</h3>
-					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Video.ts#L17">api/models/Video.ts:17</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="metadata" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> metadata</h3>
 					<div class="tsd-signature tsd-kind-icon">metadata<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Video.ts#L18">api/models/Video.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Video.ts#L13">api/models/Video.ts:13</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -219,67 +200,122 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="uploadprogress" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> upload<wbr>Progress</h3>
-					<div class="tsd-signature tsd-kind-icon">upload<wbr>Progress<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="name" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Video.ts#L20">api/models/Video.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Video.ts#L14">api/models/Video.ts:14</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="uploadpercentage" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> upload<wbr>Percentage</h3>
+					<div class="tsd-signature tsd-kind-icon">upload<wbr>Percentage<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Video.ts#L16">api/models/Video.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="uri" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> uri</h3>
-					<div class="tsd-signature tsd-kind-icon">uri<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<div class="tsd-signature tsd-kind-icon">uri<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Video.ts#L19">api/models/Video.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Video.ts#L15">api/models/Video.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getname" class="tsd-anchor"></a>
-					<h3>get<wbr>Name</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Name<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="fillmetadatafromfile" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> fill<wbr>Metadata<wbr>From<wbr>File</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">fill<wbr>Metadata<wbr>From<wbr>File<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Video.ts#L212">api/models/Video.ts:212</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-							<p>The video&#39;s assigned name.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getuploadprogress" class="tsd-anchor"></a>
-					<h3>get<wbr>Upload<wbr>Progress</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Upload<wbr>Progress<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Video.ts#L198">api/models/Video.ts:198</a></li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Video.ts#L152">api/models/Video.ts:152</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Use this to track upload progress after calling {@link uploadFile | uploadFile()}.</p>
+									<p>Fills <a href="api_models_video.default.html#metadata">metadata</a> with information extracted from the video file at <a href="api_models_video.default.html#uri">uri</a>.
+									Throws an error if there is no specified uri (see <a href="api_models_video.default.html#seturi">setUri()</a>).</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getmetadata" class="tsd-anchor"></a>
+					<h3>get<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Metadata<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Video.ts#L127">api/models/Video.ts:127</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Compiles and returns metadata related to the video.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A <code>Promise</code> that will produce the compiled <a href="api_models_video.default.html#metadata">metadata</a>.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getname" class="tsd-anchor"></a>
+					<h3>get<wbr>Name</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Name<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Video.ts#L137">api/models/Video.ts:137</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>The video&#39;s <a href="api_models_video.default.html#name">name</a>.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getuploadpercentage" class="tsd-anchor"></a>
+					<h3>get<wbr>Upload<wbr>Percentage</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Upload<wbr>Percentage<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Video.ts#L118">api/models/Video.ts:118</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Use this to track upload progress after calling <a href="api_apiclient.default.html#uploadfile">uploadFile()</a>.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>The upload percentage as a number from 0.0 to 1.0, and -1 if
-							{@link uploadFile | uploadFile()} has not been executed yet.</p>
+							<p>Integer value from <code>0</code> to <code>100</code>.</p>
 						</li>
 					</ul>
 				</section>
@@ -287,57 +323,17 @@
 					<a name="geturi" class="tsd-anchor"></a>
 					<h3>get<wbr>Uri</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Uri<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Uri<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Video.ts#L219">api/models/Video.ts:219</a></li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Video.ts#L144">api/models/Video.ts:144</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-							<p>The video&#39;s file uri.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="init" class="tsd-anchor"></a>
-					<h3>init</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">init<span class="tsd-signature-symbol">(</span>apiClient<span class="tsd-signature-symbol">: </span><a href="api_apiclient.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a>, sessionId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Video.ts#L54">api/models/Video.ts:54</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Initializes a video model through Senseye&#39;s API. Note this should only be
-										done once per instance. Ensure initialization is successful before executing
-									certain functions within this class, otherwise errors may be thrown..</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>apiClient: <a href="api_apiclient.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Client configured to communicate with Senseye&#39;s API.</p>
-									</div>
-								</li>
-								<li>
-									<h5>sessionId: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>ID of a <a href="../modules/api_models.html#session">Session</a> to associate with.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A <code>Promise</code> that will produce the created video&#39;s metadata.</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h4>
+							<p>The video&#39;s <a href="api_models_video.default.html#uri">uri</a>.</p>
 						</li>
 					</ul>
 				</section>
@@ -351,7 +347,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Video.ts#L91">api/models/Video.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Video.ts#L47">api/models/Video.ts:47</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -383,7 +379,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Video.ts#L103">api/models/Video.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Video.ts#L59">api/models/Video.ts:59</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -406,6 +402,37 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setname" class="tsd-anchor"></a>
+					<h3>set<wbr>Name</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Name<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Video.ts#L77">api/models/Video.ts:77</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets <a href="api_models_video.default.html#name">name</a>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Desired video name.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="seturi" class="tsd-anchor"></a>
 					<h3>set<wbr>Uri</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -415,12 +442,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Video.ts#L139">api/models/Video.ts:139</a></li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Video.ts#L86">api/models/Video.ts:86</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Sets the URI to a local file.</p>
+									<p>Sets <a href="api_models_video.default.html#uri">uri</a>.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -428,7 +455,7 @@
 								<li>
 									<h5>uri: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Video file URI. (Android) Ensure it is prefixed with <code>file://</code>.</p>
+										<p>Video file URI. For Android environments, ensure it is prefixed with <code>file://</code>.</p>
 									</div>
 								</li>
 							</ul>
@@ -446,12 +473,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Video.ts#L114">api/models/Video.ts:114</a></li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Video.ts#L68">api/models/Video.ts:68</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Updates the video&#39;s {@link info} metadata.</p>
+									<p>Updates <a href="api_models_video.default.html#metadata">metadata</a>.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -459,7 +486,7 @@
 								<li>
 									<h5>info: <span class="tsd-signature-symbol">{}</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Metadata to be merged on top of any prior {@link info} metadata.</p>
+										<p>Metadata to be merged on top of the existing <a href="api_models_video.default.html#metadata">metadata</a>.</p>
 									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-index-signature">
@@ -476,37 +503,38 @@
 					<a name="upload" class="tsd-anchor"></a>
 					<h3>upload</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">upload<span class="tsd-signature-symbol">(</span>uri<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, codec<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>s3_url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">upload<span class="tsd-signature-symbol">(</span>apiClient<span class="tsd-signature-symbol">: </span><a href="api_apiclient.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a>, key<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>s3_url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Video.ts#L150">api/models/Video.ts:150</a></li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Video.ts#L98">api/models/Video.ts:98</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Uploads a video file to Senseye&#39;s S3 bucket.</p>
+									<p>Uploads the video file at <a href="api_models_video.default.html#uri">uri</a> to Senseye&#39;s S3 bucket. Throws an error
+									if there is no specified uri (see <a href="api_models_video.default.html#seturi">setUri()</a>).</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>uri: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = ...</span></h5>
+									<h5>apiClient: <a href="api_apiclient.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Video file URI. (Android) Needs to be prefixed with <code>file://</code>.
-										Defaults to <a href="api_models_video.default.html#uri">uri</a> (see <a href="api_models_video.default.html#seturi">setUri()</a>).</p>
+										<p>Client configured to communicate with Senseye&#39;s API.</p>
 									</div>
 								</li>
 								<li>
-									<h5>codec: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &#x27;mp4&#x27;</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> key: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Specifies the codec of the video file.</p>
+										<p>Desired S3 key for the file. Defaults to <a href="api_models_video.default.html#name">name</a> (see <a href="api_models_video.default.html#setname">setName()</a>).</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>s3_url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A <code>Promise</code> that will resolve into a dictionary containing the destination S3 url (<code>s3_url</code>).</p>
 						</li>
 					</ul>
 				</section>
@@ -518,80 +546,8 @@
 					<li class=" ">
 						<a href="../modules.html">Exports</a>
 					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/__tests___index_test.html">__tests__/index.test</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/api.html">api</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/api_apiclient.html">api/<wbr>Api<wbr>Client</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/api_models.html">api/models</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/api_models_session.html">api/models/<wbr>Session</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/api_models_survey.html">api/models/<wbr>Survey</a>
-					</li>
 					<li class="current tsd-kind-module">
 						<a href="../modules/api_models_video.html">api/models/<wbr>Video</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/assets.html">assets</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components.html">components</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_senseyebutton.html">components/<wbr>Senseye<wbr>Button</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_senseyepicker.html">components/<wbr>Senseye<wbr>Picker</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_senseyetextinput.html">components/<wbr>Senseye<wbr>Text<wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_taskrunner.html">components/<wbr>Task<wbr>Runner</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_videorecorder.html">components/<wbr>Video<wbr>Recorder</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_surveys.html">components/surveys</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_surveys_demographic.html">components/surveys/<wbr>Demographic</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_surveys_validation.html">components/surveys/<wbr>Validation</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_tasks.html">components/tasks</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_tasks_calibration.html">components/tasks/<wbr>Calibration</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_tasks_nystagmus.html">components/tasks/<wbr>Nystagmus</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_tasks_plr.html">components/tasks/<wbr>Plr</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_tasks_smoothpursuit.html">components/tasks/<wbr>Smooth<wbr>Pursuit</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/index.html">index</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/types.html">types</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/utils.html">utils</a>
 					</li>
 				</ul>
 			</nav>
@@ -606,37 +562,40 @@
 								<a href="api_models_video.default.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="api_models_video.default.html#apiclient" class="tsd-kind-icon">api<wbr>Client</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="api_models_video.default.html#id" class="tsd-kind-icon">id</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="api_models_video.default.html#metadata" class="tsd-kind-icon">metadata</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="api_models_video.default.html#uploadprogress" class="tsd-kind-icon">upload<wbr>Progress</a>
+								<a href="api_models_video.default.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="api_models_video.default.html#uploadpercentage" class="tsd-kind-icon">upload<wbr>Percentage</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="api_models_video.default.html#uri" class="tsd-kind-icon">uri</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="api_models_video.default.html#fillmetadatafromfile" class="tsd-kind-icon">fill<wbr>Metadata<wbr>From<wbr>File</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="api_models_video.default.html#getmetadata" class="tsd-kind-icon">get<wbr>Metadata</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="api_models_video.default.html#getname" class="tsd-kind-icon">get<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="api_models_video.default.html#getuploadprogress" class="tsd-kind-icon">get<wbr>Upload<wbr>Progress</a>
+								<a href="api_models_video.default.html#getuploadpercentage" class="tsd-kind-icon">get<wbr>Upload<wbr>Percentage</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="api_models_video.default.html#geturi" class="tsd-kind-icon">get<wbr>Uri</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="api_models_video.default.html#init" class="tsd-kind-icon">init</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="api_models_video.default.html#recordstarttime" class="tsd-kind-icon">record<wbr>Start<wbr>Time</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="api_models_video.default.html#recordstoptime" class="tsd-kind-icon">record<wbr>Stop<wbr>Time</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="api_models_video.default.html#setname" class="tsd-kind-icon">set<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="api_models_video.default.html#seturi" class="tsd-kind-icon">set<wbr>Uri</a>
@@ -673,6 +632,7 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
 			</ul>
 		</div>
 	</div>

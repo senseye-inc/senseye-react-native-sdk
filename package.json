@@ -1,6 +1,6 @@
 {
   "name": "@senseyeinc/react-native-senseye-sdk",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "The Senseye SDK provides direct integration into the Senseye API on both iOS and Android for React Native apps. The JavaScript API is simple and cross-platform. Ready to get started? Follow the instructions below.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -28,7 +28,8 @@
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
     "bootstrap": "yarn example && yarn",
-    "docs": "live-server --open=./docs --port=9090"
+    "docs": "live-server --open=./docs --port=9090",
+    "generate-docs": "yarn run typedoc --out docs --json docs/senseye_react_sdk_docs.json src --exclude '**/components/tasks/Nystagmus.tsx'"
   },
   "keywords": [
     "react-native",
@@ -43,14 +44,20 @@
     "url": "https://github.com/senseye-inc/senseye-react-native-sdk/issues"
   },
   "homepage": "https://github.com/senseye-inc/senseye-react-native-sdk#readme",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "react-native-calendars": "^1.1262.0",
+    "yup": "^0.32.9"
+  },
   "devDependencies": {
+    "@babel/core": "^7.14.3",
     "@react-native-community/eslint-config": "^2.0.0",
     "@react-native-picker/picker": "^1.9.10",
     "@release-it/conventional-changelog": "^1.1.4",
     "@types/jest": "^26.0.0",
     "@types/react": "^16.9.19",
     "@types/react-native": "0.62.13",
-    "axios": "^0.21.0",
+    "@types/react-native-calendars": "^1.505.3",
     "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^6.11.0",
@@ -65,17 +72,23 @@
     "react-native-builder-bob": "^0.17.1",
     "react-native-camera": "^3.42.2",
     "react-native-device-info": "^8.0.0",
+    "react-native-ffmpeg": "^0.5.0",
+    "react-native-fs": "^2.16.0",
+    "react-native-svg": "^12.1.1",
+    "react-native-svg-transformer": "^0.14.3",
     "release-it": "^13.5.8",
     "typedoc": "^0.20.14",
     "typescript": "^3.8.3"
   },
   "peerDependencies": {
     "@react-native-picker/picker": "*",
-    "axios": "*",
     "react": "*",
     "react-native": "*",
     "react-native-camera": "^3.42.2",
-    "react-native-device-info": "*"
+    "react-native-device-info": "*",
+    "react-native-ffmpeg": "^0.5.0",
+    "react-native-fs": "*",
+    "react-native-svg": "*"
   },
   "jest": {
     "preset": "react-native",
@@ -119,7 +132,8 @@
           "singleQuote": true,
           "tabWidth": 2,
           "trailingComma": "es5",
-          "useTabs": false
+          "useTabs": false,
+          "printWidth": 90
         }
       ]
     }
@@ -134,7 +148,8 @@
     "singleQuote": true,
     "tabWidth": 2,
     "trailingComma": "es5",
-    "useTabs": false
+    "useTabs": false,
+    "printWidth": 90
   },
   "react-native-builder-bob": {
     "source": "src",

@@ -3,39 +3,39 @@ import React from 'react';
 import { SafeAreaView, StyleSheet, Text, Modal, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SenseyeButton } from '@senseyeinc/react-native-senseye-sdk';
-import { Colors, Typography, Spacing, Sizing } from '../styles';
+
+import { Colors, Typography, Spacing } from '../styles';
 
 type TaskInstructionsProps = {
-  taskName: string;
-  instruction: string;
+  title: string;
+  instructions: string;
+  visible: boolean;
+  onButtonPress?(): void;
 };
+
 export default function TaskInstructions(props: TaskInstructionsProps) {
+  const { title, instructions, visible, onButtonPress } = props;
   const [modalVisible, setModalVisible] = React.useState<boolean>(true);
 
+  const _onButtonPress = React.useCallback(() => {
+    if (onButtonPress) {
+      onButtonPress();
+    }
+  }, [onButtonPress]);
+
+  React.useEffect(() => {
+    setModalVisible(visible);
+  }, [visible]);
+
   return (
-    <Modal
-      visible={modalVisible}
-      animationType="slide"
-      transparent={true}
-      onRequestClose={() => {
-        setModalVisible(!modalVisible);
-      }}
-    >
+    <Modal visible={modalVisible} animationType="fade" transparent={true}>
       <SafeAreaView style={styles.wrapper}>
         <View style={styles.parentContainer}>
-          <View style={styles.childContainer}>
-            <ScrollView contentContainerStyle={Spacing.container}>
-              <Text style={styles.header}>{props.taskName}</Text>
-              <Text style={styles.subheader}>{props.instruction}</Text>
-            </ScrollView>
-          </View>
-          <View style={styles.button}>
-            <SenseyeButton
-              title={'Start'}
-              type={'primaryCta'}
-              onPress={() => setModalVisible(!modalVisible)}
-            />
-          </View>
+          <ScrollView contentContainerStyle={styles.childContainer}>
+            <Text style={styles.header}>{title}</Text>
+            <Text style={styles.subheader}>{instructions}</Text>
+            <SenseyeButton title={'OK'} theme={'primaryCta'} onPress={_onButtonPress} />
+          </ScrollView>
         </View>
       </SafeAreaView>
     </Modal>
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   parentContainer: {
     backgroundColor: Colors.secondary.dark,
-    height: Sizing.screen.height / 2,
+    width: '80%',
   },
   childContainer: {
     ...Spacing.childContainer,
@@ -72,6 +72,6 @@ const styles = StyleSheet.create({
   },
 });
 TaskInstructions.defaultProps = {
-  taskName: 'task name',
-  instruction: 'task instructions will display here',
+  title: 'task name',
+  instructions: 'task instructions will display here',
 };

@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { Platform } from 'react-native';
 import type { AxiosInstance, AxiosRequestConfig } from 'axios';
 
-import { Constants } from '@senseyeinc/react-native-senseye-sdk';
+import { Constants, getMimeFromExtension } from '@senseyeinc/react-native-senseye-sdk';
 import type {
   ComputeJobInitResponse,
   ComputeJobResponse,
@@ -88,5 +89,56 @@ export default class SenseyeApiClient {
     const response = await this.get<ComputeJobResponse>('/predict/' + id);
 
     return response.data;
+  }
+
+  /**
+   * Uploads a file to Senseye's S3.
+   *
+   * @param uri               File URI. For Android environments, ensure it prefixed with `file://`.
+   * @param key               Desired S3 key for the file.
+   * @param onUploadProgress  Callback function that will be called on updates to the upload progress.
+   * @returns                 A `Promise` that will resolve into a dictionary containing the destination S3 url (`s3_url`).
+   */
+  public async uploadFile(
+    uri: string,
+    key: string,
+    onUploadProgress?: (progressEvent: ProgressEvent) => void
+  ) {
+    // send request for a presigned url to upload a file to Senseye
+    const data = (await this.axios.post('/data/generate-upload-url', { key: key })).data;
+
+    // use the response values to construct the required request body
+    const formData = new FormData();
+    Object.keys(data.fields).forEach((fieldName) => {
+      formData.append(fieldName, data.fields[fieldName]);
+    });
+    formData.append('file', {
+      name: uri.substring(uri.lastIndexOf('/') + 1, uri.length),
+      type: getMimeFromExtension(uri.substring(uri.lastIndexOf('.') + 1, uri.length)),
+      uri: Platform.OS === 'android' ? uri : uri.replace('file://', ''),
+    });
+
+    const requestConfig: AxiosRequestConfig = {
+      url: data.url,
+      method: 'post',
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      onUploadProgress: onUploadProgress,
+    };
+
+    await axios.request(requestConfig);
+
+    // extract bucket name from url, which can be in either format:
+    //  - https://s3.amazonaws.com/mybucket
+    //  - https://mybucket.s3.amazonaws.com/
+    const urlSplit = data.url.split('/');
+    let bucket = urlSplit.pop();
+    if (!bucket) {
+      bucket = urlSplit[2].split('.')[0];
+    }
+
+    return { s3_url: 's3://' + bucket + '/' + data.fields.key };
   }
 }
