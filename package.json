@@ -46,7 +46,8 @@
   "homepage": "https://github.com/senseye-inc/senseye-react-native-sdk#readme",
   "dependencies": {
     "axios": "^0.21.0",
-    "react-native-calendars": "^1.1262.0"
+    "react-native-calendars": "^1.1262.0",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",

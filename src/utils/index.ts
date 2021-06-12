@@ -1,4 +1,5 @@
 import type { SessionCondition, SurveyType } from '@senseyeinc/react-native-senseye-sdk';
+import * as yup from 'yup';
 
 /**
  * @returns The number of milliseconds elapsed since January 1, 1970 00:00:00 UTC.
@@ -119,4 +120,74 @@ const Constants = {
   CalibrationPatterns: CalibrationPatterns,
 };
 
-export { Constants, getCurrentTimestamp, getMimeFromExtension, isNonEmptyString };
+const validationSchema = yup.object().shape({
+  age: yup
+    .number()
+    .positive()
+    .typeError('Enter a valid number for age')
+    .integer()
+    .min(13)
+    .max(99)
+    .required()
+    .label('Age'),
+  gender: yup
+    .string()
+    .typeError('Select your gender from the dropdown')
+    .required()
+    .label(''),
+  eyeColor: yup
+    .string()
+    .typeError('Select your eye color from the dropdown')
+    .required()
+    .label(''),
+  fatigueLevel: yup
+    .number()
+    .typeError('Select a rating for your fatigue level')
+    .positive()
+    .integer()
+    .required()
+    .label('Fatigue Level'),
+  uniqueId: yup
+    .string()
+    .typeError('A valid Unique ID is required')
+    .required()
+    .label('Unique ID'),
+  bedHour: yup
+    .number()
+    .typeError('The hour for bedtime can only contain numbers')
+    .integer()
+    .label('Bed Hour')
+    .max(12)
+    .required(),
+  bedMin: yup
+    .number()
+    .typeError('The minutes for bedtime can only contain numbers')
+    .integer()
+    .max(59)
+    .required()
+    .label('Bed Minutes'),
+  bedDate: yup.date().label('Date of Bedtime'),
+  wakeHour: yup
+    .number()
+    .typeError('The hour for wake time can only contain numbers')
+    .integer()
+    .max(12)
+    .required()
+    .label('Wake Hour'),
+  wakeMin: yup
+    .number()
+    .typeError('The minutes for wake time can only contain numbers')
+    .integer()
+    .max(59)
+    .required()
+    .label('Wake Minute'),
+  wakeDate: yup.date().label('Date of wake'),
+});
+
+export {
+  Constants,
+  getCurrentTimestamp,
+  getMimeFromExtension,
+  isNonEmptyString,
+  validationSchema,
+};

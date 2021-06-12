@@ -10,12 +10,14 @@ import {
 } from 'react-native';
 
 import {
+  SenseyeAlert,
   SenseyePicker,
   SenseyeTextInput,
   SenseyeButton,
   Models,
   Constants,
   pictorialGradientLogo,
+  validationSchema,
 } from '@senseyeinc/react-native-senseye-sdk';
 import SenseyeCalendar from '../SenseyeCalendar';
 
@@ -30,7 +32,6 @@ export type DemographicSurveyProps = {
 };
 
 export default function DemographicSurvey(props: DemographicSurveyProps) {
-  const [warningMsg, setWarningMsg] = React.useState('');
   const [age, setAge] = React.useState('');
   const [gender, setGender] = React.useState<React.ReactText>('na');
   const [eyeColor, setEyeColor] = React.useState<React.ReactText>('na');
@@ -42,54 +43,77 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
   const [bedDate, setBedDate] = React.useState(YESTERDAY);
   const [wakeHour, setWakeHour] = React.useState('');
   const [wakeMin, setWakeMin] = React.useState('');
-  const [wakeDate, setWakeDate] = React.useState(TODAY);
   const [wakeMeridiem, setWakeMeridiem] = React.useState<React.ReactText>('AM');
+  const [wakeDate, setWakeDate] = React.useState(TODAY);
 
+  const [errors, setErrors] = React.useState(<></>);
+
+  /** checks form responses, if valid then submits responses to survey  */
   function _onComplete() {
-    // validate form fields
-    if (
-      gender === 'na' ||
-      eyeColor === 'na' ||
-      fatigueLevel === 'na' ||
-      !age.trim() ||
-      !uniqueId.trim() ||
-      !wakeHour.trim() ||
-      !bedHour.trim() ||
-      !wakeMin.trim() ||
-      !bedMin.trim() ||
-      wakeDate === '' ||
-      bedDate === ''
-    ) {
-      setWarningMsg('Please enter in all fields');
-      return;
-    }
-    setWarningMsg('');
-    if (props.onComplete) {
-      // generate a survey model and pass it into the callback
-      const survey = new Models.Survey(Constants.SurveyType.DEMOGRAPHIC, {
-        age: ['Age', age],
-        gender: ['Gender', gender],
-        eye_color: ['Eye Color', eyeColor],
-        fatigue: ['Fatigue rating (1 = alert, 7 = very tired)', fatigueLevel],
-        unique_id: ['Unique ID', uniqueId],
-        bed_time: [
-          'Log your most recent bedtime:',
-          bedHour + ':' + bedMin + ' ' + bedMeridiem,
-        ],
-        wake_time: [
-          'Log your most recent wake time:',
-          wakeHour + ':' + wakeMin + ' ' + wakeMeridiem,
-        ],
-        wake_day: ['Select the day you last awoke', wakeDate],
-        bed_day: ['Select the day you last slept', bedDate],
+    /** reset and clear error messages */
+    setErrors(<></>);
+    /**  validate all responses  */
+    validationSchema
+      .validate(
+        {
+          age,
+          gender,
+          eyeColor,
+          fatigueLevel,
+          bedHour,
+          bedMin,
+          bedMeridiem,
+          bedDate,
+          wakeHour,
+          wakeMin,
+          wakeMeridiem,
+          wakeDate,
+          uniqueId,
+        },
+        { abortEarly: false }
+      )
+      .then(function (value) {
+        value;
+        if (props.onComplete) {
+          /** generate a survey model and pass it into the @callback */
+          const survey = new Models.Survey(Constants.SurveyType.DEMOGRAPHIC, {
+            age: ['Age', age],
+            gender: ['Gender', gender],
+            eye_color: ['Eye Color', eyeColor],
+            fatigue: ['Fatigue rating (1 = alert, 7 = very tired)', fatigueLevel],
+            unique_id: ['Unique ID', uniqueId],
+            bed_time: [
+              'Log your most recent bedtime:',
+              `${bedHour} : ${bedMin} ${bedMeridiem}`,
+            ],
+            wake_time: [
+              'Log your most recent wake time:',
+              `${wakeHour} : ${wakeMin} ${wakeMeridiem}`,
+            ],
+            wake_day: ['Select the day you last awoke', wakeDate],
+            bed_day: ['Select the day you last slept', bedDate],
+          });
+          props.onComplete(survey, uniqueId);
+        }
+      })
+      .catch(function (err) {
+        /** @returns a collection of JSX.Element to alert users of invalid responses */
+        let elements = err.errors.map(
+          (
+            el: { toString: () => string | undefined },
+            i: React.Key | null | undefined
+          ) => {
+            return <SenseyeAlert key={i} message={el.toString()} />;
+          }
+        );
+        setErrors(elements);
+        return;
       });
-      props.onComplete(survey, uniqueId);
-    }
   }
   return (
     <SafeAreaView style={styles.container}>
       <Image style={styles.logo} source={pictorialGradientLogo} />
-      <Text style={styles.warning}>{warningMsg}</Text>
+      {errors}
       <ScrollView style={styles.innerContainer}>
         <SenseyeTextInput
           label="Age"
@@ -181,7 +205,7 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
           value={uniqueId}
           onChangeText={(text) => setUniqueId(text)}
         />
-        <SenseyeButton title="Submit" onPress={_onComplete} type={'primaryCta'} />
+        <SenseyeButton title="Submit" onPress={_onComplete} theme={'primaryCta'} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -220,9 +244,5 @@ const styles = StyleSheet.create({
     height: 70,
     flexDirection: 'row',
     marginBottom: 30,
-  },
-  warning: {
-    color: '#d7b357',
-    alignSelf: 'center',
   },
 });

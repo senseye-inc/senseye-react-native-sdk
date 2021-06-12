@@ -34,7 +34,7 @@ export default function TaskInstructions(props: TaskInstructionsProps) {
           <ScrollView contentContainerStyle={styles.childContainer}>
             <Text style={styles.header}>{title}</Text>
             <Text style={styles.subheader}>{instructions}</Text>
-            <SenseyeButton title={'OK'} type={'primaryCta'} onPress={_onButtonPress} />
+            <SenseyeButton title={'OK'} theme={'primaryCta'} onPress={_onButtonPress} />
           </ScrollView>
         </View>
       </SafeAreaView>

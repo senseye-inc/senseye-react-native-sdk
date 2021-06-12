@@ -19,7 +19,7 @@ export default function NystagmusScreen() {
       </Text>
       <SenseyeButton
         title="Run Nystagmus Task"
-        type="primaryCta"
+        theme="primaryCta"
         onPress={() => setIsShowModal(true)}
       />
       <Modal visible={isShowModal} onRequestClose={() => setIsShowModal(false)} />

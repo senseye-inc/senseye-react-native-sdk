@@ -60,7 +60,6 @@ To add a dependency that relies on native code, perform the following:
 
 To add a dependency that does **_not_** rely on native code, perform the following:
 1. From the root directory, run `yarn add <some-package>`
-2. From the example directory, run `yarn add <some-package>`
 
 ### Commit message convention
 

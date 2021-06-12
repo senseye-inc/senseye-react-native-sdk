@@ -17,7 +17,7 @@ export default function SmoothPursuitScreen() {
       </Text>
       <SenseyeButton
         title="Run Smooth Pursuit Task"
-        type="primaryCta"
+        theme="primaryCta"
         onPress={() => setIsShowModal(true)}
       />
       <Modal visible={isShowModal} onRequestClose={() => setIsShowModal(false)}>

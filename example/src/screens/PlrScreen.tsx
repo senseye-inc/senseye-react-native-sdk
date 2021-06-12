@@ -20,7 +20,7 @@ export default function PlrScreen() {
       </Text>
       <SenseyeButton
         title="Run PLR Task"
-        type="primaryCta"
+        theme="primaryCta"
         onPress={() => setIsShowModal(true)}
       />
       <Modal visible={isShowModal} onRequestClose={() => setIsShowModal(false)}>
