@@ -1,13 +1,13 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
 
-export type SenseyeAlertMessageProps = {
+export type SenseyeAlertProps = {
   /** A string to describe whether the alert is a `warning` or `error` */
   alertType: 'warning' | 'error';
   /** A string that displays an alert message */
   message: string;
 };
-export default function SenseyeAlertMessage(props: SenseyeAlertMessageProps) {
+export default function SenseyeAlert(props: SenseyeAlertProps) {
   let typeStyling = props.alertType === 'warning' ? styles.warning : styles.error;
   return <Text style={[styles.message, typeStyling]}>{props.message}</Text>;
 }
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     color: '#cf1717',
   },
 });
-SenseyeAlertMessage.defaultProps = {
+SenseyeAlert.defaultProps = {
   alertType: 'warning',
   message: '',
 };

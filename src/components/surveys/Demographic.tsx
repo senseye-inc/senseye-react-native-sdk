@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import {
-  SenseyeAlertMessage,
+  SenseyeAlert,
   SenseyePicker,
   SenseyeTextInput,
   SenseyeButton,
@@ -103,7 +103,7 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
             el: { toString: () => string | undefined },
             i: React.Key | null | undefined
           ) => {
-            return <SenseyeAlertMessage key={i} message={el.toString()} />;
+            return <SenseyeAlert key={i} message={el.toString()} />;
           }
         );
         setErrors(elements);
