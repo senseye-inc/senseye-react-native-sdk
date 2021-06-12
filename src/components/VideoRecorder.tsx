@@ -34,7 +34,7 @@ export type VideoRecorderProps = {
   androidRecordAudioPermissionOptions?: RNCameraProps['androidRecordAudioPermissionOptions'];
   /** Whether audio recording permissions should be requested. */
   captureAudio?: RNCameraProps['captureAudio'];
-  /** @deprecated since version >0.3.0 */
+  /** @deprecated since version 0.4.0 */
   showPreview?: boolean;
   /**
    * Function to be called when camera is ready. This event will also fire when

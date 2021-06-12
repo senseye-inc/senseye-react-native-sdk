@@ -1,6 +1,6 @@
 {
   "name": "@senseyeinc/react-native-senseye-sdk",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "The Senseye SDK provides direct integration into the Senseye API on both iOS and Android for React Native apps. The JavaScript API is simple and cross-platform. Ready to get started? Follow the instructions below.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",

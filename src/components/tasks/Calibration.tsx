@@ -11,7 +11,7 @@ const WINDOW_HEIGHT = Dimensions.get('window').height;
 export type CalibrationProps = TaskProps & {
   /** Amount of time (milliseconds) a dot is displayed on-screen. */
   duration: number;
-  /** @deprecated since version >0.3.0 */
+  /** @deprecated since version 0.4.0 */
   delay?: number;
   /** Defines the radius of the dots. */
   radius: number;
