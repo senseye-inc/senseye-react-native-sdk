@@ -65,8 +65,8 @@
 				<a href="#whats-in-this-repo" id="whats-in-this-repo" style="color: inherit; text-decoration: none;">
 					<h2>What’s in this repo</h2>
 				</a>
-				<pre><code><span style="color: #000000">.  </span>
-<span style="color: #000000">+-- </span><span style="color: #001080">docs</span><span style="color: #000000">/         # </span><span style="color: #001080">See</span><span style="color: #000000"> </span><span style="color: #001080">Documentation</span><span style="color: #000000"> </span><span style="color: #001080">section</span><span style="color: #000000"> </span><span style="color: #0000FF">of</span><span style="color: #000000"> </span><span style="color: #0000FF">this</span><span style="color: #000000"> </span><span style="color: #0070C1">README</span><span style="color: #000000">  </span>
+				<pre><code><span style="color: #000000">.</span>
+<span style="color: #000000">+-- </span><span style="color: #001080">docs</span><span style="color: #000000">/         # </span><span style="color: #001080">See</span><span style="color: #000000"> </span><span style="color: #001080">Documentation</span><span style="color: #000000"> </span><span style="color: #001080">section</span><span style="color: #000000"> </span><span style="color: #0000FF">of</span><span style="color: #000000"> </span><span style="color: #0000FF">this</span><span style="color: #000000"> </span><span style="color: #0070C1">README</span>
 <span style="color: #000000">+-- </span><span style="color: #001080">example</span><span style="color: #000000">/      # </span><span style="color: #001080">Contains</span><span style="color: #000000"> </span><span style="color: #001080">an</span><span style="color: #000000"> </span><span style="color: #001080">example</span><span style="color: #000000"> </span><span style="color: #001080">app</span><span style="color: #000000"> </span><span style="color: #001080">that</span><span style="color: #000000"> </span><span style="color: #001080">demos</span><span style="color: #000000"> </span><span style="color: #001080">usage</span><span style="color: #000000"> </span><span style="color: #0000FF">of</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #0070C1">SDK</span>
 <span style="color: #000000">+-- </span><span style="color: #001080">src</span><span style="color: #000000">/</span>
 <span style="color: #000000">|   +-- </span><span style="color: #001080">api</span><span style="color: #000000">/         # </span><span style="color: #001080">Modules</span><span style="color: #000000"> </span><span style="color: #001080">for</span><span style="color: #000000"> </span><span style="color: #001080">interfacing</span><span style="color: #000000"> </span><span style="color: #AF00DB">with</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #001080">Senseye</span><span style="color: #000000"> </span><span style="color: #0070C1">API</span>
@@ -78,14 +78,13 @@
 				</a>
 				<ul>
 					<li>Calibration</li>
-					<li>Nystagmus</li>
 					<li>PLR (Pupillary Light Response)</li>
 					<li>Smooth Pursuit</li>
 				</ul>
 				<a href="#requirements" id="requirements" style="color: inherit; text-decoration: none;">
 					<h2>Requirements</h2>
 				</a>
-				<p>Apps using React Native Navigation may target iOS 12+ and Android 10+. You may use Windows, macOS or Linux as your development operating system.</p>
+				<p>Minimum <code>iOS 12.0</code> or <code>Android API Level 24</code>. You may use Windows, macOS or Linux as your development operating system.</p>
 				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
 					<h2>Installation</h2>
 				</a>
@@ -107,15 +106,61 @@
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
-				<p>After you have the SDK built or installed, import task components into your React application. For example:</p>
-				<pre><code class="language-javascript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Tasks</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@senseyeinc/react-native-senseye-sdk&#039;</span>
+				<ol>
+					<li><p>Execute Tasks and record Session data by utilizing TaskRunner.</p>
+						<pre><code class="language-javascript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">TaskRunner</span><span style="color: #000000">, </span><span style="color: #001080">Tasks</span><span style="color: #000000">, </span><span style="color: #001080">Models</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@senseyeinc/react-native-senseye-sdk&#039;</span><span style="color: #000000">;</span>
 
 <span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #AF00DB">default</span><span style="color: #000000"> </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">App</span><span style="color: #000000">() {</span>
 <span style="color: #000000">  </span><span style="color: #AF00DB">return</span><span style="color: #000000"> (</span>
-<span style="color: #000000">    </span><span style="color: #800000">&lt;</span><span style="color: #267F99">Tasks.Calibration</span><span style="color: #000000"> </span><span style="color: #800000">/&gt;</span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;</span><span style="color: #267F99">TaskRunner</span><span style="color: #000000"> </span><span style="color: #FF0000">onEnd</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #795E26">myCallback</span><span style="color: #000000FF">(</span><span style="color: #001080">session</span><span style="color: #000000FF">: </span><span style="color: #001080">Models</span><span style="color: #000000FF">.</span><span style="color: #001080">Session</span><span style="color: #000000FF">)</span><span style="color: #0000FF">}</span><span style="color: #800000">&gt;</span>
+<span style="color: #000000">      </span><span style="color: #800000">&lt;</span><span style="color: #267F99">Tasks.Calibration</span><span style="color: #000000"> </span><span style="color: #800000">/&gt;</span>
+<span style="color: #000000">      </span><span style="color: #800000">&lt;</span><span style="color: #267F99">Tasks.Plr</span><span style="color: #000000"> </span><span style="color: #800000">/&gt;</span>
+<span style="color: #000000">    </span><span style="color: #800000">&lt;/</span><span style="color: #267F99">TaskRunner</span><span style="color: #800000">&gt;</span>
 <span style="color: #000000">  );</span>
 <span style="color: #000000">}</span>
 </code></pre>
+					</li>
+					<li><p>Instantiate a SenseyeApiClient.</p>
+						<pre><code class="language-javascript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">SenseyeApiClient</span><span style="color: #000000">, </span><span style="color: #001080">Constants</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@senseyeinc/react-native-senseye-sdk&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">apiClient</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">SenseyeApiClient</span><span style="color: #000000">(</span><span style="color: #001080">Constants</span><span style="color: #000000">.</span><span style="color: #0070C1">API_HOST</span><span style="color: #000000">, </span><span style="color: #001080">Constants</span><span style="color: #000000">.</span><span style="color: #0070C1">API_BASE_PATH</span><span style="color: #000000">, </span><span style="color: #800000">&lt;</span><span style="color: #267F99">my_api_key</span><span style="color: #800000">&gt;</span><span style="color: #000000">);</span>
+</code></pre>
+					</li>
+					<li><p>Upload Session data.</p>
+						<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">res</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">session</span><span style="color: #000000">.</span><span style="color: #795E26">uploadAll</span><span style="color: #000000">(</span><span style="color: #001080">apiClient</span><span style="color: #000000">)</span>
+
+<span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">videoUrls</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">[] = [];</span>
+<span style="color: #001080">res</span><span style="color: #000000">[</span><span style="color: #098658">0</span><span style="color: #000000">].</span><span style="color: #795E26">forEach</span><span style="color: #000000">((</span><span style="color: #001080">v</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">videoUrls</span><span style="color: #000000">.</span><span style="color: #795E26">push</span><span style="color: #000000">(</span><span style="color: #001080">v</span><span style="color: #000000">.</span><span style="color: #001080">s3_url</span><span style="color: #000000">);</span>
+<span style="color: #000000">});</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;uploaded videos: &#039;</span><span style="color: #000000"> + </span><span style="color: #001080">videoUrls</span><span style="color: #000000">);</span>
+<span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;uploaded json: &#039;</span><span style="color: #000000"> + </span><span style="color: #001080">res</span><span style="color: #000000">[</span><span style="color: #098658">1</span><span style="color: #000000">].</span><span style="color: #001080">s3_url</span><span style="color: #000000">);</span>
+</code></pre>
+					</li>
+					<li><p>Execute prediction on uploaded videos and poll for results.</p>
+						<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">jobId</span><span style="color: #000000"> = (</span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">apiClient</span><span style="color: #000000">.</span><span style="color: #795E26">startPrediction</span><span style="color: #000000">(</span><span style="color: #001080">videoUrls</span><span style="color: #000000">)).</span><span style="color: #001080">id</span><span style="color: #000000">;</span>
+
+<span style="color: #795E26">setInterval</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">apiClient</span>
+<span style="color: #000000">    .</span><span style="color: #795E26">getPrediction</span><span style="color: #000000">(</span><span style="color: #001080">jobId</span><span style="color: #000000">)</span>
+<span style="color: #000000">    .</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">job</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span>
+<span style="color: #000000">        </span><span style="color: #001080">job</span><span style="color: #000000">.</span><span style="color: #001080">status</span><span style="color: #000000"> === </span><span style="color: #001080">Constants</span><span style="color: #000000">.</span><span style="color: #001080">JobStatus</span><span style="color: #000000">.</span><span style="color: #0070C1">COMPLETED</span><span style="color: #000000"> ||</span>
+<span style="color: #000000">        </span><span style="color: #001080">job</span><span style="color: #000000">.</span><span style="color: #001080">status</span><span style="color: #000000"> === </span><span style="color: #001080">Constants</span><span style="color: #000000">.</span><span style="color: #001080">JobStatus</span><span style="color: #000000">.</span><span style="color: #0070C1">FAILED</span>
+<span style="color: #000000">      ) {</span>
+<span style="color: #000000">        </span><span style="color: #795E26">clearInterval</span><span style="color: #000000">(</span><span style="color: #001080">resultPollId</span><span style="color: #000000">);</span>
+<span style="color: #000000">        </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">job</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000"> !== </span><span style="color: #0000FF">undefined</span><span style="color: #000000">) {</span>
+<span style="color: #000000">          </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;result: &#039;</span><span style="color: #000000"> + </span><span style="color: #267F99">JSON</span><span style="color: #000000">.</span><span style="color: #795E26">stringify</span><span style="color: #000000">(</span><span style="color: #001080">job</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">));</span>
+<span style="color: #000000">        }</span>
+<span style="color: #000000">      }</span>
+<span style="color: #000000">    })</span>
+<span style="color: #000000">    .</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">error</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">);</span>
+<span style="color: #000000">    });</span>
+<span style="color: #000000">}, </span><span style="color: #098658">3000</span><span style="color: #000000">);</span>
+</code></pre>
+					</li>
+				</ol>
 				<a href="#example-app" id="example-app" style="color: inherit; text-decoration: none;">
 					<h2>Example App</h2>
 				</a>
@@ -165,6 +210,9 @@
 						<a href="modules/api_models_survey.html">api/models/<wbr>Survey</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/api_models_task.html">api/models/<wbr>Task</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/api_models_video.html">api/models/<wbr>Video</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -174,7 +222,16 @@
 						<a href="modules/components.html">components</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/components_faceoutline.html">components/<wbr>Face<wbr>Outline</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/components_senseyealert.html">components/<wbr>Senseye<wbr>Alert</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/components_senseyebutton.html">components/<wbr>Senseye<wbr>Button</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/components_senseyecalendar.html">components/<wbr>Senseye<wbr>Calendar</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/components_senseyepicker.html">components/<wbr>Senseye<wbr>Picker</a>
@@ -202,9 +259,6 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/components_tasks_calibration.html">components/tasks/<wbr>Calibration</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="modules/components_tasks_nystagmus.html">components/tasks/<wbr>Nystagmus</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/components_tasks_plr.html">components/tasks/<wbr>Plr</a>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>components/tasks/Plr | @senseyeinc/react-native-senseye-sdk</title>
+	<title>components/SenseyeCalendar | @senseyeinc/react-native-senseye-sdk</title>
 	<meta name="description" content="Documentation for @senseyeinc/react-native-senseye-sdk">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@senseyeinc/react-native-senseye-sdk</a>
 				</li>
 				<li>
-					<a href="components_tasks_plr.html">components/tasks/Plr</a>
+					<a href="components_senseyecalendar.html">components/SenseyeCalendar</a>
 				</li>
 			</ul>
-			<h1>Module components/tasks/Plr</h1>
+			<h1>Module components/SenseyeCalendar</h1>
 		</div>
 	</div>
 </header>
@@ -72,19 +72,19 @@
 						<section class="tsd-index-section ">
 							<h3>Namespaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-namespace tsd-parent-kind-module"><a href="components_tasks_plr.default.html" class="tsd-kind-icon">default</a></li>
+								<li class="tsd-kind-namespace tsd-parent-kind-module"><a href="components_senseyecalendar.default.html" class="tsd-kind-icon">default</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="components_tasks_plr.html#plrprops" class="tsd-kind-icon">Plr<wbr>Props</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="components_senseyecalendar.html#senseyecalendarprops" class="tsd-kind-icon">Senseye<wbr>Calendar<wbr>Props</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="components_tasks_plr.html#default-1" class="tsd-kind-icon">default</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="components_senseyecalendar.html#default-1" class="tsd-kind-icon">default</a></li>
 							</ul>
 						</section>
 					</div>
@@ -93,14 +93,44 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Type aliases</h2>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
-					<a name="plrprops" class="tsd-anchor"></a>
-					<h3>Plr<wbr>Props</h3>
-					<div class="tsd-signature tsd-kind-icon">Plr<wbr>Props<span class="tsd-signature-symbol">:</span> <a href="types.html#taskprops" class="tsd-signature-type" data-tsd-kind="Type alias">TaskProps</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>colorSequence<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>duration<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>fixationLength<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>fixationOutlineSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>fixationWidth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
+					<a name="senseyecalendarprops" class="tsd-anchor"></a>
+					<h3>Senseye<wbr>Calendar<wbr>Props</h3>
+					<div class="tsd-signature tsd-kind-icon">Senseye<wbr>Calendar<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>initialDate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">; </span>onUpdate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/components/tasks/Plr.tsx#L7">components/tasks/Plr.tsx:7</a></li>
+							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/components/SenseyeCalendar.tsx#L4">components/SenseyeCalendar.tsx:4</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>initial<wbr>Date<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>on<wbr>Update<span class="tsd-signature-symbol">: </span>function</h5>
+								<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
+									<li class="tsd-signature tsd-kind-icon">on<wbr>Update<span class="tsd-signature-symbol">(</span>day<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SetStateAction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<aside class="tsd-sources">
+											<ul>
+												<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/components/SenseyeCalendar.tsx#L6">components/SenseyeCalendar.tsx:6</a></li>
+											</ul>
+										</aside>
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>day: <span class="tsd-signature-type">SetStateAction</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -109,24 +139,19 @@
 					<a name="default-1" class="tsd-anchor"></a>
 					<h3>default</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">default<span class="tsd-signature-symbol">(</span>props<span class="tsd-signature-symbol">: </span><a href="components_tasks_plr.html#plrprops" class="tsd-signature-type" data-tsd-kind="Type alias">PlrProps</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
+						<li class="tsd-signature tsd-kind-icon">default<span class="tsd-signature-symbol">(</span>props<span class="tsd-signature-symbol">: </span><a href="components_senseyecalendar.html#senseyecalendarprops" class="tsd-signature-type" data-tsd-kind="Type alias">SenseyeCalendarProps</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/components/tasks/Plr.tsx#L21">components/tasks/Plr.tsx:21</a></li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/components/SenseyeCalendar.tsx#L13">components/SenseyeCalendar.tsx:13</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Measures pupillary light reflex by manipulating the luminance of the screen.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>props: <a href="components_tasks_plr.html#plrprops" class="tsd-signature-type" data-tsd-kind="Type alias">PlrProps</a></h5>
+									<h5>props: <a href="components_senseyecalendar.html#senseyecalendarprops" class="tsd-signature-type" data-tsd-kind="Type alias">SenseyeCalendarProps</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
@@ -142,10 +167,10 @@
 						<a href="../modules.html">Exports</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="components_tasks_plr.html">components/tasks/<wbr>Plr</a>
+						<a href="components_senseyecalendar.html">components/<wbr>Senseye<wbr>Calendar</a>
 						<ul>
 							<li class=" tsd-kind-namespace tsd-parent-kind-module">
-								<a href="components_tasks_plr.default.html">default</a>
+								<a href="components_senseyecalendar.default.html">default</a>
 							</li>
 						</ul>
 					</li>
@@ -154,10 +179,10 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
-						<a href="components_tasks_plr.html#plrprops" class="tsd-kind-icon">Plr<wbr>Props</a>
+						<a href="components_senseyecalendar.html#senseyecalendarprops" class="tsd-kind-icon">Senseye<wbr>Calendar<wbr>Props</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="components_tasks_plr.html#default-1" class="tsd-kind-icon">default</a>
+						<a href="components_senseyecalendar.html#default-1" class="tsd-kind-icon">default</a>
 					</li>
 				</ul>
 			</nav>

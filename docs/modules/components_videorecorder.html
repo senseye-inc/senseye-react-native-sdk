@@ -92,9 +92,7 @@
 					<div class="tsd-signature tsd-kind-icon">Video<wbr>Recorder<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>androidCameraPermissionOptions<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RNCameraProps</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">&quot;androidCameraPermissionOptions&quot;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">; </span>androidRecordAudioPermissionOptions<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RNCameraProps</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">&quot;androidRecordAudioPermissionOptions&quot;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">; </span>cameraId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>captureAudio<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RNCameraProps</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">&quot;captureAudio&quot;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">; </span>showPreview<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>type<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RNCameraProps</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">&quot;type&quot;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">; </span>useCamera2Api<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RNCameraProps</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">&quot;useCamera2Api&quot;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">; </span>onCameraReady<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>onDoubleTap<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>onMountError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>onRecordingEnd<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>onRecordingStart<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>onStatusChange<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/components/VideoRecorder.tsx#L21">components/VideoRecorder.tsx:21</a></li>
-							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/components/index.ts#L13">components/index.ts:13</a></li>
-							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/components/index.ts#L13">components/index.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/components/VideoRecorder.tsx#L24">components/VideoRecorder.tsx:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -120,7 +118,7 @@
 								<h5><span class="tsd-flag ts-flagOptional">Optional</span> camera<wbr>Id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<div class="lead">
-										<p>(Android) Overrides the <code>type</code> property and uses the camera specified by its id.</p>
+										<p>Overrides the <code>type</code> property and uses the camera specified by its id.</p>
 									</div>
 								</div>
 							</li>
@@ -135,9 +133,11 @@
 							<li class="tsd-parameter">
 								<h5><span class="tsd-flag ts-flagOptional">Optional</span> show<wbr>Preview<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5>
 								<div class="tsd-comment tsd-typography">
-									<div class="lead">
-										<p>Whether to show camera preview.</p>
-									</div>
+									<dl class="tsd-comment-tags">
+										<dt>deprecated</dt>
+										<dd><p>since version 0.4.0</p>
+										</dd>
+									</dl>
 								</div>
 							</li>
 							<li class="tsd-parameter">
@@ -157,22 +157,154 @@
 								</div>
 							</li>
 							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Camera<wbr>Ready<span class="tsd-signature-symbol">?: </span></h5>
+								<h5>on<wbr>Camera<wbr>Ready<span class="tsd-signature-symbol">: </span>function</h5>
+								<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
+									<li class="tsd-signature tsd-kind-icon">on<wbr>Camera<wbr>Ready<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<aside class="tsd-sources">
+											<ul>
+												<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/components/VideoRecorder.tsx#L43">components/VideoRecorder.tsx:43</a></li>
+											</ul>
+										</aside>
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>Function to be called when camera is ready. This event will also fire when
+												changing cameras (by <code>type</code> or <code>cameraId</code>).</p>
+											</div>
+										</div>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
 							</li>
 							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Double<wbr>Tap<span class="tsd-signature-symbol">?: </span></h5>
+								<h5>on<wbr>Double<wbr>Tap<span class="tsd-signature-symbol">: </span>function</h5>
+								<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
+									<li class="tsd-signature tsd-kind-icon">on<wbr>Double<wbr>Tap<span class="tsd-signature-symbol">(</span>origin<span class="tsd-signature-symbol">: </span><a href="types.html#point" class="tsd-signature-type" data-tsd-kind="Type alias">Point</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<aside class="tsd-sources">
+											<ul>
+												<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/components/VideoRecorder.tsx#L68">components/VideoRecorder.tsx:68</a></li>
+											</ul>
+										</aside>
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>Function to be called when a double touch within the camera view is recognized.</p>
+											</div>
+										</div>
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>origin: <a href="types.html#point" class="tsd-signature-type" data-tsd-kind="Type alias">Point</a></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
 							</li>
 							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Mount<wbr>Error<span class="tsd-signature-symbol">?: </span></h5>
+								<h5>on<wbr>Mount<wbr>Error<span class="tsd-signature-symbol">: </span>function</h5>
+								<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
+									<li class="tsd-signature tsd-kind-icon">on<wbr>Mount<wbr>Error<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<aside class="tsd-sources">
+											<ul>
+												<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/components/VideoRecorder.tsx#L47">components/VideoRecorder.tsx:47</a></li>
+											</ul>
+										</aside>
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>Function to be called when there is a problem mounting the camera.</p>
+											</div>
+										</div>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
 							</li>
 							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Recording<wbr>End<span class="tsd-signature-symbol">?: </span></h5>
+								<h5>on<wbr>Recording<wbr>End<span class="tsd-signature-symbol">: </span>function</h5>
+								<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
+									<li class="tsd-signature tsd-kind-icon">on<wbr>Recording<wbr>End<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<aside class="tsd-sources">
+											<ul>
+												<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/components/VideoRecorder.tsx#L64">components/VideoRecorder.tsx:64</a></li>
+											</ul>
+										</aside>
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>Function to be called when video stops recording, but before all video
+													processing takes place. This event will only fire after a successful video
+												recording, and it will not fire if video recording fails.</p>
+											</div>
+										</div>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
 							</li>
 							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Recording<wbr>Start<span class="tsd-signature-symbol">?: </span></h5>
+								<h5>on<wbr>Recording<wbr>Start<span class="tsd-signature-symbol">: </span>function</h5>
+								<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
+									<li class="tsd-signature tsd-kind-icon">on<wbr>Recording<wbr>Start<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="types.html#recordingstartevent" class="tsd-signature-type" data-tsd-kind="Type alias">RecordingStartEvent</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<aside class="tsd-sources">
+											<ul>
+												<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/components/VideoRecorder.tsx#L58">components/VideoRecorder.tsx:58</a></li>
+											</ul>
+										</aside>
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>Function to be called when video actually starts recording. Note that video
+													recording might take a few milliseconds to setup depending on the camera
+												settings and hardware features.</p>
+											</div>
+										</div>
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>event: <a href="types.html#recordingstartevent" class="tsd-signature-type" data-tsd-kind="Type alias">RecordingStartEvent</a></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
 							</li>
 							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> on<wbr>Status<wbr>Change<span class="tsd-signature-symbol">?: </span></h5>
+								<h5>on<wbr>Status<wbr>Change<span class="tsd-signature-symbol">: </span>function</h5>
+								<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
+									<li class="tsd-signature tsd-kind-icon">on<wbr>Status<wbr>Change<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="types.html#recorderstatuschangeevent" class="tsd-signature-type" data-tsd-kind="Type alias">RecorderStatusChangeEvent</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<aside class="tsd-sources">
+											<ul>
+												<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/components/VideoRecorder.tsx#L52">components/VideoRecorder.tsx:52</a></li>
+											</ul>
+										</aside>
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>Function to be called when there is a status change in relation to
+												authorization changes.</p>
+											</div>
+										</div>
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>event: <a href="types.html#recorderstatuschangeevent" class="tsd-signature-type" data-tsd-kind="Type alias">RecorderStatusChangeEvent</a></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
 							</li>
 						</ul>
 					</div>
@@ -186,9 +318,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ForwardRefExoticComponent</span><span class="tsd-signature-symbol">&lt;</span><a href="components_videorecorder.html#videorecorderprops" class="tsd-signature-type" data-tsd-kind="Type alias">VideoRecorderProps</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">RefAttributes</span><span class="tsd-signature-symbol">&lt;</span><a href="types.html#videorecorderobject" class="tsd-signature-type" data-tsd-kind="Type alias">VideoRecorderObject</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/components/VideoRecorder.tsx#L75">components/VideoRecorder.tsx:75</a></li>
-							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/components/index.ts#L12">components/index.ts:12</a></li>
-							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/components/index.ts#L12">components/index.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/components/VideoRecorder.tsx#L78">components/VideoRecorder.tsx:78</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -208,80 +338,8 @@
 					<li class=" ">
 						<a href="../modules.html">Exports</a>
 					</li>
-					<li class=" tsd-kind-module">
-						<a href="__tests___index_test.html">__tests__/index.test</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="api.html">api</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="api_apiclient.html">api/<wbr>Api<wbr>Client</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="api_models.html">api/models</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="api_models_session.html">api/models/<wbr>Session</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="api_models_survey.html">api/models/<wbr>Survey</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="api_models_video.html">api/models/<wbr>Video</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="assets.html">assets</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="components.html">components</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="components_senseyebutton.html">components/<wbr>Senseye<wbr>Button</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="components_senseyepicker.html">components/<wbr>Senseye<wbr>Picker</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="components_senseyetextinput.html">components/<wbr>Senseye<wbr>Text<wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="components_taskrunner.html">components/<wbr>Task<wbr>Runner</a>
-					</li>
 					<li class="current tsd-kind-module">
 						<a href="components_videorecorder.html">components/<wbr>Video<wbr>Recorder</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="components_surveys.html">components/surveys</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="components_surveys_demographic.html">components/surveys/<wbr>Demographic</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="components_surveys_validation.html">components/surveys/<wbr>Validation</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="components_tasks.html">components/tasks</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="components_tasks_calibration.html">components/tasks/<wbr>Calibration</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="components_tasks_nystagmus.html">components/tasks/<wbr>Nystagmus</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="components_tasks_plr.html">components/tasks/<wbr>Plr</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="components_tasks_smoothpursuit.html">components/tasks/<wbr>Smooth<wbr>Pursuit</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="index.html">index</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="types.html">types</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="utils.html">utils</a>
 					</li>
 				</ul>
 			</nav>

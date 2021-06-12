@@ -48,11 +48,11 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
 
   const [errors, setErrors] = React.useState(<></>);
 
-  /** checks form responses, if valid then submits responses to survey  */
+  // checks form responses, if valid then submits responses to survey
   function _onComplete() {
-    /** reset and clear error messages */
+    // reset and clear error messages
     setErrors(<></>);
-    /**  validate all responses  */
+    // validate all responses
     validationSchema
       .validate(
         {
@@ -75,7 +75,7 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
       .then(function (value) {
         value;
         if (props.onComplete) {
-          /** generate a survey model and pass it into the @callback */
+          // generate a survey model and pass it into the @callback
           const survey = new Models.Survey(Constants.SurveyType.DEMOGRAPHIC, {
             age: ['Age', age],
             gender: ['Gender', gender],
@@ -97,7 +97,7 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
         }
       })
       .catch(function (err) {
-        /** @returns a collection of JSX.Element to alert users of invalid responses */
+        // return a collection of JSX.Element to alert users of invalid responses
         let elements = err.errors.map(
           (
             el: { toString: () => string | undefined },

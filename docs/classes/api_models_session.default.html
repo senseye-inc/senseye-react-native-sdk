@@ -71,9 +71,9 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Class that models a session, facilitating the gathering and association of event
+						<p>Model representing a session. Facilitates the gathering and association of task
 							and video data generated during a participant&#39;s interaction with on-screen
-						stimuli, i.e. task or series of tasks.</p>
+						stimuli (i.e. task or series of tasks).</p>
 					</div>
 				</div>
 			</section>
@@ -98,18 +98,21 @@
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="api_models_session.default.html#apiclient" class="tsd-kind-icon">api<wbr>Client</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="api_models_session.default.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="api_models_session.default.html#videos" class="tsd-kind-icon">videos</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="api_models_session.default.html#jsonuploadpercentage" class="tsd-kind-icon">json<wbr>Upload<wbr>Percentage</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="api_models_session.default.html#metadata" class="tsd-kind-icon">metadata</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="api_models_session.default.html#tasks" class="tsd-kind-icon">tasks</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_models_session.default.html#addtask" class="tsd-kind-icon">add<wbr>Task</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_models_session.default.html#addvideo" class="tsd-kind-icon">add<wbr>Video</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_models_session.default.html#getuploadprogress" class="tsd-kind-icon">get<wbr>Upload<wbr>Progress</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_models_session.default.html#gettasks" class="tsd-kind-icon">get<wbr>Tasks</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_models_session.default.html#getuploadpercentage" class="tsd-kind-icon">get<wbr>Upload<wbr>Percentage</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_models_session.default.html#getvideos" class="tsd-kind-icon">get<wbr>Videos</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_models_session.default.html#init" class="tsd-kind-icon">init</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_models_session.default.html#uploadall" class="tsd-kind-icon">upload<wbr>All</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_models_session.default.html#uploadjsondata" class="tsd-kind-icon">upload<wbr>Json<wbr>Data</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="api_models_session.default.html#uploadvideos" class="tsd-kind-icon">upload<wbr>Videos</a></li>
 							</ul>
 						</section>
@@ -122,15 +125,30 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new default<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="api_models_session.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></li>
+						<li class="tsd-signature tsd-kind-icon">new default<span class="tsd-signature-symbol">(</span>uniqueId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, survey<span class="tsd-signature-symbol">?: </span><a href="api_models_survey.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="api_models_session.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Session.ts#L36">api/models/Session.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Session.ts#L28">api/models/Session.ts:28</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> uniqueId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Username or ID of the participant.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> survey: <a href="api_models_survey.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A <code>Survey</code> whose response entries will be included in the session&#39;s <a href="api_models_session.default.html#metadata">metadata</a>.</p>
+									</div>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="api_models_session.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h4>
 						</li>
 					</ul>
@@ -139,32 +157,40 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="apiclient" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> api<wbr>Client</h3>
-					<div class="tsd-signature tsd-kind-icon">api<wbr>Client<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="api_apiclient.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></div>
+					<a name="jsonuploadpercentage" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> json<wbr>Upload<wbr>Percentage</h3>
+					<div class="tsd-signature tsd-kind-icon">json<wbr>Upload<wbr>Percentage<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Session.ts#L30">api/models/Session.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Session.ts#L28">api/models/Session.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="id" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> id</h3>
-					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<a name="metadata" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> metadata</h3>
+					<div class="tsd-signature tsd-kind-icon">metadata<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Session.ts#L31">api/models/Session.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Session.ts#L26">api/models/Session.ts:26</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-index-signature">
+								<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">any</span></h5>
+							</li>
+						</ul>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="videos" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> videos</h3>
-					<div class="tsd-signature tsd-kind-icon">videos<span class="tsd-signature-symbol">:</span> <a href="api_models_video.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">[]</span></div>
+					<a name="tasks" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> tasks</h3>
+					<div class="tsd-signature tsd-kind-icon">tasks<span class="tsd-signature-symbol">:</span> <a href="api_models_task.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Session.ts#L36">api/models/Session.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Session.ts#L27">api/models/Session.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -172,22 +198,53 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="addvideo" class="tsd-anchor"></a>
-					<h3>add<wbr>Video</h3>
+					<a name="addtask" class="tsd-anchor"></a>
+					<h3>add<wbr>Task</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Video<span class="tsd-signature-symbol">(</span>video<span class="tsd-signature-symbol">: </span><a href="api_models_video.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Task<span class="tsd-signature-symbol">(</span>task<span class="tsd-signature-symbol">: </span><a href="api_models_task.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Session.ts#L291">api/models/Session.ts:291</a></li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Session.ts#L73">api/models/Session.ts:73</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Initializes the specified video and associates it with the session.
-									See <a href="api_models_session.default.html#getvideos">getVideos()</a>.</p>
+									<p>Adds the specified task to the session.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>task: <a href="api_models_task.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A <code>Task</code> instance.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addvideo" class="tsd-anchor"></a>
+					<h3>add<wbr>Video</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Video<span class="tsd-signature-symbol">(</span>video<span class="tsd-signature-symbol">: </span><a href="api_models_video.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Session.ts#L90">api/models/Session.ts:90</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Associates the specified video with the session and the session&#39;s latest task
+									(see <a href="api_models_session.default.html#addtask">addTask()</a>).</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -195,28 +252,53 @@
 								<li>
 									<h5>video: <a href="api_models_video.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Instance of an uninitialized <code>Video</code>.</p>
+										<p>A <code>Video</code> instance.</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getuploadprogress" class="tsd-anchor"></a>
-					<h3>get<wbr>Upload<wbr>Progress</h3>
+					<a name="gettasks" class="tsd-anchor"></a>
+					<h3>get<wbr>Tasks</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Upload<wbr>Progress<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Tasks<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="api_models_task.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Session.ts#L316">api/models/Session.ts:316</a></li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Session.ts#L80">api/models/Session.ts:80</a></li>
 								</ul>
 							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="api_models_task.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>A list of <a href="../modules/api_models.html#task">Tasks</a> associated with the session (see <a href="api_models_session.default.html#addtask">addTask()</a>).</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getuploadpercentage" class="tsd-anchor"></a>
+					<h3>get<wbr>Upload<wbr>Percentage</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Upload<wbr>Percentage<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Session.ts#L195">api/models/Session.ts:195</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Use this to track the average progress of all uploads associated with the session.
+									See <a href="api_models_session.default.html#uploadall">uploadAll()</a>.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<p>Integer value from <code>0</code> to <code>100</code>.</p>
 						</li>
 					</ul>
 				</section>
@@ -230,32 +312,30 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Session.ts#L303">api/models/Session.ts:303</a></li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Session.ts#L105">api/models/Session.ts:105</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="api_models_video.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">[]</span></h4>
-							<p>An array of videos associated with the session.</p>
+							<p>A list of <a href="../modules/api_models.html#video">Videos</a> associated with the session (see <a href="api_models_session.default.html#addvideo">addVideo()</a>).</p>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="init" class="tsd-anchor"></a>
-					<h3>init</h3>
+					<a name="uploadall" class="tsd-anchor"></a>
+					<h3>upload<wbr>All</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">init<span class="tsd-signature-symbol">(</span>apiClient<span class="tsd-signature-symbol">: </span><a href="api_apiclient.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a>, uniqueId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, surveyId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">upload<wbr>All<span class="tsd-signature-symbol">(</span>apiClient<span class="tsd-signature-symbol">: </span><a href="api_apiclient.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Session.ts#L66">api/models/Session.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Session.ts#L181">api/models/Session.ts:181</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates a session model with the specified parameters. Note this should only be
-										done once per instance. Ensure initialization is successful before executing
-									certain functions within this class, otherwise errors may be thrown..</p>
+									<p>Calls <a href="api_models_session.default.html#uploadvideos">uploadVideos()</a> and <a href="api_models_session.default.html#uploadjsondata">uploadJsonData()</a>.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -266,23 +346,44 @@
 										<p>Client configured to communicate with Senseye&#39;s API.</p>
 									</div>
 								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A <code>Promise</code> that will resolve into an array once both upload functions complete.
+								Respectively, the first and second index will contain the resolved values
+							produced by <a href="api_models_session.default.html#uploadvideos">uploadVideos()</a> and <a href="api_models_session.default.html#uploadjsondata">uploadJsonData()</a>.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="uploadjsondata" class="tsd-anchor"></a>
+					<h3>upload<wbr>Json<wbr>Data</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">upload<wbr>Json<wbr>Data<span class="tsd-signature-symbol">(</span>apiClient<span class="tsd-signature-symbol">: </span><a href="api_apiclient.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>s3_url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Session.ts#L137">api/models/Session.ts:137</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Writes <a href="api_models_session.default.html#metadata">metadata</a> to a temporary JSON file and uploads it to Senseye&#39;s S3 bucket.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> uniqueId: <span class="tsd-signature-type">string</span></h5>
+									<h5>apiClient: <a href="api_apiclient.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Custom username or ID of the participant. Must be unique to the
-										participant within the context of the API key passed into the client.</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> surveyId: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>ID of a <a href="../modules/api_models.html#survey">Survey</a> to associate to the session. Will ideally be
-										the demographic survey pertaining to the participant.</p>
+										<p>Client configured to communicate with Senseye&#39;s API.</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A <code>Promise</code> that will produce the created session&#39;s metadata.</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>s3_url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A <code>Promise</code> that will resolve once the JSON file finishes uploading.
+							See {@link SenseyeApiClient.uploadFile} for the resolved value.</p>
 						</li>
 					</ul>
 				</section>
@@ -290,16 +391,32 @@
 					<a name="uploadvideos" class="tsd-anchor"></a>
 					<h3>upload<wbr>Videos</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">upload<wbr>Videos<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">upload<wbr>Videos<span class="tsd-signature-symbol">(</span>apiClient<span class="tsd-signature-symbol">: </span><a href="api_apiclient.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/d8e576a/src/api/models/Session.ts#L307">api/models/Session.ts:307</a></li>
+									<li>Defined in <a href="https://github.com/senseye-inc/senseye-react-native-sdk/blob/306eaef/src/api/models/Session.ts#L121">api/models/Session.ts:121</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Begins uploading all videos associated with the session.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>apiClient: <a href="api_apiclient.default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Client configured to communicate with Senseye&#39;s API.</p>
+									</div>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A <code>Promise</code> that will resolve into an array once all session videos finish uploading.
+							See {@link SenseyeApiClient.uploadFile} for the produced value of each item.</p>
 						</li>
 					</ul>
 				</section>
@@ -311,80 +428,8 @@
 					<li class=" ">
 						<a href="../modules.html">Exports</a>
 					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/__tests___index_test.html">__tests__/index.test</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/api.html">api</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/api_apiclient.html">api/<wbr>Api<wbr>Client</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/api_models.html">api/models</a>
-					</li>
 					<li class="current tsd-kind-module">
 						<a href="../modules/api_models_session.html">api/models/<wbr>Session</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/api_models_survey.html">api/models/<wbr>Survey</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/api_models_video.html">api/models/<wbr>Video</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/assets.html">assets</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components.html">components</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_senseyebutton.html">components/<wbr>Senseye<wbr>Button</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_senseyepicker.html">components/<wbr>Senseye<wbr>Picker</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_senseyetextinput.html">components/<wbr>Senseye<wbr>Text<wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_taskrunner.html">components/<wbr>Task<wbr>Runner</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_videorecorder.html">components/<wbr>Video<wbr>Recorder</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_surveys.html">components/surveys</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_surveys_demographic.html">components/surveys/<wbr>Demographic</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_surveys_validation.html">components/surveys/<wbr>Validation</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_tasks.html">components/tasks</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_tasks_calibration.html">components/tasks/<wbr>Calibration</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_tasks_nystagmus.html">components/tasks/<wbr>Nystagmus</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_tasks_plr.html">components/tasks/<wbr>Plr</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/components_tasks_smoothpursuit.html">components/tasks/<wbr>Smooth<wbr>Pursuit</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/index.html">index</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/types.html">types</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/utils.html">utils</a>
 					</li>
 				</ul>
 			</nav>
@@ -399,25 +444,34 @@
 								<a href="api_models_session.default.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="api_models_session.default.html#apiclient" class="tsd-kind-icon">api<wbr>Client</a>
+								<a href="api_models_session.default.html#jsonuploadpercentage" class="tsd-kind-icon">json<wbr>Upload<wbr>Percentage</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="api_models_session.default.html#id" class="tsd-kind-icon">id</a>
+								<a href="api_models_session.default.html#metadata" class="tsd-kind-icon">metadata</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="api_models_session.default.html#videos" class="tsd-kind-icon">videos</a>
+								<a href="api_models_session.default.html#tasks" class="tsd-kind-icon">tasks</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="api_models_session.default.html#addtask" class="tsd-kind-icon">add<wbr>Task</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="api_models_session.default.html#addvideo" class="tsd-kind-icon">add<wbr>Video</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="api_models_session.default.html#getuploadprogress" class="tsd-kind-icon">get<wbr>Upload<wbr>Progress</a>
+								<a href="api_models_session.default.html#gettasks" class="tsd-kind-icon">get<wbr>Tasks</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="api_models_session.default.html#getuploadpercentage" class="tsd-kind-icon">get<wbr>Upload<wbr>Percentage</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="api_models_session.default.html#getvideos" class="tsd-kind-icon">get<wbr>Videos</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="api_models_session.default.html#init" class="tsd-kind-icon">init</a>
+								<a href="api_models_session.default.html#uploadall" class="tsd-kind-icon">upload<wbr>All</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="api_models_session.default.html#uploadjsondata" class="tsd-kind-icon">upload<wbr>Json<wbr>Data</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="api_models_session.default.html#uploadvideos" class="tsd-kind-icon">upload<wbr>Videos</a>

@@ -18,7 +18,7 @@ export type SenseyePickerProps = {
   marginBottom: string | number;
   /** Stores which value is selected */
   selectedValue: any;
-  /** @callback returns which value is selected */
+  /** Function to be called when an item is selected */
   onChangeValue?(itemValue: React.ReactText, itemPosition: number): void;
 };
 
