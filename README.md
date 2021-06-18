@@ -6,12 +6,12 @@ The Senseye SDK provides direct integration into the Senseye API on both iOS and
 
 ```
 .
-+-- docs/         # See Documentation section of this README
-+-- example/      # Contains an example app that demos usage of the SDK
++-- docs/           # See Documentation section of this README
++-- example/        # Contains an example app that demos usage of the SDK
 +-- src/
-|   +-- api/         # Modules for interfacing with the Senseye API
-|   +-- components/  # Modules for serving Senseye frontend components
-+-- package.json     # Includes application dependencies, build utilities, and pre-commit hook directives. See contributing guide for more information on these directives
+|   +-- api/        # Modules for interfacing with the Senseye API
+|   +-- components/ # Modules for serving Senseye frontend components
++-- package.json    # Defines package dependencies, build utilities, and pre-commit hook directives. See contributing guide for more information on these directives
 ```
 
 ## Included Tasks
@@ -68,7 +68,7 @@ For local development, one of the dependencies is `babel-plugin-module-resolver`
       ```javascript
       import { SenseyeApiClient, Constants } from '@senseyeinc/react-native-senseye-sdk';
 
-      const apiClient = new SenseyeApiClient(Constants.API_HOST, Constants.API_BASE_PATH, <my_api_key>);
+      const apiClient = new SenseyeApiClient(Constants.API_HOST, Constants.API_BASE_PATH, 'my_api_key');
       ```
 
 3. Upload Session data.
