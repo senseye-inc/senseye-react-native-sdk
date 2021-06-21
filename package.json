@@ -157,7 +157,7 @@
     "targets": [
       "commonjs",
       "module",
-      "typescript"
+      ["typescript", { "project": "tsconfig.build.json" }]
     ]
   }
 }
