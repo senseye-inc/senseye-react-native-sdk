@@ -9,7 +9,7 @@ import type {
 
 export type TaskRunnerProps = {
   /** Username or ID of the participant. */
-  uniqueId?: string;
+  uniqueId: string;
   /** Demographic survey completed beforehand by the particpant. */
   demographicSurvey?: Models.Survey;
   /**

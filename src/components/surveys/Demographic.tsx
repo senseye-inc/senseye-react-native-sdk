@@ -28,7 +28,7 @@ NOW.setDate(new Date().getDate() - 1);
 const YESTERDAY = NOW.toISOString().slice(0, 10);
 
 export type DemographicSurveyProps = {
-  onComplete?(survey: Models.Survey, userId: string): void;
+  onComplete?(survey: Models.Survey): void;
 };
 
 export default function DemographicSurvey(props: DemographicSurveyProps) {
@@ -36,7 +36,6 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
   const [gender, setGender] = React.useState<React.ReactText>('na');
   const [eyeColor, setEyeColor] = React.useState<React.ReactText>('na');
   const [fatigueLevel, setFatigueLevel] = React.useState<React.ReactText>('na');
-  const [uniqueId, setUniqueId] = React.useState('');
   const [bedHour, setBedHour] = React.useState('');
   const [bedMin, setBedMin] = React.useState('');
   const [bedMeridiem, setBedMeridiem] = React.useState<React.ReactText>('AM');
@@ -68,7 +67,6 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
           wakeMin,
           wakeMeridiem,
           wakeDate,
-          uniqueId,
         },
         { abortEarly: false }
       )
@@ -81,7 +79,6 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
             gender: ['Gender', gender],
             eye_color: ['Eye Color', eyeColor],
             fatigue: ['Fatigue rating (1 = alert, 7 = very tired)', fatigueLevel],
-            unique_id: ['Unique ID', uniqueId],
             bed_time: [
               'Log your most recent bedtime:',
               `${bedHour} : ${bedMin} ${bedMeridiem}`,
@@ -93,7 +90,7 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
             wake_day: ['Select the day you last awoke', wakeDate],
             bed_day: ['Select the day you last slept', bedDate],
           });
-          props.onComplete(survey, uniqueId);
+          props.onComplete(survey);
         }
       })
       .catch(function (err) {
@@ -198,13 +195,6 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
             width={'40%'}
           />
         </View>
-        <SenseyeTextInput
-          label="Unique ID"
-          placeholderText="00000"
-          keyboardType={'number-pad'}
-          value={uniqueId}
-          onChangeText={(text) => setUniqueId(text)}
-        />
         <SenseyeButton title="Submit" onPress={_onComplete} theme={'primaryCta'} />
       </ScrollView>
     </SafeAreaView>
