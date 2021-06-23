@@ -20,6 +20,7 @@ import {
   validationSchema,
 } from '@senseyeinc/react-native-senseye-sdk';
 import SenseyeCalendar from '../SenseyeCalendar';
+import type { Datum } from 'src/types';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const NOW = new Date();
@@ -32,21 +33,20 @@ export type DemographicSurveyProps = {
 };
 
 export default function DemographicSurvey(props: DemographicSurveyProps) {
-  const [age, setAge] = React.useState('');
-  const [gender, setGender] = React.useState<React.ReactText>('na');
-  const [eyeColor, setEyeColor] = React.useState<React.ReactText>('na');
-  const [fatigueLevel, setFatigueLevel] = React.useState<React.ReactText>('na');
-  const [bedHour, setBedHour] = React.useState('');
-  const [bedMin, setBedMin] = React.useState('');
-  const [bedMeridiem, setBedMeridiem] = React.useState<React.ReactText>('AM');
-  const [bedDate, setBedDate] = React.useState(YESTERDAY);
-  const [wakeHour, setWakeHour] = React.useState('');
-  const [wakeMin, setWakeMin] = React.useState('');
-  const [wakeMeridiem, setWakeMeridiem] = React.useState<React.ReactText>('AM');
+  const [age, setAge] = React.useState<string>('');
+  const [gender, setGender] = React.useState<Datum>('na');
+  const [eyeColor, setEyeColor] = React.useState<Datum>('na');
+  const [fatigueLevel, setFatigueLevel] = React.useState<Datum>('na');
+  const [bedHour, setBedHour] = React.useState<string | undefined>('');
+  const [bedMin, setBedMin] = React.useState<string | undefined>('');
+  const [bedMeridiem, setBedMeridiem] = React.useState<Datum>('AM');
+  const [bedDate, setBedDate] = React.useState<string>(YESTERDAY);
+  const [wakeHour, setWakeHour] = React.useState<string | undefined>('');
+  const [wakeMin, setWakeMin] = React.useState<string | undefined>('');
   const [wakeDate, setWakeDate] = React.useState(TODAY);
+  const [wakeMeridiem, setWakeMeridiem] = React.useState<Datum>('AM');
 
   const [errors, setErrors] = React.useState(<></>);
-
   // checks form responses, if valid then submits responses to survey
   function _onComplete() {
     // reset and clear error messages
@@ -70,7 +70,7 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
         },
         { abortEarly: false }
       )
-      .then(function (value) {
+      .then(function (value: any) {
         value;
         if (props.onComplete) {
           // generate a survey model and pass it into the @callback
@@ -93,7 +93,7 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
           props.onComplete(survey);
         }
       })
-      .catch(function (err) {
+      .catch(function (err: any) {
         // return a collection of JSX.Element to alert users of invalid responses
         let elements = err.errors.map(
           (
@@ -124,18 +124,24 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
           options={Constants.FormData.GENDER}
           selectedValue={gender}
           onChangeValue={(value) => setGender(value)}
+          zIndex={100}
+          zIndexInverse={400}
         />
         <SenseyePicker
           label="Eye Color"
           options={Constants.FormData.EYE}
           selectedValue={eyeColor}
           onChangeValue={(value) => setEyeColor(value)}
+          zIndex={200}
+          zIndexInverse={300}
         />
         <SenseyePicker
           label="Fatigue rating (1 = alert, 7 = very tired)"
           options={Constants.FormData.FATIGUE}
           selectedValue={fatigueLevel}
           onChangeValue={(value) => setFatigueLevel(value)}
+          zIndex={300}
+          zIndexInverse={200}
         />
         <Text style={styles.text}>Select the day you last slept:</Text>
         <SenseyeCalendar onUpdate={(day) => setBedDate(day)} initialDate={YESTERDAY} />
@@ -157,15 +163,17 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
             onChangeText={(text) => setBedMin(text)}
             width={'30%'}
           />
-          <SenseyePicker
-            label="AM/PM"
-            options={Constants.FormData.MERIDIEM}
-            selectedValue={bedMeridiem}
-            onChangeValue={(value) => setBedMeridiem(value)}
-            width={'40%'}
-            marginBottom={0}
-          />
         </View>
+        <SenseyePicker
+          label="AM/PM"
+          options={Constants.FormData.MERIDIEM}
+          selectedValue={bedMeridiem}
+          onChangeValue={(value) => setBedMeridiem(value)}
+          width={'40%'}
+          marginBottom={0}
+          zIndex={400}
+          zIndexInverse={100}
+        />
         <Text style={styles.text}>Select the day you last awoke:</Text>
         <SenseyeCalendar onUpdate={(day) => setWakeDate(day)} />
         <Text style={styles.text}>Log your most recent wake time:</Text>
@@ -212,6 +220,7 @@ const styles = StyleSheet.create({
     paddingRight: 30,
     margin: 30,
     backgroundColor: '#21284E',
+    flex: 1,
   },
   text: {
     color: '#DBEEF1',
