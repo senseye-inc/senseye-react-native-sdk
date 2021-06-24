@@ -66,7 +66,7 @@ export default function SenseyePicker(props: SenseyePickerProps) {
    */
 
   return (
-    <View style={styles(props).hmm}>
+    <View>
       {props.label && <Text style={styles(props).label}>{props.label}</Text>}
       <DropDownPicker
         open={open}
@@ -97,7 +97,6 @@ export default function SenseyePicker(props: SenseyePickerProps) {
 const styles = (props: SenseyePickerProps) =>
   StyleSheet.create({
     hmm: {
-      zIndex: 8000,
       /** @todo fix style issues on the AM/PM picker, container issues */
       backgroundColor: props.pickerBackground,
     },
@@ -126,7 +125,7 @@ const styles = (props: SenseyePickerProps) =>
     },
     dropDown: {
       backgroundColor: '#191C31',
-      zIndex: 3000,
+      zIndex: 8000,
     },
     tick: {
       backgroundColor: 'rgba(216,249,100, 0.5)',
