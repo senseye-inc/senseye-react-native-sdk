@@ -163,17 +163,17 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
             onChangeText={(text) => setBedMin(parseInt(text, 10))}
             width={'30%'}
           />
+          <SenseyePicker
+            label="AM/PM"
+            options={Constants.FormData.MERIDIEM}
+            selectedValue={bedMeridiem}
+            onChangeValue={(value) => setBedMeridiem(value)}
+            width={'40%'}
+            marginBottom={0}
+            zIndex={400}
+            zIndexInverse={100}
+          />
         </View>
-        <SenseyePicker
-          label="AM/PM"
-          options={Constants.FormData.MERIDIEM}
-          selectedValue={bedMeridiem}
-          onChangeValue={(value) => setBedMeridiem(value)}
-          width={'40%'}
-          marginBottom={0}
-          zIndex={400}
-          zIndexInverse={100}
-        />
         <Text style={styles.text}>Select the day you last awoke:</Text>
         <SenseyeCalendar onUpdate={(day) => setWakeDate(day)} />
         <Text style={styles.text}>Log your most recent wake time:</Text>

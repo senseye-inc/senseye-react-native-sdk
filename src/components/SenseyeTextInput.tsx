@@ -11,7 +11,7 @@ export type SenseyeTextInputProps = {
   /** The color that will determine placeholder text */
   placeholderTextColor: string;
   /** The value to show for the text input */
-  value: string;
+  value: string | undefined;
   /** Sets height of the field container */
   height: string | number;
   /** Sets width of the field container */
