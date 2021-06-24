@@ -19,7 +19,7 @@ export type SenseyePickerProps = {
   /** Sets the bottom margin of the picker container */
   marginBottom: string | number;
   /** Stores which value is selected */
-  selectedValue: any;
+  selectedValue: Datum;
   /** Specifies the stack order */
   zIndex: number;
   /** Specifies the inverse stack order */
@@ -30,7 +30,7 @@ export type SenseyePickerProps = {
 
 export default function SenseyePicker(props: SenseyePickerProps) {
   const [open, setOpen] = React.useState(false);
-  const [initValue, setValue] = React.useState(null);
+  const [initValue, setValue] = React.useState(props.selectedValue);
   const [items, setItems] = React.useState(_buildItems(props.options));
   /** @description must be set to `ScrollView` otherwise will have a VirtualizedLists error messages */
   DropDownPicker.setListMode('SCROLLVIEW');
@@ -141,6 +141,7 @@ const styles = (props: SenseyePickerProps) =>
 
 SenseyePicker.defaultProps = {
   label: '',
+  selectedValue: null,
   width: 'auto',
   marginBottom: 20,
   zIndex: 100,

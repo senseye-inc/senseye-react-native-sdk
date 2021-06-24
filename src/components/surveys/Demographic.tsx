@@ -34,9 +34,9 @@ export type DemographicSurveyProps = {
 
 export default function DemographicSurvey(props: DemographicSurveyProps) {
   const [age, setAge] = React.useState<Datum>('');
-  const [gender, setGender] = React.useState<Datum>('na');
-  const [eyeColor, setEyeColor] = React.useState<Datum>('na');
-  const [fatigueLevel, setFatigueLevel] = React.useState<Datum>('na');
+  const [gender, setGender] = React.useState<Datum>(null);
+  const [eyeColor, setEyeColor] = React.useState<Datum>(null);
+  const [fatigueLevel, setFatigueLevel] = React.useState<Datum>(null);
   const [bedHour, setBedHour] = React.useState<Datum>('');
   const [bedMin, setBedMin] = React.useState<Datum>('');
   const [bedMeridiem, setBedMeridiem] = React.useState<Datum>('AM');
