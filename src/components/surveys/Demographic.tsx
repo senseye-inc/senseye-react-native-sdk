@@ -124,24 +124,18 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
           options={Constants.FormData.GENDER}
           selectedValue={gender}
           onChangeValue={(value) => setGender(value)}
-          zIndex={100}
-          zIndexInverse={400}
         />
         <SenseyePicker
           label="Eye Color"
           options={Constants.FormData.EYE}
           selectedValue={eyeColor}
           onChangeValue={(value) => setEyeColor(value)}
-          zIndex={200}
-          zIndexInverse={300}
         />
         <SenseyePicker
           label="Fatigue rating (1 = alert, 7 = very tired)"
           options={Constants.FormData.FATIGUE}
           selectedValue={fatigueLevel}
           onChangeValue={(value) => setFatigueLevel(value)}
-          zIndex={300}
-          zIndexInverse={200}
         />
         <Text style={styles.text}>Select the day you last slept:</Text>
         <SenseyeCalendar onUpdate={(day) => setBedDate(day)} initialDate={YESTERDAY} />
@@ -168,10 +162,8 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
             options={Constants.FormData.MERIDIEM}
             selectedValue={bedMeridiem}
             onChangeValue={(value) => setBedMeridiem(value)}
-            width={'40%'}
+            width={'60%'}
             marginBottom={0}
-            zIndex={400}
-            zIndexInverse={100}
           />
         </View>
         <Text style={styles.text}>Select the day you last awoke:</Text>
@@ -200,7 +192,8 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
             marginBottom={0}
             selectedValue={wakeMeridiem}
             onChangeValue={(value) => setWakeMeridiem(value)}
-            width={'40%'}
+            width={'55%'}
+            pickerBackground={'#191C31'}
           />
         </View>
         <SenseyeButton title="Submit" onPress={_onComplete} theme={'primaryCta'} />

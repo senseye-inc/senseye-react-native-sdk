@@ -16,6 +16,8 @@ export type SenseyePickerProps = {
   label: string;
   /** Sets the width of the picker container  */
   width: string | number;
+  /** Sets the background color of the picker container */
+  pickerBackground: string;
   /** Sets the bottom margin of the picker container */
   marginBottom: string | number;
   /** Stores which value is selected */
@@ -64,7 +66,7 @@ export default function SenseyePicker(props: SenseyePickerProps) {
    */
 
   return (
-    <View>
+    <View style={styles(props).hmm}>
       {props.label && <Text style={styles(props).label}>{props.label}</Text>}
       <DropDownPicker
         open={open}
@@ -95,14 +97,9 @@ export default function SenseyePicker(props: SenseyePickerProps) {
 const styles = (props: SenseyePickerProps) =>
   StyleSheet.create({
     hmm: {
-      borderWidth: 1,
-      borderRightColor: '#191C31',
-      borderLeftColor: '#191C31',
-      borderTopColor: '#191C31',
-      borderBottomColor: '#191C31',
-      marginBottom: 5,
-      zIndex: 1000,
+      zIndex: 8000,
       /** @todo fix style issues on the AM/PM picker, container issues */
+      backgroundColor: props.pickerBackground,
     },
     pickerContainer: {
       backgroundColor: '#191C31',
@@ -118,8 +115,6 @@ const styles = (props: SenseyePickerProps) =>
     },
     label: {
       color: '#0FA697',
-      marginLeft: 10,
-      marginTop: 5,
       padding: 5,
       textTransform: 'uppercase',
       fontWeight: '700',
@@ -146,4 +141,5 @@ SenseyePicker.defaultProps = {
   marginBottom: 20,
   zIndex: 100,
   zIndexInverse: 300,
+  pickerBackground: 'transparent',
 };
