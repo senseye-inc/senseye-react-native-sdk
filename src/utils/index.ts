@@ -147,11 +147,7 @@ const validationSchema = yup.object().shape({
     .integer()
     .required()
     .label('Fatigue Level'),
-  uniqueId: yup
-    .string()
-    .typeError('A valid Unique ID is required')
-    .required()
-    .label('Unique ID'),
+  uniqueId: yup.string().typeError('A valid Unique ID is required').label('Unique ID'),
   bedHour: yup
     .number()
     .typeError('The hour for bedtime can only contain numbers')
