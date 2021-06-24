@@ -11,6 +11,7 @@ import {
 
 import {
   SenseyeAlert,
+  SenseyeCalendar,
   SenseyePicker,
   SenseyeTextInput,
   SenseyeButton,
@@ -19,8 +20,7 @@ import {
   pictorialGradientLogo,
   validationSchema,
 } from '@senseyeinc/react-native-senseye-sdk';
-import SenseyeCalendar from '../SenseyeCalendar';
-import type { Datum } from 'src/types';
+import type { Datum } from '@senseyeinc/react-native-senseye-sdk';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const NOW = new Date();
@@ -33,17 +33,17 @@ export type DemographicSurveyProps = {
 };
 
 export default function DemographicSurvey(props: DemographicSurveyProps) {
-  const [age, setAge] = React.useState<string>('');
+  const [age, setAge] = React.useState<Datum>('');
   const [gender, setGender] = React.useState<Datum>('na');
   const [eyeColor, setEyeColor] = React.useState<Datum>('na');
   const [fatigueLevel, setFatigueLevel] = React.useState<Datum>('na');
-  const [bedHour, setBedHour] = React.useState<string | undefined>('');
-  const [bedMin, setBedMin] = React.useState<string | undefined>('');
+  const [bedHour, setBedHour] = React.useState<Datum>('');
+  const [bedMin, setBedMin] = React.useState<Datum>('');
   const [bedMeridiem, setBedMeridiem] = React.useState<Datum>('AM');
-  const [bedDate, setBedDate] = React.useState<string>(YESTERDAY);
-  const [wakeHour, setWakeHour] = React.useState<string | undefined>('');
-  const [wakeMin, setWakeMin] = React.useState<string | undefined>('');
-  const [wakeDate, setWakeDate] = React.useState(TODAY);
+  const [bedDate, setBedDate] = React.useState<Datum>(YESTERDAY);
+  const [wakeHour, setWakeHour] = React.useState<Datum>('');
+  const [wakeMin, setWakeMin] = React.useState<Datum>('');
+  const [wakeDate, setWakeDate] = React.useState<Datum>(TODAY);
   const [wakeMeridiem, setWakeMeridiem] = React.useState<Datum>('AM');
 
   const [errors, setErrors] = React.useState(<></>);
@@ -115,9 +115,9 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
         <SenseyeTextInput
           label="Age"
           placeholderText="Type your age here"
-          keyboardType={'number-pad'}
-          value={age}
-          onChangeText={(text) => setAge(text)}
+          keyboardType="number-pad"
+          value={String(age)}
+          onChangeText={(text) => setAge(parseInt(text, 10))}
         />
         <SenseyePicker
           label="Gender"
@@ -150,17 +150,17 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
           <SenseyeTextInput
             label="Hour"
             placeholderText="HH"
-            keyboardType={'number-pad'}
-            value={bedHour}
-            onChangeText={(text) => setBedHour(text)}
+            keyboardType="number-pad"
+            value={String(bedHour)}
+            onChangeText={(text) => setBedHour(parseInt(text, 10))}
             width={'30%'}
           />
           <SenseyeTextInput
             label="Min"
             placeholderText="MM"
-            keyboardType={'number-pad'}
-            value={bedMin}
-            onChangeText={(text) => setBedMin(text)}
+            keyboardType="number-pad"
+            value={String(bedMin)}
+            onChangeText={(text) => setBedMin(parseInt(text, 10))}
             width={'30%'}
           />
         </View>
@@ -181,17 +181,17 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
           <SenseyeTextInput
             label="Hour"
             placeholderText="HH"
-            keyboardType={'number-pad'}
-            value={wakeHour}
-            onChangeText={(text) => setWakeHour(text)}
+            keyboardType="number-pad"
+            value={String(wakeHour)}
+            onChangeText={(text) => setWakeHour(parseInt(text, 10))}
             width={'30%'}
           />
           <SenseyeTextInput
             label="Min"
             placeholderText="MM"
-            keyboardType={'number-pad'}
-            value={wakeMin}
-            onChangeText={(text) => setWakeMin(text)}
+            keyboardType="number-pad"
+            value={String(wakeMin)}
+            onChangeText={(text) => setWakeMin(parseInt(text, 10))}
             width={'30%'}
           />
           <SenseyePicker

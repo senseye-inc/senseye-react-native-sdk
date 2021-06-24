@@ -68,7 +68,7 @@ export type PredictionResult = {
   error?: any;
 };
 
-export type Datum = boolean | number | string;
+export type Datum = boolean | number | string | null;
 
 export type EventData = {
   timestamp: number;

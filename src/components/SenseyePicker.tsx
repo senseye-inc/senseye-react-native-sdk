@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import type { Datum } from 'src/types';
+
+import type { Datum } from '@senseyeinc/react-native-senseye-sdk';
 
 export type SenseyePickerProps = {
   /** A collection of options a user can select from */
@@ -9,7 +10,7 @@ export type SenseyePickerProps = {
     /** A list of displayed values of the collection */
     labels: string[];
     /** A list of the actual values of the collection */
-    values: React.ReactText[];
+    values: Datum[];
   };
   /** Displayed value on the Picker Item  */
   label: string;
@@ -40,7 +41,7 @@ export default function SenseyePicker(props: SenseyePickerProps) {
    */
   function _buildItems(options: SenseyePickerProps['options']) {
     let formData: any[] = [];
-    options.values.forEach((el: React.ReactText, i: number) => {
+    options.values.forEach((el: Datum, i: number) => {
       formData.push({
         label: options.labels[i],
         value: el,
@@ -49,8 +50,8 @@ export default function SenseyePicker(props: SenseyePickerProps) {
     });
     return formData;
   }
-  function _onChangeValue(val: any) {
-    if (props.onChangeValue) {
+  function _onChangeValue(val: Datum | Datum[]) {
+    if (props.onChangeValue && typeof val !== 'object') {
       props.onChangeValue(val);
     }
   }
