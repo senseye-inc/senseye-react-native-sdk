@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 import type { Datum } from '@senseyeinc/react-native-senseye-sdk';
@@ -66,8 +66,8 @@ export default function SenseyePicker(props: SenseyePickerProps) {
    */
 
   return (
-    <View>
-      {props.label && <Text style={styles(props).label}>{props.label}</Text>}
+    <>
+      {props.label ? <Text style={styles(props).label}>{props.label}</Text> : <></>}
       <DropDownPicker
         open={open}
         value={initValue}
@@ -90,22 +90,19 @@ export default function SenseyePicker(props: SenseyePickerProps) {
           nestedScrollEnabled: true,
         }}
       />
-    </View>
+    </>
   );
 }
 
 const styles = (props: SenseyePickerProps) =>
   StyleSheet.create({
-    hmm: {
-      /** @todo fix style issues on the AM/PM picker, container issues */
-      backgroundColor: props.pickerBackground,
-    },
     pickerContainer: {
       backgroundColor: '#191C31',
       marginBottom: props.marginBottom,
       width: props.width,
       zIndex: props.zIndex,
       borderRadius: 0,
+      flex: 1,
     },
     text: {
       marginLeft: 10,
@@ -125,7 +122,7 @@ const styles = (props: SenseyePickerProps) =>
     },
     dropDown: {
       backgroundColor: '#191C31',
-      zIndex: 8000,
+      zIndex: 8888,
     },
     tick: {
       backgroundColor: 'rgba(216,249,100, 0.5)',

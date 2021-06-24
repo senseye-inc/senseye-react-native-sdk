@@ -23,6 +23,7 @@ import {
 import type { Datum } from '@senseyeinc/react-native-senseye-sdk';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
+const WINDOW_HEIGHT = Dimensions.get('window').height;
 const NOW = new Date();
 const TODAY = NOW.toISOString().slice(0, 10);
 NOW.setDate(new Date().getDate() - 1);
@@ -111,13 +112,13 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
     <SafeAreaView style={styles.container}>
       <Image style={styles.logo} source={pictorialGradientLogo} />
       {errors}
-      <ScrollView style={styles.innerContainer}>
+      <ScrollView style={styles.innerContainer} overScrollMode={'always'}>
         <SenseyeTextInput
           label="Age"
           placeholderText="Type your age here"
           keyboardType="number-pad"
           value={String(age)}
-          onChangeText={(text) => setAge(parseInt(text, 10))}
+          onChangeText={(text) => setAge(text)}
         />
         <SenseyePicker
           label="Gender"
@@ -152,23 +153,22 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
             placeholderText="HH"
             keyboardType="number-pad"
             value={String(bedHour)}
-            onChangeText={(text) => setBedHour(parseInt(text, 10))}
-            width={'30%'}
+            onChangeText={(text) => setBedHour(text)}
+            width={'32%'}
           />
           <SenseyeTextInput
             label="Min"
             placeholderText="MM"
             keyboardType="number-pad"
             value={String(bedMin)}
-            onChangeText={(text) => setBedMin(parseInt(text, 10))}
-            width={'30%'}
+            onChangeText={(text) => setBedMin(text)}
+            width={'32%'}
           />
           <SenseyePicker
-            label="AM/PM"
             options={Constants.FormData.MERIDIEM}
             selectedValue={bedMeridiem}
             onChangeValue={(value) => setBedMeridiem(value)}
-            width={'60%'}
+            width={'38%'}
             marginBottom={0}
             zIndex={400}
             zIndexInverse={100}
@@ -184,28 +184,29 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
             placeholderText="HH"
             keyboardType="number-pad"
             value={String(wakeHour)}
-            onChangeText={(text) => setWakeHour(parseInt(text, 10))}
-            width={'30%'}
+            onChangeText={(text) => setWakeHour(text)}
+            width={'32%'}
           />
           <SenseyeTextInput
             label="Min"
             placeholderText="MM"
             keyboardType="number-pad"
             value={String(wakeMin)}
-            onChangeText={(text) => setWakeMin(parseInt(text, 10))}
-            width={'30%'}
+            onChangeText={(text) => setWakeMin(text)}
+            width={'32%'}
           />
           <SenseyePicker
-            label="AM/PM"
             options={Constants.FormData.MERIDIEM}
             marginBottom={0}
             selectedValue={wakeMeridiem}
             onChangeValue={(value) => setWakeMeridiem(value)}
-            width={'55%'}
+            width={'38%'}
             pickerBackground={'#191C31'}
           />
         </View>
-        <SenseyeButton title="Submit" onPress={_onComplete} theme={'primaryCta'} />
+        <View style={styles.buttonContainer}>
+          <SenseyeButton title="Submit" onPress={_onComplete} theme={'primaryCta'} />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -214,15 +215,18 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
 const styles = StyleSheet.create({
   container: {
     width: WINDOW_WIDTH,
-    height: '100%',
+    height: WINDOW_HEIGHT,
     backgroundColor: '#141726',
+    paddingTop: -60,
   },
   innerContainer: {
-    paddingLeft: 30,
-    paddingRight: 30,
+    paddingTop: 30,
+    height: WINDOW_HEIGHT + 120,
     margin: 30,
+    paddingBottom: 30,
+    paddingRight: 30,
+    paddingLeft: 30,
     backgroundColor: '#21284E',
-    flex: 1,
   },
   text: {
     color: '#DBEEF1',
@@ -246,4 +250,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 30,
   },
+  buttonContainer: { marginBottom: 40 },
 });
