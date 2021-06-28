@@ -65,11 +65,11 @@ For local development, one of the dependencies is `babel-plugin-module-resolver`
     ```
 
 2. Instantiate a SenseyeApiClient.
-      ```javascript
-      import { SenseyeApiClient, Constants } from '@senseyeinc/react-native-senseye-sdk';
+    ```javascript
+    import { SenseyeApiClient, Constants } from '@senseyeinc/react-native-senseye-sdk';
 
-      const apiClient = new SenseyeApiClient(Constants.API_HOST, Constants.API_BASE_PATH, 'my_api_key');
-      ```
+    const apiClient = new SenseyeApiClient(Constants.API_HOST, Constants.API_BASE_PATH, 'my_api_key');
+    ```
 
 3. Upload Session data.
     ```javascript
@@ -109,10 +109,9 @@ For local development, one of the dependencies is `babel-plugin-module-resolver`
 
 ## Example App
 
-Example apps have been provided in the [example/](/example/) directory.
-There is a cross-platform example app (built using [Expo](https://expo.io/)), and React Native apps for Android and iOS. You can run `yarn bootstrap` to install the example dependencies.
+An example React Native app is provided in the [example/](/example/) directory. You can run `yarn bootstrap` to install its dependencies.
 
-Instructions on how to start the example apps are available in the [example README](/example/README.md).
+Instructions on how to run the app can be found in the [example README](/example/README.md).
 
 ## Documentation
 
