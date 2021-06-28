@@ -55,7 +55,7 @@ export default class Session {
 
     if (survey) {
       // merge survey response entries into session metadata
-      this.metadata = { ...this.metadata.info, ...survey.getEntries()[1] };
+      this.metadata = { ...this.metadata, ...survey.getEntries()[1] };
     }
 
     this.uniqueId = uniqueId;
