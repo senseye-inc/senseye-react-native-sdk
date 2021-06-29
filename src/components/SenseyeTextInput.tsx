@@ -11,7 +11,7 @@ export type SenseyeTextInputProps = {
   /** The color that will determine placeholder text */
   placeholderTextColor: string;
   /** The value to show for the text input */
-  value: string;
+  value: string | undefined;
   /** Sets height of the field container */
   height: string | number;
   /** Sets width of the field container */
@@ -56,10 +56,13 @@ const styles = (props: SenseyeTextInputProps) =>
       height: props.height,
       width: props.width,
       backgroundColor: props.background,
-      borderBottomColor: props.borderBottomColor,
-      borderBottomWidth: props.borderBottomWidth,
       color: '#0FA697',
       marginBottom: 20,
+      borderWidth: 1,
+      borderTopColor: '#000',
+      borderLeftColor: '#000',
+      borderRightColor: '#000',
+      borderBottomColor: '#000',
     },
     text: {
       color: '#0FA697',

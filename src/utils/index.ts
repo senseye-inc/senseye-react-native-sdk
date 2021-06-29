@@ -101,16 +101,16 @@ const Constants = {
   },
   FormData: {
     GENDER: {
-      values: ['na', 'male', 'female', 'refused'],
-      labels: ['N/A', 'Male', 'Female', 'Prefer Not To Answer'],
+      values: ['male', 'female', 'refused'],
+      labels: ['Male', 'Female', 'Prefer Not To Answer'],
     },
     EYE: {
-      values: ['na', 'blue', 'green', 'brown', 'hazel', 'other'],
-      labels: ['N/A', 'Blue', 'Green', 'Brown', 'Hazel', 'Other'],
+      values: ['blue', 'green', 'brown', 'hazel', 'other'],
+      labels: ['Blue', 'Green', 'Brown', 'Hazel', 'Other'],
     },
     FATIGUE: {
-      values: ['na', 1, 2, 3, 4, 5, 6, 7],
-      labels: ['N/A', '1', '2', '3', '4', '5', '6', '7'],
+      values: [1, 2, 3, 4, 5, 6, 7],
+      labels: ['1', '2', '3', '4', '5', '6', '7'],
     },
     MERIDIEM: {
       values: ['AM', 'PM'],
@@ -147,11 +147,7 @@ const validationSchema = yup.object().shape({
     .integer()
     .required()
     .label('Fatigue Level'),
-  uniqueId: yup
-    .string()
-    .typeError('A valid Unique ID is required')
-    .required()
-    .label('Unique ID'),
+  uniqueId: yup.string().typeError('A valid Unique ID is required').label('Unique ID'),
   bedHour: yup
     .number()
     .typeError('The hour for bedtime can only contain numbers')
