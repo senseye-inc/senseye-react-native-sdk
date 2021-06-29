@@ -1,6 +1,6 @@
-# SDK Example Apps
+# SDK Example App
 
-Two example apps have been provided - a cross-platform example app (built using [Expo](https://expo.io/)), and a React Native app for Android and iOS.
+An example React Native app to showcase the components and features provided by the SDK.
 
 ## Setup
 
@@ -28,25 +28,7 @@ yarn:
 yarn install
 ```
 
-## Running the demos
-
-#### Expo
-
-Run the application via Expo and follow on-screen directions:
-
-From this directory:
-
-```sh
-yarn expo
-```
-
-From the root directory:
-
-```sh
-yarn example expo
-```
-
-#### React Native
+## Running the demo
 
 First, you will need to start Metro, the JavaScript bundler that ships with React Native:
 
@@ -62,7 +44,7 @@ Android:
 yarn android
 ```
 
-iOS
+iOS:
 
 ```sh
 yarn ios
