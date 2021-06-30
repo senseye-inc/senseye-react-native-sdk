@@ -149,7 +149,6 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
         <Text style={styles.text}>Log your most recent bedtime:</Text>
         <View style={styles.clockStyles}>
           <SenseyeTextInput
-            label="Hour"
             placeholderText="HH"
             keyboardType="number-pad"
             value={String(bedHour)}
@@ -157,7 +156,6 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
             width={'32%'}
           />
           <SenseyeTextInput
-            label="Min"
             placeholderText="MM"
             keyboardType="number-pad"
             value={String(bedMin)}
@@ -180,7 +178,6 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
         <Text style={styles.text}>Log your most recent wake time:</Text>
         <View style={styles.clockStyles}>
           <SenseyeTextInput
-            label="Hour"
             placeholderText="HH"
             keyboardType="number-pad"
             value={String(wakeHour)}
@@ -188,7 +185,6 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
             width={'32%'}
           />
           <SenseyeTextInput
-            label="Min"
             placeholderText="MM"
             keyboardType="number-pad"
             value={String(wakeMin)}
@@ -220,12 +216,9 @@ const styles = StyleSheet.create({
     paddingTop: -60,
   },
   innerContainer: {
-    paddingTop: 30,
     height: WINDOW_HEIGHT + 120,
     margin: 30,
-    paddingBottom: 30,
-    paddingRight: 30,
-    paddingLeft: 30,
+    padding: 30,
     backgroundColor: '#21284E',
   },
   text: {
@@ -248,7 +241,10 @@ const styles = StyleSheet.create({
   clockStyles: {
     height: 70,
     flexDirection: 'row',
-    marginBottom: 30,
+    marginBottom: 10,
   },
-  buttonContainer: { marginBottom: 40 },
+  buttonContainer: {
+    marginBottom: 40,
+    paddingBottom: 30,
+  },
 });

@@ -14,6 +14,8 @@ export type SenseyePickerProps = {
   };
   /** Displayed value on the Picker Item  */
   label: string;
+  /** Sets the height of the picker container  */
+  height: string | number;
   /** Sets the width of the picker container  */
   width: string | number;
   /** Sets the background color of the picker container */
@@ -67,7 +69,7 @@ export default function SenseyePicker(props: SenseyePickerProps) {
 
   return (
     <>
-      {props.label ? <Text style={styles(props).label}>{props.label}</Text> : <></>}
+      {props.label ? <Text style={styles(props).label}>{props.label}</Text> : null}
       <DropDownPicker
         open={open}
         value={initValue}
@@ -99,10 +101,10 @@ const styles = (props: SenseyePickerProps) =>
     pickerContainer: {
       backgroundColor: '#191C31',
       marginBottom: props.marginBottom,
+      height: props.height,
       width: props.width,
       zIndex: props.zIndex,
       borderRadius: 0,
-      flex: 1,
     },
     text: {
       marginLeft: 10,
@@ -133,6 +135,7 @@ const styles = (props: SenseyePickerProps) =>
 SenseyePicker.defaultProps = {
   label: '',
   selectedValue: null,
+  height: 50,
   width: 'auto',
   marginBottom: 20,
   zIndex: 100,

@@ -34,19 +34,21 @@ export default function SenseyeTextInput(props: SenseyeTextInputProps) {
   }
 
   return (
-    <View style={styles(props).inputContainer}>
-      <Text style={styles(props).text}>{props.label}</Text>
-      <TextInput
-        style={styles(props).inputField}
-        keyboardType={props.keyboardType}
-        placeholder={props.placeholderText}
-        placeholderTextColor={props.placeholderTextColor}
-        value={props.value}
-        returnKeyType={'done'}
-        returnKeyLabel={'done'}
-        onChangeText={(text) => _onChangeText(text)}
-      />
-    </View>
+    <>
+      {props.label ? <Text style={styles(props).label}>{props.label}</Text> : null}
+      <View style={styles(props).inputContainer}>
+        <TextInput
+          style={styles(props).inputField}
+          keyboardType={props.keyboardType}
+          placeholder={props.placeholderText}
+          placeholderTextColor={props.placeholderTextColor}
+          value={props.value}
+          returnKeyType={'done'}
+          returnKeyLabel={'done'}
+          onChangeText={(text) => _onChangeText(text)}
+        />
+      </View>
+    </>
   );
 }
 
@@ -64,13 +66,12 @@ const styles = (props: SenseyeTextInputProps) =>
       borderRightColor: '#000',
       borderBottomColor: '#000',
     },
-    text: {
+    label: {
       color: '#0FA697',
-      marginLeft: 10,
-      marginTop: 5,
       padding: 5,
       textTransform: 'uppercase',
       fontWeight: '700',
+      display: 'flex',
     },
     inputField: {
       marginLeft: 10,
@@ -84,7 +85,7 @@ SenseyeTextInput.defaultProps = {
   keyboardType: 'default',
   placeholderText: 'Type here',
   placeholderTextColor: 'rgba(216,249,255, 0.2)',
-  height: 70,
+  height: 50,
   width: 'auto',
   background: '#191C31',
   borderBottomColor: 'transparent',
