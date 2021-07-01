@@ -144,9 +144,10 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
           zIndex={100}
           zIndexInverse={300}
         />
+        <Text style={styles.label}>Sleep Time</Text>
         <Text style={styles.text}>Select the day you last slept:</Text>
         <SenseyeCalendar onUpdate={(day) => setBedDate(day)} initialDate={YESTERDAY} />
-        <Text style={styles.text}>Log your most recent bedtime:</Text>
+        <Text style={styles.text}>Log your most recent sleep time:</Text>
         <View style={styles.clockStyles}>
           <SenseyeTextInput
             placeholderText="HH"
@@ -171,6 +172,7 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
             pickerBackground={'#191C31'}
           />
         </View>
+        <Text style={styles.label}>Wake Time</Text>
         <Text style={styles.text}>Select the day you last awoke:</Text>
         <SenseyeCalendar onUpdate={(day) => setWakeDate(day)} />
         <Text style={styles.text}>Log your most recent wake time:</Text>
@@ -242,5 +244,12 @@ const styles = StyleSheet.create({
   buttonContainer: {
     marginBottom: 40,
     paddingBottom: 30,
+  },
+  label: {
+    color: '#0FA697',
+    padding: 5,
+    textTransform: 'uppercase',
+    fontWeight: '700',
+    display: 'flex',
   },
 });
