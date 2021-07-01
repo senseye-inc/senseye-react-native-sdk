@@ -125,8 +125,8 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
           options={Constants.FormData.GENDER}
           selectedValue={gender}
           onChangeValue={(value) => setGender(value)}
-          zIndex={100}
-          zIndexInverse={400}
+          zIndex={300}
+          zIndexInverse={100}
         />
         <SenseyePicker
           label="Eye Color"
@@ -134,22 +134,22 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
           selectedValue={eyeColor}
           onChangeValue={(value) => setEyeColor(value)}
           zIndex={200}
-          zIndexInverse={300}
+          zIndexInverse={200}
         />
         <SenseyePicker
           label="Fatigue rating (1 = alert, 7 = very tired)"
           options={Constants.FormData.FATIGUE}
           selectedValue={fatigueLevel}
           onChangeValue={(value) => setFatigueLevel(value)}
-          zIndex={300}
-          zIndexInverse={200}
+          zIndex={100}
+          zIndexInverse={300}
         />
+        <Text style={styles.label}>Sleep Time</Text>
         <Text style={styles.text}>Select the day you last slept:</Text>
         <SenseyeCalendar onUpdate={(day) => setBedDate(day)} initialDate={YESTERDAY} />
-        <Text style={styles.text}>Log your most recent bedtime:</Text>
+        <Text style={styles.text}>Log your most recent sleep time:</Text>
         <View style={styles.clockStyles}>
           <SenseyeTextInput
-            label="Hour"
             placeholderText="HH"
             keyboardType="number-pad"
             value={String(bedHour)}
@@ -157,7 +157,6 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
             width={'32%'}
           />
           <SenseyeTextInput
-            label="Min"
             placeholderText="MM"
             keyboardType="number-pad"
             value={String(bedMin)}
@@ -170,17 +169,15 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
             onChangeValue={(value) => setBedMeridiem(value)}
             width={'38%'}
             marginBottom={0}
-            zIndex={400}
-            zIndexInverse={100}
             pickerBackground={'#191C31'}
           />
         </View>
+        <Text style={styles.label}>Wake Time</Text>
         <Text style={styles.text}>Select the day you last awoke:</Text>
         <SenseyeCalendar onUpdate={(day) => setWakeDate(day)} />
         <Text style={styles.text}>Log your most recent wake time:</Text>
         <View style={styles.clockStyles}>
           <SenseyeTextInput
-            label="Hour"
             placeholderText="HH"
             keyboardType="number-pad"
             value={String(wakeHour)}
@@ -188,7 +185,6 @@ export default function DemographicSurvey(props: DemographicSurveyProps) {
             width={'32%'}
           />
           <SenseyeTextInput
-            label="Min"
             placeholderText="MM"
             keyboardType="number-pad"
             value={String(wakeMin)}
@@ -220,12 +216,9 @@ const styles = StyleSheet.create({
     paddingTop: -60,
   },
   innerContainer: {
-    paddingTop: 30,
     height: WINDOW_HEIGHT + 120,
     margin: 30,
-    paddingBottom: 30,
-    paddingRight: 30,
-    paddingLeft: 30,
+    padding: 30,
     backgroundColor: '#21284E',
   },
   text: {
@@ -246,9 +239,17 @@ const styles = StyleSheet.create({
     margin: 0,
   },
   clockStyles: {
-    height: 70,
     flexDirection: 'row',
-    marginBottom: 30,
   },
-  buttonContainer: { marginBottom: 40 },
+  buttonContainer: {
+    marginBottom: 40,
+    paddingBottom: 30,
+  },
+  label: {
+    color: '#0FA697',
+    padding: 5,
+    textTransform: 'uppercase',
+    fontWeight: '700',
+    display: 'flex',
+  },
 });

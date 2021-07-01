@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 import type { Datum } from '@senseyeinc/react-native-senseye-sdk';
@@ -14,6 +14,8 @@ export type SenseyePickerProps = {
   };
   /** Displayed value on the Picker Item  */
   label: string;
+  /** Sets the height of the picker container  */
+  height: string | number;
   /** Sets the width of the picker container  */
   width: string | number;
   /** Sets the background color of the picker container */
@@ -67,7 +69,7 @@ export default function SenseyePicker(props: SenseyePickerProps) {
 
   return (
     <>
-      {props.label ? <Text style={styles(props).label}>{props.label}</Text> : <></>}
+      {props.label ? <Text style={styles(props).label}>{props.label}</Text> : null}
       <DropDownPicker
         open={open}
         value={initValue}
@@ -81,9 +83,10 @@ export default function SenseyePicker(props: SenseyePickerProps) {
         zIndex={props.zIndex}
         zIndexInverse={props.zIndexInverse}
         textStyle={styles(props).text}
-        style={styles(props).pickerContainer}
+        style={styles(props).picker}
         arrowIconStyle={styles(props).arrow}
         tickIconStyle={styles(props).tick}
+        containerStyle={styles(props).pickerContainer}
         dropDownContainerStyle={styles(props).dropDown}
         listMode="SCROLLVIEW"
         scrollViewProps={{
@@ -97,12 +100,14 @@ export default function SenseyePicker(props: SenseyePickerProps) {
 const styles = (props: SenseyePickerProps) =>
   StyleSheet.create({
     pickerContainer: {
-      backgroundColor: '#191C31',
       marginBottom: props.marginBottom,
+      height: props.height,
       width: props.width,
-      zIndex: props.zIndex,
+    },
+    picker: {
+      flexGrow: 1,
+      backgroundColor: '#191C31',
       borderRadius: 0,
-      flex: 1,
     },
     text: {
       marginLeft: 10,
@@ -122,7 +127,6 @@ const styles = (props: SenseyePickerProps) =>
     },
     dropDown: {
       backgroundColor: '#191C31',
-      zIndex: 8888,
     },
     tick: {
       backgroundColor: 'rgba(216,249,100, 0.5)',
@@ -133,6 +137,7 @@ const styles = (props: SenseyePickerProps) =>
 SenseyePicker.defaultProps = {
   label: '',
   selectedValue: null,
+  height: 50,
   width: 'auto',
   marginBottom: 20,
   zIndex: 100,
