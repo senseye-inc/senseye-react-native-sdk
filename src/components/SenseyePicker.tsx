@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 import type { Datum } from '@senseyeinc/react-native-senseye-sdk';
@@ -83,9 +83,10 @@ export default function SenseyePicker(props: SenseyePickerProps) {
         zIndex={props.zIndex}
         zIndexInverse={props.zIndexInverse}
         textStyle={styles(props).text}
-        style={styles(props).pickerContainer}
+        style={styles(props).picker}
         arrowIconStyle={styles(props).arrow}
         tickIconStyle={styles(props).tick}
+        containerStyle={styles(props).pickerContainer}
         dropDownContainerStyle={styles(props).dropDown}
         listMode="SCROLLVIEW"
         scrollViewProps={{
@@ -99,11 +100,13 @@ export default function SenseyePicker(props: SenseyePickerProps) {
 const styles = (props: SenseyePickerProps) =>
   StyleSheet.create({
     pickerContainer: {
-      backgroundColor: '#191C31',
       marginBottom: props.marginBottom,
       height: props.height,
       width: props.width,
-      zIndex: props.zIndex,
+    },
+    picker: {
+      flexGrow: 1,
+      backgroundColor: '#191C31',
       borderRadius: 0,
     },
     text: {
@@ -124,7 +127,6 @@ const styles = (props: SenseyePickerProps) =>
     },
     dropDown: {
       backgroundColor: '#191C31',
-      zIndex: 8888,
     },
     tick: {
       backgroundColor: 'rgba(216,249,100, 0.5)',

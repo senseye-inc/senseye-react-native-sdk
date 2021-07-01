@@ -55,6 +55,8 @@ export default function SenseyeTextInput(props: SenseyeTextInputProps) {
 const styles = (props: SenseyeTextInputProps) =>
   StyleSheet.create({
     inputContainer: {
+      alignItems: 'center',
+      flexDirection: 'row',
       height: props.height,
       width: props.width,
       backgroundColor: props.background,
