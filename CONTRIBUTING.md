@@ -43,9 +43,9 @@ A pre-commit hook will automatically run `yarn lint && yarn typescript` on any `
 git commit --no-verify
 ```
 
-To edit the Objective-C files, open `/example/ios/SenseyeSdkExample.xcworkspace` in XCode and find the source files at `Pods > Development Pods > react-native-senseye-sdk`.
+To edit the Objective-C files, open `/example/ios/SenseyeSdkExample.xcworkspace` in XCode and find the source files at `SenseyeSdkExample > SenseyeSdkExample`.
 
-To edit the Kotlin files, open `/example/android` in Android studio and find the source files at `senseyesdk` under `Android`.
+To edit the Kotlin files, open `/example/android` in Android Studio and find the source files at `app` under `Android`.
 
 To add a dependency that relies on native code, perform the following:
 1. From the root directory, run `yarn add <some-package> --dev`.
