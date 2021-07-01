@@ -8392,7 +8392,7 @@ react-native-dropdown-picker@^5.1.21:
   dependencies:
     react-native-gesture-handler "*"
 
-react-native-ffmpeg@^0.5.0:
+react-native-ffmpeg@^0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/react-native-ffmpeg/-/react-native-ffmpeg-0.5.1.tgz#24e94f346961bad3b46b81b0c89f6182ab0a28d5"
   integrity sha512-F9ewadFUqjiyOzUv/uAHK0LTxru4MiGvOSJAQRO+9OiYmcM4jmx2IyKOPRiMnk0BodAdZlmOdNMCUrReS+Ni/A==
