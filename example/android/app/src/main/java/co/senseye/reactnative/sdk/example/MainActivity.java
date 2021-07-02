@@ -1,4 +1,4 @@
-package co.senseye.sdk.example;
+package co.senseye.reactnative.sdk.example;
 
 import com.facebook.react.ReactActivity;
 
