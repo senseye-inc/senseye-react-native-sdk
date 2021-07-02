@@ -25,7 +25,7 @@ For iOS, make sure to also install the CocoaPods dependencies:
 npx pod-install
 ```
 
-Note that the CocoaPods dependencies will _not_ be included when installing dependencies via `yarn bootstrap`, which can be ran at the root directory of this repository.
+Note that the CocoaPods dependencies will **_not_** be included when installing dependencies via `yarn bootstrap`, which can be ran at the root directory of this repository.
 
 ## Build & Run
 
@@ -33,16 +33,16 @@ It is recommended to run this app on a mobile device. To do so, follow this [lin
 
 Once the app is running on your device, changes to the codebase will be actively reflected onto the app. If necessary, you can reload the app by pressing `r` in the CLI window/tab that is running Metro.
 
-The "Full Demo" can be modified by making changes inside `/example/src/screens/FullDemoScreen.tsx`.
+The "Full Demo" can be modified by making changes inside `./src/screens/FullDemoScreen.tsx`.
 
 ### Android
 If your device is already configured and connected via USB, you can simply follow these steps to deploy the app to your device:
 
-1. Start Metro:
+1. Navigate to this directory and start Metro:
     ```
     yarn start
     ```
-2. Let Metro run in its own terminal, then run the app:
+2. Navigate to this directory in a separate terminal and run the app:
     ```
     yarn android
     ```
