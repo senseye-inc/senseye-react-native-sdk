@@ -1,4 +1,4 @@
-package co.senseye.sdk.example;
+package co.senseye.reactnative.sdk.example;
 
 import android.app.Application;
 import android.content.Context;

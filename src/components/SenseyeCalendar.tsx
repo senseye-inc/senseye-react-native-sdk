@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Calendar } from 'react-native-calendars';
+import { Calendar, DateObject } from 'react-native-calendars';
 
 export type SenseyeCalendarProps = {
   initialDate: string | (() => string);
-  onUpdate?(day: React.SetStateAction<string>): void;
+  onUpdate?(day: string): void;
 };
 
 const TODAY = new Date();
@@ -47,7 +47,7 @@ export default function SenseyeCalendar(props: SenseyeCalendarProps) {
       startingDay: true,
     },
   };
-  const onDayPress = (day: { dateString: React.SetStateAction<string> }) => {
+  const onDayPress = (day: DateObject) => {
     setSelectedDate(day.dateString);
     if (props.onUpdate) {
       props.onUpdate(day.dateString);

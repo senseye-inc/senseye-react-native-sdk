@@ -11,10 +11,7 @@ import {
 } from 'react-native-device-info';
 import { TemporaryDirectoryPath, writeFile } from 'react-native-fs';
 
-import {
-  getCurrentTimestamp,
-  isNonEmptyString,
-} from '@senseyeinc/react-native-senseye-sdk';
+import { getCurrentTimestamp } from '@senseyeinc/react-native-senseye-sdk';
 import type { SenseyeApiClient, Models } from '@senseyeinc/react-native-senseye-sdk';
 
 /**
@@ -26,12 +23,13 @@ export default class Session {
   private metadata: { [key: string]: any };
   private tasks: Models.Task[];
   private jsonUploadPercentage: number;
+  private uniqueId: string;
 
   /**
    * @param uniqueId  Username or ID of the participant.
    * @param survey    A `Survey` whose response entries will be included in the session's {@link metadata}.
    */
-  constructor(uniqueId?: string, survey?: Models.Survey) {
+  constructor(uniqueId: string, survey?: Models.Survey) {
     const timestamp = getCurrentTimestamp();
 
     this.metadata = {
@@ -57,12 +55,11 @@ export default class Session {
 
     if (survey) {
       // merge survey response entries into session metadata
-      this.metadata = { ...this.metadata.info, ...survey.getEntries()[1] };
+      this.metadata = { ...this.metadata, ...survey.getEntries()[1] };
     }
-    if (isNonEmptyString(this.metadata.uniqueId)) {
-      // if `uniqueId` was provided, either through the param or survey, prefix it to `folderName`
-      this.metadata.folderName = this.metadata.uniqueId + '_' + this.metadata.folderName;
-    }
+
+    this.uniqueId = uniqueId;
+    this.metadata.folderName = this.uniqueId + '_' + this.metadata.folderName;
   }
 
   /**
@@ -92,10 +89,7 @@ export default class Session {
       throw new Error('A Task must be added to the Session before adding any Videos.');
     }
 
-    if (isNonEmptyString(this.metadata.uniqueId)) {
-      // if `uniqueId` is present, prefix it to the video's name
-      video.setName(this.metadata.uniqueId + '_' + video.getName());
-    }
+    video.setName(this.uniqueId + '_' + video.getName());
     this.tasks[this.tasks.length - 1].addVideo(video);
   }
 
@@ -136,10 +130,7 @@ export default class Session {
    */
   public async uploadJsonData(apiClient: SenseyeApiClient) {
     let fileName = getCurrentTimestamp() + '_input.json';
-    if (isNonEmptyString(this.metadata.uniqueId)) {
-      // if `uniqueId` is present, prefix it to the file name
-      fileName = this.metadata.uniqueId + '_' + fileName;
-    }
+    fileName = this.uniqueId + '_' + fileName;
 
     this.metadata.tasks = [];
     for (let i = 0; i < this.tasks.length; i++) {

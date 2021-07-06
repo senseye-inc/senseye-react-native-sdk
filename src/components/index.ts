@@ -1,6 +1,7 @@
 import TaskRunner, { TaskRunnerProps } from './TaskRunner';
 import VideoRecorder, { VideoRecorderProps } from './VideoRecorder';
 import SenseyeButton, { SenseyeButtonProps } from './SenseyeButton';
+import SenseyeCalendar, { SenseyeCalendarProps } from './SenseyeCalendar';
 import SenseyePicker, { SenseyePickerProps } from './SenseyePicker';
 import SenseyeTextInput, { SenseyeTextInputProps } from './SenseyeTextInput';
 import SenseyeAlert, { SenseyeAlertProps } from './SenseyeAlert';
@@ -15,6 +16,8 @@ export {
   VideoRecorderProps,
   SenseyeButton,
   SenseyeButtonProps,
+  SenseyeCalendar,
+  SenseyeCalendarProps,
   SenseyePicker,
   SenseyePickerProps,
   SenseyeTextInput,

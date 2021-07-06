@@ -1,6 +1,6 @@
 {
   "name": "@senseyeinc/react-native-senseye-sdk",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "The Senseye SDK provides direct integration into the Senseye API on both iOS and Android for React Native apps. The JavaScript API is simple and cross-platform. Ready to get started? Follow the instructions below.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -47,12 +47,12 @@
   "dependencies": {
     "axios": "^0.21.0",
     "react-native-calendars": "^1.1262.0",
+    "react-native-dropdown-picker": "^5.1.21",
     "yup": "^0.32.9"
   },
   "devDependencies": {
     "@babel/core": "^7.14.3",
     "@react-native-community/eslint-config": "^2.0.0",
-    "@react-native-picker/picker": "^1.9.10",
     "@release-it/conventional-changelog": "^1.1.4",
     "@types/jest": "^26.0.0",
     "@types/react": "^16.9.19",
@@ -72,7 +72,7 @@
     "react-native-builder-bob": "^0.17.1",
     "react-native-camera": "^3.42.2",
     "react-native-device-info": "^8.0.0",
-    "react-native-ffmpeg": "^0.5.0",
+    "react-native-ffmpeg": "^0.5.1",
     "react-native-fs": "^2.16.0",
     "react-native-svg": "^12.1.1",
     "react-native-svg-transformer": "^0.14.3",
@@ -81,7 +81,6 @@
     "typescript": "^3.8.3"
   },
   "peerDependencies": {
-    "@react-native-picker/picker": "*",
     "react": "*",
     "react-native": "*",
     "react-native-camera": "^3.42.2",
@@ -157,7 +156,12 @@
     "targets": [
       "commonjs",
       "module",
-      "typescript"
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
     ]
   }
 }

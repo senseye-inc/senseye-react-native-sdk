@@ -1,13 +1,4 @@
 {
   "name": "SenseyeSdkExample",
-  "displayName": "SenseyeSdk Example",
-  "expo": {
-    "entryPoint": "./index-expo.ts",
-    "name": "SenseyeSdkExample",
-    "slug": "senseyesdk-example",
-    "packagerOpts": {
-      "config": "metro.config.js",
-      "sourceExts": ["js", "jsx", "ts", "tsx", "svg"]
-    }
-  }
+  "displayName": "Senseye SDK Example"
 }

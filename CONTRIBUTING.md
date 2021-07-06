@@ -16,13 +16,7 @@ iOS developers should additionally have [CocoaPods](https://cocoapods.org/) and 
 yarn pods
 ```
 
-While developing, you can use the example scaffolding to test your changes.
-
-To run a cross-platform example using Expo:
-
-```sh
-yarn example expo
-```
+While developing, you can use the example app to test your changes. See the [example README](/example/README.md) for instructions on how to run the app.
 
 Make sure your code passes TypeScript and ESLint. Run the following to verify:
 
@@ -49,9 +43,9 @@ A pre-commit hook will automatically run `yarn lint && yarn typescript` on any `
 git commit --no-verify
 ```
 
-To edit the Objective-C files, open `/example/ios/SenseyeSdkExample.xcworkspace` in XCode and find the source files at `Pods > Development Pods > react-native-senseye-sdk`.
+To edit the Objective-C files, open `/example/ios/SenseyeSdkExample.xcworkspace` in XCode and find the source files at `SenseyeSdkExample > SenseyeSdkExample`.
 
-To edit the Kotlin files, open `/example/android` in Android studio and find the source files at `senseyesdk` under `Android`.
+To edit the Kotlin files, open `/example/android` in Android Studio and find the source files at `app` under `Android`.
 
 To add a dependency that relies on native code, perform the following:
 1. From the root directory, run `yarn add <some-package> --dev`.
@@ -91,7 +85,7 @@ The `package.json` file contains various scripts for common tasks:
 - `yarn lint`: lint files with ESLint.
 - `yarn test`: run unit tests with Jest.
 - `yarn example start`: start the Metro server for the example app.
-- `yarn example [android/expo/ios]`: run the example app on mobile targets.
+- `yarn example [android/ios]`: run the example app on mobile targets.
 
 ### Sending a pull request
 
