@@ -59,11 +59,15 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
       const taskName = children[taskIndex].props.name;
       const t = new Models.Task(taskName);
       setTaskEntity(t);
-      session.addTask(t);
       recorder
         .startRecording(taskName.replace(/ /g, '_').toLowerCase())
         .then((videoEntity) => {
+          session.addTask(t);
           session.addVideo(videoEntity);
+        })
+        .catch(() => {
+          setIsPreview(true);
+          // TODO: onTaskRepeat
         })
         .finally(() => {
           setIsRecording(false);
@@ -120,7 +124,7 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
 
   // execute onEnd callback once all tasks are complete
   React.useEffect(() => {
-    if (taskIndex >= children.length && !isRecording) {
+    if (!isRecording && taskIndex >= children.length) {
       _onEnd();
     }
   }, [taskIndex, children.length, isRecording, _onEnd]);
@@ -136,8 +140,8 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
           setIsRecording(true);
         }}
         onRecordingEnd={() => {
-          setTaskIndex((prevIndex) => prevIndex + 1);
           setIsPreview(true);
+          setTaskIndex((prevIndex) => prevIndex + 1);
         }}
       />
       {isPreview
