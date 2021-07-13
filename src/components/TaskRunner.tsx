@@ -18,6 +18,12 @@ export type TaskRunnerProps = {
    */
   onTaskPreview?(index: number, name: string, instructions: string): void;
   /**
+   * Function to be called when the runner encounters the need to re-run a task and
+   * resets to the preview screen. This will usually occur if there is a recording error
+   * or interruption during the task.
+   */
+  onTaskReset?(): void;
+  /**
    * Function to be called once all tasks are complete. Its param will be a `Session`
    * containing {@link Video | Videos} and data recorded during the tasks.
    */
@@ -29,7 +35,7 @@ export type TaskRunnerProps = {
  * Orchestrates video recording and data collection during each task.
  */
 const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
-  const { uniqueId, demographicSurvey, onEnd, onTaskPreview } = props;
+  const { uniqueId, demographicSurvey, onEnd, onTaskPreview, onTaskReset } = props;
   const [recorder, setRecorder] = React.useState<VideoRecorderObject>();
   const [taskEntity, setTaskEntity] = React.useState<Models.Task>();
   const [taskIndex, setTaskIndex] = React.useState<number>(0);
@@ -54,6 +60,27 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
     }
   }, []);
 
+  const _onEnd = React.useCallback(() => {
+    if (onEnd) {
+      onEnd(session);
+    }
+  }, [session, onEnd]);
+
+  const _onTaskPreview = React.useCallback(
+    (index, name, instructions) => {
+      if (onTaskPreview) {
+        onTaskPreview(index, name, instructions);
+      }
+    },
+    [onTaskPreview]
+  );
+
+  const _onTaskReset = React.useCallback(() => {
+    if (onTaskReset) {
+      onTaskReset();
+    }
+  }, [onTaskReset]);
+
   const onDoubleTap = React.useCallback(() => {
     if (recorder) {
       const taskName = children[taskIndex].props.name;
@@ -67,13 +94,13 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
         })
         .catch(() => {
           setIsPreview(true);
-          // TODO: onTaskRepeat
+          _onTaskReset();
         })
         .finally(() => {
           setIsRecording(false);
         });
     }
-  }, [recorder, session, children, taskIndex]);
+  }, [recorder, session, children, taskIndex, _onTaskReset]);
 
   const onTaskStart = React.useCallback(() => {
     if (taskEntity) {
@@ -98,21 +125,6 @@ const TaskRunner: React.FunctionComponent<TaskRunnerProps> = (props) => {
       recorder.stopRecording();
     }
   }, [recorder, taskEntity]);
-
-  const _onEnd = React.useCallback(() => {
-    if (onEnd) {
-      onEnd(session);
-    }
-  }, [session, onEnd]);
-
-  const _onTaskPreview = React.useCallback(
-    (index, name, instructions) => {
-      if (onTaskPreview) {
-        onTaskPreview(index, name, instructions);
-      }
-    },
-    [onTaskPreview]
-  );
 
   // execute onTaskPreview at the preview screen before each task
   React.useEffect(() => {
