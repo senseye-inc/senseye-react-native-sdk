@@ -145,10 +145,12 @@ const styles = (props: PlrProps) =>
 Plr.defaultProps = {
   background: '#000000',
   colorSequence: [
-    'rgb(127, 127, 127)',
     'rgb(0, 0, 0)',
     'rgb(255, 255, 255)',
     'rgb(0, 0, 0)',
+    'rgb(255, 255, 255)',
+    'rgb(0, 0, 0)',
+    'rgb(255, 255, 255)',
   ],
   fixationWidth: 16,
   fixationLength: 40,
