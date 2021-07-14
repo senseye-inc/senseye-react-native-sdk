@@ -34,7 +34,7 @@ export default function CalibrationScreen() {
       />
       <Modal visible={isShowModal} onRequestClose={() => setIsShowModal(false)}>
         <Tasks.Calibration
-          radius={15}
+          radius={20}
           dotSequence={selectPattern()}
           onEnd={() => setIsShowModal(false)}
         />
