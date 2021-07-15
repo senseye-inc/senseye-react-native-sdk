@@ -139,7 +139,7 @@ const styles = (props: CalibrationProps) =>
 Calibration.defaultProps = {
   background: '#000000',
   duration: 2000,
-  radius: 20,
+  radius: 15,
   dotColor: '#FFFFFF',
   dotSequence: [
     { x: 0.8, y: 0.25 },
