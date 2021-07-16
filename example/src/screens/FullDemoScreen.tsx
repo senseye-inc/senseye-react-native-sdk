@@ -143,7 +143,7 @@ export default function FullDemoScreen() {
           !isTasksComplete ? (
             <View style={Spacing.centeredFlexView as ViewStyle}>
               <TaskRunner uniqueId="0000" onEnd={onEnd} onTaskPreview={onTaskPreview}>
-                <Tasks.Calibration dotSequence={Constants.CalibrationPatterns[1]} />
+                <Tasks.Calibration dotSequence={Constants.CalibrationPatterns[0]} />
                 <Tasks.Plr />
               </TaskRunner>
               <TaskInstructions
